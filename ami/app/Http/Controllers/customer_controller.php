@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\customer;
 use Hash;
-use Session;
+use Session; //github try
 
 class customer_controller extends Controller
 {
