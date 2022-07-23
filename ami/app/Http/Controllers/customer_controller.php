@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\customer;
+use App\Mail\welcomemail;
 use Hash;
+use Mail;
 use Session; //github try
 
 class customer_controller extends Controller
@@ -40,14 +42,24 @@ class customer_controller extends Controller
     {
         $data=new customer;
 		$data->Username=$request->username;
-		$data->Name=$request->name;
-		$data->Email=$request->email;
+	$name=$data->Name=$request->name;
+	$email=$data->Email=$request->email;
 		$data->MobileNo=$request->mobileno;
 		$data->Address=$request->address;
         $data->Password=Hash::make($request->password);
 		
 		$res=$data->save();
-		return redirect('/flogin')->with("success","Registration Success");
+		if($res)
+		{
+			$details=['title'=>$email,'comment'=>"Welcome Mail"];
+	   
+			Mail::to($email)->send(new welcomemail($details));
+			return back()->with("success","Register Success");
+		}
+		else
+		{
+			alert("Not success");
+		}
     }
 
     /**

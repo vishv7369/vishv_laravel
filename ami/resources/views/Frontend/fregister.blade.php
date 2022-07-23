@@ -38,6 +38,7 @@
                             <label>Username</label>
                             <input type="text" name="username" class="form-control">
                         </div>
+                        
 						
 						 <div class="form-group">
                             <label>Name</label>
