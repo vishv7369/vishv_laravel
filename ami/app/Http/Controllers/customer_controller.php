@@ -48,7 +48,7 @@ class customer_controller extends Controller
 		$data->Address=$request->address;
         $data->Password=Hash::make($request->password);
 		
-		$res=$data->save();
+		$res=$data->save(); 
 		if($res)
 		{
 			$details=['title'=>$email,'comment'=>"Welcome Mail"];
