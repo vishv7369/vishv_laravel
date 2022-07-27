@@ -22,122 +22,28 @@
 					<!-- /Page Header -->
 					
 					<div class="row">
-						<div class="col-xl-6 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h4 class="card-title">Basic Form</h4>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">First Name</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Last Name</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Email Address</label>
-											<div class="col-lg-9">
-												<input type="email" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Username</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Password</label>
-											<div class="col-lg-9">
-												<input type="password" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Repeat Password</label>
-											<div class="col-lg-9">
-												<input type="password" class="form-control">
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-6 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h4 class="card-title">Address Form</h4>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Address 1</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Address 2</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">City</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">State</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Country</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Postal Code</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Two Column Horizontal Form</h4>
-								</div>
 								<div class="card-body">
 									<h4 class="card-title">Personal Information</h4>
 									<form action="#">
 										<div class="row">
 											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">First Name</label>
+											<div class="row">
+													<label class="col-lg-3 col-form-label">Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" placeholder="First Name" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<input type="text" placeholder="Last Name" class="form-control">
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -164,7 +70,7 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Blood Group</label>
+													<label class="col-lg-3 col-form-label">Specialist Id</label>
 													<div class="col-lg-9">
 														<select class="select">
 															<option>Select</option>
