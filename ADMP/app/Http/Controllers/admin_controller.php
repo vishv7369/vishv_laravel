@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\admin;
+use Hash;
+use Session;
 
 class admin_controller extends Controller
 {
@@ -71,6 +74,41 @@ class admin_controller extends Controller
         //
     }
 
+    public function adminlogin(Request $request)
+    {
+        return view('admin.login');
+    }
+
+    public function addminlogin(Request $request)
+    {
+       $data=_admin::where("email","=",$request->email)->first();
+       if($data)
+       {
+           if(Hash::check($request->password, $data->password))
+           {
+               $status=$data->status;
+               if($status=="Unblock")
+               {
+                   $request->Session()->put('admin_id',$data->id);
+                   $request->Session()->put('email',$data->email);
+                   return redirect('/admin');
+               }
+               else
+               {
+                return redirect('/login')->with('fail','Login Failed due to Blocked User');
+               }
+           }
+           else
+           {
+            return redirect('/login')->with('fail','Login Failed due to Wrong Password');
+           }
+       }
+       else
+       {
+        return redirect('/login')->with('fail','Login Failed due to Wrong user');
+       }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -81,4 +119,13 @@ class admin_controller extends Controller
     {
         //
     }
+
+    public function adminlogout()
+    {
+        Session()->pull('admin_id');
+        Session()->pull('email');
+        return redirect('/login');
+    }
+
 }
+

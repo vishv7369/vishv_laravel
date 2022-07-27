@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\admin_controller;
+use App\Http\Controllers\doctor_controller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +54,9 @@ Route::get('/doctor-invoice-view', function (){return view('doctor.invoice-view'
 Route::get('/doctor-blank-page', function (){return view('doctor.blank-page');});
 
 //===========================================================================================================
+Route::get('/login',[customer_controller::class,'adminlogin']);
+Route::post('/login',[customer_controller::class,'addminlogin']);
+Route::get('/logout',[customer_controller::class,'adminlogout']);
 
 Route::get('/admin', function (){return view('admin.index');});//
 Route::get('/admin-profile', function (){return view('admin.profile');});
