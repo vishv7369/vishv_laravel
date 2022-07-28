@@ -28,9 +28,15 @@
 								
 								<div class="card-body">
 									<h4 class="card-title">Personal Information</h4><br>
-									<form action="#">
+									<form action="{{url('/add-doctor')}}" method="post" enctype="multipart/form-data">
+										@csrf
 										<div class="row">
 											<div class="col-xl-6">
+												@if(session()->has('success'))
+												<br>
+												<i class="alert alert-success">{{session('success')}}</i>
+												<br>
+												@endif
 											    <div class="row">
 													<label class="col-lg-3 col-form-label">Name</label>
 													<div class="col-lg-9">
