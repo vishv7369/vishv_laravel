@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\doctor_controller;
 
@@ -54,49 +53,52 @@ Route::get('/doctor-invoice-view', function (){return view('doctor.invoice-view'
 Route::get('/doctor-blank-page', function (){return view('doctor.blank-page');});
 
 //===========================================================================================================
-Route::get('/login',[customer_controller::class,'adminlogin']);
-Route::post('/login',[customer_controller::class,'addminlogin']);
-Route::get('/logout',[customer_controller::class,'adminlogout']);
 
-Route::get('/admin', function (){return view('admin.index');});//
+Route::get('/admin-login',[admin_controller::class,'login']);
+Route::post('/adminlogin',[admin_controller::class,'adminlogin']);
+Route::get('/logout',[admin_controller::class,'logout']);
+
+Route::group(['middleware'=>['afterlogin']], function(){
+
+Route::get('/admin', function (){return view('admin.index');});
 Route::get('/admin-profile', function (){return view('admin.profile');});
-Route::get('/admin-settings', function (){return view('admin.settings');});//
-Route::get('/admin-login', function (){return view('admin.login');});
+Route::get('/admin-settings', function (){return view('admin.settings');});
 
-Route::get('/admin-specialities', function (){return view('admin.specialities');});//
 
-Route::get('/admin-patient', function (){return view('admin.patient-list');});//
-Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});//
+Route::get('/admin-specialities', function (){return view('admin.specialities');});
+//
+Route::get('/admin-patient', function (){return view('admin.patient-list');});
+Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
 Route::get('/admin-patient-cancel-appointment', function (){return view('admin.patient-cancel-appointment');});
 
-Route::get('/admin-doctor', function (){return view('admin.doctor');});//
+Route::get('/admin-doctor', function (){return view('admin.doctor-list');});
 Route::get('/admin-edit-doctor', function (){return view('admin.edit-doctor');});
-Route::get('/admin-add-doctor', function (){return view('admin.add-doctor');});//
-Route::get('/admin-doctor-appointment', function (){return view('admin.doctor-appointment');});//
+Route::get('/admin-add-doctor', function (){return view('admin.add-doctor');});
+Route::get('/admin-doctor-appointment', function (){return view('admin.doctor-appointment');});
 Route::get('/admin-doctor-cancel-appointment', function (){return view('admin.doctor-cancel-appointment');});
 
-Route::get('/admin-company', function (){return view('admin.company');});//
+Route::get('/admin-company', function (){return view('admin.company');});
 Route::get('/admin-edit-company', function (){return view('admin.edit-company');});
-Route::get('/admin-add-company', function (){return view('admin.add-company');});//
+Route::get('/admin-add-company', function (){return view('admin.add-company');});
 Route::get('/admin-company-appointment', function (){return view('admin.company-appointment');});
 Route::get('/admin-company-cancel-appointment', function (){return view('admin.company-cancel-appointment');});
 
-Route::get('/admin-manager', function (){return view('admin.manager');});//
+Route::get('/admin-manager', function (){return view('admin.manager');});
 Route::get('/admin-edit-manager', function (){return view('admin.edit-manager');});
-Route::get('/admin-add-manager', function (){return view('admin.add-manager');});//
-Route::get('/admin-manager-appointment', function (){return view('admin.manager-appointment');});//
+Route::get('/admin-add-manager', function (){return view('admin.add-manager');});
+Route::get('/admin-manager-appointment', function (){return view('admin.manager-appointment');});
 Route::get('/admin-manager-cancel-appointment', function (){return view('admin.manager-cancel-appointment');});
 
-Route::get('/admin-mr', function (){return view('admin.mr');});//
+Route::get('/admin-mr', function (){return view('admin.mr');});
 Route::get('/admin-edit-mr', function (){return view('admin.edit-mr');});
-Route::get('/admin-add-mr', function (){return view('admin.add-mr');});//
-Route::get('/admin-mr-appointment', function (){return view('admin.mr-appointment');});//
+Route::get('/admin-add-mr', function (){return view('admin.add-mr');});
+Route::get('/admin-mr-appointment', function (){return view('admin.mr-appointment');});
 Route::get('/admin-mr-cancel-appointment', function (){return view('admin.mr-cancel-appointment');});
 
 
-Route::get('/admin-reviews', function (){return view('admin.reviews');});//
-Route::get('/admin-transactions-list', function (){return view('admin.transactions-list');});//
-Route::get('/admin-invoice-report', function (){return view('admin.invoice-report');});//
+Route::get('/admin-reviews', function (){return view('admin.reviews');});
+Route::get('/admin-transactions-list', function (){return view('admin.transactions-list');});
+Route::get('/admin-invoice-report', function (){return view('admin.invoice-report');});
 Route::get('/admin-forgot-password', function (){return view('admin.forgot-password');});
 Route::get('/admin-lock-screen', function (){return view('admin.lock-screen');});
 Route::get('/admin-error-404', function (){return view('admin.error-404');});
@@ -107,10 +109,10 @@ Route::get('/admin-components', function (){return view('admin.components');});
 Route::get('/admin-form-basic-inputs', function (){return view('admin.form-basic-inputs');});
 Route::get('/admin-form-input-groups', function (){return view('admin.form-input-groups');});
 
-Route::get('/admin-form-horizontal', function (){return view('admin.form-horizontal');});
 Route::get('/admin-form-vertical', function (){return view('admin.form-vertical');});
 Route::get('/admin-form-validation', function (){return view('admin.form-validation');});
 Route::get('/admin-tables-basic', function (){return view('admin.tables-basic');});
 Route::get('/admin-data-tables', function (){return view('admin.data-tables');});
 
+});
 //===========================================================================================================

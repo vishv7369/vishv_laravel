@@ -40,7 +40,8 @@
 								<p class="account-subtitle">Access to our dashboard</p>
 								
 								<!-- Form -->
-								<form action="{{url('/admin')}}">
+								<form action="{{url('/adminlogin')}}" method="post" enctype="multipart/form-data">
+									@csrf
 									<div class="form-group">
 										<input class="form-control" type="text" name="email" placeholder="Email">
 									</div>
@@ -48,7 +49,7 @@
 										<input class="form-control" type="text" name="password" placeholder="Password">
 									</div>
 									<div class="form-group">
-										<button class="btn btn-primary btn-block" type="submit">Login</button>
+										<button class="btn btn-primary btn-block" type="submit" name="submit" value="Send">Login</button>
 									</div>
 								</form>
 								<!-- /Form -->

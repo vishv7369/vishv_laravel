@@ -21,35 +21,37 @@
 					</div>
 					<!-- /Page Header -->
 					
+					
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
+								
 								<div class="card-body">
-									<h4 class="card-title">Personal Information</h4>
+									<h4 class="card-title">Personal Information</h4><br>
 									<form action="#">
 										<div class="row">
 											<div class="col-xl-6">
-											<div class="row">
+											    <div class="row">
 													<label class="col-lg-3 col-form-label">Name</label>
 													<div class="col-lg-9">
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" placeholder="First Name" class="form-control">
+																	<input type="text" placeholder="First Name" class="form-control" name="first_name">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" placeholder="Last Name" class="form-control">
+																	<input type="text" placeholder="Last Name" class="form-control" name="last_name">
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Last Name</label>
+													<label class="col-lg-3 col-form-label">DOB</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="date" class="form-control" name="dob">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -70,7 +72,7 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Specialist Id</label>
+													<label class="col-lg-3 col-form-label">Specialist ID</label>
 													<div class="col-lg-9">
 														<select class="select">
 															<option>Select</option>
@@ -81,203 +83,208 @@
 														</select>
 													</div>
 												</div>
-											</div>
-											<div class="col-xl-6">
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Username</label>
+													<label class="col-lg-3 col-form-label">Liacence No</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="liacence_no">
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Experience</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="experience">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Email</label>
+													<label class="col-lg-3 col-form-label">Dr. Mobile</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Password</label>
-													<div class="col-lg-9">
-														<input type="password" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Repeat Password</label>
-													<div class="col-lg-9">
-														<input type="password" class="form-control">
-													</div>
-												</div>
-											</div>
-										</div>
-										<h4 class="card-title">Address</h4>
-										<div class="row">
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Address Line 1</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Address Line 2</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">State</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">City</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Country</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Postal Code</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Two Column Horizontal Form</h4>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="row">
-											<div class="col-xl-6">
-												<h4 class="card-title">Personal Details</h4>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">First Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Last Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Password</label>
-													<div class="col-lg-9">
-														<input type="password" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">State</label>
-													<div class="col-lg-9">
-														<select class="select">
-															<option>Select State</option>
-															<option value="1">California</option>
-															<option value="2">Texas</option>
-															<option value="3">Florida</option>
-														</select>
+														<input type="tel" class="form-control" name="dr_mobile">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">About</label>
 													<div class="col-lg-9">
-														<textarea rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
+														<textarea name="about" rows="4" cols="5" class="form-control" placeholder="Enter message"></textarea>
 													</div>
 												</div>
 											</div>
 											<div class="col-xl-6">
-												<h4 class="card-title">Personal details</h4>
-												<div class="row">
-													<label class="col-lg-3 col-form-label">Name</label>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Short Title</label>
 													<div class="col-lg-9">
-														<div class="row">
-															<div class="col-md-6">
-																<div class="form-group">
-																	<input type="text" placeholder="First Name" class="form-control">
-																</div>
-															</div>
-															<div class="col-md-6">
-																<div class="form-group">
-																	<input type="text" placeholder="Last Name" class="form-control">
-																</div>
-															</div>
-														</div>
+														<input type="text" class="form-control" name="short_tittle">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="email">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Phone</label>
+													<label class="col-lg-3 col-form-label">Password</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="password" class="form-control" name="password">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Address</label>
+													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control m-b-20">
+														<input type="file" class="form-control" name="profile_img">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Education</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="education">
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Visiting Card</label>
+													<div class="col-lg-9">
+														<input type="file" class="form-control" name="visit_card">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Office no</label>
+													<div class="col-lg-9">
+														<input type="tel" class="form-control" name="office_no">
+													</div>
+												</div>
+											</div>
+											
+										</div>
+
+										<h4 class="card-title">Hospital Details</h4><br>
+										<div class="row">
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Hospital Name</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="hospital_name">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Hospital timing</label>
+													<div class="col-lg-9">
 														<div class="row">
 															<div class="col-md-6">
-																<div class="form-group">
-																	<select class="select">
-																		<option>Select Country</option>
-																		<option value="1">USA</option>
-																		<option value="2">France</option>
-																		<option value="3">India</option>
-																		<option value="4">Spain</option>
-																	</select>
-																</div>
-																<div class="form-group">
-																	<input type="text" placeholder="ZIP code" class="form-control">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_time" class="form-control">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" placeholder="State/Province" class="form-control">
-																</div>
-																<div class="form-group">
-																	<input type="text" placeholder="City" class="form-control">
+																	From:
+																	<input type="time" name="hospital_time" class="form-control">
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Days</label>
+													<div class="col-lg-9">
+														Monday <input type="checkbox" name="">&nbsp;&nbsp;
+														Tuesday <input type="checkbox" name="">&nbsp;&nbsp;&nbsp;&nbsp;
+														Wednesday <input type="checkbox" name="">&nbsp;&nbsp;
+														Thursday <input type="checkbox" name="">
+														Friday <input type="checkbox" name="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														Saturday <input type="checkbox" name="">&nbsp;&nbsp;&nbsp;&nbsp;
+														Sunday <input type="checkbox" name=""> 
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Notification</label>
+													<div class="col-lg-9">
+														<textarea name="" class="form-control" name="notification"></textarea>
+													</div>
+												</div>
+												
+											</div>
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Hospital Img</label>
+													<div class="col-lg-9">
+														<input type="file" class="form-control" name="hospital_img">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Consulting </label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="consulting_fees">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Followup Fees</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="followup_fees">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">State </label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="state">
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">City </label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="city">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Address</label>
+													<div class="col-lg-9">
+														<textarea name="address" rows="4" class="form-control"></textarea>
+													</div>
+												</div>
+												
+											</div>
+											<div class="col-xl-6">
+											<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Area</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="area">
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Postal Code</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="pincode">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Google Map URL</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" name="google_map">
+													</div>
+												</div>
 											</div>
 										</div>
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
+											<button type="submit" class="btn btn-primary" name="submit" value="send
+											">Submit</button>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
+
+					
 				
 				</div>			
 			</div>

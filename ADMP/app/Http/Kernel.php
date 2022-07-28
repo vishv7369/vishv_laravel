@@ -43,6 +43,10 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'afterlogin'=>[
+            \App\Http\Middleware\afterlogin::class
+       ]
     ];
 
     /**

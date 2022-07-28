@@ -165,7 +165,7 @@
 							</div>
 							<a class="dropdown-item" href="{{url('/admin-profile')}}">My Profile</a>
 							<a class="dropdown-item" href="{{url('/admin-settings')}}">Settings</a>
-							<a class="dropdown-item" href="{{url('/admin-login')}}">Logout</a>
+							<a class="dropdown-item" href="{{url('/logout')}}">Logout</a>
 						</div>
 					</li>
 					<!-- /User Menu -->
