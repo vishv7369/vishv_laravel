@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\doctor_controller;
+use App\Http\Controllers\city_controller;
+use App\Http\Controllers\specialist_controller;
+use App\Http\Controllers\state_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,9 +74,13 @@ Route::get('/admin-patient', function (){return view('admin.patient-list');});
 Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
 Route::get('/admin-patient-cancel-appointment', function (){return view('admin.patient-cancel-appointment');});
 
-Route::get('/admin-doctor', function (){return view('admin.doctor-list');});
-Route::get('/admin-edit-doctor', function (){return view('admin.edit-doctor');});
-Route::get('/admin-add-doctor', function (){return view('admin.add-doctor');});
+
+
+Route::get('/edit/{id}',[doctor_controller::class,'edit']);
+Route::post('/edit/{id}',[doctor_controller::class,'update']);
+Route::get('/admin-doctor',[doctor_controller::class,'index']);
+Route::get('/admin-add-doctor',[doctor_controller::class,'create']);
+Route::post('/admin-add-doctor',[doctor_controller::class,'store']);
 Route::get('/admin-doctor-appointment', function (){return view('admin.doctor-appointment');});
 Route::get('/admin-doctor-cancel-appointment', function (){return view('admin.doctor-cancel-appointment');});
 
