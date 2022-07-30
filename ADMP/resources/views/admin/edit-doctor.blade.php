@@ -324,7 +324,7 @@
 															<?php
 															foreach($state_id_arr as $d)
 															{
-																if($data->id==$fetch->state)
+																if($d->id==$fetch->state)
 															 	{
 															?>
 															<option value="<?php echo $d->id;?>"selected>
@@ -357,7 +357,7 @@
 															<?php
 															foreach($city_id_arr as $c)
 															{
-																if($data->id==$fetch->city)
+																if($c->id==$fetch->city)
 															 	{
 															?>
 															<option value="<?php echo $c->id;?>"selected>
@@ -394,7 +394,7 @@
 															<?php
 															foreach($area_id_arr as $a)
 															{
-																if($data->id==$fetch->area)
+																if($a->id==$fetch->area)
 															 	{
 															?>
 															<option value="<?php echo $a->id;?>"selected>
