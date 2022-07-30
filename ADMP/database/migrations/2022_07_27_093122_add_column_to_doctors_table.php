@@ -43,8 +43,9 @@ return new class extends Migration
             $table->string('pincode')->after('address');
             $table->string('google_map')->after('pincode');
             $table->string('day')->after('google_map');
-            $table->string('hospital_time')->after('day');
-            $table->string('consulting_fees')->after('hospital_time');
+            $table->string('hospital_time_to')->after('day');
+            $table->string('hospital_time_from')->after('hospital_time_to');
+            $table->string('consulting_fees')->after('hospital_time_from');
             $table->string('followup_fees')->after('consulting_fees');
             $table->string('notification')->after('followup_fees');
             $table->enum('doctor_status',['Block','Unblock'])->default('Unblock')->after('notification');

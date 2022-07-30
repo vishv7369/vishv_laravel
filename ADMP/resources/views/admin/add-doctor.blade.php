@@ -186,13 +186,13 @@
 															<div class="col-md-6">
 																<div class="form-group ">
 																	To:
-																	<input type="time" name="hospital_time" class="form-control">
+																	<input type="time" name="hospital_time_to" class="form-control">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	From:
-																	<input type="time" name="hospital_time" class="form-control">
+																	<input type="time" name="hospital_time_from" class="form-control">
 																</div>
 															</div>
 														</div>

@@ -214,13 +214,13 @@
 															<div class="col-md-6">
 																<div class="form-group ">
 																	To:
-																	<input type="time" name="hospital_time" class="form-control" value="<?php echo $fetch->hospital_time?>">
+																	<input type="time" name="hospital_time_to" class="form-control" value="<?php echo $fetch->hospital_time_to?>">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	From:
-																	<input type="time" name="hospital_time" class="form-control" value="<?php echo $fetch->hospital_time?>">
+																	<input type="time" name="hospital_time_from" class="form-control" value="<?php echo $fetch->hospital_time_from?>">
 																</div>
 															</div>
 														</div>
