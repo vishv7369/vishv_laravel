@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('citys', function (Blueprint $table) {
-            $table->unsignedBigInteger('sid');
-			$table->foreign('sid')->references('id')->on('states')->after('id');
-            $table->string('city_name')->after('sid');
-            
-            
+        Schema::create('stockiests', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -29,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('citys', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('stockiests');
     }
 };

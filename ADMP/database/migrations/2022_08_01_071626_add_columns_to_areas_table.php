@@ -13,9 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
-            $table->id();
-           
+        Schema::table('areas', function (Blueprint $table) {
+            $table->unsignedBigInteger('city_id');
+			$table->foreign('city_id')->references('id')->on('cities')->after('id');
+            $table->string('area_name')->after('city_id');
         });
     }
 
@@ -26,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::table('areas', function (Blueprint $table) {
+            //
+        });
     }
 };

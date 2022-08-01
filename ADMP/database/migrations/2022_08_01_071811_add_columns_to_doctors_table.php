@@ -36,7 +36,7 @@ return new class extends Migration
             $table->unsignedBigInteger('state');
 			$table->foreign('state')->references('id')->on('states')->after('about');
             $table->unsignedBigInteger('city');
-			$table->foreign('city')->references('id')->on('citys')->after('state');
+			$table->foreign('city')->references('id')->on('cities')->after('state');
             $table->unsignedBigInteger('area');
 			$table->foreign('area')->references('id')->on('areas')->after('city');
             $table->string('address')->after('city');
@@ -50,7 +50,6 @@ return new class extends Migration
             $table->string('notification')->after('followup_fees');
             $table->enum('doctor_status',['Block','Unblock'])->default('Unblock')->after('notification');
             $table->enum('hospital_status',['Enable','Disable'])->default('Disable')->after('doctor_status');
-            $table->timestamps();
         });
     }
 

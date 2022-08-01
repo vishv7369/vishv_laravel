@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('areas', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id');
-			$table->foreign('city_id')->references('id')->on('citys')->after('id');
-            $table->string('area_name')->after('city_id');
+        Schema::create('hospital_daytimes', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -27,8 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('areas', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('hospital_daytimes');
     }
 };
