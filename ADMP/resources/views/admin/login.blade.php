@@ -36,7 +36,7 @@
                         </div>
                         <div class="login-right">
 							<div class="login-right-wrap">
-								<h1>Admin Login</h1>
+								<h1>Adimin Login</h1>
 								<p class="account-subtitle">Access to our dashboard</p>
 								
 								<!-- Form -->

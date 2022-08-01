@@ -14,7 +14,7 @@
 								<h3 class="page-title">Add Doctor</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/admin')}}">Dashboard</a></li>
-									<li class="breadcrumb-item active">Horizontal Form</li>
+									<li class="breadcrumb-item active">Add Doctor</li>
 								</ul>
 							</div>
 						</div>

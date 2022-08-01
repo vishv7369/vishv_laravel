@@ -42,8 +42,7 @@
 													<th>First Name</th>
 													<th>Last Name</th>
 												    <th>Doc status</th>
-													<th>Edit</th>
-													<th>Delete</th>
+													<th class="text-right">Actions</th>
 													
 													
 												</tr>
@@ -60,8 +59,17 @@
 												<td><?php echo $data->first_name?></td>
 												<td><?php echo $data->last_name?></td>
 												<td><?php echo $data->doctor_status ?></td>
-												<td><a href="{{url('edit/'.$data->id)}}" class="btn btn-danger">Edit</a></td>
-												<td><a href="" class="btn btn-primary">Delete</a></td>
+												<td class="text-right">
+														<div class="actions">
+															<a class="btn btn-sm bg-success-light"  href="{{url('edit/'.$data->id)}}">
+																<i class="fe fe-pencil"></i> Edit
+															</a>
+															<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
+																<i class="fe fe-trash"></i> Delete
+															</a>
+														</div>
+												</td>
+												
 												</tr>
 												<?php
 												}

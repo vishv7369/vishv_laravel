@@ -187,8 +187,12 @@
 							<li class="active"> 
 								<a href="{{url('/admin')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
-							<li> 
-								<a href="{{url('/admin-specialities')}}"><i class="fe fe-users"></i> <span>Specialities</span></a>
+							<li class="submenu">
+								<a href="#"><i class="fe fe-users"></i> <span> Specialities </span> <span class="menu-arrow"></span></a>
+								<ul style="display: none;">
+									<li><a href="{{url('/admin-add-specialities')}}"><i class="fe fe-user"></i> Add Specialities </a></li>
+									<li><a href="{{url('/admin-specialities')}}"><i class="fe fe-user"></i> Manage Specialities </a></li>
+								</ul>
 							</li>
 							
 							<li class="submenu">

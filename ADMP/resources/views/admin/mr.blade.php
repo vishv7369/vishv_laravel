@@ -13,8 +13,8 @@
 								<h3 class="page-title">List of MR</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/admin')}}">Dashboard</a></li>
-									<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-									<li class="breadcrumb-item active">Doctor</li>
+									<li class="breadcrumb-item"><a href="javascript:(0);">MR</a></li>
+									<li class="breadcrumb-item active">Manage MR</li>
 								</ul>
 							</div>
 						</div>

@@ -53,13 +53,6 @@
 												<input type="email" class="form-control">
 											</div>
 										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Password</label>
-											<div class="col-lg-9">
-												<input type="password" class="form-control">
-											</div>
-										</div>
 										<div class="form-group row">
 											<label class="col-lg-3 col-form-label">Company Name</label>
 											<div class="col-lg-9">
@@ -81,74 +74,6 @@
 							</div>
 						</div>
                     </div>
-
-					<div class="row">
-						<div class="col-md-12">
-							<div class="card">
-								<div class="card-header">
-									<h4 class="card-title">Add Company</h4>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="row">
-											<div class="col-xl-6">
-												<h4 class="card-title">Personal Details</h4>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Profile Img</label>
-													<div class="col-lg-9">
-														<input type="file" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">First Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Last Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Email</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Password</label>
-													<div class="col-lg-9">
-														<input type="password" class="form-control">
-													</div>
-												</div>
-											</div>
-
-											<div class="col-xl-6">
-												<h4 class="card-title">Company details</h4>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Company Name</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Visiting Card</label>
-													<div class="col-lg-9">
-														<input type="file" class="form-control">
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
 
 					
 
