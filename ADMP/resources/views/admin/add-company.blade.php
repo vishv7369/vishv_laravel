@@ -20,67 +20,6 @@
 						</div>
 					</div>
 					<!-- /Page Header -->
-					
-					<div class="row">
-						<div class="col-xl-6 d-flex">
-							<div class="card flex-fill">
-								<div class="card-header">
-									<h4 class="card-title">Add Company</h4>
-								</div>
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">First Name</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Last Name</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Profile Img</label>
-											<div class="col-lg-9">
-												<input type="file" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Email Address</label>
-											<div class="col-lg-9">
-												<input type="email" class="form-control">
-											</div>
-										</div>
-										
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Password</label>
-											<div class="col-lg-9">
-												<input type="password" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Company Name</label>
-											<div class="col-lg-9">
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="form-group row">
-											<label class="col-lg-3 col-form-label">Visiting Card</label>
-											<div class="col-lg-9">
-												<input type="file" class="form-control">
-											</div>
-										</div>
-										
-										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
-                    </div>
 
 					<div class="row">
 						<div class="col-md-12">
@@ -102,25 +41,25 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">First Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" name="first_name" class="form-control">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Last Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" name="last_name" class="form-control">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" name="email" class="form-control">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Password</label>
 													<div class="col-lg-9">
-														<input type="password" class="form-control">
+														<input type="password" name="password" class="form-control">
 													</div>
 												</div>
 											</div>
@@ -130,19 +69,19 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Company Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" name="company_name" class="form-control">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control">
+														<input type="file" name="visiting_card" class="form-control">
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
+											<button type="submit" name="submit" value="send" class="btn btn-primary">Submit</button>
 										</div>
 									</form>
 								</div>
