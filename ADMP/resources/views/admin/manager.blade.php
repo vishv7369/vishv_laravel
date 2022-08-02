@@ -40,40 +40,41 @@
 												</tr>
 											</thead>
 											<tbody>
+
+											<?php
+											   foreach($comapany_arr as $data)
+											   {
+											?>
 												<tr>
-													<td>1</td>
+													<td><?php echo $data->id?></td>
 
-													<td>2</td>
+													<td><?php echo $data->company_id ?></td>
 
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{url('/admin-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('/Backend/assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image"></a>
-														</h2>
-													</td>
+													<td><img src="{{asset('upload/manager/' . $data->profile_img)}}" height="50px" width="50px"/></td>
 
-													<td>Ruby Perrin</td>
+													<td><?php echo $data->Manager_name?></td>
 													
-													<td>ruby@gmail.com</td>
+													<td><?php echo $data->email?></td>
 													
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{url('/admin-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('/Backend/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image"></a>
-														</h2>
-													</td>
+													<td><img src="{{asset('upload/visitingcard/' . $data->visiting_card)}}" height="50px" width="50px"/></td>
 
 													<td class="text-right">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light"  href="">
+															<a class="btn btn-sm bg-success-light"  href="{{url('edit-manager/'.$data->id)}}">
 																<i class="fe fe-pencil"></i> Edit
 															</a>
-															<a  href="" class="btn btn-sm bg-danger-light">
+															<a  href="{{url('admin-add-manager/'. $data->id)}}" class="btn btn-sm bg-danger-light">
 																<i class="fe fe-trash"></i> Delete
 															</a>
 														</div>
 												    </td>
 													
 													
-												</tr>	
+												</tr>
+												
+												<?php
+												}
+												?>
 											</tbody>
 										</table>
 									</div>

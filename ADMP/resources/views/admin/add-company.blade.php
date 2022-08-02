@@ -17,9 +17,15 @@
 									<li class="breadcrumb-item active">Company</li>
 								</ul>
 							</div>
+							@if(session()->has('success'))
+												
+								<i class="alert alert-success">{{session('success')}}</i>
+												
+							@endif
 						</div>
 					</div>
 					<!-- /Page Header -->
+					
 
 					<div class="row">
 						<div class="col-md-12">
@@ -28,38 +34,39 @@
 									<h4 class="card-title">Add Company</h4>
 								</div>
 								<div class="card-body">
-									<form action="#">
-										<div class="row">
+									<form action="{{url('/admin-add-company')}}" method="post" enctype="multipart/form-data">
+									@csrf	
+									<div class="row">
 											<div class="col-xl-6">
 												<h4 class="card-title">Personal Details</h4>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control">
+														<input type="file" class="form-control" name="profile_img">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">First Name</label>
 													<div class="col-lg-9">
-														<input type="text" name="first_name" class="form-control">
+														<input type="text" class="form-control" name="first_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Last Name</label>
 													<div class="col-lg-9">
-														<input type="text" name="last_name" class="form-control">
+														<input type="text" class="form-control" name="last_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" name="email" class="form-control">
+														<input type="text" class="form-control" name="email">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Password</label>
 													<div class="col-lg-9">
-														<input type="password" name="password" class="form-control">
+														<input type="password" class="form-control" name="password">
 													</div>
 												</div>
 											</div>
@@ -69,13 +76,13 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Company Name</label>
 													<div class="col-lg-9">
-														<input type="text" name="company_name" class="form-control">
+														<input type="text" class="form-control" name="company_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">
-														<input type="file" name="visiting_card" class="form-control">
+														<input type="file" class="form-control" name="visiting_card">
 													</div>
 												</div>
 											</div>

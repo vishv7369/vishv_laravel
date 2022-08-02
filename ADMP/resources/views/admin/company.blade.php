@@ -38,31 +38,37 @@
 												</tr>
 											</thead>
 											<tbody>
+
+											  <?php
+											   foreach($companie_arr as $data)
+											   {
+											  ?>
 												<tr>
 													
-													<td>1</td>
+													<td><?php echo $data->id?></td>
 													
-													<td>Ruby Perrin</td>
+													<td><?php echo $data->company_name?></td>
 													
-													<td>rubyperrin@gmail.com</td>
+													<td><?php echo $data->company_name?></td>
 													
 													<td>
-														<h2 class="table-avatar">
-															<a href="{{url('/admin-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('/Backend/assets/img/doctors/doctor-thumb-01.jpg')}}" alt="User Image"></a>
-															</h2>
+													<img src="{{asset('upload/visitingcard/' . $data->visiting_card)}}" height="50px" width="50px"/>
 													</td>
 
 													<td class="text-right">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light"  href="">
+															<a class="btn btn-sm bg-success-light"  href="{{url('edit-company/'.$data->id)}}">
 																<i class="fe fe-pencil"></i> Edit
 															</a>
-															<a  href="" class="btn btn-sm bg-danger-light">
+															<a  href="{{url('admin-add-company/'. $data->id)}}" class="btn btn-sm bg-danger-light">
 																<i class="fe fe-trash"></i> Delete
 															</a>
 														</div>
 													</td>
-												</tr>	
+												</tr>
+												<?php
+												}
+												?>	
 											</tbody>
 										</table>
 									</div>

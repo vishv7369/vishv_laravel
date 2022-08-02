@@ -14,7 +14,8 @@ class specialist_controller extends Controller
      */
     public function index()
     {
-        //
+        $data=specialist::all();
+		return view('admin.specialities',["specialities_arr"=>$data]);
     }
 
     /**
@@ -24,7 +25,7 @@ class specialist_controller extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.add-specialities');
     }
 
     /**
@@ -35,7 +36,17 @@ class specialist_controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data=new specialist;
+        $data->name=$request->name;
+
+         // img upload
+		$file=$request->file('img');  // get file
+		$file_name=time()."_img.".$request->file('img')->getClientOriginalExtension();// make file name
+		$file->move('upload/specialities',$file_name); //file name move upload in public		
+		$data->img=$file_name; // file name store in db
+
+        $res=$data->save();
+        return redirect('admin-add-specialities')->with('success','Add Specialist Success');
     }
 
     /**
@@ -57,7 +68,8 @@ class specialist_controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=specialist::find($id);
+        return view('admin.edit-specialist',["fetch"=>$data]);
     }
 
     /**
@@ -69,7 +81,22 @@ class specialist_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=specialist::find($id);
+        $data->name=$request->name;
+        $old_img=$data->img;
+
+        //img upload
+        if($request->hasFile('img'))
+		{
+			$file=$request->file('img');  // get file
+			$file_name=time() . "_img." . $request->file('img')->getClientOriginalExtension();// make file name
+			$file->move('upload/specialities',$file_name); //file name move upload in public		
+			$data->img=$file_name; // file name store in db
+			unlink('upload/specialities/'.$old_img);
+		}
+
+        $data->save();
+		return redirect('/admin-specialities')->with('success','Update Success');
     }
 
     /**
@@ -80,6 +107,8 @@ class specialist_controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=specialist::find($id);
+		$data->delete();
+		return redirect('admin-specialities')->with("success","Specialist deleted successfully");
     }
 }

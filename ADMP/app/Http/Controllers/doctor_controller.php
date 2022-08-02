@@ -188,14 +188,14 @@ class doctor_controller extends Controller
         }
          // visiting card upload
          if($request->hasFile('visit_card'))
-		{
-		$file3=$request->file('visit_card');  // get file
-		$file_name3=time()."_visit_card_img.".$request->file('visit_card')->getClientOriginalExtension();// make file name
-		$file3->move('upload/visitingcard',$file_name3); //file name move upload in public		
-		$data->visit_card=$file_name3; // file name store in db
-        unlink('upload/visitingcard/'.$old_img3);
-        }
-        
+         {
+            $file3=$request->file('visit_card');  // get file
+            $file_name3=time()."_visit_card_img.".$request->file('visit_card')->getClientOriginalExtension();// make file name
+            $file3->move('upload/visitingcard',$file_name3); //file name move upload in public		
+            $data->visit_card=$file_name3; // file name store in db
+            unlink('upload/visitingcard/'.$old_img3);
+         }
+
         $data->save();
 		return redirect('/admin-doctor')->with('success','Update Success');
     }
@@ -206,9 +206,10 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function destroy($id)
     {
-        //
+        $data=doctor::find($id);
+		$data->delete();
+		return redirect('admin-doctor')->with("success","Doctor deleted successfully");
     }
 }
