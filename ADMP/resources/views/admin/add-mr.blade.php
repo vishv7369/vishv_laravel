@@ -17,6 +17,11 @@
 									<li class="breadcrumb-item active">Add MR</li>
 								</ul>
 							</div>
+							@if(session()->has('success'))
+												
+								<i class="alert alert-success">{{session('success')}}</i>
+												
+							@endif
 						</div>
 					</div>
 					<!-- /Page Header -->
@@ -30,38 +35,39 @@
 									<h4 class="card-title">Add MR</h4>
 								</div>
 								<div class="card-body">
-									<form action="#">
+									<form action="{{url('/admin-add-mr')}}" method="post" enctype="multipart/form-data">
+										@csrf
 										<div class="row">
 											<div class="col-xl-6">
 												<h4 class="card-title">Personal Details</h4>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control">
+														<input type="file" class="form-control" name="profile_img">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">First Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="first_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Last Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="last_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="email">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Password</label>
 													<div class="col-lg-9">
-														<input type="password" class="form-control">
+														<input type="password" class="form-control" name="password">
 													</div>
 												</div>
 											</div>
@@ -71,39 +77,53 @@
 												<div class="form-group row">
 											        <label class="col-lg-3 col-form-label">Company Id</label>
 													<div class="col-lg-9">
-														<select class="select">
-															<option>Select</option>
-															<option value="1">A+</option>
-															<option value="2">O+</option>
+													<select class="select" name="company_id">
+															<option value="">Select</option>
+															<?php
+															foreach($company_id_arr as $data)
+															{
+															?>
+															<option value="<?php echo $data->id;?>">
+														        <?php echo $data->company_name ?></option>
+															<?php
+															}
+															?>
 														</select>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Company Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" name="company_name">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Manager Id</label>
 													<div class="col-lg-9">
-														<select class="select">
-															<option>Select</option>
-															<option value="1">A+</option>
-															<option value="2">O+</option>
+													<select class="select" name="manager_id">
+															<option value="">Select</option>
+															<?php
+															foreach($manager_id_arr as $data)
+															{
+															?>
+															<option value="<?php echo $data->id;?>">
+														        <?php echo $data->Manager_name ?></option>
+															<?php
+															}
+															?>
 														</select>
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control">
+														<input type="file" class="form-control" name="visiting_card">
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary">Submit</button>
+											<button type="submit" class="btn btn-primary" name="submit" value="send">Submit</button>
 										</div>
 									</form>
 								</div>

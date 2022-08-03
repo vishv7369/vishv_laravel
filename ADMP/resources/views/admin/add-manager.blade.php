@@ -1,7 +1,7 @@
 @extends('admin.Layout.main_layout') 	
 @section('main_container')
 			
-			//repository check
+			
 			
 			<!-- Page Wrapper -->
             <div class="page-wrapper">
@@ -77,7 +77,7 @@
 											        <label class="col-lg-3 col-form-label">Company Id</label>
 													<div class="col-lg-9">
 													<select class="select" name="company_id">
-															<option value="">Select Company</option>
+															<option value="">Select</option>
 															<?php
 															foreach($company_id_arr as $data)
 															{

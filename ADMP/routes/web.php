@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\doctor_controller;
 use App\Http\Controllers\citie_controller;
-use App\Http\Controllers\specialist_controller;//check
+use App\Http\Controllers\specialist_controller;
 use App\Http\Controllers\state_controller;
 use App\Http\Controllers\companie_controller;
 use App\Http\Controllers\manager_controller;
@@ -112,9 +112,12 @@ Route::get('/admin-add-manager/{id}',[manager_controller::class,'destroy']);
 Route::get('/admin-manager-appointment', function (){return view('admin.manager-appointment');});
 Route::get('/admin-manager-cancel-appointment', function (){return view('admin.manager-cancel-appointment');});
 
-Route::get('/admin-mr', function (){return view('admin.mr');});
-Route::get('/admin-edit-mr', function (){return view('admin.edit-mr');});
-Route::get('/admin-add-mr', function (){return view('admin.add-mr');});
+Route::get('/admin-add-mr',[mr_controller::class,'create']);
+Route::post('/admin-add-mr',[mr_controller::class,'store']);
+Route::get('/admin-mr',[mr_controller::class,'index']);
+Route::get('/edit-mr/{id}',[mr_controller::class,'edit']);
+Route::post('/edit-mr/{id}',[mr_controller::class,'update']);
+Route::get('/admin-add-mr/{id}',[mr_controller::class,'destroy']); 
 Route::get('/admin-mr-appointment', function (){return view('admin.mr-appointment');});
 Route::get('/admin-mr-cancel-appointment', function (){return view('admin.mr-cancel-appointment');});
 

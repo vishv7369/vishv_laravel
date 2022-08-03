@@ -62,7 +62,7 @@ class manager_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('admin-add-manager')->with('success','Add Doctor Success');
+        return redirect('admin-add-manager')->with('success','Add Manager Success');
     }
 
     /**
@@ -117,7 +117,7 @@ class manager_controller extends Controller
 			$data->profile_img=$file_name; // file name store in db
 			unlink('upload/manager/'.$old_img);
 		}
-         // hospital upload
+         // visitingcard upload
          if($request->hasFile('visiting_card'))
 		{
             $file2=$request->file('visiting_card');  // get file

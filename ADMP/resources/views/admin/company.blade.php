@@ -17,6 +17,11 @@
 									<li class="breadcrumb-item active">Manage Company</li>
 								</ul>
 							</div>
+							@if(session()->has('success'))
+												
+								<i class="alert alert-success">{{session('success')}}</i>
+												
+							@endif
 						</div>
 					</div>
 					<!-- /Page Header -->
