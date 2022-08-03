@@ -36,9 +36,13 @@ class specialist_controller extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->validate([
+            'name'=>'required|alpha|unique',
+            'img'=>'required|mimes:jpeg,png,jpg,gif',
+        ]);
         $data=new specialist;
         $data->name=$request->name;
-
+        
          // img upload
 		$file=$request->file('img');  // get file
 		$file_name=time()."_img.".$request->file('img')->getClientOriginalExtension();// make file name

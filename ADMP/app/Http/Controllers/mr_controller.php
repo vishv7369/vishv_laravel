@@ -41,6 +41,16 @@ class mr_controller extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->validate([
+            'company_id'=>'required',
+            'manager_id'=>'required',
+            'company_name'=>'required|alpha|unique:mrs|regex:/[A-Za-z. -]/',
+            'first_name'=>'required|alpha',
+            'last_name'=>'required|alpha',
+            'email'=>'required|email|unique:doctors',
+            'password'=>'required|string|unique:mrs|min:6'
+        ]);
+
         $data=new mr;
 
         $data->company_id=$request->company_id;

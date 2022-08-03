@@ -37,6 +37,15 @@ class companie_controller extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->validate([
+            'first_name'=>'required|alpha',
+            'last_name'=>'required|alpha',
+            'company_name'=>'required|alpha|unique:companies|regex:/[A-Za-z. -]/',
+            'email'=>'required|email|unique:companies',
+            'password'=>'required|string|unique:companies|min:6',
+            'profile_img'=>'required|mimes:jpeg,png,jpg,gif',
+            'visiting_card'=>'required|mimes:jpeg,png,jpg,gif',
+        ]);
         $data=new companie;
         
         $data->first_name=$request->first_name;

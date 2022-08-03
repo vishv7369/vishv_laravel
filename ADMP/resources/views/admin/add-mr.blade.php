@@ -43,31 +43,46 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" name="profile_img">
+														<input type="file" class="form-control" value="{{old('profile_img')}}" name="profile_img">
+														@if ($errors->has('profile_img'))
+            												<span class="text-danger">{{ $errors->first('profile_img') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">First Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="first_name">
+														<input type="text" class="form-control" value="{{old('first_name')}}" name="first_name">
+														@if ($errors->has('first_name'))
+            												<span class="text-danger">{{ $errors->first('first_name') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Last Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="last_name">
+														<input type="text" class="form-control" value="{{old('last_name')}}" name="last_name">
+														@if ($errors->has('last_name'))
+            												<span class="text-danger">{{ $errors->first('last_name') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="email">
+														<input type="text" class="form-control" value="{{old('email')}}" name="email">
+														@if ($errors->has('email'))
+            												<span class="text-danger">{{ $errors->first('email') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Password</label>
 													<div class="col-lg-9">
-														<input type="password" class="form-control" name="password">
+														<input type="password" class="form-control" value="{{old('password')}}" name="password">
+														@if ($errors->has('password'))
+            												<span class="text-danger">{{ $errors->first('password') }}</span>
+       													@endif
 													</div>
 												</div>
 											</div>
@@ -77,7 +92,7 @@
 												<div class="form-group row">
 											        <label class="col-lg-3 col-form-label">Company Id</label>
 													<div class="col-lg-9">
-													<select class="select" name="company_id">
+													<select class="select" value="{{old('company_id')}}" name="company_id">
 															<option value="">Select</option>
 															<?php
 															foreach($company_id_arr as $data)
@@ -89,18 +104,24 @@
 															}
 															?>
 														</select>
+														@if ($errors->has('company_id'))
+            												<span class="text-danger">{{ $errors->first('company_id') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Company Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="company_name">
+														<input type="text" class="form-control" value="{{old('company_name')}}" name="company_name">
+														@if ($errors->has('company_name'))
+            												<span class="text-danger">{{ $errors->first('company_name') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Manager Id</label>
 													<div class="col-lg-9">
-													<select class="select" name="manager_id">
+													<select class="select" value="{{old('manager_id')}}" name="manager_id">
 															<option value="">Select</option>
 															<?php
 															foreach($manager_id_arr as $data)
@@ -112,12 +133,18 @@
 															}
 															?>
 														</select>
+														@if ($errors->has('manager_id'))
+            												<span class="text-danger">{{ $errors->first('manager_id') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" name="visiting_card">
+														<input type="file" class="form-control" value="{{old('visiting_card')}}" name="visiting_card">
+														@if ($errors->has('visiting_card'))
+            												<span class="text-danger">{{ $errors->first('visiting_card') }}</span>
+       													@endif
 													</div>
 												</div>
 											</div>

@@ -46,6 +46,38 @@ class doctor_controller extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->validate([
+            'first_name'=>'required|alpha',
+            'last_name'=>'required|alpha',
+            'short_tittle'=>'required',//check
+            'email'=>'required|email|unique:doctors',
+            'gender'=>'required|in:male,female',//check
+            'password'=>'required|string|unique:doctors|min:6',
+            'dob'=>'required|date',
+            'liacence_no'=>'required',//check
+            'education'=>'required|alpha',
+            'experience'=>'required|string',
+            'hospital_name'=>'required|string',
+            'dr_mobile'=>'required|numeric|digits:10|unique:doctors',
+            'office_no'=>'required|alpha|string',
+            'about'=>'required|alpha',
+            'address'=>'required|alpha|max:200',
+            'pincode'=>'required|numeric|digits:6',
+            'google_map'=>'required|url|unique:doctors',
+            'day'=>'required',
+            'hospital_time_to'=>'required',//check
+            'hospital_time_from'=>'required',
+            'consulting_fees'=>'required|numeric',
+            'followup_fees'=>'required|numeric',
+            'notification'=>'required|max:200',
+            'specialist_id'=>'required',
+            'state'=>'required',
+            'city'=>'required',
+            'area'=>'required',
+            'profile_img'=>'required|mimes:jpeg,png,jpg,gif',
+            'hospital_img'=>'required|mimes:jpeg,png,jpg,gif',
+            'visit_card'=>'required|mimes:jpeg,png,jpg,gif',
+        ]);
         $data=new doctor;
         
         $data->first_name=$request->first_name;
