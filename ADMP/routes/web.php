@@ -10,6 +10,7 @@ use App\Http\Controllers\companie_controller;
 use App\Http\Controllers\manager_controller;
 use App\Http\Controllers\mr_controller;
 use App\Http\Controllers\product_controller;
+use App\Http\Controllers\stockiest_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,7 +69,9 @@ Route::get('/logout',[admin_controller::class,'logout']);
 Route::group(['middleware'=>['afterlogin']], function(){
 
 Route::get('/admin', function (){return view('admin.index');});
-Route::get('/admin-profile', function (){return view('admin.profile');});
+Route::get('/admin-profile',[admin_controller::class,'myaccount']);
+Route::get('/editadmin/{id}',[productadv_controller::class,'editadmin']);//edit
+Route::post('/editadmin/{id}',[productadv_controller::class,'update']);//update
 Route::get('/admin-settings', function (){return view('admin.settings');});
 
 
@@ -82,8 +85,6 @@ Route::get('/admin-add-specialities/{id}',[specialist_controller::class,'destroy
 Route::get('/admin-patient', function (){return view('admin.patient-list');});
 Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
 Route::get('/admin-patient-cancel-appointment', function (){return view('admin.patient-cancel-appointment');});
-
-
 
 Route::get('/edit/{id}',[doctor_controller::class,'edit']);
 Route::post('/edit/{id}',[doctor_controller::class,'update']);
@@ -121,6 +122,7 @@ Route::get('/admin-add-mr/{id}',[mr_controller::class,'destroy']);
 Route::get('/admin-mr-appointment', function (){return view('admin.mr-appointment');});
 Route::get('/admin-mr-cancel-appointment', function (){return view('admin.mr-cancel-appointment');});
 
+Route::get('/admin-stockiest',[stockiest_controller::class,'index']);
 
 Route::get('/admin-reviews', function (){return view('admin.reviews');});
 Route::get('/admin-transactions-list', function (){return view('admin.transactions-list');});

@@ -37,9 +37,10 @@ class specialist_controller extends Controller
     public function store(Request $request)
     {
         $data=$request->validate([
-            'name'=>'required|alpha|unique',
+            'name'=>'required|alpha_num|unique:specialists',
             'img'=>'required|mimes:jpeg,png,jpg,gif',
         ]);
+
         $data=new specialist;
         $data->name=$request->name;
         
