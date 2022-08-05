@@ -14,9 +14,15 @@
 								<h3 class="page-title">Add Doctor</h3>
 								<ul class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/admin')}}">Dashboard</a></li>
-									<li class="breadcrumb-item active">Add Doctor</li>
+									<li class="breadcrumb-item active">Horizontal Form</li>
 								</ul>
+								
 							</div>
+							@if(session()->has('success'))
+												
+									<i class="alert alert-success">{{session('success')}}</i>
+												
+								@endif
 						</div>
 					</div>
 					<!-- /Page Header -->
@@ -32,23 +38,19 @@
 										@csrf
 										<div class="row">
 											<div class="col-xl-6">
-											@if(session()->has('success'))
-												
-												<i class="alert alert-success">{{session('success')}}</i>
-												
-											@endif
+											
 											    <div class="row">
 													<label class="col-lg-3 col-form-label">Name</label>
 													<div class="col-lg-9">
 														<div class="row">
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" placeholder="First Name" class="form-control" name="first_name" value="<?php echo $fetch->first_name?>">
+																	<input type="text" placeholder="First Name" value="<?php echo $fetch->first_name?>" class="form-control" name="first_name">
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
-																	<input type="text" placeholder="Last Name" class="form-control" name="last_name" value="<?php echo $fetch->last_name?>">
+																	<input type="text" placeholder="Last Name" value="<?php echo $fetch->last_name?>" class="form-control" name="last_name">
 																</div>
 															</div>
 														</div>
@@ -57,7 +59,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">DOB</label>
 													<div class="col-lg-9">
-														<input type="date" class="form-control" name="dob" value="<?php echo $fetch->dob?>">
+														<input type="date" value="<?php echo $fetch->dob?>" class="form-control" name="dob">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -126,30 +128,29 @@
 														</select>
 													</div>
 												</div>
-												
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Liacence No</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="liacence_no" value="<?php echo $fetch->liacence_no?>">
+														<input type="text" value="<?php echo $fetch->liacence_no?>" class="form-control" name="liacence_no">
 													</div>
 												</div>
 												
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Experience</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="experience" value="<?php echo $fetch->experience?>">
+														<input type="text" value="<?php echo $fetch->experience?>" class="form-control" name="experience">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Dr. Mobile</label>
 													<div class="col-lg-9">
-														<input type="tel" class="form-control" name="dr_mobile" value="<?php echo $fetch->dr_mobile?>">
+														<input type="tel" value="<?php echo $fetch->dr_mobile?>" class="form-control" name="dr_mobile">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">About</label>
 													<div class="col-lg-9">
-														<textarea name="about" rows="4" cols="5" class="form-control" placeholder="Enter message" value=""><?php echo $fetch->about?></textarea>
+														<textarea name="about" value="" rows="4" cols="5" class="form-control" placeholder="About"><?php echo $fetch->about?></textarea>
 													</div>
 												</div>
 											</div>
@@ -157,76 +158,208 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Short Title</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="short_tittle" value="<?php echo $fetch->short_tittle?>">
+														<input type="text" class="form-control" value="<?php echo $fetch->short_tittle?>" name="short_tittle">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="email" value="<?php echo $fetch->email?>">
+														<input type="text" class="form-control" value="<?php echo $fetch->email?>" name="email">
 													</div>
 												</div>
-												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Password</label>
+													<div class="col-lg-9">
+														<input type="password" class="form-control" value="<?php echo $fetch->password?>" name="password">
+													</div>
+												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" name="profile_img" value="{{asset('upload/doctor/'.$fetch->profile_img)}}">
-													    <img src="{{asset('upload/doctor/'.$fetch->profile_img)}}" height="50px" width="50px">
+														<input type="file" class="form-control" value="{{asset('upload/doctor/'.$fetch->profile_img)}}" name="profile_img">
+														<img src="{{asset('upload/doctor/'.$fetch->profile_img)}}" height="50px" width="50px"> 
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Education</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="education" value="<?php echo $fetch->education?>">
+														<input type="text" class="form-control" value="<?php echo $fetch->education?>" name="education">
 													</div>
 												</div>
 												
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" name="visit_card" value="{{asset('upload/visitingcard/'.$fetch->visit_card)}}">
-														<img src="{{asset('upload/visitingcard/'.$fetch->visit_card)}}" height="50px" width="50px">
+														<input type="file" class="form-control" value="{{asset('upload/visitingcard/'.$fetch->visit_card)}}" name="visit_card">
+														<img src="{{asset('upload/visitingcard/'.$fetch->visit_card)}}" height="50px" width="50px"> 
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Office no</label>
 													<div class="col-lg-9">
-														<input type="tel" class="form-control" name="office_no" value="<?php echo $fetch->office_no?>">
+														<input type="tel" class="form-control" value="<?php echo $fetch->office_no?>" name="office_no">
 													</div>
 												</div>
 											</div>
 											
 										</div>
 
-										<h4 class="card-title">Hospital Details</h4><br>
+										 <h4 class="card-title">Hospital Details</h4><br>
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Hospital Name</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="hospital_name" value="<?php echo $fetch->hospital_name?>">
+														<input type="text" class="form-control" value="<?php echo $fetch->hospital_name?>" name="hospital_name">
 													</div>
 												</div>
+												
+												
+
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Hospital timing</label>
+													<label class="col-lg-3 col-form-label">Notification</label>
 													<div class="col-lg-9">
-														<div class="row">
-															<div class="col-md-6">
-																<div class="form-group ">
-																	To:
-																	<input type="time" name="hospital_time_to" class="form-control" value="<?php echo $fetch->hospital_time_to?>">
-																</div>
-															</div>
-															<div class="col-md-6">
-																<div class="form-group">
-																	From:
-																	<input type="time" name="hospital_time_from" class="form-control" value="<?php echo $fetch->hospital_time_from?>">
-																</div>
-															</div>
-														</div>
+														<textarea  class="form-control" value="<?php echo $fetch->notification?>" name="notification"><?php echo $fetch->notification?></textarea>
 													</div>
 												</div>
 												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Followup Fees</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" value="<?php echo $fetch->followup_fees?>" name="followup_fees">
+													</div>
+												</div>
+											</div>
+											<div class="col-xl-6">
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Hospital Img</label>
+													<div class="col-lg-9">
+														<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img">
+														<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px"> 
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Consulting </label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" value="<?php echo $fetch->consulting_fees?>" name="consulting_fees">
+													</div>
+												</div>
+												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">State</label>
+													<div class="col-lg-9">
+														<select class="select" name="state" value="<?php echo $fetch->state?>">
+															<option value="">Select</option>
+															<?php
+															foreach($state_id_arr as $d)
+															{
+																if($d->id==$fetch->state)
+															 	{
+															?>
+															<option value="<?php echo $d->id;?>"selected>
+															<?php echo $d->name ?></option>
+															<?php
+															    }
+																else
+                                                                {
+															?>
+															<option value="<?php echo $d->id;?>" >
+															<?php echo $d->name ?></option>
+															<?php
+															    }
+														    }
+														    ?>
+														</select>
+														
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-xl-6">
+											<div class="form-group row">
+													<label class="col-lg-3 col-form-label">City</label>
+													<div class="col-lg-9">
+														<select class="select" name="city" value="<?php echo $fetch->city_name?>">
+															<option value="">Select</option>
+															<?php
+															foreach($city_id_arr as $c)
+															{
+																if($c->id==$fetch->city)
+															 	{
+															?>
+															<option value="<?php echo $c->id;?>"selected>
+														       <?php echo $c->city_name ?></option>
+															<?php
+															    }
+																else
+                                                                {
+															?>
+															<option value="<?php echo $c->id;?>" >
+														       <?php echo $c->city_name ?></option>
+															<?php
+															    }
+														    }
+														    ?>
+														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Address</label>
+													<div class="col-lg-9">
+														<textarea name="address" rows="4" value="<?php echo $fetch->address?>" class="form-control"><?php echo $fetch->address?></textarea>
+													</div>
+												</div>
+												
+											</div>
+											<div class="col-xl-6">
+											
+											<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Area</label>
+													<div class="col-lg-9">
+														<select class="select" name="area" value="<?php echo $fetch->area_name?>">
+															<option value="">Select</option>
+															<?php
+															foreach($area_id_arr as $a)
+															{
+																if($a->id==$fetch->area)
+															 	{
+															?>
+															<option value="<?php echo $a->id;?>"selected>
+														       <?php echo $a->area_name ?></option>
+															<?php
+															    }
+																else
+                                                                {
+															?>
+															<option value="<?php echo $a->id;?>">
+														       <?php echo $a->area_name ?></option>
+															<?php
+															    }
+														    }
+														    ?>
+														</select>
+													</div>
+												</div>	
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Postal Code</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" value="<?php echo $fetch->pincode?>" name="pincode">
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Google Map URL</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" value="<?php echo $fetch->google_map?>}" name="google_map">
+													</div>
+												</div>
+											</div>
+										</div>
+                                      
+
+										<h4 class="card-title">Hospital Timings</h4><br>
+										<div class="row">
+										<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Days</label>
 													<div class="col-lg-9">
 														Monday <input type="checkbox" name="day[]" value="Monday" <?php
@@ -288,149 +421,76 @@
 													</div>
 												</div>
 
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Notification</label>
-													<div class="col-lg-9">
-														<textarea  class="form-control" name="notification" value=""><?php echo $fetch->notification?></textarea>
-													</div>
-												</div>
-												
-											</div>
-											<div class="col-xl-6">
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Hospital Img</label>
-													<div class="col-lg-9">
-														<input type="file" class="form-control" name="hospital_img" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}">
-														<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Consulting </label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control" name="consulting_fees" value="<?php echo $fetch->consulting_fees?>">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Followup Fees</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control" name="followup_fees" value="<?php echo $fetch->followup_fees?>">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">State</label>
-													<div class="col-lg-9">
-														<select class="select" name="state" value="<?php echo $fetch->name?>">
-															<option value="">Select</option>
-															<?php
-															foreach($state_id_arr as $d)
-															{
-																if($d->id==$fetch->state)
-															 	{
-															?>
-															<option value="<?php echo $d->id;?>"selected>
-															<?php echo $d->name ?></option>
-															<?php
-															    }
-																else
-                                                                {
-															?>
-															<option value="<?php echo $d->id;?>" >
-															<?php echo $d->name ?></option>
-															<?php
-															    }
-														    }
-														    ?>
-														</select>
-														
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
+
 											<div class="col-xl-6">
 											<div class="form-group row">
-													<label class="col-lg-3 col-form-label">City</label>
+													<label class="col-lg-3 col-form-label">Morning Time</label>
 													<div class="col-lg-9">
-														<select class="select" name="city" value="<?php echo $fetch->city_name?>">
-															<option value="">Select</option>
-															<?php
-															foreach($city_id_arr as $c)
-															{
-																if($c->id==$fetch->city)
-															 	{
-															?>
-															<option value="<?php echo $c->id;?>"selected>
-														       <?php echo $c->city_name ?></option>
-															<?php
-															    }
-																else
-                                                                {
-															?>
-															<option value="<?php echo $c->id;?>" >
-														       <?php echo $c->city_name ?></option>
-															<?php
-															    }
-														    }
-														    ?>
-														</select>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_morning_to" value="<?php echo $fetch->hospital_morning_to?>" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_morning_from" value="<?php echo $fetch->hospital_morning_from?>" class="form-control">
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
+
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Address</label>
+													<label class="col-lg-3 col-form-label">Afternoon timing</label>
 													<div class="col-lg-9">
-														<textarea name="address" rows="4" class="form-control" value=""><?php echo $fetch->address?></textarea>
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_afternoon_to" value="<?php echo $fetch->hospital_afternoon_to?>" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_afternoon_from" value="<?php echo $fetch->hospital_afternoon_from?>" class="form-control">
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
-												
-											</div>
-											<div class="col-xl-6">
-											
-											<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Area</label>
-													<div class="col-lg-9">
-														<select class="select" name="area" value="<?php echo $fetch->area_name?>">
-															<option value="">Select</option>
-															<?php
-															foreach($area_id_arr as $a)
-															{
-																if($a->id==$fetch->area)
-															 	{
-															?>
-															<option value="<?php echo $a->id;?>"selected>
-														       <?php echo $a->area_name ?></option>
-															<?php
-															    }
-																else
-                                                                {
-															?>
-															<option value="<?php echo $a->id;?>">
-														       <?php echo $a->area_name ?></option>
-															<?php
-															    }
-														    }
-														    ?>
-														</select>
-													</div>
-												</div>
-												
+
 												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Postal Code</label>
+													<label class="col-lg-3 col-form-label">Evening timing</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" name="pincode" value="<?php echo $fetch->pincode?>">
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Google Map URL</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control" name="google_map" value="<?php echo $fetch->google_map?>">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_evening_to" value="<?php echo $fetch->hospital_evening_to?>" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_evening_from" value="<?php echo $fetch->hospital_evening_from?>" class="form-control">
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
+										</div>						
+									</div>
+
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary" name="submit" value="send">Submit</button>
+											<button type="submit" class="btn btn-primary" name="submit" value="send">Update</button>
 										</div>
+
+
 									</form>
 								</div>
 							</div>

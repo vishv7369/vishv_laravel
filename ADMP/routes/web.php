@@ -23,8 +23,6 @@ use App\Http\Controllers\stockiest_controller;
 |
 */
 
-
-//===========================================================================================================
 Route::get('/', function (){return view('patient.index');});
 Route::get('/index', function (){return view('patient.index');});
 Route::get('/about', function (){return view('patient.about');});
@@ -56,6 +54,59 @@ Route::get('/video-call', function (){return view('patient.video-call');});
 Route::get('reviews', function (){return view('patient.reviews');});
 Route::get('calendar', function (){return view('patient.calendar');});
 Route::get('components', function (){return view('patient.components');});
+
+//===========================================================================================================
+Route::get('/doctor',[doctor_controller::class,'login'])->middleware('doctorbeforelogin');
+Route::post('/doctorlogin',[doctor_controller::class,'doctorlogin']);
+Route::get('/doctorlogout',[doctor_controller::class,'doctorlogout']);
+
+//Route::get('/doctor', function (){return view('doctor.login');});
+
+Route::group(['middleware'=>['doctorafterlogin']], function(){
+
+Route::get('/doctor-change-password', function (){return view('doctor.change-password');});
+Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
+
+Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});
+Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
+Route::get('/doctor-social-media', function (){return view('doctor.social-media');});
+
+
+Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
+Route::get('/doctor-patient-profile', function (){return view('doctor.patient-profile');});
+
+Route::get('/doctor-appointments', function (){return view('doctor.appointments');});
+Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
+Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});
+
+
+Route::get('/doctor-mr-dashboard', function (){return view('doctor.mr-dashboard');});
+Route::get('/doctor-mr-schedule-timings', function (){return view('doctor.mr-schedule-timings');});
+Route::get('/doctor-mr-appointments', function (){return view('doctor.mr-appointments');});
+Route::get('/doctor-mr-find', function (){return view('doctor.mr-find');});
+
+
+Route::get('/doctor-manager-dashboard', function (){return view('doctor.manager-dashboard');});
+Route::get('/doctor-manager-schedule-timings', function (){return view('doctor.manager-schedule-timings');});
+Route::get('/doctor-manager-appointments', function (){return view('doctor.manager-appointments');});
+Route::get('/doctor-manager-find', function (){return view('doctor.manager-find');});
+
+Route::get('/doctor-company-dashboard', function (){return view('doctor.company-dashboard');});
+Route::get('/doctor-company-schedule-timings', function (){return view('doctor.company-schedule-timings');});
+Route::get('/doctor-company-appointments', function (){return view('doctor.company-appointments');});
+Route::get('/doctor-company-find', function (){return view('doctor.company-find');});
+
+
+
+Route::get('/doctor-chat-doctor', function (){return view('doctor.chat-doctor');});
+Route::get('/doctor-invoices', function (){return view('doctor.invoices');});
+Route::get('/doctor-reviews', function (){return view('doctor.reviews');});
+Route::get('/doctor-calendar', function (){return view('doctor.calendar');});
+Route::get('/doctor-components', function (){return view('doctor.components');});
+Route::get('/doctor-invoice-view', function (){return view('doctor.invoice-view');});
+Route::get('/doctor-blank-page', function (){return view('doctor.blank-page');});
+
+});
 //===========================================================================================================
 
 Route::get('/admin-login',[admin_controller::class,'login']);
@@ -140,46 +191,3 @@ Route::get('/admin-data-tables', function (){return view('admin.data-tables');})
 
 });
 //===========================================================================================================
-
-Route::get('/doctor', function (){return view('doctor.login');});
-Route::get('/doctor-change-password', function (){return view('doctor.change-password');});
-Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
-
-Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});
-Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
-Route::get('/doctor-social-media', function (){return view('doctor.social-media');});
-
-
-Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
-Route::get('/doctor-patient-profile', function (){return view('doctor.patient-profile');});
-
-Route::get('/doctor-appointments', function (){return view('doctor.appointments');});
-Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
-Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});
-
-
-Route::get('/doctor-mr-dashboard', function (){return view('doctor.mr-dashboard');});
-Route::get('/doctor-mr-schedule-timings', function (){return view('doctor.mr-schedule-timings');});
-Route::get('/doctor-mr-appointments', function (){return view('doctor.mr-appointments');});
-Route::get('/doctor-mr-find', function (){return view('doctor.mr-find');});
-
-
-Route::get('/doctor-manager-dashboard', function (){return view('doctor.manager-dashboard');});
-Route::get('/doctor-manager-schedule-timings', function (){return view('doctor.manager-schedule-timings');});
-Route::get('/doctor-manager-appointments', function (){return view('doctor.manager-appointments');});
-Route::get('/doctor-manager-find', function (){return view('doctor.manager-find');});
-
-Route::get('/doctor-company-dashboard', function (){return view('doctor.company-dashboard');});
-Route::get('/doctor-company-schedule-timings', function (){return view('doctor.company-schedule-timings');});
-Route::get('/doctor-company-appointments', function (){return view('doctor.company-appointments');});
-Route::get('/doctor-company-find', function (){return view('doctor.company-find');});
-
-
-
-Route::get('/doctor-chat-doctor', function (){return view('doctor.chat-doctor');});
-Route::get('/doctor-invoices', function (){return view('doctor.invoices');});
-Route::get('/doctor-reviews', function (){return view('doctor.reviews');});
-Route::get('/doctor-calendar', function (){return view('doctor.calendar');});
-Route::get('/doctor-components', function (){return view('doctor.components');});
-Route::get('/doctor-invoice-view', function (){return view('doctor.invoice-view');});
-Route::get('/doctor-blank-page', function (){return view('doctor.blank-page');});

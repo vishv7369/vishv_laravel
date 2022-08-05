@@ -216,7 +216,7 @@
 											
 										</div>
 
-										<h4 class="card-title">Hospital Details</h4><br>
+										 <h4 class="card-title">Hospital Details</h4><br>
 										<div class="row">
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -228,47 +228,8 @@
        													@endif
 													</div>
 												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Hospital timing</label>
-													<div class="col-lg-9">
-														<div class="row">
-															<div class="col-md-6">
-																<div class="form-group ">
-																	To:
-																	<input type="time" name="hospital_time_to" value="{{old('hospital_time_to')}}" class="form-control">
-																	@if ($errors->has('hospital_time_to'))
-            															<span class="text-danger">{{ $errors->first('hospital_time_to') }}</span>
-       																@endif
-																</div>
-															</div>
-															<div class="col-md-6">
-																<div class="form-group">
-																	From:
-																	<input type="time" name="hospital_time_from" value="{{old('hospital_time_from')}}" class="form-control">
-																	@if ($errors->has('hospital_time_from'))
-            															<span class="text-danger">{{ $errors->first('hospital_time_from') }}</span>
-       																@endif
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Days</label>
-													<div class="col-lg-9">
-														Monday <input type="checkbox" name="day[]" value="Monday">&nbsp;&nbsp;
-														Tuesday <input type="checkbox" name="day[]" value="Tuesday">&nbsp;&nbsp;&nbsp;&nbsp;
-														Wednesday <input type="checkbox" name="day[]" value="Wednesday">&nbsp;&nbsp;
-														Thursday <input type="checkbox" name="day[]" value="Thursday">
-														Friday <input type="checkbox" name="day[]" value="Friday">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-														Saturday <input type="checkbox" name="day[]" value="Saturday">&nbsp;&nbsp;&nbsp;&nbsp;
-														Sunday <input type="checkbox" name="day[]" value="Sunday"> 
-
-														@if ($errors->has('day'))
-            												<span class="text-danger">{{ $errors->first('day') }}</span>
-       													@endif
-													</div>
-												</div>
+												
+												
 
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Notification</label>
@@ -279,7 +240,15 @@
        													@endif
 													</div>
 												</div>
-												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Followup Fees</label>
+													<div class="col-lg-9">
+														<input type="text" class="form-control" value="{{old('followup_fees')}}" name="followup_fees">
+														@if ($errors->has('followup_fees'))
+            												<span class="text-danger">{{ $errors->first('followup_fees') }}</span>
+       													@endif
+													</div>
+												</div>
 											</div>
 											<div class="col-xl-6">
 												<div class="form-group row">
@@ -300,15 +269,7 @@
        													@endif
 													</div>
 												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Followup Fees</label>
-													<div class="col-lg-9">
-														<input type="text" class="form-control" value="{{old('followup_fees')}}" name="followup_fees">
-														@if ($errors->has('followup_fees'))
-            												<span class="text-danger">{{ $errors->first('followup_fees') }}</span>
-       													@endif
-													</div>
-												</div>
+												
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">State</label>
 													<div class="col-lg-9">
@@ -408,9 +369,117 @@
 												</div>
 											</div>
 										</div>
+                                      
+
+										<h4 class="card-title">Hospital Timings</h4><br>
+										<div class="row">
+											<div class="col-xl-6">
+											<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Days</label>
+													<div class="col-lg-9">
+														Monday <input type="checkbox" name="day[]" value="Monday"><br>
+														Tuesday <input type="checkbox" name="day[]" value="Tuesday"><br>
+														Wednesday <input type="checkbox" name="day[]" value="Wednesday"><br>
+														Thursday <input type="checkbox" name="day[]" value="Thursday"><br>
+														Friday <input type="checkbox" name="day[]" value="Friday"><br>
+														Saturday <input type="checkbox" name="day[]" value="Saturday"><br>
+														Sunday <input type="checkbox" name="day[]" value="Sunday"> 
+
+														@if ($errors->has('day'))
+            												<span class="text-danger">{{ $errors->first('day') }}</span>
+       													@endif
+													</div>
+												</div>
+											
+											</div>
+											<div class="col-xl-6">
+											<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Morning Time</label>
+													<div class="col-lg-9">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_morning_to" value="{{old('hospital_morning_to')}}" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_morning_from" value="{{old('hospital_morning_from')}}" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Afternoon timing</label>
+													<div class="col-lg-9">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_afternoon_to" value="{{old('hospital_afternoon_to')}}" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_afternoon_from" value="{{old('hospital_afternoon_from')}}" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Evening timing</label>
+													<div class="col-lg-9">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group ">
+																	To:
+																	<input type="time" name="hospital_evening_to" value="{{old('hospital_evening_to')}}" class="form-control">
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	From:
+																	<input type="time" name="hospital_evening_from" value="{{old('hospital_evening_from')}}" class="form-control">
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+														</div>
+											
+											
+												
+												
+												
+												
+												
+												
+												
+											</div>
+											
+												
+												
+												
+												
+												
+												
+											
+											
+										</div>
+
 										<div class="text-right">
 											<button type="submit" class="btn btn-primary" name="submit" value="send">Submit</button>
 										</div>
+
+
 									</form>
 								</div>
 							</div>

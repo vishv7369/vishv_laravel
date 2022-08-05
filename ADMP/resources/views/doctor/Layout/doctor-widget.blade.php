@@ -70,7 +70,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="{{url('/doctor-logout')}}">
+												<a href="{{url('/doctorlogout')}}">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>

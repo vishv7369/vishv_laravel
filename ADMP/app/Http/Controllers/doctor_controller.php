@@ -63,10 +63,8 @@ class doctor_controller extends Controller
             'about'=>'required',
             'address'=>'required|max:200',
             'pincode'=>'required|numeric|digits:6',
-            'google_map'=>'required|url|unique:doctors',
             'day'=>'required',
-            'hospital_time_to'=>'required',//check
-            'hospital_time_from'=>'required',
+            
             'consulting_fees'=>'required|numeric',
             'followup_fees'=>'required|numeric',
             'notification'=>'required|max:200',
@@ -100,8 +98,12 @@ class doctor_controller extends Controller
         $data->pincode=$request->pincode;
         $data->google_map=$request->google_map;
         $data->day=implode(",",$request->day);
-        $data->hospital_time_to=$request->hospital_time_to;
-        $data->hospital_time_from=$request->hospital_time_from;
+        $data->hospital_morning_to=$request->hospital_morning_to;
+        $data->hospital_morning_from=$request->hospital_morning_from;
+        $data->hospital_afternoon_to=$request->hospital_afternoon_to;
+        $data->hospital_afternoon_from=$request->hospital_afternoon_from;
+        $data->hospital_evening_to=$request->hospital_evening_to;
+        $data->hospital_evening_from=$request->hospital_evening_from;
         $data->consulting_fees=$request->consulting_fees;
         $data->followup_fees=$request->followup_fees;
         $data->notification=$request->notification;
@@ -145,6 +147,49 @@ class doctor_controller extends Controller
         //
     }
 
+    public function login(Request $request)
+    {
+        return view('doctor.login');
+    }
+
+    public function doctorlogin(Request $request)
+    {
+        $data=doctor::where("email","=",$request->email)->first();
+        if($data)
+        {
+            if(Hash::check($request->password, $data->password))
+            {
+                $doctor_status=$data->doctor_status;
+                if($doctor_status=="Unblock")
+                {
+                    $request->Session()->put('doctor_id',$data->id);
+                    $request->Session()->put('email',$data->email);
+                    return redirect('/doctor-dashboard');
+
+                }
+                else
+                {
+                    return redirect('/doctor')->with('fail','Login Failed due to Blocked Doctor');
+                }
+            }
+            else
+            {
+                return redirect('/doctor')->with('fail','Login Failed due to Wrong Password');
+            }
+
+        }
+        else
+       {
+        return redirect('/doctor')->with('fail','Login Failed due to Wrong doctor');
+       }
+    }
+
+    public function doctorlogout()
+    {
+        Session()->pull('doctor_id');
+        Session()->pull('email');
+        return redirect('/doctor');
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -188,8 +233,12 @@ class doctor_controller extends Controller
         $data->pincode=$request->pincode;
         $data->google_map=$request->google_map;
         $data->day=implode(",",$request->day);
-        $data->hospital_time_to=$request->hospital_time_to;
-        $data->hospital_time_from=$request->hospital_time_from;
+        $data->hospital_morning_to=$request->hospital_morning_to;
+        $data->hospital_morning_from=$request->hospital_morning_from;
+        $data->hospital_afternoon_to=$request->hospital_afternoon_to;
+        $data->hospital_afternoon_from=$request->hospital_afternoon_from;
+        $data->hospital_evening_to=$request->hospital_evening_to;
+        $data->hospital_evening_from=$request->hospital_evening_from;
         $data->consulting_fees=$request->consulting_fees;
         $data->followup_fees=$request->followup_fees;
         $data->notification=$request->notification;
