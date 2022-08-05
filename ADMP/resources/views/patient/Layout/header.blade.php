@@ -44,6 +44,8 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{url('Frontend/assets/css/style.css')}}">
 		
+		
+		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="{{url('Frontend/assets/js/html5shiv.min.js')}}"></script>
@@ -81,37 +83,28 @@
 							</a>
 						</div>
 						<ul class="main-nav">
-							<li class="active">
+							<li class="">
 								<a href="{{url('/index')}}">Home</a>
 							</li>
+							<li class="">
+								<a href="{{url('/about')}}">About</a>
+							</li>
+							<li class="">
+								<a href="{{url('/search')}}">Find Doctor</a>
+							</li>
+							<li class="">
+								<a href="{{url('/contact')}}">Contact</a>
+							</li>
+							
 							<li class="has-submenu">
-								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
+								<a href="#">Patient Dashboard <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="{{url('/doctor-dashboard')}}">Doctor Dashboard</a></li>
-									<li><a href="{{url('/appointments')}}">Appointments</a></li>
-									<li><a href="{{url('/schedule-timings')}}">Schedule Timing</a></li>
-									<li><a href="{{url('/my-patients')}}">Patients List</a></li>
-									<li><a href="{{url('/patient-profile')}}">Patients Profile</a></li>
-									<li><a href="{{url('/chat-doctor')}}">Chat</a></li>
-									<li><a href="{{url('/invoices')}}">Invoices</a></li>
-									<li><a href="{{url('/doctor-profile-settings')}}">Profile Settings</a></li>
-									<li><a href="{{url('/reviews')}}">Reviews</a></li>
-									<li><a href="{{url('/doctor-register')}}">Doctor Register</a></li>
-								</ul>
-							</li>	
-							<li class="has-submenu">
-								<a href="#">Patients <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="{{url('/search')}}">Search Doctor</a></li>
-									<li><a href="{{url('/doctor-profile')}}">Doctor Profile</a></li>
-									<li><a href="{{url('/booking')}}">Booking</a></li>
-									<li><a href="{{url('/checkout')}}">Checkout</a></li>
-									<li><a href="{{url('/booking-success')}}">Booking Success</a></li>
-									<li><a href="{{url('/patient-dashboard')}}">Patient Dashboard</a></li>
-									<li><a href="{{url('/favourites')}}">Favourites</a></li>
-									<li><a href="{{url('/chat')}}">Chat</a></li>
+									<li><a href="{{url('/patient-dashboard')}}">Dashboard</a></li>
+									<li><a href="{{url('/favourites')}}">My Doctor</a></li>
+									<li><a href="{{url('/appointments')}}">Appointment</a></li>
+									<li><a href="{{url('/prescription')}}">Prescription</a></li>
+									<li><a href="{{url('/report')}}">Medical Report</a></li>
 									<li><a href="{{url('/profile-settings')}}">Profile Settings</a></li>
-									<li><a href="{{url('/change-password')}}">Change Password</a></li>
 								</ul>
 							</li>	
 							<li class="has-submenu">
@@ -122,25 +115,14 @@
 									<li><a href="{{url('/search')}}">Search Doctors</a></li>
 									<li><a href="{{url('/calendar')}}">Calendar</a></li>
 									<li><a href="{{url('/components')}}">Components</a></li>
-									<li class="has-submenu">
-										<a href="{{url('/invoices')}}">Invoices</a>
-										<ul class="submenu">
-											<li><a href="{{url('/invoices')}}">Invoices</a></li>
-											<li><a href="{{url('/invoice-view')}}">Invoice View</a></li>
-										</ul>
-									</li>
+									
 									<li><a href="{{url('/blank-page')}}">Starter Page</a></li>
-									<li><a href="{{url('/login')}}">Login</a></li>
-									<li><a href="{{url('/login')}}">Register</a></li>
+									
 									<li><a href="{{url('/forgot-password')}}">Forgot Password</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="{{url('admin/index.html')}}" target="_blank">Admin</a>
-							</li>
-							<li class="login-link">
-								<a href="{{url('/login')}}">Login / Signup</a>
-							</li>
+							
+							
 						</ul>		 
 					</div>		 
 					<ul class="nav header-navbar-rht">

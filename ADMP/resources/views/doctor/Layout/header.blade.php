@@ -67,10 +67,10 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="{{url('/index')}}" class="navbar-brand logo">
+						<a href="{{url('/doctor-dashboard')}}" class="navbar-brand logo">
 							<img src="{{url('Frontend/assets/img/logo.png')}}" class="img-fluid" alt="Logo">
 						</a>
-					</div>
+					</div>	
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="{{url('/index')}}" class="menu-logo">
@@ -81,34 +81,21 @@
 							</a>
 						</div>
 						<ul class="main-nav">
-							<li class="active">
-								<a href="{{url('/index')}}">Home</a>
+							<li class="">
+								<a href="{{url('/doctor-dashboard')}}">Hospital</a>
 							</li>
-							<li class="has-submenu">
-								<a href="#">Doctors <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="{{url('/doctor')}}">Login</a></li>
-									<li><a href="{{url('/doctor-dashboard')}}">Doctor Dashboard</a></li>
-									<li><a href="{{url('/doctor-appointments')}}">Appointments</a></li>
-									<li><a href="{{url('/doctor-schedule-timings')}}">Schedule Timing</a></li>
-									<li><a href="{{url('/doctor-my-patients')}}">Patients List</a></li>
-									<li><a href="{{url('/doctor-booking')}}">Booking</a></li>
-									<li><a href="{{url('/doctor-patient-profile')}}">Patients Profile</a></li>
-									<li><a href="{{url('/doctor-chat-doctor')}}">Chat</a></li>
-									<li><a href="{{url('/doctor-invoices')}}">Invoices</a></li>
-									<li><a href="{{url('/doctor-profile-settings')}}">Profile Settings</a></li>
-									<li><a href="{{url('/doctor-reviews')}}">Reviews</a></li>
-									<li><a href="{{url('/doctor-register')}}">Doctor Register</a></li>
-									<li><a href="{{url('/doctor-change-password')}}">Change Password</a></li>
-									<li><a href="{{url('/doctor-calendar')}}">Calendar</a></li>
-									<li><a href="{{url('/doctor-favourites')}}">Favourites</a></li>
-									<li><a href="{{url('/doctor-forgot-password')}}">Forgot Password</a></li>
-								
-									<li><a href="{{url('/doctor-components')}}">Components</a></li>
-									<li><a href="{{url('/doctor-blank-page')}}">Starter Page</a></li>
-									
-								</ul>
-							</li>	
+							
+							<li class="">
+								<a href="{{url('/doctor-mr-dashboard')}}">MR</a>
+							</li>
+							<li class="">
+								<a href="{{url('/doctor-manager-dashboard')}}">Health Manager</a>
+							</li>
+							<li class="">
+								<a href="{{url('/doctor-company-dashboard')}}">Company</a>
+							</li>
+							
+							
 							
 						</ul>		 
 					</div>		 

@@ -9,7 +9,7 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+									<li class="breadcrumb-item active" aria-current="page">Manger Dashboard</li>
 								</ol>
 							</nav>
 							<h2 class="breadcrumb-title">Dashboard</h2>
@@ -30,7 +30,7 @@
 							<div class="profile-sidebar">
 								
 		
-								@include('doctor/Layout/doctor-widget');
+								@include('doctor/Layout/manager-widget');
 							
 							</div>
 							<!-- /Profile Sidebar -->
