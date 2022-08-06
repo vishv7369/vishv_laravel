@@ -36,15 +36,16 @@ class companie_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $data=$request->validate([
             'first_name'=>'required|alpha',
             'last_name'=>'required|alpha',
             'company_name'=>'required|unique:companies|regex:/[a-zA-z0-9\s]+/',
             'email'=>'required|email|unique:companies',
-            'password'=>'required|string|unique:companies|min:6',
-            'profile_img'=>'required|mimes:jpeg,png,jpg,gif',
-            'visiting_card'=>'required|mimes:jpeg,png,jpg,gif',
+            'password'=>'required|min:6',
+            'profile_img'=>'required|mimes:jpeg,png,jpg,gif,svg',
+            'visiting_card'=>'required|mimes:jpeg,png,jpg,gif,svg',
+
         ]);
         $data=new companie;
         

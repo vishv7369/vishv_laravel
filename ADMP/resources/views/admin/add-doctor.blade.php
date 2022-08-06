@@ -361,10 +361,8 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Google Map URL</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" value="{{old('google_map')}}" name="google_map">
-														@if ($errors->has('google_map'))
-            												<span class="text-danger">{{ $errors->first('google_map') }}</span>
-       													@endif
+														<input type="text" class="form-control"  name="google_map">
+														
 													</div>
 												</div>
 											</div>
@@ -400,13 +398,15 @@
 															<div class="col-md-6">
 																<div class="form-group ">
 																	To:
-																	<input type="time" name="hospital_morning_to" value="{{old('hospital_morning_to')}}" class="form-control">
+																	<input type="time" name="hospital_morning_to"  class="form-control">
+																	
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	From:
-																	<input type="time" name="hospital_morning_from" value="{{old('hospital_morning_from')}}" class="form-control">
+																	<input type="time" name="hospital_morning_from"  class="form-control">
+																	
 																</div>
 															</div>
 														</div>
@@ -420,13 +420,15 @@
 															<div class="col-md-6">
 																<div class="form-group ">
 																	To:
-																	<input type="time" name="hospital_afternoon_to" value="{{old('hospital_afternoon_to')}}" class="form-control">
+																	<input type="time" name="hospital_afternoon_to"  class="form-control">
+																	
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	From:
-																	<input type="time" name="hospital_afternoon_from" value="{{old('hospital_afternoon_from')}}" class="form-control">
+																	<input type="time" name="hospital_afternoon_from"  class="form-control">
+																	
 																</div>
 															</div>
 														</div>
@@ -440,13 +442,15 @@
 															<div class="col-md-6">
 																<div class="form-group ">
 																	To:
-																	<input type="time" name="hospital_evening_to" value="{{old('hospital_evening_to')}}" class="form-control">
+																	<input type="time" name="hospital_evening_to"  class="form-control">
+																	
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	From:
-																	<input type="time" name="hospital_evening_from" value="{{old('hospital_evening_from')}}" class="form-control">
+																	<input type="time" name="hospital_evening_from"  class="form-control">
+																	
 																</div>
 															</div>
 														</div>

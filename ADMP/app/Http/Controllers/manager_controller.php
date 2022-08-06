@@ -39,7 +39,18 @@ class manager_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
+         $data=$request->validate([
+        'company_id'=>'required',
+        'Manager_name'=>'required|regex:/[a-zA-z0-9\s]+/',
+        'first_name'=>'required|alpha',
+        'last_name'=>'required|alpha',
+        'email'=>'required|email|unique:managers',
+        'password'=>'required|min:6|unique:managers',
+        'profile_img'=>'required|mimes:jpeg,png,jpg,gif,svg',
+        'visiting_card'=>'required|mimes:jpeg,png,jpg,gif,svg',
+        
+    ]);
         $data=new manager;
 
         $data->Manager_name=$request->Manager_name;
@@ -97,7 +108,8 @@ class manager_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+        
         $data=manager::find($id);
 
         $data->company_id=$request->company_id;

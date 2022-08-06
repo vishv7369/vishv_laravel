@@ -68,7 +68,8 @@ Route::get('/doctor-change-password', function (){return view('doctor.change-pas
 Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
 
 Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});
-Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
+Route::get('/editdoctor/{id}',[doctor_controller::class,'editdoctor']);
+//Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
 Route::get('/doctor-social-media', function (){return view('doctor.social-media');});
 
 

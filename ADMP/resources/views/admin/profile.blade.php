@@ -26,12 +26,12 @@
 								<div class="row align-items-center">
 									<div class="col-auto profile-image">
 										<a href="#">
-											<img class="rounded-circle" alt="User Image" src="{{url('/Backend/assets/img/profiles/avatar-01.jpg')}}">
+											<img class="rounded-circle" alt="User Image" src="{{asset('upload/admin/'.$fetch->img)}}">
 										</a>
 									</div>
 									<div class="col ml-md-n2 profile-user-info">
-										<h4 class="user-name mb-0">Ryan Taylor</h4>
-										<h6 class="text-muted">ryantaylor@admin.com</h6>
+										<h4 class="user-name mb-0"><?php echo $fetch->name;?></h4>
+										<h6 class="text-muted"><?php echo $fetch->email;?></h6>
 									</div>
 								</div>
 							</div>
@@ -61,12 +61,12 @@
 													</h5>
 													<div class="row">
 														<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
-														<p class="col-sm-10">John Doe</p>
+														<p class="col-sm-10"><?php echo $fetch->name;?></p>
 													</div>
 												
 													<div class="row">
 														<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
-														<p class="col-sm-10">johndoe@example.com</p>
+														<p class="col-sm-10"><?php echo $fetch->email;?></p>
 													</div>
 												</div>
 											</div>
@@ -80,30 +80,32 @@
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
-														</div>
+															</div>
 														<div class="modal-body">
-															<form action="">
+															<form action="" method="post" enctype="multipart/form-data">
+																
 																<div class="row form-row">
 																	<div class="col-12 col-sm-6">
 																		<div class="form-group">
 																			<label>Name</label>
-																			<input type="text"  class="form-control" value="John">
+																			<input type="text"  class="form-control" name="name" value="">
 																		</div>
 																	</div>
 																	<div class="col-12 col-sm-6">
 																		<div class="form-group">
 																			<label>Email ID</label>
-																			<input type="email" class="form-control" value="johndoe@example.com">
+																			<input type="email" class="form-control" name="email" value="">
 																		</div>
 																	</div>
 																	<div class="col-12 col-sm-6">
 																		<div class="form-group">
 																			<label>Profile Picture</label>
-																			<input type="file" class="form-control" value="" >
+																			<input type="file" class="form-control" name="img" value="" >
+																			
 																		</div>
 																	</div>															
 																</div>
-																<button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+																<button type="submit" class="btn btn-primary btn-block" name="submit" value="send">Save Changes</button>
 															</form>
 														</div>
 													</div>

@@ -16,7 +16,7 @@ class admin_controller extends Controller
      */
     public function index()
     {
-        //n
+       //
     }
 
     /**
@@ -40,6 +40,8 @@ class admin_controller extends Controller
         //
     }
 
+   
+
     /**
      * Display the specified resource.
      *
@@ -57,9 +59,18 @@ class admin_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+
+    public function myaccount()
+	{
+		$data=admin::where("id","=",session('admin_id'))->first();
+		return view('admin.profile',["fetch"=>$data]);
+	}
+
+
+    public function editadmin($id)
     {
-        //
+        $data=admin::find($id);
+        return view('admin.profile',["fetch"=>$data]);
     }
 
     /**
@@ -71,7 +82,23 @@ class admin_controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=admin::find($id);
+        $old_img=$data->img;
+        $data->name=$request->name;
+        $data->email=$request->email;
+
+        // img upload
+		if($request->hasFile('img'))
+		{
+			$file=$request->file('img');  // get file
+			$file_name=time() . "_img." . $request->file('img')->getClientOriginalExtension();// make file name
+			$file->move('upload/admin',$file_name); //file name move upload in public		
+			$data->img=$file_name; // file name store in db
+			
+		}
+
+        $data->save();
+		return redirect('/admin-profile')->with('success','Update Success');
     }
     
     public function login(Request $request)

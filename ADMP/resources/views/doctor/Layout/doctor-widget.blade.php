@@ -23,7 +23,7 @@
 											</li>
 											
 											<li class="">
-												<a href="{{url('/doctor-profile-settings')}}">
+												<a href="{{url('/editdoctor')}}">
 													<i class="fas fa-user-cog"></i>
 													<span>Hospital Profile</span>
 												</a>

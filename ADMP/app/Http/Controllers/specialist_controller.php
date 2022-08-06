@@ -35,15 +35,14 @@ class specialist_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $data=$request->validate([
-            'name'=>'required|alpha_num|unique:specialists',
-            'img'=>'required|mimes:jpeg,png,jpg,gif',
+            'name'=>'required|regex:/[a-zA-z0-9\s]+/',
+            'img'=>'required|mimes:jpeg,png,jpg,gif,svg',
         ]);
-
         $data=new specialist;
         $data->name=$request->name;
-        
+
          // img upload
 		$file=$request->file('img');  // get file
 		$file_name=time()."_img.".$request->file('img')->getClientOriginalExtension();// make file name

@@ -34,7 +34,7 @@
 								
 								<div class="card-body">
 									<h4 class="card-title">Personal Information</h4><br>
-									<form action="{{url('/edit/'.$fetch->id )}}" method="post" enctype="multipart/form-data">
+									<form action="{{url('/edit/'.$fetch->id)}}" method="post" enctype="multipart/form-data">
 										@csrf
 										<div class="row">
 											<div class="col-xl-6">
@@ -164,15 +164,10 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Email</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" value="<?php echo $fetch->email?>" name="email">
+														<input type="text" class="form-control" value="<?php echo $fetch->email?>" name="email" readonly>
 													</div>
 												</div>
-												<div class="form-group row">
-													<label class="col-lg-3 col-form-label">Password</label>
-													<div class="col-lg-9">
-														<input type="password" class="form-control" value="<?php echo $fetch->password?>" name="password">
-													</div>
-												</div>
+												
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
@@ -350,7 +345,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Google Map URL</label>
 													<div class="col-lg-9">
-														<input type="text" class="form-control" value="<?php echo $fetch->google_map?>}" name="google_map">
+														<input type="text" class="form-control" value="<?php echo $fetch->google_map?>" name="google_map">
 													</div>
 												</div>
 											</div>

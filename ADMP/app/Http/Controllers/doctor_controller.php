@@ -219,7 +219,6 @@ class doctor_controller extends Controller
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
-        $data->email=$request->email;
         $data->gender=$request->gender;
         $data->dob=$request->dob;
         $data->liacence_no=$request->liacence_no;
@@ -289,6 +288,17 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function editdoctor($id)
+    {
+        $data=doctor::where("id","=",session('doctor_id'))->first();
+        $special_id_arr=specialist::all();
+        $state_id_arr=state::all();
+        $city_id_arr=citie::all();
+        $area_id_arr=area::all();
+        return view('doctor.doctor-profile-settings',["fetch"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+    }
+
     public function destroy($id)
     {
         $data=doctor::find($id);
