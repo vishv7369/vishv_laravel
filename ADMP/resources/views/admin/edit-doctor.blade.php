@@ -46,11 +46,17 @@
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" placeholder="First Name" value="<?php echo $fetch->first_name?>" class="form-control" name="first_name">
+																	@if ($errors->has('first_name'))
+            															<span class="text-danger">{{ $errors->first('first_name') }}</span>
+       																@endif
 																</div>
 															</div>
 															<div class="col-md-6">
 																<div class="form-group">
 																	<input type="text" placeholder="Last Name" value="<?php echo $fetch->last_name?>" class="form-control" name="last_name">
+																	@if ($errors->has('first_name'))
+            															<span class="text-danger">{{ $errors->first('last_name') }}</span>
+       																@endif
 																</div>
 															</div>
 														</div>
@@ -60,6 +66,9 @@
 													<label class="col-lg-3 col-form-label">DOB</label>
 													<div class="col-lg-9">
 														<input type="date" value="<?php echo $fetch->dob?>" class="form-control" name="dob">
+														@if ($errors->has('first_name'))
+            															<span class="text-danger">{{ $errors->first('dob') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
@@ -139,12 +148,18 @@
 													<label class="col-lg-3 col-form-label">Experience</label>
 													<div class="col-lg-9">
 														<input type="text" value="<?php echo $fetch->experience?>" class="form-control" name="experience">
+														@if ($errors->has('experience'))
+            												<span class="text-danger">{{ $errors->first('experience') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Dr. Mobile</label>
 													<div class="col-lg-9">
 														<input type="tel" value="<?php echo $fetch->dr_mobile?>" class="form-control" name="dr_mobile">
+														@if ($errors->has('dr_mobile'))
+            												<span class="text-danger">{{ $errors->first('dr_mobile') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
@@ -173,12 +188,18 @@
 													<div class="col-lg-9">
 														<input type="file" class="form-control" value="{{asset('upload/doctor/'.$fetch->profile_img)}}" name="profile_img">
 														<img src="{{asset('upload/doctor/'.$fetch->profile_img)}}" height="50px" width="50px"> 
+														@if ($errors->has('profile_img'))
+            												<span class="text-danger">{{ $errors->first('profile_img') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Education</label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->education?>" name="education">
+														@if ($errors->has('education'))
+            												<span class="text-danger">{{ $errors->first('education') }}</span>
+       													@endif
 													</div>
 												</div>
 												
@@ -187,12 +208,18 @@
 													<div class="col-lg-9">
 														<input type="file" class="form-control" value="{{asset('upload/visitingcard/'.$fetch->visit_card)}}" name="visit_card">
 														<img src="{{asset('upload/visitingcard/'.$fetch->visit_card)}}" height="50px" width="50px"> 
+														@if ($errors->has('visit_card'))
+            												<span class="text-danger">{{ $errors->first('visit_card') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Office no</label>
 													<div class="col-lg-9">
 														<input type="tel" class="form-control" value="<?php echo $fetch->office_no?>" name="office_no">
+														@if ($errors->has('office_no'))
+            												<span class="text-danger">{{ $errors->first('office_no') }}</span>
+       													@endif
 													</div>
 												</div>
 											</div>
@@ -206,6 +233,9 @@
 													<label class="col-lg-3 col-form-label">Hospital Name</label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->hospital_name?>" name="hospital_name">
+														@if ($errors->has('hospital_name'))
+            												<span class="text-danger">{{ $errors->first('hospital_name') }}</span>
+       													@endif
 													</div>
 												</div>
 												
@@ -215,12 +245,18 @@
 													<label class="col-lg-3 col-form-label">Notification</label>
 													<div class="col-lg-9">
 														<textarea  class="form-control" value="<?php echo $fetch->notification?>" name="notification"><?php echo $fetch->notification?></textarea>
+														@if ($errors->has('notification'))
+            												<span class="text-danger">{{ $errors->first('notification') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Followup Fees</label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->followup_fees?>" name="followup_fees">
+														@if ($errors->has('followup_fees'))
+            												<span class="text-danger">{{ $errors->first('followup_fees') }}</span>
+       													@endif
 													</div>
 												</div>
 											</div>
@@ -230,12 +266,18 @@
 													<div class="col-lg-9">
 														<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img">
 														<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px"> 
+														@if ($errors->has('hospital_img'))
+            												<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Consulting </label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->consulting_fees?>" name="consulting_fees">
+														@if ($errors->has('consulting_fees'))
+            												<span class="text-danger">{{ $errors->first('consulting_fees') }}</span>
+       													@endif
 													</div>
 												</div>
 												
@@ -264,7 +306,9 @@
 														    }
 														    ?>
 														</select>
-														
+														@if ($errors->has('state'))
+            												<span class="text-danger">{{ $errors->first('state') }}</span>
+       													@endif
 													</div>
 												</div>
 											</div>
@@ -297,12 +341,18 @@
 														    }
 														    ?>
 														</select>
+														@if ($errors->has('city'))
+            												<span class="text-danger">{{ $errors->first('city') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Address</label>
 													<div class="col-lg-9">
 														<textarea name="address" rows="4" value="<?php echo $fetch->address?>" class="form-control"><?php echo $fetch->address?></textarea>
+														@if ($errors->has('address'))
+            												<span class="text-danger">{{ $errors->first('address') }}</span>
+       													@endif
 													</div>
 												</div>
 												
@@ -334,12 +384,18 @@
 														    }
 														    ?>
 														</select>
+														@if ($errors->has('area'))
+            												<span class="text-danger">{{ $errors->first('area') }}</span>
+       													@endif
 													</div>
 												</div>	
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Postal Code</label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->pincode?>" name="pincode">
+														@if ($errors->has('pincode'))
+            												<span class="text-danger">{{ $errors->first('pincode') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">
@@ -412,7 +468,7 @@
 																{
 																	echo "checked";
 																}
-																?>> 
+																?>>
 													</div>
 												</div>
 

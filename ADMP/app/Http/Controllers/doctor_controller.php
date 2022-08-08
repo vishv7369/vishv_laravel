@@ -9,6 +9,7 @@ use App\Models\citie;
 use App\Models\area;
 use App\Models\specialist;
 use Hash;
+use session;
 
 class doctor_controller extends Controller
 {
@@ -214,7 +215,39 @@ class doctor_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
+
+        $data=$request->validate([
+            'first_name'=>'alpha',
+            'last_name'=>'alpha',
+            //'short_tittle'=>'required',//check
+            //'email'=>'required|email|unique:doctors',
+            //'gender'=>'required|in:male,female',//check
+            //'password'=>'required|string|unique:doctors|min:6',
+            'dob'=>'date',
+            //'liacence_no'=>'required',//check
+            'education'=>'regex:/[a-zA-z0-9\s]+/',
+            'experience'=>'regex:/[a-zA-z0-9\s]+/',
+            'hospital_name'=>'regex:/[a-zA-z0-9\s]+/',
+            'dr_mobile'=>'digits:10',
+            'office_no'=>'alpha_num|string',
+            //'about'=>'required',
+            'address'=>'max:200',
+            'pincode'=>'digits:6',
+            //'day'=>'required',
+            'consulting_fees'=>'numeric',
+            'followup_fees'=>'numeric',
+            'notification'=>'max:200',
+            //'specialist_id'=>'required',
+            //'state'=>'required',
+            //'city'=>'required',
+            //'area'=>'required',
+            'profile_img'=>'mimes:jpeg,png,jpg,gif',
+            'hospital_img'=>'mimes:jpeg,png,jpg,gif',
+            'visit_card'=>'mimes:jpeg,png,jpg,gif',
+
+        ]);
+
         $data=doctor::find($id);
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
@@ -288,8 +321,14 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+    public function doctorlist()
+    {
+        $data=doctor::all();
+		return view('patient.search',["doctorlist_arr"=>$data]);
+    }
 
-    public function editdoctor($id)
+    public function editdoctor()
     {
         $data=doctor::where("id","=",session('doctor_id'))->first();
         $special_id_arr=specialist::all();
@@ -297,6 +336,106 @@ class doctor_controller extends Controller
         $city_id_arr=citie::all();
         $area_id_arr=area::all();
         return view('doctor.doctor-profile-settings',["fetch"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+    }
+
+    public function updatedoctor(Request $request, $doctor_id)
+    {   
+       $data=$request->validate([
+            'first_name'=>'alpha',
+            'last_name'=>'alpha',
+            //'short_tittle'=>'required',//check
+            //'email'=>'required|email|unique:doctors',
+            //'gender'=>'required|in:male,female',//check
+            //'password'=>'required|string|unique:doctors|min:6',
+            'dob'=>'date',
+            //'liacence_no'=>'required',//check
+            'education'=>'regex:/[a-zA-z0-9\s]+/',
+            'experience'=>'regex:/[a-zA-z0-9\s]+/',
+            'hospital_name'=>'regex:/[a-zA-z0-9\s]+/',
+            'dr_mobile'=>'digits:10',
+            'office_no'=>'alpha_num|string',
+            //'about'=>'required',
+            'address'=>'max:200',
+            'pincode'=>'digits:6',
+            //'day'=>'required',
+            'consulting_fees'=>'numeric',
+            'followup_fees'=>'numeric',
+            'notification'=>'max:200',
+            //'specialist_id'=>'required',
+            //'state'=>'required',
+            //'city'=>'required',
+            //'area'=>'required',
+            'profile_img'=>'mimes:jpeg,png,jpg,gif',
+            'hospital_img'=>'mimes:jpeg,png,jpg,gif',
+            'visit_card'=>'mimes:jpeg,png,jpg,gif',
+
+        ]);
+
+        $data=doctor::where("id","=",session('doctor_id'))->first();
+        $data->first_name=$request->first_name;
+        $data->last_name=$request->last_name;
+        $data->short_tittle=$request->short_tittle;
+        $data->gender=$request->gender;
+        $data->dob=$request->dob;
+        $data->liacence_no=$request->liacence_no;
+        $data->education=$request->education;
+        $data->experience=$request->experience;
+        $data->hospital_name=$request->hospital_name;
+        $data->dr_mobile=$request->dr_mobile;
+        $data->office_no=$request->office_no;
+        $data->about=$request->about;
+        $data->address=$request->address;
+        $data->pincode=$request->pincode;
+        $data->google_map=$request->google_map;
+        $data->day=implode(",",$request->day);
+        $data->hospital_morning_to=$request->hospital_morning_to;
+        $data->hospital_morning_from=$request->hospital_morning_from;
+        $data->hospital_afternoon_to=$request->hospital_afternoon_to;
+        $data->hospital_afternoon_from=$request->hospital_afternoon_from;
+        $data->hospital_evening_to=$request->hospital_evening_to;
+        $data->hospital_evening_from=$request->hospital_evening_from;
+        $data->consulting_fees=$request->consulting_fees;
+        $data->followup_fees=$request->followup_fees;
+        $data->notification=$request->notification;
+        $old_img=$data->profile_img;
+        $old_img2=$data->hospital_img;
+        $old_img3=$data->visit_card;
+
+        $data->specialist_id=$request->specialist_id ;
+        $data->state=$request->state;
+        $data->city=$request->city;
+        $data->area=$request->area;
+
+        //img upload
+        if($request->hasFile('profile_img'))
+		{
+			$file=$request->file('profile_img');  // get file
+			$file_name=time() . "_profile_img." . $request->file('profile_img')->getClientOriginalExtension();// make file name
+			$file->move('upload/doctor',$file_name); //file name move upload in public		
+			$data->profile_img=$file_name; // file name store in db
+			unlink('upload/doctor/'.$old_img);
+		}
+         // hospital upload
+         if($request->hasFile('hospital_img'))
+		{
+            $file2=$request->file('hospital_img');  // get file
+            $file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
+            $file2->move('upload/hospital',$file_name2); //file name move upload in public		
+            $data->hospital_img=$file_name2; // file name store in db
+            unlink('upload/hospital/'.$old_img2);
+        }
+         // visiting card upload
+         if($request->hasFile('visit_card'))
+         {
+            $file3=$request->file('visit_card');  // get file
+            $file_name3=time()."_visit_card_img.".$request->file('visit_card')->getClientOriginalExtension();// make file name
+            $file3->move('upload/visitingcard',$file_name3); //file name move upload in public		
+            $data->visit_card=$file_name3; // file name store in db
+            unlink('upload/visitingcard/'.$old_img3);
+         }
+
+        $data->save();
+		return redirect('/editdoctor')->with('success','Update Success');
     }
 
     public function destroy($id)

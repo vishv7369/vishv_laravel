@@ -28,6 +28,14 @@
 													<span>Hospital Profile</span>
 												</a>
 											</li>
+
+											<li>
+												<a href="{{url('/doctor-service-specialization')}}">
+													<i class="fas fa-user-injured"></i>
+													<span>Services & Specializations</span>
+												</a>
+											</li>
+
 											<li>
 												<a href="{{url('/doctor-my-patients')}}">
 													<i class="fas fa-user-injured"></i>

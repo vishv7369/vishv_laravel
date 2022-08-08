@@ -11,6 +11,8 @@ use App\Http\Controllers\manager_controller;
 use App\Http\Controllers\mr_controller;
 use App\Http\Controllers\product_controller;
 use App\Http\Controllers\stockiest_controller;
+use App\Http\Controllers\service_controller;
+use App\Http\Controllers\drspecialitie_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,7 @@ Route::get('/login', function (){return view('patient.login');});
 Route::get('/register', function (){return view('patient.register');});
 Route::get('/patient-dashboard', function (){return view('patient.patient-dashboard');});
 
-Route::get('/search', function (){return view('patient.search');});
+//Route::get('/search', function (){return view('patient.search');});
 Route::get('/favourites', function (){return view('patient.favourites');});
 Route::get('/doctor-profile', function (){return view('patient.doctor-profile');});
 Route::get('/booking', function (){return view('patient.booking');});
@@ -44,7 +46,7 @@ Route::get('/profile-settings', function (){return view('patient.profile-setting
 Route::get('/change-password', function (){return view('patient.change-password');});
 Route::get('/forgot-password', function (){return view('patient.forgot-password');});
 
-
+Route::get('/search',[doctor_controller::class,'doctorlist']);
 
 
 Route::get('/chat', function (){return view('patient.chat');});
@@ -68,9 +70,18 @@ Route::get('/doctor-change-password', function (){return view('doctor.change-pas
 Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
 
 Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});
-Route::get('/editdoctor/{id}',[doctor_controller::class,'editdoctor']);
+Route::get('/editdoctor',[doctor_controller::class,'editdoctor']);
+Route::post('/editdoctor/{doctor_id}',[doctor_controller::class,'updatedoctor']);
 //Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
 Route::get('/doctor-social-media', function (){return view('doctor.social-media');});
+
+//Route::get('/doctor-service-specialization', function (){return view('doctor.add-service-specialization');});
+Route::get('/doctor-service-specialization',[service_controller::class,'create']);
+Route::post('/addservice',[service_controller::class,'addservice']);
+Route::get('/doctor-service-specialization',[service_controller::class,'index']);
+
+//Route::get('/addspeciality',[drspecialitie_controller::class,'addspeciality']);
+Route::post('/addspecialitie',[service_controller::class,'addspecialitie']);
 
 
 Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
