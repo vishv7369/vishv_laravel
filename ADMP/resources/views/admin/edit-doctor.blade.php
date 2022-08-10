@@ -264,11 +264,12 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Hospital Img</label>
 													<div class="col-lg-9">
-														<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img">
-														<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px"> 
-														@if ($errors->has('hospital_img'))
-            												<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
-       													@endif
+														<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img[]" multiple>
+														<?php
+														$img=$fetch->hospital_img;
+														print_r(explode(",",$img));
+														?>
+														 
 													</div>
 												</div>
 												<div class="form-group row">

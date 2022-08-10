@@ -254,7 +254,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Hospital Img</label>
 													<div class="col-lg-9">
-														<input type="file" value="{{old('hospital_img')}}" class="form-control" name="hospital_img">
+														<input type="file" value="{{old('hospital_img')}}" class="form-control" name="hospital_img[]" multiple>
 														@if ($errors->has('hospital_img'))
             												<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
        													@endif
