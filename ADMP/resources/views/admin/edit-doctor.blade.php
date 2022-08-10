@@ -269,7 +269,8 @@
 														$img=$fetch->hospital_img;
 														print_r(explode(",",$img));
 														?>
-														 
+														
+														
 													</div>
 												</div>
 												<div class="form-group row">
