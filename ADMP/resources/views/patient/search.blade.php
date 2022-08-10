@@ -167,13 +167,13 @@
 											<div class="clini-infos">
 												<ul>
 													<li><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></li>
-													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $data->consulting_fees?> <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>
-													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $data->followup_fees?> <i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i> </li>
+													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $data->consulting_fees?></li>
+													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $data->followup_fees?></li>
 												
 												</ul>
 											</div>
 											<div class="clinic-booking">
-												<a class="view-pro-btn" href="{{url('/doctor-profile')}}">View Profile</a>
+												<a class="view-pro-btn" href="{{url('doctor-profile/'.$data->id)}}">View Profile</a>
 												<a class="apt-btn" href="{{url('/booking')}}">Book Appointment</a>
 											</div>
 										</div>

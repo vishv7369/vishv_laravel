@@ -26,50 +26,30 @@
 								<div class="row align-items-center">
 									<div class="col-auto profile-image">
 										<a href="#">
-											<img class="rounded-circle" alt="User Image" src="{{asset('upload/admin/'.$fetch->img)}}">
+											<img class="rounded-circle" style="height:100px;width:100px;" src="{{asset('upload/admin/'.$fetch->img)}}">
 										</a>
 									</div>
 									<div class="col ml-md-n2 profile-user-info">
 										<h4 class="user-name mb-0"><?php echo $fetch->name;?></h4>
 										<h6 class="text-muted"><?php echo $fetch->email;?></h6>
+										
+									</div>
+									
+									<div>
+									<h5 class="card-title d-flex justify-content-between">
+													
+														<a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
+													</h5>
 									</div>
 								</div>
 							</div>
-							<div class="profile-menu">
-								<ul class="nav nav-tabs nav-tabs-solid">
-									<li class="nav-item">
-										<a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
-									</li>
-								</ul>
-							</div>	
+							
 							<div class="tab-content profile-tab-cont">
 								
 								<!-- Personal Details Tab -->
 								<div class="tab-pane fade show active" id="per_details_tab">
 								
 									<!-- Personal Details -->
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="card">
-												<div class="card-body">
-													<h5 class="card-title d-flex justify-content-between">
-														<span>Personal Details</span> 
-														<a class="edit-link" data-toggle="modal" href="#edit_personal_details"><i class="fa fa-edit mr-1"></i>Edit</a>
-													</h5>
-													<div class="row">
-														<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
-														<p class="col-sm-10"><?php echo $fetch->name;?></p>
-													</div>
-												
-													<div class="row">
-														<p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
-														<p class="col-sm-10"><?php echo $fetch->email;?></p>
-													</div>
-												</div>
-											</div>
 											
 											<!-- Edit Details Modal -->
 											<div class="modal fade" id="edit_personal_details" aria-hidden="true" role="dialog">
@@ -80,32 +60,37 @@
 															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																<span aria-hidden="true">&times;</span>
 															</button>
-															</div>
+														</div>
 														<div class="modal-body">
-															<form action="" method="post" enctype="multipart/form-data">
-																
-																<div class="row form-row">
-																	<div class="col-12 col-sm-6">
+															<form action="{{url('/admin-profile/'.$fetch->id )}}" method="post" enctype="multipart/form-data">
+															@csrf	
+															<div class="row form-row">
+																	<div class="col-12 ">
 																		<div class="form-group">
 																			<label>Name</label>
-																			<input type="text"  class="form-control" name="name" value="">
+																			<input type="text"  class="form-control" name="name" value="<?php echo $fetch->name;?>">
 																		</div>
 																	</div>
-																	<div class="col-12 col-sm-6">
+																	
+																	<div class="col-12 ">
 																		<div class="form-group">
 																			<label>Email ID</label>
-																			<input type="email" class="form-control" name="email" value="">
+																			<input type="email" class="form-control" name="email" value="<?php echo $fetch->email;?>" readonly>
 																		</div>
 																	</div>
-																	<div class="col-12 col-sm-6">
+
+																	<div class="col-12 ">
 																		<div class="form-group">
-																			<label>Profile Picture</label>
-																			<input type="file" class="form-control" name="img" value="" >
+																			<label>Profile_image</label>
 																			
+																			<input type="file" class="form-control"  name="img" value="{{asset('upload/admin/'.$fetch->img)}}">
+                                                        					<img src="{{asset('upload/admin/'.$fetch->img)}}" height="70px" width="70px">
 																		</div>
-																	</div>															
-																</div>
-																<button type="submit" class="btn btn-primary btn-block" name="submit" value="send">Save Changes</button>
+																	</div>
+
+																	
+																	
+																<button type="submit" name="update "send="value" class="btn btn-primary btn-block">Update</button>
 															</form>
 														</div>
 													</div>

@@ -36,7 +36,7 @@ Route::get('/patient-dashboard', function (){return view('patient.patient-dashbo
 
 //Route::get('/search', function (){return view('patient.search');});
 Route::get('/favourites', function (){return view('patient.favourites');});
-Route::get('/doctor-profile', function (){return view('patient.doctor-profile');});
+//Route::get('/doctor-profile', function (){return view('patient.doctor-profile');});
 Route::get('/booking', function (){return view('patient.booking');});
 Route::get('/checkout', function (){return view('patient.checkout');});
 Route::get('/booking-success', function (){return view('patient.booking-success');});
@@ -47,6 +47,7 @@ Route::get('/change-password', function (){return view('patient.change-password'
 Route::get('/forgot-password', function (){return view('patient.forgot-password');});
 
 Route::get('/search',[doctor_controller::class,'doctorlist']);
+Route::get('/doctor-profile/{id}',[doctor_controller::class,'doctorview']);
 
 
 Route::get('/chat', function (){return view('patient.chat');});
@@ -129,9 +130,12 @@ Route::group(['middleware'=>['afterlogin']], function(){
 
 Route::get('/admin', function (){return view('admin.index');});
 Route::get('/admin-profile',[admin_controller::class,'myaccount']);
-Route::get('/editadmin/{id}',[productadv_controller::class,'editadmin']);//edit
-Route::post('/editadmin/{id}',[productadv_controller::class,'update']);//update
-Route::get('/admin-settings', function (){return view('admin.settings');});
+//Route::get('/editadmin/{id}',[admin_controller::class,'editadmin']);//edit
+//Route::post('/editadmin/{id}',[admin_controller::class,'update']);//update
+//Route::get('/admin-settings', function (){return view('admin.settings');});
+Route::get('/admin-profile',[admin_controller::class,'profile']);
+Route::get('/editadmin/{id}',[admin_controller::class,'editadmin']);
+Route::post('/admin-profile/{id}',[admin_controller::class,'update']);
 
 
 Route::get('/admin-specialities',[specialist_controller::class,'index']);

@@ -7,6 +7,8 @@ use App\Models\doctor;
 use App\Models\state;
 use App\Models\citie;
 use App\Models\area;
+use App\Models\drspecialitie;
+use App\Models\service;
 use App\Models\specialist;
 use Hash;
 use session;
@@ -326,6 +328,14 @@ class doctor_controller extends Controller
     {
         $data=doctor::all();
 		return view('patient.search',["doctorlist_arr"=>$data]);
+    }
+
+    public function doctorview($id)
+    {
+        $data=doctor::find($id);
+        $servicelist_arr=service::all();
+        $special_arr=drspecialitie::all();
+		return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
     }
 
     public function editdoctor()

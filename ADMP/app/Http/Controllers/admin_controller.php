@@ -94,7 +94,7 @@ class admin_controller extends Controller
 			$file_name=time() . "_img." . $request->file('img')->getClientOriginalExtension();// make file name
 			$file->move('upload/admin',$file_name); //file name move upload in public		
 			$data->img=$file_name; // file name store in db
-			
+			unlink('upload/admin/'.$old_img);
 		}
 
         $data->save();
@@ -105,6 +105,12 @@ class admin_controller extends Controller
     {
         return view('Admin.login');
     }
+
+    public function profile()
+	{
+		$data=admin::where("id","=",session('admin_id'))->first();
+		return view('admin.profile',["fetch"=>$data]);
+	}
 
     public function adminlogin(Request $request)
     {

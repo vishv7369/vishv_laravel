@@ -29,22 +29,15 @@
 							<div class="doctor-widget">
 								<div class="doc-info-left">
 									<div class="doctor-img">
-										<img src="{{url('Frontend/assets/img/doctors/doctor-thumb-02.jpg')}}" class="img-fluid" alt="User Image">
+										<img src="{{asset('upload/doctor/' . $fetch->profile_img)}}" class="img-fluid" alt="User Image">
 									</div>
 									<div class="doc-info-cont">
-										<h4 class="doc-name">Dr. Darren Elder</h4>
-										<p class="doc-speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-										<p class="doc-department"><img src="{{url('Frontend/assets/img/specialities/specialities-05.png')}}" class="img-fluid" alt="Speciality">Dentist</p>
-										<div class="rating">
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star filled"></i>
-											<i class="fas fa-star"></i>
-											<span class="d-inline-block average-rating">(35)</span>
-										</div>
+										<h4 class="doc-name">Dr. <?php echo $fetch->first_name?> <?php echo $fetch->last_name?></h4>
+										<p class="doc-speciality"><?php echo $fetch->short_tittle?></p>
+										<p class="doc-department"><img src="{{asset('upload/specialities/' . $fetch->img)}}" class="img-fluid" alt="Speciality"><?php echo $fetch->specialist_id?></p>
+										
 										<div class="clinic-details">
-											<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
+											<p class="doc-location"><i class="fas fa-map-marker-alt"></i><?php echo $fetch->city?>, <?php echo $fetch->state?> <a href="<?php echo $fetch->google_map?>" target="_blank">Get Directions</a></p>
 											<ul class="clinic-gallery">
 												<li>
 													<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
@@ -68,19 +61,14 @@
 												</li>
 											</ul>
 										</div>
-										<div class="clinic-services">
-											<span>Dental Fillings</span>
-											<span>Teeth Whitneing</span>
-										</div>
 									</div>
 								</div>
 								<div class="doc-info-right">
 									<div class="clini-infos">
 										<ul>
-											<li><i class="far fa-thumbs-up"></i> 99%</li>
-											<li><i class="far fa-comment"></i> 35 Feedback</li>
-											<li><i class="fas fa-map-marker-alt"></i> Newyork, USA</li>
-											<li><i class="far fa-money-bill-alt"></i> $100 per hour </li>
+											<li><i class="fas fa-map-marker-alt"></i> <?php echo $fetch->city?>, <?php echo $fetch->state?></li>
+											<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $fetch->consulting_fees?></li>
+											<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $fetch->followup_fees?></li>
 										</ul>
 									</div>
 									<div class="doctor-action">
@@ -120,7 +108,7 @@
 										<a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#doc_reviews" data-toggle="tab">Reviews</a>
+										<a class="nav-link" href="#doc_reviews" data-toggle="tab">Services & Specializations</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
@@ -140,7 +128,7 @@
 											<!-- About Details -->
 											<div class="widget about-widget">
 												<h4 class="widget-title">About Me</h4>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+												<p><?php echo $fetch->about?></p>
 											</div>
 											<!-- /About Details -->
 										
@@ -155,21 +143,7 @@
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<a href="#/" class="name">American Dental Medical University</a>
-																	<div>BDS</div>
-																	<span class="time">1998 - 2003</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">American Dental Medical University</a>
-																	<div>MDS</div>
-																	<span class="time">2003 - 2005</span>
+																	<a href="#/" class="name"><?php echo $fetch->education?></a>
 																</div>
 															</div>
 														</li>
@@ -189,30 +163,7 @@
 															</div>
 															<div class="experience-content">
 																<div class="timeline-content">
-																	<a href="#/" class="name">Glowing Smiles Family Dental Clinic</a>
-																	<span class="time">2010 - Present (5 years)</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">Comfort Care Dental Clinic</a>
-																	<span class="time">2007 - 2010 (3 years)</span>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<a href="#/" class="name">Dream Smile Dental Practice</a>
-																	<span class="time">2005 - 2007 (2 years)</span>
+																	<a href="#/" class="name"><?php echo $fetch->experience?></a>
 																</div>
 															</div>
 														</li>
@@ -220,81 +171,6 @@
 												</div>
 											</div>
 											<!-- /Experience Details -->
-								
-											<!-- Awards Details -->
-											<div class="widget awards-widget">
-												<h4 class="widget-title">Awards</h4>
-												<div class="experience-box">
-													<ul class="experience-list">
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<p class="exp-year">July 2019</p>
-																	<h4 class="exp-title">Humanitarian Award</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<p class="exp-year">March 2011</p>
-																	<h4 class="exp-title">Certificate for International Volunteer Service</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="experience-user">
-																<div class="before-circle"></div>
-															</div>
-															<div class="experience-content">
-																<div class="timeline-content">
-																	<p class="exp-year">May 2008</p>
-																	<h4 class="exp-title">The Dental Professional of The Year Award</h4>
-																	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin a ipsum tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</div>
-											</div>
-											<!-- /Awards Details -->
-											
-											<!-- Services List -->
-											<div class="service-list">
-												<h4>Services</h4>
-												<ul class="clearfix">
-													<li>Tooth cleaning </li>
-													<li>Root Canal Therapy</li>
-													<li>Implants</li>
-													<li>Composite Bonding</li>
-													<li>Fissure Sealants</li>
-													<li>Surgical Extractions</li>
-												</ul>
-											</div>
-											<!-- /Services List -->
-											
-											<!-- Specializations List -->
-											<div class="service-list">
-												<h4>Specializations</h4>
-												<ul class="clearfix">
-													<li>Children Care</li>
-													<li>Dental Care</li>	
-													<li>Oral and Maxillofacial Surgery </li>	
-													<li>Orthodontist</li>	
-													<li>Periodontist</li>	
-													<li>Prosthodontics</li>	
-												</ul>
-											</div>
-											<!-- /Specializations List -->
-
 										</div>
 									</div>
 								</div>
@@ -310,18 +186,10 @@
 											<!-- Clinic Content -->
 											<div class="col-md-6">
 												<div class="clinic-content">
-													<h4 class="clinic-name"><a href="#">Smile Cute Dental Care Center</a></h4>
-													<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-													<div class="rating">
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star"></i>
-														<span class="d-inline-block average-rating">(4)</span>
-													</div>
+													<h4 class="clinic-name"><a href="#"><?php echo $fetch->hospital_name?></a></h4>
+													<p class="doc-speciality"><?php echo $fetch->specialist_id?></p>
 													<div class="clinic-details mb-0">
-														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2286  Sundown Lane, Austin, Texas 78749, USA <br><a href="javascript:void(0);">Get Directions</a></h5>
+														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> <?php echo $fetch->address?>, <?php echo $fetch->city?>, <?php echo $fetch->pincode?>, <?php echo $fetch->state?> <br><a href="<?php echo $fetch->google_map?>" target="_blank">Get Directions</a></h5>
 														<ul>
 															<li>
 																<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
@@ -349,8 +217,8 @@
 											</div>
 											<!-- /Clinic Content -->
 											
-											<!-- Clinic Timing -->
-											<div class="col-md-4">
+											<!-- Clinic Timing --
+											
 												<div class="clinic-timing">
 													<div>
 														<p class="timings-days">
@@ -371,309 +239,64 @@
 													</div>
 												</div>
 											</div>
-											<!-- /Clinic Timing -->
-											
-											<div class="col-md-2">
-												<div class="consult-price">
-													$250
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- /Location List -->
-									
-									<!-- Location List -->
-									<div class="location-list">
-										<div class="row">
-										
-											<!-- Clinic Content -->
-											<div class="col-md-6">
-												<div class="clinic-content">
-													<h4 class="clinic-name"><a href="#">The Family Dentistry Clinic</a></h4>
-													<p class="doc-speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-													<div class="rating">
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star filled"></i>
-														<i class="fas fa-star"></i>
-														<span class="d-inline-block average-rating">(4)</span>
-													</div>
-													<div class="clinic-details mb-0">
-														<p class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> 2883  University Street, Seattle, Texas Washington, 98155 <br><a href="javascript:void(0);">Get Directions</a></p>
-														<ul>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-01.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-04.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-														</ul>
-													</div>
-
-												</div>
-											</div>
-											<!-- /Clinic Content -->
-											
-											<!-- Clinic Timing -->
+											<-- /Clinic Timing -->
+											<div class="col-md-2"></div>
 											<div class="col-md-4">
-												<div class="clinic-timing">
-													<div>
-														<p class="timings-days">
-															<span> Tue - Fri </span>
-														</p>
-														<p class="timings-times">
-															<span>11:00 AM - 1:00 PM</span>
-															<span>6:00 PM - 11:00 PM</span>
-														</p>
-													</div>
-													<div>
-														<p class="timings-days">
-															<span>Sat - Sun</span>
-														</p>
-														<p class="timings-times">
-															<span>8:00 AM - 10:00 AM</span>
-															<span>3:00 PM - 7:00 PM</span>
-														</p>
-													</div>
-												</div>
-											</div>
-											<!-- /Clinic Timing -->
-											
-											<div class="col-md-2">
 												<div class="consult-price">
-													$350
+												<div class="clini-infos">
+												<ul>
+													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $fetch->consulting_fees?></li>
+													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $fetch->followup_fees?></li>
+												</ul>
+												</div>
 												</div>
 											</div>
 										</div>
 									</div>
-									<!-- /Location List -->
-
+								<!--/Location List -->
+									
+									
 								</div>
 								<!-- /Locations Content -->
 								
 								<!-- Reviews Content -->
 								<div role="tabpanel" id="doc_reviews" class="tab-pane fade">
 								
-									<!-- Review Listing -->
-									<div class="widget review-listing">
-										<ul class="comments-list">
-										
-											<!-- Comment List -->
-											<li>
-												<div class="comment">
-													<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{url('Frontend/assets/img/patients/patient.jpg')}}">
-													<div class="comment-body">
-														<div class="meta-data">
-															<span class="comment-author">Richard Wilson</span>
-															<span class="comment-date">Reviewed 2 Days ago</span>
-															<div class="review-count rating">
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star"></i>
-															</div>
-														</div>
-														<p class="recommended"><i class="far fa-thumbs-up"></i> I recommend the doctor</p>
-														<p class="comment-content">
-															Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-															sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-															Ut enim ad minim veniam, quis nostrud exercitation.
-															Curabitur non nulla sit amet nisl tempus
-														</p>
-														<div class="comment-reply">
-															<a class="comment-btn" href="#">
-																<i class="fas fa-reply"></i> Reply
-															</a>
-														   <p class="recommend-btn">
-															<span>Recommend?</span>
-															<a href="#" class="like-btn">
-																<i class="far fa-thumbs-up"></i> Yes
-															</a>
-															<a href="#" class="dislike-btn">
-																<i class="far fa-thumbs-down"></i> No
-															</a>
-														</p>
-														</div>
-													</div>
-												</div>
-												
-												<!-- Comment Reply -->
-												<ul class="comments-reply">
-													<li>
-														<div class="comment">
-															<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{url('Frontend/assets/img/patients/patient1.jpg')}}">
-															<div class="comment-body">
-																<div class="meta-data">
-																	<span class="comment-author">Charlene Reed</span>
-																	<span class="comment-date">Reviewed 3 Days ago</span>
-																	<div class="review-count rating">
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star filled"></i>
-																		<i class="fas fa-star"></i>
-																	</div>
-																</div>
-																<p class="comment-content">
-																	Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-																	sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-																	Ut enim ad minim veniam.
-																	Curabitur non nulla sit amet nisl tempus
-																</p>
-																<div class="comment-reply">
-																	<a class="comment-btn" href="#">
-																		<i class="fas fa-reply"></i> Reply
-																	</a>
-																	<p class="recommend-btn">
-																		<span>Recommend?</span>
-																		<a href="#" class="like-btn">
-																			<i class="far fa-thumbs-up"></i> Yes
-																		</a>
-																		<a href="#" class="dislike-btn">
-																			<i class="far fa-thumbs-down"></i> No
-																		</a>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</li>
-												</ul>
-												<!-- /Comment Reply -->
-												
-											</li>
-											<!-- /Comment List -->
-											
-											<!-- Comment List -->
-											<li>
-												<div class="comment">
-													<img class="avatar avatar-sm rounded-circle" alt="User Image" src="{{url('Frontend/assets/img/patients/patient2.jpg')}}">
-													<div class="comment-body">
-														<div class="meta-data">
-															<span class="comment-author">Travis Trimble</span>
-															<span class="comment-date">Reviewed 4 Days ago</span>
-															<div class="review-count rating">
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star"></i>
-															</div>
-														</div>
-														<p class="comment-content">
-															Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-															sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-															Ut enim ad minim veniam, quis nostrud exercitation.
-															Curabitur non nulla sit amet nisl tempus
-														</p>
-														<div class="comment-reply">
-															<a class="comment-btn" href="#">
-																<i class="fas fa-reply"></i> Reply
-															</a>
-															<p class="recommend-btn">
-																<span>Recommend?</span>
-																<a href="#" class="like-btn">
-																	<i class="far fa-thumbs-up"></i> Yes
-																</a>
-																<a href="#" class="dislike-btn">
-																	<i class="far fa-thumbs-down"></i> No
-																</a>
-															</p>
-														</div>
-													</div>
-												</div>
-											</li>
-											<!-- /Comment List -->
-											
-										</ul>
-										
-										<!-- Show All -->
-										<div class="all-feedback text-center">
-											<a href="#" class="btn btn-primary btn-sm">
-												Show all feedback <strong>(167)</strong>
-											</a>
-										</div>
-										<!-- /Show All -->
-										
-									</div>
-									<!-- /Review Listing -->
+									
 								
-									<!-- Write Review -->
-									<div class="write-review">
-										<h4>Write a review for <strong>Dr. Darren Elder</strong></h4>
-										
-										<!-- Write Review Form -->
-										<form>
-											<div class="form-group">
-												<label>Review</label>
-												<div class="star-rating">
-													<input id="star-5" type="radio" name="rating" value="star-5">
-													<label for="star-5" title="5 stars">
-														<i class="active fa fa-star"></i>
-													</label>
-													<input id="star-4" type="radio" name="rating" value="star-4">
-													<label for="star-4" title="4 stars">
-														<i class="active fa fa-star"></i>
-													</label>
-													<input id="star-3" type="radio" name="rating" value="star-3">
-													<label for="star-3" title="3 stars">
-														<i class="active fa fa-star"></i>
-													</label>
-													<input id="star-2" type="radio" name="rating" value="star-2">
-													<label for="star-2" title="2 stars">
-														<i class="active fa fa-star"></i>
-													</label>
-													<input id="star-1" type="radio" name="rating" value="star-1">
-													<label for="star-1" title="1 star">
-														<i class="active fa fa-star"></i>
-													</label>
-												</div>
+									
+									<!-- Services List -->
+									<div class="service-list">
+												<h4>Services</h4>
+												<?php
+												foreach($servicelist_arr as $data)
+												{
+												?>
+												<ul class="clearfix">
+													<li><?php echo $data->title?></li>
+												</ul>
+												<?php
+												}
+												?>
 											</div>
-											<div class="form-group">
-												<label>Title of your review</label>
-												<input class="form-control" type="text" placeholder="If you could say it in one sentence, what would you say?">
+											<!-- /Services List -->
+											
+											<!-- Specializations List -->
+											<div class="service-list">
+												<h4>Specializations</h4>
+												<?php
+												foreach($special_arr as $data)
+												{
+												?>
+												<ul class="clearfix">
+													<li><?php echo $data->title?></li>
+												</ul>
+												<?php
+												}
+												?>
 											</div>
-											<div class="form-group">
-												<label>Your review</label>
-												<textarea id="review_desc" maxlength="100" class="form-control"></textarea>
-											  
-											  <div class="d-flex justify-content-between mt-3"><small class="text-muted"><span id="chars">100</span> characters remaining</small></div>
-											</div>
-											<hr>
-											<div class="form-group">
-												<div class="terms-accept">
-													<div class="custom-checkbox">
-													   <input type="checkbox" id="terms_accept">
-													   <label for="terms_accept">I have read and accept <a href="#">Terms &amp; Conditions</a></label>
-													</div>
-												</div>
-											</div>
-											<div class="submit-section">
-												<button type="submit" class="btn btn-primary submit-btn">Add Review</button>
-											</div>
-										</form>
-										<!-- /Write Review Form -->
-										
+											<!-- /Specializations List -->
 									</div>
-									<!-- /Write Review -->
-						
-								</div>
-								<!-- /Reviews Content -->
 								
 								<!-- Business Hours Content -->
 								<div role="tabpanel" id="doc_business_hours" class="tab-pane fade">
@@ -688,43 +311,57 @@
 															<div class="day">Today <span>5 Nov 2019</span></div>
 															<div class="time-items">
 																<span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Monday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+																<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Tuesday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Wednesday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Thursday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Friday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Saturday</div>
 															<div class="time-items">
-																<span class="time">07:00 AM - 09:00 PM</span>
+															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
+																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
+																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day closed">
@@ -747,6 +384,7 @@
 						</div>
 					</div>
 					<!-- /Doctor Details Tab -->
+					
 
 				</div>
 			</div>		
