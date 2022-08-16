@@ -139,13 +139,13 @@
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></p>
 													<ul class="clinic-gallery">
 														<li>
-															<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
-																<img src="{{url('Frontend/assets/img/features/feature-01.jpg')}}" alt="Feature">
+															<a href="{{asset('upload/hospital/' . $data->hospital_img)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/' . $data->hospital_img)}}" alt="Feature">
 															</a>
 														</li>
 														<li>
-															<a href="{{url('Frontend/assets/img/features/feature-02.jpg')}}" data-fancybox="gallery">
-																<img  src="{{url('Frontend/assets/img/features/feature-02.jpg')}}" alt="Feature">
+															<a href="{{asset('upload/visitingcard/' . $data->visit_card)}}" data-fancybox="gallery">
+																<img  src="{{asset('upload/visitingcard/' . $data->visit_card)}}" alt="Feature">
 															</a>
 														</li>
 														<li>
@@ -167,8 +167,8 @@
 											<div class="clini-infos">
 												<ul>
 													<li><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></li>
-													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $data->consulting_fees?></li>
-													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $data->followup_fees?></li>
+													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $data->consulting_fees?>  </li>
+													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $data->followup_fees?>  </li>
 												
 												</ul>
 											</div>

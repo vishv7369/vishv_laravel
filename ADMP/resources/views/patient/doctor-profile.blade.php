@@ -23,6 +23,7 @@
 			<div class="content">
 				<div class="container">
 
+				
 					<!-- Doctor Widget -->
 					<div class="card">
 						<div class="card-body">
@@ -37,18 +38,18 @@
 										<p class="doc-department"><img src="{{asset('upload/specialities/' . $fetch->img)}}" class="img-fluid" alt="Speciality"><?php echo $fetch->specialist_id?></p>
 										
 										<div class="clinic-details">
-											<p class="doc-location"><i class="fas fa-map-marker-alt"></i><?php echo $fetch->city?>, <?php echo $fetch->state?> <a href="<?php echo $fetch->google_map?>" target="_blank">Get Directions</a></p>
+											<p class="doc-location"><i class="fas fa-map-marker-alt"></i><?php echo $fetch->city?>, <?php echo $fetch->state?> <a href="javascript:void(0);">Get Directions</a></p>
 											<ul class="clinic-gallery">
-												<li>
-													<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
-														<img src="{{url('Frontend/assets/img/features/feature-01.jpg')}}" alt="Feature">
-													</a>
-												</li>
-												<li>
-													<a href="{{url('Frontend/assets/img/features/feature-02.jpg')}}" data-fancybox="gallery">
-														<img  src="{{url('Frontend/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-													</a>
-												</li>
+											<li>
+															<a href="{{asset('upload/hospital/' . $fetch->hospital_img)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/' . $fetch->hospital_img)}}" alt="Feature">
+															</a>
+														</li>
+														<li>
+															<a href="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" data-fancybox="gallery">
+																<img  src="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" alt="Feature">
+															</a>
+														</li>
 												<li>
 													<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery">
 														<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature">
@@ -61,6 +62,7 @@
 												</li>
 											</ul>
 										</div>
+										
 									</div>
 								</div>
 								<div class="doc-info-right">
@@ -144,6 +146,7 @@
 															<div class="experience-content">
 																<div class="timeline-content">
 																	<a href="#/" class="name"><?php echo $fetch->education?></a>
+																	
 																</div>
 															</div>
 														</li>
@@ -164,6 +167,7 @@
 															<div class="experience-content">
 																<div class="timeline-content">
 																	<a href="#/" class="name"><?php echo $fetch->experience?></a>
+																	
 																</div>
 															</div>
 														</li>
@@ -189,18 +193,18 @@
 													<h4 class="clinic-name"><a href="#"><?php echo $fetch->hospital_name?></a></h4>
 													<p class="doc-speciality"><?php echo $fetch->specialist_id?></p>
 													<div class="clinic-details mb-0">
-														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> <?php echo $fetch->address?>, <?php echo $fetch->city?>, <?php echo $fetch->pincode?>, <?php echo $fetch->state?> <br><a href="<?php echo $fetch->google_map?>" target="_blank">Get Directions</a></h5>
+														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> <?php echo $fetch->address?>, <?php echo $fetch->city?>, <?php echo $fetch->pincode?>, <?php echo $fetch->state?> <br><a href="<?php echo $fetch->google_map?>">Get Directions</a></h5>
 														<ul>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-01.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-02.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-02.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
+														<li>
+															<a href="{{asset('upload/hospital/' . $fetch->hospital_img)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/' . $fetch->hospital_img)}}" alt="Feature">
+															</a>
+														</li>
+														<li>
+															<a href="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" data-fancybox="gallery">
+																<img  src="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" alt="Feature">
+															</a>
+														</li>
 															<li>
 																<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
 																	<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature Image">
@@ -217,8 +221,8 @@
 											</div>
 											<!-- /Clinic Content -->
 											
-											<!-- Clinic Timing --
-											
+											<!-- Clinic Timing -
+											<div class="col-md-4">
 												<div class="clinic-timing">
 													<div>
 														<p class="timings-days">
@@ -239,23 +243,26 @@
 													</div>
 												</div>
 											</div>
-											<-- /Clinic Timing -->
-											<div class="col-md-2"></div>
+											 /Clinic Timing -->
+											 <div class="col-md-2">
+											  </div>
 											<div class="col-md-4">
 												<div class="consult-price">
 												<div class="clini-infos">
-												<ul>
-													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $fetch->consulting_fees?></li>
-													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $fetch->followup_fees?></li>
-												</ul>
+													<ul>
+														
+														<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $fetch->consulting_fees?></li>
+														<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $fetch->followup_fees?></li>
+													</ul>
 												</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								<!--/Location List -->
+									<!-- /Location List -->
 									
 									
+
 								</div>
 								<!-- /Locations Content -->
 								
@@ -274,7 +281,7 @@
 												?>
 												<ul class="clearfix">
 													<li><?php echo $data->title?></li>
-												</ul>
+													</ul>
 												<?php
 												}
 												?>
@@ -311,64 +318,141 @@
 															<div class="day">Today <span>5 Nov 2019</span></div>
 															<div class="time-items">
 																<span class="open-status"><span class="badge bg-success-light">Open Now</span></span>
-																<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
+																<span class="time">07:00 AM - 09:00 PM</span>
 															</div>
 														</div>
 														<div class="listing-day">
 															<div class="day">Monday</div>
-															<div class="time-items">
-																<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Monday",$day_arr))
+																{ 
+																	
+																	echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																	echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																	echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed<br>";
+																	
+																}
+															?>
+															
+														</div><br>
 														<div class="listing-day">
 															<div class="day">Tuesday</div>
-															<div class="time-items">
-															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Tuesday",$day_arr))
+																{ 
+																	
+																		echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																		echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																		echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																		
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
+														</div><br>
 														<div class="listing-day">
 															<div class="day">Wednesday</div>
-															<div class="time-items">
-															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Wednesday",$day_arr))
+																{ 
+																	
+																	echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																	echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																	echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
+														</div><br>
 														<div class="listing-day">
 															<div class="day">Thursday</div>
-															<div class="time-items">
-															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Thursday",$day_arr))
+																{ 
+																	
+																	echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																	echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																	echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
+														</div><br>
 														<div class="listing-day">
 															<div class="day">Friday</div>
-															<div class="time-items">
-															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Friday",$day_arr))
+																{ 
+																	
+																	echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																	echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																	echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
+														</div><br>
 														<div class="listing-day">
 															<div class="day">Saturday</div>
-															<div class="time-items">
-															<span class="time">Morning : 07:00 AM - 09:00 PM</span>
-																<span class="time">Afternoon : 07:00 AM - 09:00 PM</span>
-																<span class="time">Evening : 07:00 AM - 09:00 PM</span>
-															</div>
-														</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Saturday",$day_arr))
+																{ 
+																		echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																		echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																		echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
+														</div><br>
 														<div class="listing-day closed">
 															<div class="day">Sunday</div>
-															<div class="time-items">
-																<span class="time"><span class="badge bg-danger-light">Closed</span></span>
-															</div>
+															<?php
+																$day=$fetch->day;
+																$day_arr=explode(",",$day);
+																if(in_array("Sunday",$day_arr))
+																{ 
+																		echo "Morning :".$fetch->hospital_morning_to . " - " .$fetch->hospital_morning_from;
+																		echo "<br>Afternoon :".$fetch->hospital_afternoon_to . " - " .$fetch->hospital_afternoon_from;
+																		echo "<br>Evening :".$fetch->hospital_evening_to . " - " .$fetch->hospital_evening_from;
+																}
+																else
+																{
+																	echo "Closed";
+																	
+																}
+															?>
 														</div>
 													</div>
 												</div>

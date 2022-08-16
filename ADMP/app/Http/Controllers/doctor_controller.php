@@ -7,9 +7,9 @@ use App\Models\doctor;
 use App\Models\state;
 use App\Models\citie;
 use App\Models\area;
-use App\Models\drspecialitie;
-use App\Models\service;
 use App\Models\specialist;
+use App\Models\service;
+use App\Models\drspecialitie;
 use Hash;
 use session;
 
@@ -138,7 +138,7 @@ class doctor_controller extends Controller
 		/*$file2=$request->file('hospital_img');  // get file
 		$file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
 		$file2->move('upload/hospital',$file_name2); //file name move upload in public		
-		$data->hospital_img=$file_name2; // file name store in db*/
+		$data->hospital_img=$file_name2;*/ // file name store in db
 
         // visiting card upload
 		$file3=$request->file('visit_card');  // get file
@@ -257,24 +257,12 @@ class doctor_controller extends Controller
             //'city'=>'required',
             //'area'=>'required',
             'profile_img'=>'mimes:jpeg,png,jpg,gif',
-            //'hospital_img'=>'mimes:jpeg,png,jpg,gif',
+            'hospital_img'=>'mimes:jpeg,png,jpg,gif',
             'visit_card'=>'mimes:jpeg,png,jpg,gif',
 
         ]);
 
-        $filesarr = [];
-        if($request->hasfile('hospital_img'))
-        {
-            foreach($request->file('hospital_img') as $file)
-            {
-                $name = time().'hospital_img.'.$file->extension();
-                $file->move('upload/hospital/',$name);
-                $filesarr[] = $name;
-            }
-        }
-
         $data=doctor::find($id);
-        $data->hospital_img=implode(",",$filesarr);
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
@@ -319,14 +307,14 @@ class doctor_controller extends Controller
 			unlink('upload/doctor/'.$old_img);
 		}
          // hospital upload
-        /* if($request->hasFile('hospital_img'))
+         if($request->hasFile('hospital_img'))
 		{
             $file2=$request->file('hospital_img');  // get file
             $file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
             $file2->move('upload/hospital',$file_name2); //file name move upload in public		
             $data->hospital_img=$file_name2; // file name store in db
             unlink('upload/hospital/'.$old_img2);
-        }*/
+        }
          // visiting card upload
          if($request->hasFile('visit_card'))
          {
@@ -341,8 +329,6 @@ class doctor_controller extends Controller
 		return redirect('/admin-doctor')->with('success','Update Success');
     }
 
-    
-
     /**
      * Remove the specified resource from storage.
      *
@@ -356,14 +342,6 @@ class doctor_controller extends Controller
 		return view('patient.search',["doctorlist_arr"=>$data]);
     }
 
-    public function doctorview($id)
-    {
-        $data=doctor::find($id);
-        $servicelist_arr=service::all();
-        $special_arr=drspecialitie::all();
-		return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
-    }
-
     public function editdoctor()
     {
         $data=doctor::where("id","=",session('doctor_id'))->first();
@@ -372,6 +350,14 @@ class doctor_controller extends Controller
         $city_id_arr=citie::all();
         $area_id_arr=area::all();
         return view('doctor.doctor-profile-settings',["fetch"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+    }
+
+    public function doctorview($id)
+    {
+        $data=doctor::find($id);
+        $servicelist_arr=service::all();
+        $special_arr=drspecialitie::all();
+        return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
     }
 
     public function updatedoctor(Request $request, $doctor_id)

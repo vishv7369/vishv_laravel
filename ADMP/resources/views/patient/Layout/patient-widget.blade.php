@@ -1,7 +1,7 @@
 <div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-											<img src="{{url('Frontend/assets/img/patients/patient.jpg')}}" alt="User Image">
+											<img src="{{url('Frontend/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
 										</a>
 										<div class="profile-det-info">
 											<h3>Richard Wilson</h3>
@@ -29,7 +29,7 @@
 											</li>
 											
 											<li>
-												<a href="{{url('/profile-settings')}}">
+												<a href="{{url('/edit')}}">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
@@ -41,7 +41,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="{{url('/index')}}">
+												<a href="{{url('/patientlogout')}}">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>

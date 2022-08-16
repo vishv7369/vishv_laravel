@@ -39,18 +39,19 @@
 								<div class="card-body">
 									
 									<!-- Profile Settings Form -->
-									<form>
+									<form action="{{url('/edit/{id}')}}" method="post" enctype="multipart/form-data">
+										@csrf
 										<div class="row form-row">
 											<div class="col-12 col-md-12">
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-															<img src="{{url('Frontend/assets/img/patients/patient.jpg')}}" alt="User Image">
-														</div>
+														<img src="{{asset('upload/patient/'.$fetch->profile_img)}}" height="50px" width="50px"> 
+													</div>
 														<div class="upload-img">
 															<div class="change-photo-btn">
 																<span><i class="fa fa-upload"></i> Upload Photo</span>
-																<input type="file" class="upload">
+																<input type="file" class="upload" name="profile_img" value="{{asset('upload/patient/'.$fetch->profile_img)}}">
 															</div>
 															<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
 														</div>
@@ -59,52 +60,49 @@
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label>First Name</label>
-													<input type="text" class="form-control" value="Richard">
+													<label>Name</label>
+													<input type="text" class="form-control" value="<?php echo $fetch->name?>" name="name">
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label>Last Name</label>
-													<input type="text" class="form-control" value="Wilson">
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Date of Birth</label>
-													<div class="cal-icon">
-														<input type="text" class="form-control datetimepicker" value="24-07-1983">
-													</div>
-												</div>
-											</div>
-											<div class="col-12 col-md-6">
-												<div class="form-group">
-													<label>Blood Group</label>
-													<select class="form-control select">
-														<option>A-</option>
-														<option>A+</option>
-														<option>B-</option>
-														<option>B+</option>
-														<option>AB-</option>
-														<option>AB+</option>
-														<option>O-</option>
-														<option>O+</option>
-													</select>
+													<label>Gender</label>
+													<select class="form-control select" name="gender">
+												<?php
+													$gender=$fetch->gender;
+													if($gender=="Male")
+														{
+												?>
+														<option>Select Gender</option>
+														<option value="Male" selected>Male</option>
+														<option>Female</option>
+												<?php
+														}
+													else
+														{
+												?>
+														<option>Select Gender</option>
+														<option >Male</option>
+														<option value="Female" selected>Female</option>
+												<?php
+														}
+												?>
+												</select>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label>Email ID</label>
-													<input type="email" class="form-control" value="richard@example.com">
+													<input type="email" class="form-control" value="<?php echo $fetch->email?>" name="email" readonly>
 												</div>
 											</div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label>Mobile</label>
-													<input type="text" value="+1 202-555-0125" class="form-control">
+													<input type="text" value="<?php echo $fetch->mobileno?>" name="mobileno" class="form-control">
 												</div>
 											</div>
-											<div class="col-12">
+										<!--	<div class="col-12">
 												<div class="form-group">
 												<label>Address</label>
 													<input type="text" class="form-control" value="806 Twin Willow Lane">
@@ -133,10 +131,10 @@
 													<label>Country</label>
 													<input type="text" class="form-control" value="United States">
 												</div>
-											</div>
+											</div>-->
 										</div>
 										<div class="submit-section">
-											<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+											<button type="submit" class="btn btn-primary submit-btn" name="submit" value="send">Save Changes</button>
 										</div>
 									</form>
 									<!-- /Profile Settings Form -->

@@ -118,7 +118,26 @@
 														@endif
 													</div>
 												</div>
-												
+												<div class="form-group row">
+													<label class="col-lg-3 col-form-label">Manager Id</label>
+													<div class="col-lg-9">
+													<select class="select" value="{{old('manager_id')}}" name="manager_id">
+															<option value="">Select</option>
+															<?php
+															foreach($manager_id_arr as $data)
+															{
+															?>
+															<option value="<?php echo $data->id;?>">
+														        <?php echo $data->Manager_name ?></option>
+															<?php
+															}
+															?>
+														</select>
+														@if ($errors->has('manager_id'))
+												    		<span class="text-danger">{{ $errors->first('manager_id')}}</span>
+														@endif
+													</div>
+												</div>
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Visiting Card</label>
 													<div class="col-lg-9">

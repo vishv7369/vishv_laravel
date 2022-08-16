@@ -20,23 +20,24 @@
 										</div>
 										
 										<!-- Register Form -->
-										<form action="https://dreamguys.co.in/demo/doccure/{{url('/doctor-dashboard')}}">
+										<form action="{{url('/register')}}" method="post" enctype="multipart/form-data">
+											@csrf
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating">
+												<input type="text" class="form-control floating" name="name">
 												<label class="focus-label">Name</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating">
-												<label class="focus-label">Mobile Number</label>
+												<input type="text" class="form-control floating" name="email">
+												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" class="form-control floating">
+												<input type="password" class="form-control floating" name="password">
 												<label class="focus-label">Create Password</label>
 											</div>
 											<div class="text-right">
 												<a class="forgot-link" href="{{url('/login')}}">Already have an account?</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Signup</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" name="submit" value="send">Signup</button>
 											<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">or</span>

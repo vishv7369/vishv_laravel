@@ -85,7 +85,7 @@ class admin_controller extends Controller
         $data=admin::find($id);
         $old_img=$data->img;
         $data->name=$request->name;
-        $data->email=$request->email;
+       
 
         // img upload
 		if($request->hasFile('img'))
@@ -94,7 +94,8 @@ class admin_controller extends Controller
 			$file_name=time() . "_img." . $request->file('img')->getClientOriginalExtension();// make file name
 			$file->move('upload/admin',$file_name); //file name move upload in public		
 			$data->img=$file_name; // file name store in db
-			unlink('upload/admin/'.$old_img);
+            unlink('upload/admin/'.$old_img);
+			
 		}
 
         $data->save();

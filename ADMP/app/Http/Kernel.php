@@ -50,6 +50,10 @@ class Kernel extends HttpKernel
 
         'doctorafterlogin'=>[
             \App\Http\Middleware\doctorafterlogin::class
+        ],
+
+        'patientafterlogin'=>[
+            \App\Http\Middleware\patientafterlogin::class
        ]
     ];
 
@@ -62,6 +66,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'doctorbeforelogin'=> \App\Http\Middleware\doctorbeforelogin::class,
+        'patientbeforelogin'=> \App\Http\Middleware\patientbeforelogin::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

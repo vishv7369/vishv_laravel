@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
+        Schema::table('patients', function (Blueprint $table) {
             $table->string('name')->after('id');
-            $table->string('email')->after('name');
+            $table->string('mobileno')->default('null')->after('name');
+            $table->string('email')->after('mobileno');
             $table->string('password')->after('email');
-            $table->string('img')->default('null')->after('password');
+            $table->string('gender')->default('null')->after('password');
+            $table->string('profile_img')->default('null')->after('gender');
+            $table->enum('status',['Block','Unblock'])->default('Unblock')->after('profile_img');
         });
     }
 
@@ -28,7 +31,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
+        Schema::table('patients', function (Blueprint $table) {
             //
         });
     }

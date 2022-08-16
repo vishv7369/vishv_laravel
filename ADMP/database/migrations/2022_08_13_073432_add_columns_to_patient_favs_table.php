@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('admins', function (Blueprint $table) {
-            $table->string('name')->after('id');
-            $table->string('email')->after('name');
-            $table->string('password')->after('email');
-            $table->string('img')->default('null')->after('password');
+        Schema::table('patient_favs', function (Blueprint $table) {
+            $table->unsignedBigInteger('doctor_id');
+			$table->foreign('doctor_id')->references('id')->on('doctors')->after('id');
+            $table->unsignedBigInteger('patient_id');
+			$table->foreign('patient_id')->references('id')->on('patients')->after('doctor_id');
         });
     }
 
@@ -28,7 +28,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('admins', function (Blueprint $table) {
+        Schema::table('patient_favs', function (Blueprint $table) {
             //
         });
     }

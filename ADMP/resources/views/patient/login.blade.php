@@ -98,19 +98,20 @@
 										<div class="login-header">
 											<h3>Login <span>Doccure</span></h3>
 										</div>
-										<form action="https://dreamguys.co.in/demo/doccure/index.html">
+										<form action="{{url('/patientlogin')}}" method="post" enctype="multipart/form-data">
+											@csrf
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating">
+												<input type="email" class="form-control floating" name="email">
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" class="form-control floating">
+												<input type="password" class="form-control floating" name="password">
 												<label class="focus-label">Password</label>
 											</div>
 											<div class="text-right">
 												<a class="forgot-link" href="{{url('/forgot-password')}}">Forgot Password ?</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" name="submit" value="send">Login</button>
 											<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">or</span>

@@ -35,6 +35,7 @@
 											<thead>
 												<tr>
 													<th>MR ID</th>
+													<th>Manager ID</th>
 													<th>Company ID</th>
 													<th>Profile Img</th>
 													<th>Company Name</th>
@@ -51,6 +52,8 @@
 												?>
 												<tr>
 													<td><?php echo $data->id?></td>
+
+													<td><?php echo $data->manager_id?></td>
 
 													<td><?php echo $data->company_id?></td>
 
