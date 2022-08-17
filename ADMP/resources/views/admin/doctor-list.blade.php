@@ -33,7 +33,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
+										<table id="table" class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
 													<th>Doctor ID</th>
@@ -55,13 +55,13 @@
 												<tr>
 												<td><?php echo $data->id?></td>
 												<td><img src="{{asset('upload/doctor/' . $data->profile_img)}}" height="50px" width="50px"/></td>
-												<td><?php echo $data->specialist_id?></td>
+												<td><?php echo $data->name?></td>
 												<td><?php echo $data->first_name?></td>
 												<td><?php echo $data->last_name?></td>
 												<td><?php echo $data->doctor_status ?></td>
 												<td class="text-right">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light"  href="{{url('edit/'.$data->id)}}">
+															<a class="btn btn-sm bg-success-light"  href="{{url('admin-edit/'.$data->id)}}">
 																<i class="fe fe-pencil"></i> Edit
 															</a>
 															<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">

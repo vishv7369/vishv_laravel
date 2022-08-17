@@ -31,11 +31,11 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
+										<table id="table" class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
 													<th>Manager ID</th>
-													<th>Company ID</th>
+													<th>Company </th>
 													<th>Profile Img</th>
 													<th>Manager Name</th>
 													<th>Email</th>
@@ -53,7 +53,7 @@
 												<tr>
 													<td><?php echo $data->id?></td>
 
-													<td><?php echo $data->company_id ?></td>
+													<td><?php echo $data->company_name ?></td>
 
 													<td><img src="{{asset('upload/manager/' . $data->profile_img)}}" height="50px" width="50px"/></td>
 

@@ -141,6 +141,8 @@
 												<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> Florida, USA</p>
 													<ul class="clinic-gallery">
+														
+													
 														<li>
 															<a href="{{url('Frontend/assets/img/features/feature-01.jpg')}}" data-fancybox="gallery">
 																<img src="{{url('Frontend/assets/img/features/feature-01.jpg')}}" alt="Feature">

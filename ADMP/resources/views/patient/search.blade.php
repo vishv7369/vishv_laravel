@@ -138,26 +138,21 @@
 												<div class="clinic-details">
 													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></p>
 													<ul class="clinic-gallery">
+														<?php
+														$hospital_img=$data->hospital_img;
+														$hosp_img_arr=explode(",",$hospital_img);
+								
+														foreach($hosp_img_arr as $d)
+														{
+														?>
 														<li>
-															<a href="{{asset('upload/hospital/' . $data->hospital_img)}}" data-fancybox="gallery">
-																<img src="{{asset('upload/hospital/' . $data->hospital_img)}}" alt="Feature">
+															<a href="{{asset('upload/hospital/'.$d)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/'.$d)}}" alt="Feature">
 															</a>
 														</li>
-														<li>
-															<a href="{{asset('upload/visitingcard/' . $data->visit_card)}}" data-fancybox="gallery">
-																<img  src="{{asset('upload/visitingcard/' . $data->visit_card)}}" alt="Feature">
-															</a>
-														</li>
-														<li>
-															<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery">
-																<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature">
-															</a>
-														</li>
-														<li>
-															<a href="{{url('Frontend/assets/img/features/feature-04.jpg')}}" data-fancybox="gallery">
-																<img src="{{url('Frontend/assets/img/features/feature-04.jpg')}}" alt="Feature">
-															</a>
-														</li>
+														<?php
+														}
+														?>
 													</ul>
 												</div>
 												

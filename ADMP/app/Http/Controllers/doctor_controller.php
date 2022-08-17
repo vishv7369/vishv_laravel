@@ -12,7 +12,7 @@ use App\Models\service;
 use App\Models\drspecialitie;
 use Hash;
 use session;
-
+ 
 class doctor_controller extends Controller
 {
     /**
@@ -22,7 +22,7 @@ class doctor_controller extends Controller
      */
     public function index()
     {
-        $data=doctor::all();
+        $data=doctor::join('specialists', 'doctors.specialist_id', '=','specialists.id')->get();
 		return view('admin.doctor-list',["doctor_arr"=>$data]);
     }
 
@@ -75,26 +75,16 @@ class doctor_controller extends Controller
             'state'=>'required',
             'city'=>'required',
             'area'=>'required',
-            'profile_img'=>'required|mimes:jpeg,png,jpg,gif',
+            'profile_img'=>'required',
             'hospital_img'=>'required',
-            'visit_card'=>'required|mimes:jpeg,png,jpg,gif',
+            'visit_card'=>'required',
 
         ]);
 
-        $filesarr = [];
-        if($request->hasfile('hospital_img'))
-        {
-            foreach($request->file('hospital_img') as $file)
-            {
-                $name = time().'hospital_img.'.$file->extension();
-                $file->move('upload/hospital/',$name);
-                $filesarr[] = $name;
-                
-            }
-        }
+       
 
         $data=new doctor;
-        $data->hospital_img=implode(",",$filesarr);
+        
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
@@ -135,10 +125,19 @@ class doctor_controller extends Controller
 		$data->profile_img=$file_name; // file name store in db
 
         // hospital upload
-		/*$file2=$request->file('hospital_img');  // get file
-		$file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
-		$file2->move('upload/hospital',$file_name2); //file name move upload in public		
-		$data->hospital_img=$file_name2;*/ // file name store in db
+        $filesarr = [];
+        if($request->hasfile('hospital_img'))
+        {
+            foreach($request->file('hospital_img') as $file)
+            {
+                $name = time().rand(100000,99999).'hospital_img.'.$file->extension();
+                $file->move('upload/hospital/',$name);
+                $filesarr[] = $name;       
+            }
+            $data->hospital_img=implode(",",$filesarr);
+        }
+
+
 
         // visiting card upload
 		$file3=$request->file('visit_card');  // get file
@@ -211,7 +210,7 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function adminedit($id)
     {
         $data=doctor::find($id);
         $special_id_arr=specialist::all();
@@ -228,7 +227,7 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function adminupdate(Request $request, $id)
     {   
 
         $data=$request->validate([
@@ -257,10 +256,12 @@ class doctor_controller extends Controller
             //'city'=>'required',
             //'area'=>'required',
             'profile_img'=>'mimes:jpeg,png,jpg,gif',
-            'hospital_img'=>'mimes:jpeg,png,jpg,gif',
+            //'hospital_img'=>'mimes:jpeg,png,jpg,gif',
             'visit_card'=>'mimes:jpeg,png,jpg,gif',
 
         ]);
+
+
 
         $data=doctor::find($id);
         $data->first_name=$request->first_name;
@@ -306,15 +307,22 @@ class doctor_controller extends Controller
 			$data->profile_img=$file_name; // file name store in db
 			unlink('upload/doctor/'.$old_img);
 		}
-         // hospital upload
-         if($request->hasFile('hospital_img'))
-		{
-            $file2=$request->file('hospital_img');  // get file
-            $file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
-            $file2->move('upload/hospital',$file_name2); //file name move upload in public		
-            $data->hospital_img=$file_name2; // file name store in db
-            unlink('upload/hospital/'.$old_img2);
+      
+        //Hospital image upload/multi img upload
+
+        $filesarr = [];
+        if($request->hasfile('hospital_img'))
+        {
+            foreach($request->file('hospital_img') as $file)
+            {
+                $name = time().rand(100000,99999).'hospital_img.'.$file->extension();
+                $file->move('upload/hospital/',$name);
+                $filesarr[] = $name;
+                
+            }
+            $data->hospital_img=implode(",",$filesarr);
         }
+
          // visiting card upload
          if($request->hasFile('visit_card'))
          {
@@ -388,7 +396,7 @@ class doctor_controller extends Controller
             //'city'=>'required',
             //'area'=>'required',
             'profile_img'=>'mimes:jpeg,png,jpg,gif',
-            'hospital_img'=>'mimes:jpeg,png,jpg,gif',
+            //'hospital_img'=>'mimes:jpeg,png,jpg,gif',
             'visit_card'=>'mimes:jpeg,png,jpg,gif',
 
         ]);
@@ -438,14 +446,19 @@ class doctor_controller extends Controller
 			unlink('upload/doctor/'.$old_img);
 		}
          // hospital upload
-         if($request->hasFile('hospital_img'))
-		{
-            $file2=$request->file('hospital_img');  // get file
-            $file_name2=time()."_hospital_img.".$request->file('hospital_img')->getClientOriginalExtension();// make file name
-            $file2->move('upload/hospital',$file_name2); //file name move upload in public		
-            $data->hospital_img=$file_name2; // file name store in db
-            unlink('upload/hospital/'.$old_img2);
+          $filesarr = [];
+        if($request->hasfile('hospital_img'))
+        {
+            foreach($request->file('hospital_img') as $file)
+            {
+                $name = time().'hospital_img.'.$file->extension();
+                $file->move('upload/hospital/',$name);
+                $filesarr[] = $name;
+                
+            }
+            $data->hospital_img=implode(",",$filesarr);
         }
+
          // visiting card upload
          if($request->hasFile('visit_card'))
          {

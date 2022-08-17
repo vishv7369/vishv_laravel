@@ -29,15 +29,16 @@
 							<!-- Profile Sidebar -->
 							<div class="profile-sidebar">
 								
-								@include('doctor/Layout/doctor-widget');
+								@include('doctor/Layout/doctor-widget')
 								
 							</div>
 							<!-- /Profile Sidebar -->
 							
 						</div>
 						<div class="col-md-7 col-lg-8 col-xl-9">
-						
-							<div class="row row-grid">
+						<input class="form-control" id="myInput" type="text" placeholder="Search..">
+							<br>
+							<div class="myclass row row-grid">
 								<div class="col-md-6 col-lg-4 col-xl-3">
 									<div class="card widget-profile pat-widget-profile">
 										<div class="card-body">
@@ -385,7 +386,20 @@
 
 			</div>		
 			<!-- /Page Content -->
-   
+
+			<script>
+			$(document).ready(function(){
+			$("#myInput").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$(".myclass .card").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			});
+			</script>
+
+
+
 			<!-- Footer -->
 			<footer class="footer">
 				

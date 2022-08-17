@@ -166,8 +166,8 @@ Route::get('/admin-patient', function (){return view('admin.patient-list');});
 Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
 Route::get('/admin-patient-cancel-appointment', function (){return view('admin.patient-cancel-appointment');});
 
-Route::get('/edit/{id}',[doctor_controller::class,'edit']);
-Route::post('/edit/{id}',[doctor_controller::class,'update']);
+Route::get('/admin-edit/{id}',[doctor_controller::class,'adminedit']);
+Route::post('/admin-edit/{id}',[doctor_controller::class,'adminupdate']);
 Route::get('/admin-doctor',[doctor_controller::class,'index']);
 Route::get('/admin-add-doctor',[doctor_controller::class,'create']);
 Route::post('/admin-add-doctor',[doctor_controller::class,'store']);

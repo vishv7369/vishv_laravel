@@ -8,6 +8,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 		<title>Doccure</title>
 		
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+		  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+		  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 		<!-- Favicons -->
 		<link type="image/x-icon" href="{{url('Frontend/assets/img/favicon.png')}}" rel="icon">
 		
@@ -40,6 +45,46 @@
 		<!-- Select2 CSS -->
 		<link rel="stylesheet" href="{{url('Frontend/assets/plugins/select2/css/select2.min.css')}}">
 		
+		<!--
+		1 Include jquery File  
+		-->
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+		<!--
+		2 Include these two files 
+		-->
+		<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+		<!--
+		3 Call this single function 
+		-->
+		<script>
+			$(document).ready(function() 
+			{
+				$('#table').DataTable();
+			} );
+		</script>
+		<script>
+			$(document).ready(function() 
+			{
+				$('#table1').DataTable();
+			} );
+		</script>
+
+		<script>
+			$(document).ready(function() 
+			{
+				$('#table2').DataTable();
+			} );
+		</script>
+
+		<script>
+			$(document).ready(function() 
+			{
+				$('#table3').DataTable();
+			} );
+		</script>
 		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="{{url('Frontend/assets/css/style.css')}}">

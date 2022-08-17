@@ -259,14 +259,10 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label>Hospital Image</label>
-												<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img">
+												<input type="file" value="" class="form-control" name="hospital_img[]" multiple />
 												<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px"> 
-												@if ($errors->has('hospital_img'))
-            										<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
-       											@endif
-										<!------@if ($errors->has('hospital_img'))
-            										<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
-       											@endif--->
+												
+										
 											</div>
 										</div>
                                  <!---

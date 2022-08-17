@@ -24,9 +24,30 @@
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{{url('Backend/assets/css/style.css')}}">
 		
-		<!-- Datatables CSS -->
-		<link rel="stylesheet" href="{{url('Backend/assets/plugins/datatables/datatables.min.css')}}">
 		
+<!--
+1 Include jquery File  
+-->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<!--
+2 Include these two files 
+-->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+<!--
+3 Call this single function 
+-->
+<script>
+	$(document).ready(function() 
+	{
+		$('#table').DataTable();
+	} );
+</script>
+
+
+
 		<!-- Select2 CSS -->
 		<link rel="stylesheet" href="{{url('Backend/assets/css/select2.min.css')}}">
 		

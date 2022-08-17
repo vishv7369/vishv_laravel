@@ -37,7 +37,9 @@
 						</div>
 						
 						<div class="col-md-7 col-lg-8 col-xl-9">
-							<div class="appointments">
+						<input class="form-control" id="myInput" type="text" placeholder="Search..">
+							<br>
+							<div class="myclass appointments">
 							
 								<!-- Appointment List -->
 								<div class="appointment-list">
@@ -409,6 +411,17 @@
 
 			</div>		
 			<!-- /Page Content -->
+
+			<script>
+			$(document).ready(function(){
+			$("#myInput").on("keyup", function() {
+				var value = $(this).val().toLowerCase();
+				$(".myclass .appointment-list").filter(function() {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+				});
+			});
+			});
+			</script>
    
 			<!-- Footer -->
 			<footer class="footer">
@@ -598,8 +611,7 @@
 		</div>
 		<!-- /Appointment Details Modal -->
 	  
-		<!-- jQuery -->
-		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
+		
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{  url('Frontend/assets/js/popper.min.js') }}"></script>

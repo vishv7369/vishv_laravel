@@ -27,7 +27,7 @@
 								<div class="card-body">
 									<div class="table-responsive">
 										<div class="table-responsive">
-										<table class="datatable table table-hover table-center mb-0">
+										<table id="table" class="table table-hover table-center mb-0">
 											<thead>
 												<tr>
 													<th>Patient ID</th>

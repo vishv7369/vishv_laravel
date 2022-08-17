@@ -117,7 +117,7 @@
 												<div class="card card-table mb-0">
 													<div class="card-body">
 														<div class="table-responsive">
-															<table class="table table-hover table-center mb-0">
+															<table id="table" class="table table-hover table-center mb-0">
 																<thead>
 																	<tr>
 																		<th>Patient Name</th>
@@ -298,7 +298,7 @@
 												<div class="card card-table mb-0">
 													<div class="card-body">
 														<div class="table-responsive">
-															<table class="table table-hover table-center mb-0">
+															<table id="table1" class="table table-hover table-center mb-0">
 																<thead>
 																	<tr>
 																		<th>Patient Name</th>
@@ -629,8 +629,6 @@
 		</div>
 		<!-- /Main Wrapper -->
 	  
-		<!-- jQuery -->
-		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{ url('Frontend/assets/js/popper.min.js') }}"></script>
