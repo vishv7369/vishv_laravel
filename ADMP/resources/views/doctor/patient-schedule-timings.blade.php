@@ -37,34 +37,88 @@
 						</div>
 						
 						<div class="col-md-7 col-lg-8 col-xl-9">
-						 
+						 @if(session()->has('success'))
+						 	<i class="alert alert-success">{{session('success')}}</i>
+						 @endif
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="card">
 										<div class="card-body">
 											<h4 class="card-title">Schedule Timings</h4>
+											<form action="{{url('/doctor-patient-schedule-timings')}}" method="post" enctype="multipart/form-data">
+												@csrf
 											<div class="profile-box">
 												<div class="row">
+
+												<div class="col-lg-4">
+														<div class="form-group">               
+															<label>Select Days</label>
+															<select class="select form-control" name="day">
+																<option selected="selected">---Select Days---</option>
+																<option value="Monday">Monday</option>
+																<option value="Tuesday">Tuesday</option>  
+																<option value="Wednesday">Wednesday</option>
+																<option value="Thursday">Thursday</option>
+																<option value="Friday">Friday</option>
+																<option value="Saturday">Saturday</option>
+																<option value="Sunday">Sunday</option>
+															</select>
+														</div>
+												</div>
+
+												<div class="col-lg-4">
+														<div class="form-group">               
+															<label>Select Timings</label>
+															<select class="select form-control" name="time">
+																<option selected="selected">---Select Timing---</option>
+																<option value="Morning">Morning</option>
+																<option value="Afternoon">Afternoon</option>  
+																<option value="Evening">Evening</option>
+															</select>
+														</div>
+												</div>
+
+												<div class="col-lg-4">
+													<div class="form-group">
+														<label>Starting Time</label>
+														<input type="time" name="start_time" class="form-control" placeholder="Enter Starting Time">
+													</div>
+												</div>
+
+											<br>
+
+												<div class="col-lg-4">
+													<div class="form-group">
+														<label>Total No. of Slots</label>
+														<input type="number" name="no_slots" class="form-control" placeholder="Enter No. of Slots">
+													</div>
+												</div>
 
 													<div class="col-lg-4">
 														<div class="form-group">               
 															<label>Timing Slot Duration</label>
-															<select class="select form-control">
-																<option>-</option>
-																<option>15 mins</option>
-																<option selected="selected">30 mins</option>  
-																<option>45 mins</option>
-																<option>1 Hour</option>
+															<select class="select form-control" name="min">
+																<option selected="selected">---Select Slot Timing---</option>
+																<option value="+10 minutes">10 mins</option>
+																<option value="+15 minutes">15 mins</option>
+																<option value="+30 minutes">30 mins</option>  
+																<option value="+45 minutes">45 mins</option>
+																<option value="+1 hour">1 Hour</option>
 															</select>
 														</div>
 													</div>
-
-												</div>     
-												<div class="row">
+											</div>     
+											<div class="col-lg-4">
+												<div class="submit-section submit-btn-bottom">
+													<button type="submit" class="btn btn-primary submit-btn" name="submit" value="send">Add Slots</button>
+												</div>
+											</div>
+										</form>
+											<div class="row">
 													<div class="col-md-12">
 														<div class="card schedule-widget mb-0">
 														
-															<!-- Schedule Header -->
+															<!-- Schedule Header-->
 															<div class="schedule-header">
 															
 																<!-- Schedule Nav -->

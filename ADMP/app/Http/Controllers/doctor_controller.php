@@ -315,7 +315,7 @@ class doctor_controller extends Controller
         {
             foreach($request->file('hospital_img') as $file)
             {
-                $name = time().rand(100000,99999).'hospital_img.'.$file->extension();
+                $name = time().rand(111111,999999).'hospital_img.'.$file->extension();
                 $file->move('upload/hospital/',$name);
                 $filesarr[] = $name;
                 

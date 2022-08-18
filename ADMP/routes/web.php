@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin_controller;
 use App\Http\Controllers\doctor_controller;
 use App\Http\Controllers\citie_controller;
+use App\Http\Controllers\area_controller;
 use App\Http\Controllers\specialist_controller;
 use App\Http\Controllers\state_controller;
 use App\Http\Controllers\companie_controller;
@@ -14,6 +15,7 @@ use App\Http\Controllers\stockiest_controller;
 use App\Http\Controllers\service_controller;
 use App\Http\Controllers\drspecialitie_controller;
 use App\Http\Controllers\patient_controller;
+use App\Http\Controllers\patient_slots_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,9 +111,10 @@ Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');
 Route::get('/doctor-patient-profile', function (){return view('doctor.patient-profile');});
 
 Route::get('/doctor-appointments', function (){return view('doctor.appointments');});
-Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
+//Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
 Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});
-
+Route::get('/doctor-patient-schedule-timings',[patient_slots_controller::class,'create']);
+Route::post('/doctor-patient-schedule-timings',[patient_slots_controller::class,'store']);
 
 Route::get('/doctor-mr-dashboard', function (){return view('doctor.mr-dashboard');});
 Route::get('/doctor-mr-schedule-timings', function (){return view('doctor.mr-schedule-timings');});
@@ -155,6 +158,13 @@ Route::post('/admin-profile/{id}',[admin_controller::class,'update']);
 Route::get('/admin-settings', function (){return view('admin.settings');});
 
 
+//Route::get('/admin-location', function (){return view('admin.location');});
+//Route::get('/admin-location',[state_controller::class,'create']);
+Route::post('/addstate',[state_controller::class,'addstate']);
+Route::post('/addcity',[state_controller::class,'addcity']);
+Route::post('/addarea',[state_controller::class,'addarea']);
+Route::get('/admin-location',[state_controller::class,'index']);
+
 Route::get('/admin-specialities',[specialist_controller::class,'index']);
 Route::get('/admin-add-specialities',[specialist_controller::class,'create']);
 Route::post('/admin-add-specialities',[specialist_controller::class,'store']);
@@ -162,12 +172,13 @@ Route::get('/edit-specialist/{id}',[specialist_controller::class,'edit']);
 Route::post('/edit-specialist/{id}',[specialist_controller::class,'update']);
 Route::get('/admin-add-specialities/{id}',[specialist_controller::class,'destroy']); 
 //
-Route::get('/admin-patient', function (){return view('admin.patient-list');});
+//Route::get('/admin-patient', function (){return view('admin.patient-list');});
+Route::get('/admin-patient',[patient_controller::class,'index']);
 Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
 Route::get('/admin-patient-cancel-appointment', function (){return view('admin.patient-cancel-appointment');});
 
-Route::get('/admin-edit/{id}',[doctor_controller::class,'adminedit']);
-Route::post('/admin-edit/{id}',[doctor_controller::class,'adminupdate']);
+Route::get('/edit/{id}',[doctor_controller::class,'edit']);
+Route::post('/edit/{id}',[doctor_controller::class,'update']);
 Route::get('/admin-doctor',[doctor_controller::class,'index']);
 Route::get('/admin-add-doctor',[doctor_controller::class,'create']);
 Route::post('/admin-add-doctor',[doctor_controller::class,'store']);

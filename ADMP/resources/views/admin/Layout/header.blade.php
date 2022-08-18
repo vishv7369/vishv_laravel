@@ -208,6 +208,9 @@
 							<li class="active"> 
 								<a href="{{url('/admin')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
+							<li> 
+								<a href="{{url('/admin-location')}}"><i class="fe fe-location"></i> <span>Location</span></a>
+							</li>
 							<li class="submenu">
 								<a href="#"><i class="fe fe-users"></i> <span> Specialities </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">

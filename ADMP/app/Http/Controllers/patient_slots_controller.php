@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\state;
-use App\Models\citie;
-use App\Models\area;
+use App\Models\patient_slots;
+use App\Models\doctor;
+use Hash;
+use session;
 
-class state_controller extends Controller
+class patient_slots_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,7 @@ class state_controller extends Controller
      */
     public function index()
     {
-        $state=state::all();
-        $city=citie::all();
-        $area=area::all();
-        return view('admin.location',["state_arr"=>$state,"city_arr"=>$city,"area_arr"=>$area]);
+        //
     }
 
     /**
@@ -27,7 +25,10 @@ class state_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function create()
+    {
+        return view('doctor.patient-schedule-timings');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -37,40 +38,30 @@ class state_controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+            
+        $time=$request->time;
+        $day=$request->day;
+        $no_slots=$request->no_slots;
+        $min=$request->min;
+        $start_time=$request->start_time;
+        date_default_timezone_set('asia/calcutta');
+        $i=0;
+        while($i<$no_slots)
+        {   
+            $data=new patient_slots;
+            $data->time=$time;    
+            $data->doc_id=Session('doctor_id');
+            $data->day=$day;
+            $data->slot_timing=date('H:i',strtotime($min,strtotime($start_time)));
+            $start_time=date('H:i',strtotime($min,strtotime($start_time)));
+            $data->save();
+            $i++;
+
+        }
+        return redirect('doctor-patient-schedule-timings')->with('success','Schedule add success');
     }
- 
-    ///state
-    public function addstate(Request $request)
-    {
-        $data=new state;
-        $data->name=$request->name;
 
-        $data->save();
-        return redirect('/admin-location')->with('success','State Add Success');
-    }
-
-    ////city
-    public function addcity(Request $request)
-    {
-        $data=new citie;
-        $data->sid=$request->sid;
-        $data->city_name=$request->city_name;
-
-        $data->save();
-        return redirect('/admin-location')->with('succes','City Add Success');
-    }
-
-    ////area
-    public function addarea(Request $request)
-    {
-        $data=new area;
-        $data->city_id=$request->city_id;
-        $data->area_name=$request->area_name;
-
-        $data->save();
-        return redirect('/admin-location')->with('succe','City Add Success');
-    }
     /**
      * Display the specified resource.
      *
