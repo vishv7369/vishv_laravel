@@ -42,9 +42,9 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" value="{{old('profile_img')}}" name="profile_img">
-														@if ($errors->has('profile_img'))
-												    		<span class="text-danger">{{ $errors->first('profile_img')}}</span>
+														<input type="file" class="form-control" value="{{old('cprofile_img')}}" name="cprofile_img">
+														@if ($errors->has('cprofile_img'))
+												    		<span class="text-danger">{{ $errors->first('cprofile_img')}}</span>
 														@endif
 													</div>
 												</div>

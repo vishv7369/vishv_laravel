@@ -18,9 +18,9 @@
 								</ul>
 								
 							</div>
-							@if(session()->has('success'))
+							@if(session()->has('doctor'))
 												
-									<i class="alert alert-success">{{session('success')}}</i>
+									<i class="alert alert-success">{{session('doctor')}}</i>
 												
 								@endif
 						</div>
@@ -34,7 +34,7 @@
 								
 								<div class="card-body">
 									<h4 class="card-title">Personal Information</h4><br>
-									<form action="{{url('/admin-edit/'.$fetch->id)}}" method="post" enctype="multipart/form-data">
+									<form action="{{url('/edit/'.$fetch->id)}}" method="post" enctype="multipart/form-data">
 										@csrf
 										<div class="row">
 											<div class="col-xl-6">
@@ -233,6 +233,9 @@
 													<label class="col-lg-3 col-form-label">Hospital Name</label>
 													<div class="col-lg-9">
 														<input type="text" class="form-control" value="<?php echo $fetch->hospital_name?>" name="hospital_name">
+														@if ($errors->has('hospital_name'))
+            												<span class="text-danger">{{ $errors->first('hospital_name') }}</span>
+       													@endif
 													</div>
 												</div>
 												
@@ -261,8 +264,11 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Hospital Img</label>
 													<div class="col-lg-9">
-														<input type="file" value="" class="form-control" name="hospital_img[]"  multiple />
+														<input type="file" value="{{asset('upload/hospital/'.$fetch->hospital_img)}}" class="form-control" name="hospital_img">
 														<img src="{{asset('upload/hospital/'.$fetch->hospital_img)}}" height="50px" width="50px"> 
+														@if ($errors->has('hospital_img'))
+            												<span class="text-danger">{{ $errors->first('hospital_img') }}</span>
+       													@endif
 													</div>
 												</div>
 												<div class="form-group row">

@@ -42,8 +42,8 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Profile Img</label>
 													<div class="col-lg-9">
-														<input type="file" class="form-control" name="profile_img" value="{{asset('upload/manager/'.$fetch->profile_img)}}">
-														<img src="{{asset('upload/manager/'.$fetch->profile_img)}}" height="50px" width="50px">
+														<input type="file" class="form-control" name="mprofile_img" value="{{asset('upload/manager/'.$fetch->mprofile_img)}}">
+														<img src="{{asset('upload/manager/'.$fetch->mprofile_img)}}" height="50px" width="50px">
 													</div>
 												</div>
 												<div class="form-group row">

@@ -32,25 +32,25 @@
 												<tr>
 													<th>Patient ID</th>
 													<th>Profile Img</th>
-													<th>First Name</th>
-													<th>Last Name</th>
+													<th> Name</th>
 													<th>Gender</th>
 													<th>Email</th>
+													<th>Mobile No</th>
 													<th class="text-right">Actions</th>
 													</tr>
 											</thead>
 											<tbody>
+												<?php
+												foreach($patient_arr as $data)
+												{
+												?>
 												<tr>
-													<td>1</td>
-													<td>
-														<h2 class="table-avatar">
-															<a href="{{url('/admin-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('/Backend/assets/img/patients/patient1.jpg')}}" alt="User Image"></a>
-														</h2>
-													</td>
-													<td>Charlene</td>
-													<td> Reed</td>
-													<td>Female</td>
-													<td>Charlene@gmail.com</td>
+													<td><?php echo $data->id?></td>
+													<td><img src="{{asset('upload/patient/' . $data->ptprofile_img)}}" height="50px" width="50px"/></td>
+													<td><?php echo $data->name?></td>
+													<td><?php echo $data->gender?></td>
+													<td><?php echo $data->email?></td>
+													<td><?php echo $data->mobileno?></td>
 													<td class="text-right">
 														<div class="actions">
 															<a  href="" class="btn btn-sm bg-danger-light">
@@ -59,6 +59,10 @@
 														</div>
 												    </td>
 													</tr>
+
+													<?php
+												}
+													?>
 
 												
 												<tr>

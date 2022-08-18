@@ -210,7 +210,7 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function adminedit($id)
+    public function edit($id)
     {
         $data=doctor::find($id);
         $special_id_arr=specialist::all();

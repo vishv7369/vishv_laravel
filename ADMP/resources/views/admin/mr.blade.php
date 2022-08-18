@@ -57,7 +57,7 @@
 
 													<td><?php echo $data->company_id?></td>
 
-													<td><img src="{{asset('upload/mr/' . $data->profile_img	)}}" height="50px" width="50px"/></td>
+													<td><img src="{{asset('upload/mr/' . $data->mrprofile_img)}}" height="50px" width="50px"/></td>
 
 													<td><?php echo $data->company_name?></td>
 

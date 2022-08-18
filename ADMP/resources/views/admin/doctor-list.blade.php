@@ -33,12 +33,12 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="table-responsive">
-										<table id="table" class="table table-hover table-center mb-0">
+										<table id="table" class=" table table-hover table-center mb-0">
 											<thead>
 												<tr>
 													<th>Doctor ID</th>
 													<th>Profile Img</th>
-													<th>Specialist ID</th>
+													<th>Specialist</th>
 													<th>First Name</th>
 													<th>Last Name</th>
 												    <th>Doc status</th>
@@ -61,7 +61,7 @@
 												<td><?php echo $data->doctor_status ?></td>
 												<td class="text-right">
 														<div class="actions">
-															<a class="btn btn-sm bg-success-light"  href="{{url('admin-edit/'.$data->id)}}">
+															<a class="btn btn-sm bg-success-light"  href="{{url('edit/'.$data->id)}}">
 																<i class="fe fe-pencil"></i> Edit
 															</a>
 															<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
@@ -95,7 +95,8 @@
 		
 		<!-- jQuery -->
         <script src="{{url('Backend/assets/js/jquery-3.2.1.min.js')}}"></script>
-		
+
+			
 		<!-- Bootstrap Core JS -->
         <script src="{{url('Backend/assets/js/popper.min.js')}}"></script>
         <script src="{{url('Backend/assets/js/bootstrap.min.js')}}"></script>

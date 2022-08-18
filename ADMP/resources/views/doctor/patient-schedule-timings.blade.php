@@ -156,12 +156,74 @@
 															<div class="tab-content schedule-cont">
 															
 																<!-- Sunday Slot -->
+																
 																<div id="slot_sunday" class="tab-pane fade">
 																	<h4 class="card-title d-flex justify-content-between">
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningSunday->isEmpty())
+																			@foreach($morningSunday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonSunday->isEmpty())
+																			@foreach($afternoonSunday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningSunday->isEmpty())
+																			@foreach($eveningSunday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Sunday Slot -->
 
@@ -173,32 +235,66 @@
 																	</h4>
 																	
 																	<!-- Slot List -->
-																	<div class="doc-times">
-																		<div class="doc-slot-list">
-																			8:00 pm - 11:30 pm
-																			<a href="javascript:void(0)" class="delete_schedule">
-																				<i class="fa fa-times"></i>
-																			</a>
-																		</div>
-																		<div class="doc-slot-list">
-																			11:30 pm - 1:30 pm
-																			<a href="javascript:void(0)" class="delete_schedule">
-																				<i class="fa fa-times"></i>
-																			</a>
-																		</div>
-																		<div class="doc-slot-list">
-																			3:00 pm - 5:00 pm
-																			<a href="javascript:void(0)" class="delete_schedule">
-																				<i class="fa fa-times"></i>
-																			</a>
-																		</div>
-																		<div class="doc-slot-list">
-																			6:00 pm - 11:00 pm
-																			<a href="javascript:void(0)" class="delete_schedule">
-																				<i class="fa fa-times"></i>
-																			</a>
-																		</div>
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
 																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningMonday->isEmpty())
+																			@foreach($morningMonday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:6px">
+																		@if(!$afternoonMonday->isEmpty())
+																			@foreach($afternoonMonday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:20px">
+																		@if(!$eveningMonday->isEmpty())
+																			@foreach($eveningMonday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
 																	<!-- /Slot List -->
 																	
 																</div>
@@ -210,7 +306,68 @@
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningTuesday->isEmpty())
+																			@foreach($morningTuesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonTuesday->isEmpty())
+																			@foreach($afternoonTuesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningTuesday->isEmpty())
+																			@foreach($eveningTuesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Tuesday Slot -->
 
@@ -220,7 +377,68 @@
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningWednesday->isEmpty())
+																			@foreach($morningWednesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonWednesday->isEmpty())
+																			@foreach($afternoonWednesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningWednesday->isEmpty())
+																			@foreach($eveningWednesday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Wednesday Slot -->
 
@@ -230,7 +448,68 @@
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningThursday->isEmpty())
+																			@foreach($morningThursday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonThursday->isEmpty())
+																			@foreach($afternoonThursday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningThursday->isEmpty())
+																			@foreach($eveningThursday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Thursday Slot -->
 
@@ -240,7 +519,68 @@
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningFriday->isEmpty())
+																			@foreach($morningFriday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonFriday->isEmpty())
+																			@foreach($afternoonFriday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningFriday->isEmpty())
+																			@foreach($eveningFriday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Friday Slot -->
 
@@ -250,7 +590,68 @@
 																		<span>Time Slots</span> 
 																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
 																	</h4>
-																	<p class="text-muted mb-0">Not Available</p>
+																	<!-- Slot List -->
+																	<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Morning :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$morningSaturday->isEmpty())
+																			@foreach($morningSaturday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Afternoon :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$afternoonSaturday->isEmpty())
+																			@foreach($afternoonSaturday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																<div class="row m-2">
+																	<div class="form-group" style="margin-top:8px">
+																	    Evening :
+																	</div>
+																	<div class="col-xl-10 doc-times" style="margin-left:18px">
+																		@if(!$eveningSaturday->isEmpty())
+																			@foreach($eveningSaturday as $d)
+																			<div class="doc-slot-list">
+																				{{$d->slot_timing}} 
+																				<a href="javascript:void(0)" class="delete_schedule">
+																					<i class="fa fa-times"></i>
+																				</a>
+																			</div>
+																			@endforeach
+																		@else
+																			<p class="text-danger mt-2">No Slots Available</p>
+																		@endif
+																		
+																	</div>
+																</div>
+																	<!-- /Slot List -->
 																</div>
 																<!-- /Saturday Slot -->
 

@@ -53,11 +53,17 @@ Route::get('/favourites', function (){return view('patient.favourites');});
 //Route::get('/doctor-profile', function (){return view('patient.doctor-profile');});
 Route::get('/doctor-profile/{id}',[doctor_controller::class,'doctorview']);
 
-Route::get('/booking', function (){return view('patient.booking');});
+//Route::get('/booking', function (){return view('patient.booking');});
+Route::get('/booking/{id}',[patient_slots_controller::class,'showpatient']);
+Route::post('/booking/{id}',[patient_slots_controller::class,'showpatient']);
+
 Route::get('/checkout', function (){return view('patient.checkout');});
 Route::get('/booking-success', function (){return view('patient.booking-success');});
 Route::get('/prescription', function (){return view('patient.prescription');});
 Route::get('/prescription-view', function (){return view('patient.prescription-view');});
+
+
+
 
 //Route::get('/profile-settings', function (){return view('patient.profile-settings');});
 

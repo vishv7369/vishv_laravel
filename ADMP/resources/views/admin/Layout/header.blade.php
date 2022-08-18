@@ -24,8 +24,7 @@
 		<!-- Main CSS -->
         <link rel="stylesheet" href="{{url('Backend/assets/css/style.css')}}">
 		
-		
-<!--
+		<!--
 1 Include jquery File  
 -->
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -45,7 +44,6 @@
 		$('#table').DataTable();
 	} );
 </script>
-
 
 
 		<!-- Select2 CSS -->
@@ -208,9 +206,11 @@
 							<li class="active"> 
 								<a href="{{url('/admin')}}"><i class="fe fe-home"></i> <span>Dashboard</span></a>
 							</li>
+
 							<li> 
 								<a href="{{url('/admin-location')}}"><i class="fe fe-location"></i> <span>Location</span></a>
 							</li>
+
 							<li class="submenu">
 								<a href="#"><i class="fe fe-users"></i> <span> Specialities </span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
@@ -218,7 +218,7 @@
 									<li><a href="{{url('/admin-specialities')}}"><i class="fe fe-user"></i> Manage Specialities </a></li>
 								</ul>
 							</li>
-							
+						
 							<li class="submenu">
 								<a href="javascript:void(0);"><i class="fe fe-user"></i> <span>Patient</span> <span class="menu-arrow"></span></a>
 								<ul style="display: none;">
