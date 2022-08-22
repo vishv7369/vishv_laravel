@@ -57,6 +57,10 @@ Route::get('/doctor-profile/{id}',[doctor_controller::class,'doctorview']);
 Route::get('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 Route::post('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 
+Route::post('/book_appointment',[patient_slots_controller::class,'book_appointment']);
+Route::post('/book_by_otp',[patient_slots_controller::class,'book_by_otp']);
+//Route::post('/book_appointment/{id}',[patient_slots_controller::class,'book_appointment']);
+
 Route::get('/checkout', function (){return view('patient.checkout');});
 Route::get('/booking-success', function (){return view('patient.booking-success');});
 Route::get('/prescription', function (){return view('patient.prescription');});
