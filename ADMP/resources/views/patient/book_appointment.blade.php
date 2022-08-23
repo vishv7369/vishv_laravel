@@ -34,7 +34,7 @@
 						<!-- Checkout Form -->
 						
 							<!-- Personal Information -->
-                        <form action="{{url('/book_by_otp')}}" method="post">
+                        <form action="{{url('/book_appointment')}}" enctype="multipart/form-data" method="post">
 			            @csrf
 							<div class="info-widget">
 								<h4 class="card-title">Personal Information</h4>
@@ -60,8 +60,8 @@
                                     
                                     <div class="col-md-12 col-sm-12">
 										<div class="form-group card-label">
-											<label>Phone</label>
-											<input class="form-control" type="text"value="<?php echo $fetc->mobileno ?>" readonly>
+											<label>Comment</label>
+											<textarea class="form-control" type="text" value="comment" name="comment"></textarea>
 										</div>
 									</div>
 								</div>
@@ -109,11 +109,15 @@
 										<ul>
 											<li><i class="fas fa-map-marker-alt"></i> 
                                                 <?php echo $fetch->address?>,<?php echo $fetch->area?>, <?php echo $fetch->city?>
-                                                , <?php echo $fetch->state?>-<?php echo $fetch->pincode?>
+                                                <?php echo $fetch->state?>-<?php echo $fetch->pincode?>
                                             </li>
                                             
 											<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $fetch->consulting_fees?></li>
 											<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $fetch->followup_fees?></li>
+											<br>
+											<span><b>Appointment:-</b></span>
+											<li><i class=""></i>  Date: {{$fet}}</li>
+											<li><i class=""></i>  Time: {{$fe}}</li>
 										</ul>
 									</div>
 									<div class="doctor-action">

@@ -26,10 +26,7 @@
 												<input type="email" class="form-control floating">
 												<label class="focus-label">Email</label>
 											</div>
-											<div class="text-right">
-												<a class="forgot-link" href="{{url('/login')}}">Remember your password?</a>
-											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Reset Password</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Conform OTP</button>
 										</form>
 										<!-- /Forgot Password Form -->
 										

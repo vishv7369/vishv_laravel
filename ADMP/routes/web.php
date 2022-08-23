@@ -16,6 +16,7 @@ use App\Http\Controllers\service_controller;
 use App\Http\Controllers\drspecialitie_controller;
 use App\Http\Controllers\patient_controller;
 use App\Http\Controllers\patient_slots_controller;
+use App\Http\Controllers\book_by_otp_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,8 @@ Route::get('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 Route::post('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 
 Route::post('/book_appointment',[patient_slots_controller::class,'book_appointment']);
-Route::post('/book_by_otp',[patient_slots_controller::class,'book_by_otp']);
+Route::post('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
+Route::get('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
 //Route::post('/book_appointment/{id}',[patient_slots_controller::class,'book_appointment']);
 
 Route::get('/checkout', function (){return view('patient.checkout');});

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('doc_id');
 			$table->foreign('doc_id')->references('id')->on('doctors')->after('id');
             $table->unsignedBigInteger('patient_id');
-			$table->foreign('patient_id')->references('id')->on('patients')->after('id');
-            $table->string('date')->after('doc_id');
+			$table->foreign('patient_id')->references('id')->on('patients')->after('doc_id');
+            $table->string('date')->after('patient_id');
             $table->string('comment')->after('date');
-            $table->string('status')->after('comment');
+            $table->enum('status',['Approved','Pending'])->default('Pending')->after('comment');
         });
     }
 

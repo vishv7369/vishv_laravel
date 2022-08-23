@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\patient_slots;
 use App\Models\doctor;
 use App\Models\patient;
+use App\Models\book_by_otp;
 use Hash;
 use session;
 
@@ -152,8 +153,7 @@ class patient_slots_controller extends Controller
         $appointment_date=$request->appointment_date;
         $ptdata=patient::where("id","=",session('patient_id'))->first();
         $docdata=doctor::where("id","=",$doc_id)->first();
-        return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]);
-        
+        return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]); 
     }
 
     /**
