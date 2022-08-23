@@ -38,28 +38,23 @@
 										<p class="doc-department"><img src="{{asset('upload/specialities/' . $fetch->img)}}" class="img-fluid" alt="Speciality"><?php echo $fetch->specialist_id?></p>
 										
 										<div class="clinic-details">
-											<p class="doc-location"><i class="fas fa-map-marker-alt"></i><?php echo $fetch->city?>, <?php echo $fetch->state?> <a href="javascript:void(0);">Get Directions</a></p>
+											<p class="doc-location"><i class="fas fa-map-marker-alt"></i><?php echo $fetch->city?>, <?php echo $fetch->state?> <a href="<?php echo $fetch->google_map?>" target="_blank">Get Directions</a></p>
 											<ul class="clinic-gallery">
-											<li>
-															<a href="{{asset('upload/hospital/' . $fetch->hospital_img)}}" data-fancybox="gallery">
-																<img src="{{asset('upload/hospital/' . $fetch->hospital_img)}}" alt="Feature">
-															</a>
-														</li>
+											<?php
+														$hospital_img=$fetch->hospital_img;
+														$hosp_img_arr=explode(",",$hospital_img);
+								
+														foreach($hosp_img_arr as $d)
+														{
+														?>
 														<li>
-															<a href="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" data-fancybox="gallery">
-																<img  src="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" alt="Feature">
+															<a href="{{asset('upload/hospital/'.$d)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/'.$d)}}" alt="Feature">
 															</a>
 														</li>
-												<li>
-													<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery">
-														<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature">
-													</a>
-												</li>
-												<li>
-													<a href="{{url('Frontend/assets/img/features/feature-04.jpg')}}" data-fancybox="gallery">
-														<img src="{{url('Frontend/assets/img/features/feature-04.jpg')}}" alt="Feature">
-													</a>
-												</li>
+														<?php
+														}
+														?>
 											</ul>
 										</div>
 										
@@ -74,7 +69,7 @@
 										</ul>
 									</div>
 									<div class="doctor-action">
-										<a href="javascript:void(0)" class="btn btn-white fav-btn">
+										<a href="javascript:void(0)" onclick="" class="btn btn-white fav-btn">
 											<i class="far fa-bookmark"></i>
 										</a>
 										<a href="{{url('/chat')}}" class="btn btn-white msg-btn">
@@ -110,11 +105,12 @@
 										<a class="nav-link" href="#doc_locations" data-toggle="tab">Locations</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="#doc_reviews" data-toggle="tab">Services & Specializations</a>
-									</li>
-									<li class="nav-item">
 										<a class="nav-link" href="#doc_business_hours" data-toggle="tab">Business Hours</a>
 									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#doc_reviews" data-toggle="tab">Services & Specializations</a>
+									</li>
+									
 								</ul>
 							</nav>
 							<!-- /Tab Menu -->
@@ -195,26 +191,21 @@
 													<div class="clinic-details mb-0">
 														<h5 class="clinic-direction"> <i class="fas fa-map-marker-alt"></i> <?php echo $fetch->address?>, <?php echo $fetch->city?>, <?php echo $fetch->pincode?>, <?php echo $fetch->state?> <br><a href="<?php echo $fetch->google_map?>">Get Directions</a></h5>
 														<ul>
+														<?php
+														$hospital_img=$fetch->hospital_img;
+														$hosp_img_arr=explode(",",$hospital_img);
+								
+														foreach($hosp_img_arr as $d)
+														{
+														?>
 														<li>
-															<a href="{{asset('upload/hospital/' . $fetch->hospital_img)}}" data-fancybox="gallery">
-																<img src="{{asset('upload/hospital/' . $fetch->hospital_img)}}" alt="Feature">
+															<a href="{{asset('upload/hospital/'.$d)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/hospital/'.$d)}}" alt="Feature">
 															</a>
 														</li>
-														<li>
-															<a href="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" data-fancybox="gallery">
-																<img  src="{{asset('upload/visitingcard/' . $fetch->visit_card)}}" alt="Feature">
-															</a>
-														</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-03.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-03.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
-															<li>
-																<a href="{{url('Frontend/assets/img/features/feature-04.jpg')}}" data-fancybox="gallery2">
-																	<img src="{{url('Frontend/assets/img/features/feature-04.jpg')}}" alt="Feature Image">
-																</a>
-															</li>
+														<?php
+														}
+														?>
 														</ul>
 													</div>
 												</div>

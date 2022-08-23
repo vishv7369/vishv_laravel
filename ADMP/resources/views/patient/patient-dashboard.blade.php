@@ -66,7 +66,7 @@
 											<div class="card card-table mb-0">
 												<div class="card-body">
 													<div class="table-responsive">
-														<table id="table" class="table table-hover table-center mb-0">
+														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
 																	<th>Doctor</th>
@@ -342,7 +342,7 @@
 											<div class="card card-table mb-0">
 												<div class="card-body">
 													<div class="table-responsive">
-														<table id="table1" class="table table-hover table-center mb-0">
+														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
 																	<th>Date </th>
@@ -585,7 +585,7 @@
 											<div class="card card-table mb-0">
 												<div class="card-body">
 													<div class="table-responsive">
-														<table id="table2" class="table table-hover table-center mb-0">
+														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
 																	<th>ID</th>
@@ -850,7 +850,7 @@
 											<div class="card card-table mb-0">
 												<div class="card-body">
 													<div class="table-responsive">
-														<table id="table3" class="table table-hover table-center mb-0">
+														<table class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
 																	<th>Invoice No</th>
@@ -1139,7 +1139,6 @@
 	  
 		<!-- jQuery -->
 		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
-		
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{  url('Frontend/assets/js/popper.min.js') }}"></script>

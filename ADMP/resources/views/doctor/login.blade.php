@@ -94,18 +94,23 @@
 									<div class="col-md-7 col-lg-6 login-left">
 										<img src="{{url('Frontend/assets/img/login-banner.png')}}" class="img-fluid" alt="Doccure Login">	
 									</div>
+									
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
 											<h3>Login <span>Doccure</span></h3>
-										</div>
+										</div>@if(session()->has('fail'))
+												
+												<i class="alert alert-success">{{session('fail')}}</i>
+															
+											@endif
 										<form action="{{url('/doctorlogin')}}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group form-focus">
-												<input type="email" name="email" class="form-control floating">
+												<input type="email" name="email" class="form-control floating" required>
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" name="password" class="form-control floating">
+												<input type="password" name="password" class="form-control floating" required>
 												<label class="focus-label">Password</label>
 											</div>
 											<div class="text-right">

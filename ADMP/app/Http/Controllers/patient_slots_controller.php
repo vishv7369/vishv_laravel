@@ -27,8 +27,10 @@ class patient_slots_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     ////////////////////////////////doctor panel///////////////////////////////////////
     public function create()
-    {
+    {   
         $morningSunday=patient_slots::where('day','=','Sunday')->where('time','=','Morning')->where('doc_id','=',Session('doctor_id'))->get();
         $afternoonSunday=patient_slots::where('day','=','Sunday')->where('time','=','afternoon')->where('doc_id','=',Session('doctor_id'))->get();
         $eveningSunday=patient_slots::where('day','=','Sunday')->where('time','=','evening')->where('doc_id','=',Session('doctor_id'))->get();
@@ -83,7 +85,7 @@ class patient_slots_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {       
+    {
         $time=$request->time;
         $day=$request->day;
         $no_slots=$request->no_slots;
@@ -106,13 +108,9 @@ class patient_slots_controller extends Controller
         return redirect('doctor-patient-schedule-timings')->with('success','Schedule add success');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-   
+
+    /////////////////////////////////////patient panel//////////////////////////////////////////
+
     public function showpatient(Request $request, $id)
     {
         $doctordata=doctor::find($id);
@@ -154,6 +152,17 @@ class patient_slots_controller extends Controller
         $ptdata=patient::where("id","=",session('patient_id'))->first();
         $docdata=doctor::where("id","=",$doc_id)->first();
         return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]); 
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**

@@ -29,7 +29,7 @@
 							<!-- Profile Sidebar -->
 							<div class="profile-sidebar">
 								
-								@include('doctor/Layout/doctor-widget')
+								@include('doctor/Layout/doctor-widget');
 								
 							</div>
 							<!-- /Profile Sidebar -->
@@ -388,18 +388,17 @@
 			<!-- /Page Content -->
 
 			<script>
-			$(document).ready(function(){
-			$("#myInput").on("keyup", function() {
-				var value = $(this).val().toLowerCase();
-				$(".myclass .card").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-				});
-			});
-			});
-			</script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".myclass .card").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 
-
-
+   
 			<!-- Footer -->
 			<footer class="footer">
 				
@@ -544,6 +543,8 @@
 	  
 		<!-- jQuery -->
 		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
+
+		
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{  url('Frontend/assets/js/popper.min.js') }}"></script>

@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('last_name')->after('first_name');
             $table->string('email')->after('last_name');
             $table->string('password')->after('email');
-            $table->string('profile_img')->after('password');
-            $table->string('visiting_card')->after('profile_img');
+            $table->string('cprofile_img')->after('password');
+            $table->string('visiting_card')->after('cprofile_img');
             $table->enum('status',['Available','Not Available'])->default('Available')->after('visiting_card');
         });
     }

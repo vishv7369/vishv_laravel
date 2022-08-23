@@ -39,19 +39,19 @@
 								<div class="card-body">
 									
 									<!-- Profile Settings Form -->
-									<form action="{{url('/edit/{id}')}}" method="post" enctype="multipart/form-data">
+									<form action="{{url('/editpatient/{id}')}}" method="post" enctype="multipart/form-data">
 										@csrf
 										<div class="row form-row">
 											<div class="col-12 col-md-12">
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-														<img src="{{asset('upload/patient/'.$fetch->profile_img)}}" height="50px" width="50px"> 
+														<img src="{{asset('upload/patient/'.$fetch->ptprofile_img)}}" height="50px" width="50px"> 
 													</div>
 														<div class="upload-img">
 															<div class="change-photo-btn">
 																<span><i class="fa fa-upload"></i> Upload Photo</span>
-																<input type="file" class="upload" name="profile_img" value="{{asset('upload/patient/'.$fetch->profile_img)}}">
+																<input type="file" class="upload" name="ptprofile_img" value="{{asset('upload/patient/'.$fetch->ptprofile_img)}}">
 															</div>
 															<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
 														</div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\companie;
 use Hash;
+use Session;
 
 class companie_controller extends Controller
 {
@@ -13,7 +14,7 @@ class companie_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function admincompanyindex()
     {
         $data=companie::all();
         return view('admin.company',["companie_arr"=>$data]);
@@ -24,7 +25,7 @@ class companie_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function admincompanycreate()
     {
         return view('admin.add-company');
     }
@@ -35,7 +36,7 @@ class companie_controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function admincompanystore(Request $request)
     {   
         $data=$request->validate([
             'first_name'=>'required|alpha',
@@ -43,7 +44,7 @@ class companie_controller extends Controller
             'company_name'=>'required|unique:companies|regex:/[a-zA-z0-9\s]+/',
             'email'=>'required|email|unique:companies',
             'password'=>'required|min:6',
-            'profile_img'=>'required|mimes:jpeg,png,jpg,gif,svg',
+            'cprofile_img'=>'required|mimes:jpeg,png,jpg,gif,svg',
             'visiting_card'=>'required|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
@@ -56,10 +57,10 @@ class companie_controller extends Controller
         $data->password=Hash::make($request->password);
 
         // img upload
-		$file=$request->file('profile_img');  // get file
-		$file_name=time()."_profile_img.".$request->file('profile_img')->getClientOriginalExtension();// make file name
+		$file=$request->file('cprofile_img');  // get file
+		$file_name=time()."_cprofile_img.".$request->file('cprofile_img')->getClientOriginalExtension();// make file name
 		$file->move('upload/companyprofile',$file_name); //file name move upload in public		
-		$data->profile_img=$file_name; // file name store in db
+		$data->cprofile_img=$file_name; // file name store in db
 
         // visitingcard upload
 		$file2=$request->file('visiting_card');  // get file
@@ -72,6 +73,8 @@ class companie_controller extends Controller
 
     }
 
+    //------login------
+    
     /**
      * Display the specified resource.
      *
@@ -89,7 +92,7 @@ class companie_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function admincompanyedit($id)
     {
         $data=companie::find($id);
         return view('admin.edit-company',["fetch"=>$data]);
@@ -102,7 +105,7 @@ class companie_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function admincompanyupdate(Request $request, $id)
     {
         $data=companie::find($id);
 
@@ -110,16 +113,16 @@ class companie_controller extends Controller
         $data->last_name=$request->last_name;
         $data->company_name=$request->company_name;
         $data->email=$request->email;
-        $old_img=$data->profile_img;
+        $old_img=$data->cprofile_img;
         $old_img2=$data->visiting_card;
 
         // img upload
-        if($request->hasFile('profile_img'))
+        if($request->hasFile('cprofile_img'))
 		{
-            $file=$request->file('profile_img');  // get file
-            $file_name=time()."_profile_img.".$request->file('profile_img')->getClientOriginalExtension();// make file name
+            $file=$request->file('cprofile_img');  // get file
+            $file_name=time()."_cprofile_img.".$request->file('cprofile_img')->getClientOriginalExtension();// make file name
             $file->move('upload/companyprofile',$file_name); //file name move upload in public		
-            $data->profile_img=$file_name; // file name store in db
+            $data->cprofile_img=$file_name; // file name store in db
             unlink('upload/companyprofile/'.$old_img);
         }
 
@@ -143,10 +146,99 @@ class companie_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function admincompanydestroy($id)
     {
         $data=companie::find($id);
         $data->delete();
         return redirect('admin-company')->with("success","Company deleted successfully");
     }
+
+    ///=====================company panel================================================================
+    public function login(Request $request)
+    {
+        return view('company.login');
+    }
+
+    public function companylogin(Request $request)
+    {
+        $data=companie::where("email","=","$request->email")->first();
+        if($data)
+        {
+            if(Hash::check($request->password, $data->password))
+            {
+                $request->Session()->put('company_id',$data->id);
+                $request->Session()->put('email', $data->email);
+                return redirect('company-dashboard');
+            }
+            else
+            {
+                return redirect('/company')->with('fail','Login Failed due to Wrong Password');
+            }
+        }
+        else
+        {
+            return redirect('/company')->with('fail','Login Failed due to Wrong email');
+        }
+    }
+
+    public function companylogout()
+    {
+        Session()->pull('company_id');
+        Session()->pull('email');
+        return redirect('/company');
+    }
+
+    public function companyprofile()
+	{  
+		$data=companie::where("id","=",session('company_id'))->first();
+		return view('company.profile',["fetch"=>$data]);
+	}
+
+    public function editcompany($id)
+    {
+        $data=companie::where("id","=",session('company_id'))->first();
+        return view('company.profile',["fetch"=>$data]);
+    }
+
+    public function companyupdate(Request $request, $id)
+    {
+        $data=companie::find($id);
+
+        $data->first_name=$request->first_name;
+        $data->last_name=$request->last_name;
+        $data->company_name=$request->company_name;
+        $data->email=$request->email;
+        $old_img=$data->cprofile_img;
+        $old_img2=$data->visiting_card;
+
+        // img upload
+        if($request->hasFile('cprofile_img'))
+		{
+            $file=$request->file('cprofile_img');  // get file
+            $file_name=time()."_cprofile_img.".$request->file('cprofile_img')->getClientOriginalExtension();// make file name
+            $file->move('upload/companyprofile',$file_name); //file name move upload in public		
+            $data->cprofile_img=$file_name; // file name store in db
+            unlink('upload/companyprofile/'.$old_img);
+        }
+
+        // visitingcard upload
+        if($request->hasFile('visiting_card'))
+		{
+            $file2=$request->file('visiting_card');  // get file
+            $file_name2=time()."_visiting_card.".$request->file('visiting_card')->getClientOriginalExtension();// make file name
+            $file2->move('upload/visitingcard',$file_name2); //file name move upload in public		
+            $data->visiting_card=$file_name2; // file name store in db
+            unlink('upload/visitingcard/'.$old_img2);
+        }
+
+        $data->save();
+		return redirect('/company-profile')->with('success','Update Success');
+    }
+
 }
+
+    
+
+
+    
+

@@ -12,7 +12,7 @@ use App\Models\service;
 use App\Models\drspecialitie;
 use Hash;
 use session;
- 
+
 class doctor_controller extends Controller
 {
     /**
@@ -22,7 +22,7 @@ class doctor_controller extends Controller
      */
     public function index()
     {
-        $data=doctor::join('specialists', 'doctors.specialist_id', '=','specialists.id')->get();
+        $data=doctor::all();
 		return view('admin.doctor-list',["doctor_arr"=>$data]);
     }
 
@@ -149,7 +149,6 @@ class doctor_controller extends Controller
         return redirect('admin-add-doctor')->with('success','Add Doctor Success');
 
     }
-
     /**
      * Display the specified resource.
      *
@@ -161,49 +160,7 @@ class doctor_controller extends Controller
         //
     }
 
-    public function login(Request $request)
-    {
-        return view('doctor.login');
-    }
-
-    public function doctorlogin(Request $request)
-    {
-        $data=doctor::where("email","=",$request->email)->first();
-        if($data)
-        {
-            if(Hash::check($request->password, $data->password))
-            {
-                $doctor_status=$data->doctor_status;
-                if($doctor_status=="Unblock")
-                {
-                    $request->Session()->put('doctor_id',$data->id);
-                    $request->Session()->put('email',$data->email);
-                    return redirect('/doctor-dashboard');
-
-                }
-                else
-                {
-                    return redirect('/doctor')->with('fail','Login Failed due to Blocked Doctor');
-                }
-            }
-            else
-            {
-                return redirect('/doctor')->with('fail','Login Failed due to Wrong Password');
-            }
-
-        }
-        else
-       {
-        return redirect('/doctor')->with('fail','Login Failed due to Wrong doctor');
-       }
-    }
-
-    public function doctorlogout()
-    {
-        Session()->pull('doctor_id');
-        Session()->pull('email');
-        return redirect('/doctor');
-    }
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -227,9 +184,8 @@ class doctor_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function adminupdate(Request $request, $id)
+    public function update(Request $request, $id)
     {   
-
         $data=$request->validate([
             'first_name'=>'alpha',
             'last_name'=>'alpha',
@@ -344,10 +300,58 @@ class doctor_controller extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function doctorlist()
+    
+
+    public function destroy($id)
     {
-        $data=doctor::all();
-		return view('patient.search',["doctorlist_arr"=>$data]);
+        $data=doctor::find($id);
+		$data->delete();
+		return redirect('admin-doctor')->with("success","Doctor deleted successfully");
+    }
+
+////////////////////////doctor panel///////////////////////////////////////////////////////////////////
+public function login(Request $request)
+    {
+        return view('doctor.login');
+    }
+
+    public function doctorlogin(Request $request)
+    {
+        $data=doctor::where("email","=",$request->email)->first();
+        if($data)
+        {
+            if(Hash::check($request->password, $data->password))
+            {
+                $doctor_status=$data->doctor_status;
+                if($doctor_status=="Unblock")
+                {
+                    $request->Session()->put('doctor_id',$data->id);
+                    $request->Session()->put('email',$data->email);
+                    return redirect('/doctor-dashboard');
+
+                }
+                else
+                {
+                    return redirect('/doctor')->with('fail','Login Failed due to Blocked Doctor');
+                }
+            }
+            else
+            {
+                return redirect('/doctor')->with('fail','Login Failed due to Wrong Password');
+            }
+
+        }
+        else
+       {
+        return redirect('/doctor')->with('fail','Login Failed due to Wrong doctor');
+       }
+    }
+
+    public function doctorlogout()
+    {
+        Session()->pull('doctor_id');
+        Session()->pull('email');
+        return redirect('/doctor');
     }
 
     public function editdoctor()
@@ -358,14 +362,6 @@ class doctor_controller extends Controller
         $city_id_arr=citie::all();
         $area_id_arr=area::all();
         return view('doctor.doctor-profile-settings',["fetch"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
-    }
-
-    public function doctorview($id)
-    {
-        $data=doctor::find($id);
-        $servicelist_arr=service::all();
-        $special_arr=drspecialitie::all();
-        return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
     }
 
     public function updatedoctor(Request $request, $doctor_id)
@@ -427,7 +423,7 @@ class doctor_controller extends Controller
         $data->consulting_fees=$request->consulting_fees;
         $data->followup_fees=$request->followup_fees;
         $data->notification=$request->notification;
-        $old_img=$data->profile_img;
+       // $old_img=$data->profile_img;
         $old_img2=$data->hospital_img;
         $old_img3=$data->visit_card;
 
@@ -443,22 +439,21 @@ class doctor_controller extends Controller
 			$file_name=time() . "_profile_img." . $request->file('profile_img')->getClientOriginalExtension();// make file name
 			$file->move('upload/doctor',$file_name); //file name move upload in public		
 			$data->profile_img=$file_name; // file name store in db
-			unlink('upload/doctor/'.$old_img);
+			//unlink('upload/doctor/'.$old_img);
 		}
          // hospital upload
-          $filesarr = [];
+         $filesarr = [];
         if($request->hasfile('hospital_img'))
         {
             foreach($request->file('hospital_img') as $file)
             {
-                $name = time().'hospital_img.'.$file->extension();
+                $name = time().rand(1000,9999).'hospital_img.'.$file->extension();
                 $file->move('upload/hospital/',$name);
                 $filesarr[] = $name;
                 
             }
             $data->hospital_img=implode(",",$filesarr);
         }
-
          // visiting card upload
          if($request->hasFile('visit_card'))
          {
@@ -472,11 +467,36 @@ class doctor_controller extends Controller
         $data->save();
 		return redirect('/editdoctor')->with('success','Update Success');
     }
+//////////////////////////Company panel////////////////////////////////////////////////////////////
 
-    public function destroy($id)
+public function companydoctorindex()
+{
+    $data=doctor::all();
+    return view('company.doctor-list',["companydoctor_arr"=>$data]);
+}
+
+//////////////////////////Company panel////////////////////////////////////////////////////////////
+
+public function managerdoctorindex()
+{
+    $data=doctor::all();
+    return view('manager.doctor-list',["companydoctor_arr"=>$data]);
+}
+
+////////////////////////Patient Panel//////////////////////////////////////////////////////////
+    public function doctorlist()
+    {
+        $data=doctor::all();
+		return view('patient.search',["doctorlist_arr"=>$data]);
+    }
+
+    public function doctorview($id)
     {
         $data=doctor::find($id);
-		$data->delete();
-		return redirect('admin-doctor')->with("success","Doctor deleted successfully");
+        $doctor_id=$data->id;
+        $servicelist_arr=service::where('doctor_id','=',$doctor_id)->get();
+        $special_arr=drspecialitie::where('doctor_id','=',$doctor_id)->get();
+        return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
     }
-}
+
+} 
