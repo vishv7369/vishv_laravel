@@ -34,7 +34,7 @@
 						<!-- Checkout Form -->
 						
 							<!-- Personal Information -->
-                        <form action="{{url('/book_appointment')}}" enctype="multipart/form-data" method="post">
+                        <form action="{{url('/book_by_otp')}}" enctype="multipart/form-data" method="post">
 			            @csrf
 							<div class="info-widget">
 								<h4 class="card-title">Personal Information</h4>
@@ -139,7 +139,7 @@
 										<input type="hidden" value="" name="slot_timing">
 										<input type="hidden" value="" name="doc_id">
 										<input type="hidden" value="" name="appointment_date" />
-										<input type="submit" class="doc-slot-list " value="Book Appointment" />
+										<input type="submit" class="doc-slot-list" value="Book Appointment" />
                                         </form>
 										
 									</div>

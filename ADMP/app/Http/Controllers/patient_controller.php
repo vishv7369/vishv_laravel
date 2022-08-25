@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\patient;
 use App\Models\patient_fav;
+use App\mail\welcomemail;
+use Mail;
 use Hash;
+
 
 class patient_controller extends Controller
 {
@@ -52,11 +55,22 @@ class patient_controller extends Controller
             'password'=>'required',
         ]);
         $data=new patient;
-        $data->name=$request->name;
-        $data->email=$request->email;
+    $name=$data->name=$request->name;
+    $email=$data->email=$request->email;
         $data->password=Hash::make($request->password);
 
         $res=$data->save();
+        if($res)
+		{
+			$details=['title'=>$email,'comment'=>"Welcome Mail"];
+	   
+			Mail::to($email)->send(new welcomemail($details));
+			return back()->with("success","Register Success");
+		}
+		else
+		{
+			alert("Not success");
+		}
         return redirect('login');
     }
 

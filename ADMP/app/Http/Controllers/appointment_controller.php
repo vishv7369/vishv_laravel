@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\appointments;
 use App\Models\doctor;
+use App\Models\book_by_otp;
 use App\Models\patient;
 use hash;
 use session;

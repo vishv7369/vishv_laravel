@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\book_by_otp;
+use App\Models\patient_slots;
+use session;
 
 class book_by_otp_controller extends Controller
 {
@@ -22,7 +24,7 @@ class book_by_otp_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function book_by_otp()
     {
         return view('patient.book_by_otp');
     }

@@ -7,8 +7,13 @@ use App\Models\patient_slots;
 use App\Models\doctor;
 use App\Models\patient;
 use App\Models\book_by_otp;
+use App\mail\otp;
+use Mail;
 use Hash;
 use session;
+use Exception;
+use Illuminate\Database\QueryException;
+
 
 class patient_slots_controller extends Controller
 {
@@ -103,7 +108,6 @@ class patient_slots_controller extends Controller
             $start_time=date('H:i',strtotime($min,strtotime($start_time)));
             $data->save();
             $i++;
-
         }
         return redirect('doctor-patient-schedule-timings')->with('success','Schedule add success');
     }
@@ -146,13 +150,46 @@ class patient_slots_controller extends Controller
 
     public function book_appointment(Request $request)
     {   
-        $slot_timing=$request->slot_timing;
-        $doc_id=$request->doc_id;
-        $appointment_date=$request->appointment_date;
-        $ptdata=patient::where("id","=",session('patient_id'))->first();
-        $docdata=doctor::where("id","=",$doc_id)->first();
-        return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]); 
+        try {
+            $slot_timing=$request->slot_timing;
+            $doc_id=$request->doc_id;
+            $appointment_date=$request->appointment_date;
+            $ptdata=patient::where("id","=",session('patient_id'))->first();
+            $docdata=doctor::where("id","=",$doc_id)->first();
+            return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]);
+        } catch (Exception $e) 
+        {
+            return redirect()->route('index');
+        }
+         
     }
+
+    public function send_otp(Request $request)
+    {
+        $slot_timing=$request->slot_timing;
+        $appointment_date=$request->appointment_date;
+        $comment=$request->comment;
+    $email=$request->Session('email');
+        $data=patient::where("id","=",session('patient_id'))->first();
+        $data=doctor::where("id","=",$doc_id)->first();
+
+        $res=$data->save();
+
+        if($res)
+		{
+			$details=['title'=>$email,'comment'=>"Welcome Mail"];
+	   
+			Mail::to($email)->send(new otp($details));
+			return back()->with("success","OTP Sent");
+		}
+		else
+		{
+			alert("Not success");
+		}
+        return redirect('patient.index');
+    }
+
+
 
     /**
      * Display the specified resource.
