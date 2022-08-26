@@ -18,7 +18,7 @@ class otp extends Mailable
      */
     public function __construct()
     {
-        //
+        $this->data=$data;
     }
 
     /**
@@ -28,6 +28,11 @@ class otp extends Mailable
      */
     public function build()
     {
-        return $this->subject('Doccure')->view('patient.otp');
+        $subject='This is demo!';
+        $name="Doccure";
+
+        return $this->view('patient.otp')
+        ->subject($subject)
+        ->with(['otp'=>$this->data['otp'],'body'=>$this->data['body']]);
     }
 }

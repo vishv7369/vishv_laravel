@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\patient;
 use App\Models\patient_fav;
-use App\mail\welcomemail;
+use App\Mail\welcomemail;
 use Mail;
 use Hash;
 

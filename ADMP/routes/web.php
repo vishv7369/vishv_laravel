@@ -82,7 +82,7 @@ Route::post('/book_appointment',[patient_slots_controller::class,'book_appointme
 
 Route::post('/book_by_otp',[patient_slots_controller::class,'send_otp']);
 Route::get('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
-Route::post('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
+//Route::post('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
 //Route::post('/book_appointment/{id}',[patient_slots_controller::class,'book_appointment']);
 
 Route::get('/chat', function (){return view('patient.chat');});

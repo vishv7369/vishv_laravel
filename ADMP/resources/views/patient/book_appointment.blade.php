@@ -35,7 +35,7 @@
 						
 							<!-- Personal Information -->
                         <form action="{{url('/book_by_otp')}}" enctype="multipart/form-data" method="post">
-			            @csrf
+			            	@csrf
 							<div class="info-widget">
 								<h4 class="card-title">Personal Information</h4>
 								<div class="row">
@@ -135,14 +135,9 @@
 										</a>
 									</div>
 									<div class="clinic-booking">
-                                    
-										<input type="hidden" value="" name="slot_timing">
-										<input type="hidden" value="" name="doc_id">
-										<input type="hidden" value="" name="appointment_date" />
-										<input type="submit" class="doc-slot-list" value="Book Appointment" />
-                                        </form>
-										
+										<input type="submit" class="doc-slot-list" value="Book Appointment" />	
 									</div>
+									</form>
 								</div>
 							</div>
 						</div>

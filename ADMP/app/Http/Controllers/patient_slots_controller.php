@@ -7,7 +7,7 @@ use App\Models\patient_slots;
 use App\Models\doctor;
 use App\Models\patient;
 use App\Models\book_by_otp;
-use App\mail\otp;
+use App\Mail\otp;
 use Mail;
 use Hash;
 use session;
@@ -154,9 +154,12 @@ class patient_slots_controller extends Controller
             $slot_timing=$request->slot_timing;
             $doc_id=$request->doc_id;
             $appointment_date=$request->appointment_date;
-            $ptdata=patient::where("id","=",session('patient_id'))->first();
-            $docdata=doctor::where("id","=",$doc_id)->first();
-            return view('patient.book_appointment',["fetch"=>$docdata,"fetc"=>$ptdata,"fet"=>$appointment_date,"fe"=>$slot_timing]);
+            
+            $request->Session()->put('slot_timing_session');
+            $request->Session()->put('appo_date_session');
+            $request->Session()->put('book_doc_session');
+
+            return redirect('book_appointment');
         } catch (Exception $e) 
         {
             return redirect()->route('index');
@@ -166,26 +169,16 @@ class patient_slots_controller extends Controller
 
     public function send_otp(Request $request)
     {
-        $slot_timing=$request->slot_timing;
-        $appointment_date=$request->appointment_date;
-        $comment=$request->comment;
-    $email=$request->Session('email');
-        $data=patient::where("id","=",session('patient_id'))->first();
-        $data=doctor::where("id","=",$doc_id)->first();
+        $email=Session('email');
 
-        $res=$data->save();
-
-        if($res)
-		{
-			$details=['title'=>$email,'comment'=>"Welcome Mail"];
-	   
-			Mail::to($email)->send(new otp($details));
-			return back()->with("success","OTP Sent");
-		}
-		else
-		{
-			alert("Not success");
-		}
+        $otp=rand(111111,999999);
+        $request->Session()->put('otp',$otp);
+        $data=['otp'=>Session('otp'),'body'=>"For Booking conform OTP first"];
+    
+        Mail::to($email)->send(new otp($data));
+        return back()->with("success","OTP Sent");
+            
+		
         return redirect('patient.index');
     }
 
