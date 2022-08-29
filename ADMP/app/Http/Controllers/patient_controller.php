@@ -179,7 +179,7 @@ class patient_controller extends Controller
     
     public function likedoctor($id)
     {
-        
+        //
     }
     /**
      * Remove the specified resource from storage.

@@ -21,12 +21,13 @@
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="https://dreamguys.co.in/demo/doccure/{{url('/login')}}">
+										<form action="{{url('/matchotp')}}" method="post" enctype="multipart/form-data">
+											@csrf
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating">
+												<input type="text" name="userotp" class="form-control floating">
 												<label class="focus-label">Enter OTP</label>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Conform OTP</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" value="send" name="submit" type="submit">Conform OTP</button>
 										</form>
 										<!-- /Forgot Password Form -->
 										

@@ -7,10 +7,12 @@ use App\Models\patient_slots;
 use App\Models\doctor;
 use App\Models\patient;
 use App\Models\book_by_otp;
+use App\Models\appointments;
 use App\Mail\otp;
 use Mail;
 use Hash;
-use session;
+use Session;
+use Alert;
 use Exception;
 use Illuminate\Database\QueryException;
 
@@ -148,41 +150,104 @@ class patient_slots_controller extends Controller
         ]);
     }
 
-    public function book_appointment(Request $request)
+    public function book_app_sess(Request $request)
     {   
-        try {
-            $slot_timing=$request->slot_timing;
-            $doc_id=$request->doc_id;
-            $appointment_date=$request->appointment_date;
-            
-            $request->Session()->put('slot_timing_session');
-            $request->Session()->put('appo_date_session');
-            $request->Session()->put('book_doc_session');
+         $slot_timing=$request->slot_timing;
+         $doc_id=$request->doc_id;
+         $appointment_date=$request->appointment_date;
+         
+        
+        $request->Session()->put('slot_timing_session',$slot_timing);
+        $request->Session()->put('appo_date_session',$appointment_date);
+        $request->Session()->put('book_doc_session',$doc_id);
+        
+        return redirect('/book_appointment');
+    }
 
-            return redirect('book_appointment');
-        } catch (Exception $e) 
+
+    public function book_appointment(Request $request)
+    {  
+       if(session('slot_timing_session'))
         {
-            return redirect()->route('index');
+            $slot_timing=Session('slot_timing_session');
+            $appointment_date=Session('appo_date_session');
+            $doc_id=Session('book_doc_session');
+            $patient_data=patient::where('id','=',Session('patient_id'))->first();
+            $doctor_data=doctor::where('id','=',$doc_id)->first();
+
+            return view('patient.book_appointment',['patient_data'=>$patient_data,'doctor_data'=>$doctor_data,'appointment_date'=>$appointment_date,'slot_timing'=>$slot_timing]);    
+            
         }
+        else
+        {
+            return redirect('/index');
+        }
+        
          
     }
 
     public function send_otp(Request $request)
     {
-        $email=Session('email');
+        $comment=$request->comment;
+        $request->Session()->put('comment',$comment);
 
+        $email=$request->email;
+        $name=$request->name;
         $otp=rand(111111,999999);
-        $request->Session()->put('otp',$otp);
-        $data=['otp'=>Session('otp'),'body'=>"For Booking conform OTP first"];
-    
+        $request->Session()->put('ptbookotp',$otp);
+        $data=['email'=>$email,'name'=>$name,'ptbookotp'=>Session('ptbookotp'),'body'=>"For Booking conform OTP first"];   
         Mail::to($email)->send(new otp($data));
-        return back()->with("success","OTP Sent");
-            
-		
-        return redirect('patient.index');
+        return redirect('/book_by_otp');
     }
 
+    public function book_by_otp(Request $request)
+    {
+        if(session('ptbookotp'))
+        {
+            
+            return view('patient.book_by_otp');
+        }
+        else
+        {
+            return view('patient.index');    
+        }
+        
+    }
 
+    public function matchotp(Request $request)
+    {
+        $userotp=$request->userotp;
+        $ptbookotp=session('ptbookotp');
+        if($userotp==$ptbookotp)
+        {
+           // $data->userotp=$request->userotp;
+           // $data->ptbookotp=$request->ptbookotp;
+            $data=new appointments;
+            $data->time=session('slot_timing_session');
+            $data->date=session('appo_date_session');
+            $data->doc_id=session('book_doc_session');
+            $data->patient_id=session('patient_id');
+            $data->comment=session('comment');
+            $data->save();
+
+            Session()->pull('slot_timing_session');
+            Session()->pull('appo_date_session');
+            Session()->pull('book_doc_session');
+            Session()->pull('comment');
+            Alert::success('Congrats', 'You\'ve Successfully Booked Appointment ');
+            
+            return redirect('/index');
+
+
+        }
+        else
+        {
+            
+            Alert::error('Error OTP', 'Entered OTP Does not match'); 
+        }
+    }
+    
+    
 
     /**
      * Display the specified resource.

@@ -24,10 +24,7 @@ class book_by_otp_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function book_by_otp()
-    {
-        return view('patient.book_by_otp');
-    }
+    
 
     /**
      * Store a newly created resource in storage.

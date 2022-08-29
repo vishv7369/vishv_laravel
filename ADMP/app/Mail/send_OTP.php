@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class otp extends Mailable
+class send_OTP extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,9 @@ class otp extends Mailable
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct()
     {
-        $this->data=$data;
+        //
     }
 
     /**
@@ -28,12 +28,6 @@ class otp extends Mailable
      */
     public function build()
     {
-        $subject='Please';
-        $name="Doccure";
-
-        return $this->view('patient.otp')
-        ->subject($subject)
-        ->with(['name'=>$this->data['name'],'ptbookotp'=>$this->data['ptbookotp'],'body'=>$this->data['body']]);
-    
+        return $this->view('view.name');
     }
 }

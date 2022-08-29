@@ -76,12 +76,19 @@ Route::get('/search',[doctor_controller::class,'doctorlist']);
 //Route::get('/booking', function (){return view('patient.booking');});
 Route::get('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 Route::post('/booking/{id}',[patient_slots_controller::class,'showpatient']);
+//Route::get('/book_app_sess',[patient_slots_controller::class,'book_app_sess']);
+Route::post('/book_app_sess',[patient_slots_controller::class,'book_app_sess']);//new case banayo che
 
 Route::get('/book_appointment',[patient_slots_controller::class,'book_appointment']);
-Route::post('/book_appointment',[patient_slots_controller::class,'book_appointment']);
+//Route::post('/book_appointment',[patient_slots_controller::class,'book_appointment']);
 
+Route::get('/book_by_otp',[patient_slots_controller::class,'book_by_otp']);
 Route::post('/book_by_otp',[patient_slots_controller::class,'send_otp']);
-Route::get('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
+
+
+Route::get('/matchotp',[patient_slots_controller::class,'matchotp']);
+Route::post('/matchotp',[patient_slots_controller::class,'matchotp']);
+
 //Route::post('/book_by_otp',[book_by_otp_controller::class,'book_by_otp']);
 //Route::post('/book_appointment/{id}',[patient_slots_controller::class,'book_appointment']);
 
