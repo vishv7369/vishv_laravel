@@ -10,6 +10,7 @@ use App\Models\area;
 use App\Models\specialist;
 use App\Models\service;
 use App\Models\drspecialitie;
+use App\Models\visitor_slots;
 use Hash;
 use session;
 
@@ -467,6 +468,27 @@ public function login(Request $request)
         $data->save();
 		return redirect('/editdoctor')->with('success','Update Success');
     }
+
+    public function visitor_slots(Request $request)//visitor slots add
+    {
+     /*   $data=new visitor_slots;
+        $data->start_time=$request->start_time;
+        $data->end_time=$request->end_time;
+        $data->mr_allowed=$request->mr_allowed;
+        $data->manager_allowed=$request->manager_allowed;
+        $data->company_allowed=$request->company_allowed;
+        $data->day=$request->day;
+        $data->doc_id=$request->doc_id;
+
+        $res=$data->save();*/
+        return view('/doctor.visitor_slots');
+    }
+
+    public function visitor_timings()//visitor slots show
+    {
+            return view('doctor.visitor_timings');
+    }
+
 //////////////////////////Company panel////////////////////////////////////////////////////////////
 
 public function companydoctorindex()

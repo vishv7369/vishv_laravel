@@ -31,6 +31,8 @@ use App\Http\Controllers\appointment_controller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//////////////////////////////patient panel//////////////////////////////////////////
+
 //Route::get('/login', function (){return view('patient.login');});
 Route::get('/register',[patient_controller::class,'create'])->middleware('patientbeforelogin');
 Route::post('/register',[patient_controller::class,'store']);
@@ -102,12 +104,16 @@ Route::get('components', function (){return view('patient.components');});
 
 });
 
-//===========================================================================================================
+//============================================doctor panel==================================================
 Route::get('/doctor',[doctor_controller::class,'login'])->middleware('doctorbeforelogin');
 Route::post('/doctorlogin',[doctor_controller::class,'doctorlogin']);
 Route::get('/doctorlogout',[doctor_controller::class,'doctorlogout']);
 
 //Route::get('/doctor', function (){return view('doctor.login');});
+
+Route::get('/doctor-visitor_slots',[doctor_controller::class,'visitor_slots']);
+Route::post('/doctor-visitor_slots',[doctor_controller::class,'visitor_slots']);//visitor slots add
+Route::get('/doctor-visitor_timings',[doctor_controller::class,'visitor_timings']);//visitor slots show
 
 Route::group(['middleware'=>['doctorafterlogin']], function(){
 
@@ -139,6 +145,7 @@ Route::get('/doctor-appointments', function (){return view('doctor.appointments'
 //Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
 Route::get('/doctor-patient-schedule-timings',[patient_slots_controller::class,'create']);
 Route::post('/doctor-patient-schedule-timings',[patient_slots_controller::class,'store']);
+
 
 
 //Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});
@@ -175,7 +182,7 @@ Route::get('/doctor-invoice-view', function (){return view('doctor.invoice-view'
 Route::get('/doctor-blank-page', function (){return view('doctor.blank-page');});
 
 });
-//===========================================================================================================
+//=========================================admin panel=======================================================
 
 Route::get('/admin-login',[admin_controller::class,'login']);
 Route::post('/adminlogin',[admin_controller::class,'adminlogin']);
@@ -266,7 +273,7 @@ Route::get('/admin-components', function (){return view('admin.components');});
 
 
 });
-//===========================================================================================================
+//====================================company panel=========================================================
 
 Route::get('/company',[companie_controller::class,'login']);
 Route::post('/companylogin',[companie_controller::class,'companylogin']);
@@ -317,7 +324,7 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     
     });
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////manager panel////////////////////////////////////////////////////////
 
     Route::get('/manager',[manager_controller::class,'login']);
     Route::post('/managerlogin',[manager_controller::class,'managerlogin']);

@@ -7,6 +7,7 @@ use App\Models\patient;
 use App\Models\patient_fav;
 use App\Mail\welcomemail;
 use Mail;
+use Alert;
 use Hash;
 
 
@@ -27,7 +28,8 @@ class patient_controller extends Controller
     {
         $data=patient::find($id);
         $data->delete();
-        return redirect('admin-patient')->with('success','Delete Success');
+        Alert::success('Congrats', 'You\'ve Successfully Delete Patient');
+        return redirect('admin-patient');
     }
 
     /////////////////////////////////patient panel////////////////////////////////////////////////////

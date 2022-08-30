@@ -56,6 +56,13 @@
 													<span>Patient Schedule</span>
 												</a>
 											</li>
+
+											<li>
+												<a href="{{url('/doctor-visitor_timings')}}">
+													<i class="fas fa-hourglass-start"></i>
+													<span>Visitor Schedule</span>
+												</a>
+											</li>
 											
 											<li>
 												<a href="{{url('/doctor-my-medicine')}}">
