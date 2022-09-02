@@ -111,9 +111,14 @@ Route::get('/doctorlogout',[doctor_controller::class,'doctorlogout']);
 
 //Route::get('/doctor', function (){return view('doctor.login');});
 
-Route::get('/doctor-visitor_slots',[doctor_controller::class,'visitor_slots']);
-Route::post('/doctor-visitor_slots',[doctor_controller::class,'visitor_slots']);//visitor slots add
+
 Route::get('/doctor-visitor_timings',[doctor_controller::class,'visitor_timings']);//visitor slots show
+Route::get('/doctor-visitor_slots',[doctor_controller::class,'visitor_slots']);
+Route::post('/add_visitor_slots1',[doctor_controller::class,'add_visitor_slots1']);//visitor slots add
+Route::post('/add_visitor_slots2',[doctor_controller::class,'add_visitor_slots2']);//visitor slots add
+Route::get('/doctor-visitor_slots/{id}',[doctor_controller::class,'delete_slots']);//visitor slots edit
+Route::get('/edit_visitor_slots/{id}',[doctor_controller::class,'editslots']);//visitor slots update
+Route::post('/edit_visitor_slots/{id}',[doctor_controller::class,'update_visitor_slots']);//visitor slots update
 
 Route::group(['middleware'=>['doctorafterlogin']], function(){
 
@@ -146,6 +151,8 @@ Route::get('/doctor-appointments', function (){return view('doctor.appointments'
 Route::get('/doctor-patient-schedule-timings',[patient_slots_controller::class,'create']);
 Route::post('/doctor-patient-schedule-timings',[patient_slots_controller::class,'store']);
 
+
+Route::get('/add-prescription', function (){return view('doctor.add-prescription');});
 
 
 //Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});

@@ -469,25 +469,100 @@ public function login(Request $request)
 		return redirect('/editdoctor')->with('success','Update Success');
     }
 
-    public function visitor_slots(Request $request)//visitor slots add
+    public function visitor_timings()//visitor slots show
     {
-     /*   $data=new visitor_slots;
+        $data=visitor_slots::where('doc_id','=',Session('doctor_id'))->get();
+        return view('doctor.visitor_timings',["slots_arr"=>$data]);
+    }
+
+    public function visitor_slots(Request $request)//visitor slots page
+    {
+        return view('/doctor.visitor_slots');
+    }
+    
+    public function add_visitor_slots1(Request $request)//visitor slots add1
+    {
+        $data=$request->validate([
+            'start_time'=>'required',
+            'end_time'=>'required',
+            'mr_allowed'=>'required',
+            'manager_allowed'=>'required',
+            'company_allowed'=>'required',
+            'day'=>'required',
+        ]);
+
+        $data=new visitor_slots;
+        $data->start_time=$request->start_time;
+        $data->visitor_slot=$request->visitor_slot;
+        $data->end_time=$request->end_time;
+        $data->mr_allowed=$request->mr_allowed;
+        $data->manager_allowed=$request->manager_allowed;
+        $data->company_allowed=$request->company_allowed;
+        $data->day=$request->day;
+        $data->doc_id=Session("doctor_id");
+        $res=$data->save();
+        return redirect('/doctor-visitor_slots')->with('success1','Add Success');
+    }
+
+    public function add_visitor_slots2(Request $request)//visitor slots add2
+    {
+        $data=$request->validate([
+            'start_time2'=>'required',
+            'end_time2'=>'required',
+            'mr_allowed2'=>'required',
+            'manager_allowed2'=>'required',
+            'company_allowed2'=>'required',
+            'day2'=>'required',
+        ]);
+
+        $data=new visitor_slots;
+        $data->start_time=$request->start_time2;
+        $data->visitor_slot=$request->visitor_slot2;
+        $data->end_time=$request->end_time2;
+        $data->mr_allowed=$request->mr_allowed2;
+        $data->manager_allowed=$request->manager_allowed2;
+        $data->company_allowed=$request->company_allowed2;
+        $data->day=$request->day2;
+        $data->doc_id=Session("doctor_id");
+        $res=$data->save();
+        return redirect('/doctor-visitor_slots')->with('success2','Add Success');
+    }
+
+    public function editslots($id)
+    {  
+        $data=visitor_slots::find($id);
+        return view('doctor.edit_visitor_slot',["fetch"=>$data]);
+    }
+
+    public function update_visitor_slots(Request $request,$id)//visitor slots update
+    {
+        $data=$request->validate([
+            'start_time'=>'required',
+            'end_time'=>'required',
+            'mr_allowed'=>'required',
+            'manager_allowed'=>'required',
+            'company_allowed'=>'required',
+            'day'=>'required',
+        ]);
+
+        $data=visitor_slots::find($id);
         $data->start_time=$request->start_time;
         $data->end_time=$request->end_time;
         $data->mr_allowed=$request->mr_allowed;
         $data->manager_allowed=$request->manager_allowed;
         $data->company_allowed=$request->company_allowed;
         $data->day=$request->day;
-        $data->doc_id=$request->doc_id;
-
-        $res=$data->save();*/
-        return view('/doctor.visitor_slots');
+        $res=$data->update();
+        return redirect('/doctor-visitor_timings')->with('success','Update Success');
     }
 
-    public function visitor_timings()//visitor slots show
+    public function delete_slots($id)
     {
-            return view('doctor.visitor_timings');
+        $data=visitor_slots::find($id);
+		$data->delete();
+		return redirect('/doctor-visitor_timings')->with("success","Slots deleted successfully");
     }
+    
 
 //////////////////////////Company panel////////////////////////////////////////////////////////////
 
