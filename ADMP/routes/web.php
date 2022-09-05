@@ -20,6 +20,8 @@ use App\Http\Controllers\doc_fav_medicines_controller;
 use App\Http\Controllers\contact_controller;
 use App\Http\Controllers\book_by_otp_controller;
 use App\Http\Controllers\appointment_controller;
+use App\Http\Controllers\diagnosis_controller;
+use App\Http\Controllers\prescriptions_controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +124,9 @@ Route::post('/edit_visitor_slots/{id}',[doctor_controller::class,'update_visitor
 
 Route::group(['middleware'=>['doctorafterlogin']], function(){
 
+//Route::get('/add-prescription',[diagnosis_controller::class,'store']);//visitor slots update
+Route::post('/add-prescription',[diagnosis_controller::class,'diagnosis_store']);//diagnosis_store 
+
 Route::get('/doctor-change-password', function (){return view('doctor.change-password');});
 Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
 
@@ -152,7 +157,6 @@ Route::get('/doctor-patient-schedule-timings',[patient_slots_controller::class,'
 Route::post('/doctor-patient-schedule-timings',[patient_slots_controller::class,'store']);
 
 
-Route::get('/add-prescription', function (){return view('doctor.add-prescription');});
 
 
 //Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});

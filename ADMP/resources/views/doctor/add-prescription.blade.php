@@ -19,6 +19,7 @@
 			</div>
 			<!-- /Breadcrumb -->
 			
+
 			<!-- Page Content -->
 			<div class="content">
 				<div class="container-fluid">
@@ -59,7 +60,9 @@
 						<div class="col-md-7 col-lg-8 col-xl-9">
 							<div class="card">
 								<div class="card-header">
-									<h4 class="card-title mb-0">Add Prescription</h4>
+								<form action="{{url('/add-prescription')}}" method="post" enctype="multipart/form-data"> 
+												@csrf
+												<h4 class="card-title mb-0">Add Prescription</h4>
 								</div>
 								<div class="card-body">
 									<div class="row">
@@ -78,36 +81,84 @@
 										</div>
 									</div>
 									
-									<!-- Add Item -->
-									<div class="add-more-item text-right">
-										<a href="javascript:void(0);"><i class="fas fa-plus-circle"></i> Add Item</a>
-									</div>
-									<!-- /Add Item -->
 									
-									<!-- Prescription Item -->
-									<div class="card card-table">
-										<div class="card-body">
-											<div class="table-responsive">
+<div id="accordion">
+
+  <div class="card">
+    <div class="card-header">
+      <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
+        <b>Add diagnosis reports</b>
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse show" data-bs-parent="#accordion">
+	<div class="card card-table">
+	<div class="table-responsive">
 												<table class="table table-hover table-center">
 													<thead>
 														<tr>
-															<th style="min-width: 200px">Name</th>
-															<th style="min-width: 100px">Quantity</th>
-															<th style="min-width: 100px">Days</th>
-															<th style="min-width: 100px;">Time</th>
+															<th style="min-width: 200px">Problems</th>
+															<th style="min-width: 100px">Diagnosis</th>
+															<th style="min-width: 100px">care suggestions</th>
+															<th style="min-width: 100px;">reports</th>
 															<th style="min-width: 80px;"></th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
 															<td>
-																<input class="form-control" type="text">
+																<textarea class="form-control" placeholder="Write Patient Problems" name="problems"></textarea>
 															</td>
 															<td>
-																<input class="form-control" type="text">
+															<textarea class="form-control" placeholder="Write Patient Diagnosis" name="diagnosis"></textarea>
 															</td>
 															<td>
-																<input class="form-control" type="text">
+															<textarea class="form-control" placeholder="Write Patient Care suggestions" name="care_suggestion"></textarea>
+															</td>
+															<td>
+															<textarea class="form-control" placeholder="Write Patient Reports Suggestions" name="reports "></textarea>
+															</td>
+															<td>
+																<a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>								
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+        <b>Prescription</b>
+      </a>
+    </div>  
+    <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+	<div class="card-body">
+											<div class="table-responsive">
+												<table class="table table-hover table-center">
+													<thead>
+														<tr>
+															<th style="min-width: 100px">Name</th>
+															<th style="min-width: 100px">Quantity</th>
+															<th style="min-width: 100px">Days</th>
+															<th style="min-width: 100px;">Time</th>
+															<th style="min-width: 120px;">Dose</th>
+															<th style="min-width: 80px;"></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input class="form-control" placeholder="" type="text">
+															</td>
+															<td>
+																<input class="form-control" placeholder="" type="text">
+															</td>
+															<td>
+																<input class="form-control" placeholder="" type="text">
 															</td>
 															<td>
 																<div class="form-check form-check-inline">
@@ -130,6 +181,15 @@
 																		<input class="form-check-input" type="checkbox"> Night
 																	</label>
 																</div>
+																</td>
+																<td>
+																<div class="form-group">               
+															<select class="select form-control" name="day">
+																<option selected="selected" value="">---Dose---</option>
+																<option value="Monday">Injection</option>
+																<option value="Tuesday">Eye Drop</option> 
+															</select>
+														</div>
 															</td>
 															<td>
 																<a href="#" class="btn bg-danger-light trash"><i class="far fa-trash-alt"></i></a>
@@ -137,28 +197,12 @@
 														</tr>
 													</tbody>
 												</table>
+												
 											</div>
 										</div>
+										
 									</div>
-									<!-- /Prescription Item -->
-									
-									<!-- Signature -->
-									<div class="row">
-										<div class="col-md-12 text-right">
-											<div class="signature-wrap">
-												<div class="signature">
-													Click here to sign
-												</div>
-												<div class="sign-name">
-													<p class="mb-0">( Dr. Darren Elder )</p>
-													<span class="text-muted">Signature</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- /Signature -->
-									
-									<!-- Submit Section -->
+    </div><!-- Submit Section -->
 									<div class="row">
 										<div class="col-md-12">
 											<div class="submit-section">
@@ -168,7 +212,18 @@
 										</div>
 									</div>
 									<!-- /Submit Section -->
+  </div>
+</div>
 									
+									<!-- Prescription Item -->
+									
+									
+									<!-- /Prescription Item -->
+									
+									
+									
+									
+								</form>
 								</div>
 							</div>
 						</div>
