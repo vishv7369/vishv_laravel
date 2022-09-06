@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 05, 2022 at 07:28 PM
+-- Generation Time: Sep 06, 2022 at 02:09 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -158,6 +158,13 @@ CREATE TABLE `company_fav_docs` (
   `company_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `company_fav_docs`
+--
+
+INSERT INTO `company_fav_docs` (`id`, `created_at`, `updated_at`, `doctor_id`, `company_id`) VALUES
+(5, '2022-09-06 06:22:59', '2022-09-06 06:22:59', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -205,7 +212,7 @@ CREATE TABLE `diagnoses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `appoinment_id` bigint(20) UNSIGNED NOT NULL,
+  `appoinment_id` bigint(20) UNSIGNED DEFAULT NULL,
   `patient_id` bigint(20) UNSIGNED NOT NULL,
   `problems` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `diagnosis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -213,6 +220,15 @@ CREATE TABLE `diagnoses` (
   `reports` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('Pending','Approve') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `diagnoses`
+--
+
+INSERT INTO `diagnoses` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `problems`, `diagnosis`, `care_suggestion`, `reports`, `status`) VALUES
+(1, '2022-09-06 03:42:49', '2022-09-06 03:42:49', NULL, 1, 'dfvd', 'dfvxdf', 'zczdf', 'zdvd', 'Pending'),
+(2, '2022-09-06 03:57:11', '2022-09-06 03:57:11', NULL, 3, 'hbvn', 'kjnjkm', 'kjnk', 'kjnkj', 'Pending'),
+(3, '2022-09-06 06:03:06', '2022-09-06 06:03:06', 1, 1, 'rsfser', 'srgrs', 'regedr', 'srgfved', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -643,7 +659,7 @@ CREATE TABLE `prescriptions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `appoinment_id` bigint(20) UNSIGNED NOT NULL,
+  `appoinment_id` bigint(20) UNSIGNED DEFAULT NULL,
   `patient_id` bigint(20) UNSIGNED NOT NULL,
   `medicine_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `medicine_Quantity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -652,6 +668,14 @@ CREATE TABLE `prescriptions` (
   `medicine_dose` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('Pending','Approve') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `prescriptions`
+--
+
+INSERT INTO `prescriptions` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `medicine_name`, `medicine_Quantity`, `medicine_take_Days`, `medicine_take_Time`, `medicine_dose`, `status`) VALUES
+(1, '2022-09-06 04:22:42', '2022-09-06 04:22:42', NULL, 3, 'fdvs', '1', '2', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
+(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -1047,7 +1071,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `company_fav_docs`
 --
 ALTER TABLE `company_fav_docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `company_slots`
@@ -1065,7 +1089,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `diagnoses`
 --
 ALTER TABLE `diagnoses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `divisions`
@@ -1149,7 +1173,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`

@@ -314,7 +314,6 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     
     Route::get('/company-doctor',[doctor_controller::class,'companydoctorindex']);
     Route::get('/company_fav_doc/{id}',[company_fav_doc_controller::class,'company_fav_doc']);
-    //Route::post('/company_fav_doc/{id}',[company_fav_doc_controller::class,'company_fav_doc']);
     
     Route::get('/company-doctor-appointment', function (){return view('company.doctor-appointment');});
     Route::get('/company-doctor-cancel-appointment', function (){return view('company.doctor-cancel-appointment');});

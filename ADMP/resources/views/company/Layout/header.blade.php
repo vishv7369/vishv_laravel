@@ -169,6 +169,7 @@
 					
 					<!-- User Menu -->
 					<li class="nav-item dropdown has-arrow">
+						
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img"><img class="rounded-circle" src="{{url('upload/companyprofile/'. Session('cprofile_img'))}}" width="31" alt="Ryan Taylor"></span>
 						</a>
