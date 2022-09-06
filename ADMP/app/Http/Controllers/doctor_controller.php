@@ -11,6 +11,7 @@ use App\Models\specialist;
 use App\Models\service;
 use App\Models\drspecialitie;
 use App\Models\visitor_slots;
+use App\Models\company_fav_doc;
 use Hash;
 use session;
 
@@ -21,9 +22,10 @@ class doctor_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //////////////////////////////////////////admin panel////////////////////////////////////////////////
     public function index()
     {
-        $data=doctor::all();
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
 		return view('admin.doctor-list',["doctor_arr"=>$data]);
     }
 
@@ -131,14 +133,12 @@ class doctor_controller extends Controller
         {
             foreach($request->file('hospital_img') as $file)
             {
-                $name = time().rand(100000,99999).'hospital_img.'.$file->extension();
+                $name = time().rand(111111,999999).'hospital_img.'.$file->extension();
                 $file->move('upload/hospital/',$name);
                 $filesarr[] = $name;       
             }
             $data->hospital_img=implode(",",$filesarr);
         }
-
-
 
         // visiting card upload
 		$file3=$request->file('visit_card');  // get file
@@ -217,8 +217,6 @@ class doctor_controller extends Controller
             'visit_card'=>'mimes:jpeg,png,jpg,gif',
 
         ]);
-
-
 
         $data=doctor::find($id);
         $data->first_name=$request->first_name;
@@ -318,6 +316,12 @@ public function login(Request $request)
 
     public function doctorlogin(Request $request)
     {
+        $data=$request->validate([
+            
+            'email'=>'required|email',
+            'password'=>'required|min:6',
+        ]);
+
         $data=doctor::where("email","=",$request->email)->first();
         if($data)
         {
@@ -328,6 +332,9 @@ public function login(Request $request)
                 {
                     $request->Session()->put('doctor_id',$data->id);
                     $request->Session()->put('email',$data->email);
+                    $drname=$data->first_name." ".$data->last_name; 
+                    $request->Session()->put('drname',$drname);
+                    $request->Session()->put('profile_img',$data->profile_img);
                     return redirect('/doctor-dashboard');
 
                 }
@@ -352,6 +359,8 @@ public function login(Request $request)
     {
         Session()->pull('doctor_id');
         Session()->pull('email');
+        Session()->pull('profile_img');
+        Session()->pull('drname');
         return redirect('/doctor');
     }
 
@@ -448,7 +457,7 @@ public function login(Request $request)
         {
             foreach($request->file('hospital_img') as $file)
             {
-                $name = time().rand(1000,9999).'hospital_img.'.$file->extension();
+                $name = time().rand(111111,999999).'hospital_img.'.$file->extension();
                 $file->move('upload/hospital/',$name);
                 $filesarr[] = $name;
                 
@@ -563,27 +572,49 @@ public function login(Request $request)
 		return redirect('/doctor-visitor_timings')->with("success","Slots deleted successfully");
     }
     
-
 //////////////////////////Company panel////////////////////////////////////////////////////////////
 
 public function companydoctorindex()
 {
-    $data=doctor::all();
-    return view('company.doctor-list',["companydoctor_arr"=>$data]);
+    $alldoctor_arr=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
+    $favdoctor_arr=company_fav_doc::where('company_id','=',Session('company_id'))->get();
+    return view('company.doctor-list',["alldoctor_arr"=>$alldoctor_arr,"favdoctor_arr"=>$favdoctor_arr]);
 }
 
-//////////////////////////Company panel////////////////////////////////////////////////////////////
+
+
+
+/*--public function visitor_slots(Request $request)//visitor slots add
+    {
+       $data=new visitor_slots;
+        $data->start_time=$request->start_time;
+        $data->end_time=$request->end_time;
+        $data->mr_allowed=$request->mr_allowed;
+        $data->manager_allowed=$request->manager_allowed;
+        $data->company_allowed=$request->company_allowed;
+        $data->day=$request->day;
+        $data->doc_id=$request->doc_id;
+
+        $res=$data->save();
+        return redirect('/visitor_slots');
+    }
+
+    public function visitor_timings()//visitor slots show
+    {
+            return view('doctor.visitor_timings');
+    }*/
+//////////////////////////manager panel////////////////////////////////////////////////////////////
 
 public function managerdoctorindex()
 {
-    $data=doctor::all();
+    $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
     return view('manager.doctor-list',["companydoctor_arr"=>$data]);
 }
 
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
     public function doctorlist()
     {
-        $data=doctor::all();
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
 		return view('patient.search',["doctorlist_arr"=>$data]);
     }
 
@@ -595,5 +626,9 @@ public function managerdoctorindex()
         $special_arr=drspecialitie::where('doctor_id','=',$doctor_id)->get();
         return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
     }
+
+
+
+
 
 } 

@@ -49,25 +49,29 @@
 											</thead>
 											<tbody>
 												<?php
-													foreach($companydoctor_arr as $data) 
+													foreach($alldoctor_arr as $data) 
 													{
+														
 												?>
-												<tr>
-												<td><?php echo $data->id?></td>
-												<td><img src="{{asset('upload/doctor/' . $data->profile_img)}}" height="50px" width="50px"/></td>
-												<td><?php echo $data->specialist_id?></td>
-												<td><?php echo $data->first_name?></td>
-												<td><?php echo $data->last_name?></td>
-												<td><?php echo $data->doctor_status ?></td>
-												<td class="text-right">
-														<div class="actions">
-															<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
-												</td>
-												
-												</tr>
+													<tr>
+													<input type="hidden" value="<?php echo $data->id?>" name="doctor_id" id="doctor_id">
+													<td><?php echo $data->id?></td>
+													<td><img src="{{asset('upload/doctor/' . $data->profile_img)}}" height="50px" width="50px"/></td>
+													<td><?php echo $data->name?></td>
+													<td><?php echo $data->first_name?></td>
+													<td><?php echo $data->last_name?></td>
+													<td><?php echo $data->doctor_status ?></td>
+													<td class="text-right">
+															<div class="actions">
+																<a href="{{url('company_fav_doc/'.$data->id)}}" class="btn btn-sm bg-success-light" >
+																<i class="fe fe-bookmark">Add to Fav.</i></a>
+															<!--<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
+																	<i class="fe fe-trash"></i> Delete
+																</a>-->
+															</div>
+													</td>
+													
+													</tr>
 												<?php
 												}
 												?>

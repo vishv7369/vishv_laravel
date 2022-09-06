@@ -161,7 +161,7 @@ class patient_slots_controller extends Controller
         $request->Session()->put('appo_date_session',$appointment_date);
         $request->Session()->put('book_doc_session',$doc_id);
         
-        return redirect('/book_appointment'); 
+        return redirect('/book_appointment');
     }
 
 
@@ -238,6 +238,7 @@ class patient_slots_controller extends Controller
             
             return redirect('/index');
 
+
         }
         else
         {
@@ -290,6 +291,6 @@ class patient_slots_controller extends Controller
      */
     public function destroy($id)
     {
-        // 
+        //
     }
 }

@@ -1,7 +1,7 @@
 							<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-											<img src="{{url('Frontend/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+											<img src="{{url('upload/doctor/'. Session('profile_img'))}}" alt="User Image">
 										</a>
 										<div class="profile-det-info">
 											<h3>Dr. Darren Elder</h3>
@@ -25,7 +25,7 @@
 											<li class="">
 												<a href="{{url('/editdoctor')}}">
 													<i class="fas fa-user-cog"></i>
-													<span>Hospital Profile</span>
+													<span>Doctor Profile</span>
 												</a>
 											</li>
 
@@ -56,14 +56,14 @@
 													<span>Patient Schedule</span>
 												</a>
 											</li>
-
+											
 											<li>
 												<a href="{{url('/doctor-visitor_timings')}}">
 													<i class="fas fa-hourglass-start"></i>
 													<span>Visitor Schedule</span>
 												</a>
 											</li>
-											
+
 											<li>
 												<a href="{{url('/doctor-my-medicine')}}">
 													<i class="fas fa-user-injured"></i>

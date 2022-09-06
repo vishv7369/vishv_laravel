@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\company_slots;
 use App\Models\doctor;
-use App\Models\diagnosis;
-use App\Models\prescriptions;
-use Hash;
-use session;
 
-class diagnosis_controller extends Controller
+class company_slots_controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +15,7 @@ class diagnosis_controller extends Controller
      */
     public function index()
     {
-		//
+        //
     }
 
     /**
@@ -28,7 +25,7 @@ class diagnosis_controller extends Controller
      */
     public function create()
     {
-        //
+        return view('doctor.company-schedule-timings');
     }
 
     /**
@@ -37,17 +34,22 @@ class diagnosis_controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function diagnosis_store(Request $request)
+    public function store(Request $request)
     {
-        $data=new diagnosis;
-        $data->problems=$request->problems;
-        $data->diagnosis=$request->diagnosis;
-        $data->care_suggestion=$request->care_suggestion;
-        $data->reports=$request->reports;
-        $data->appoinment_id=$request->appoinment_id;
-        $data->patient_id=$request->patient_id;
-        $data=save();
-        return redirect('/add-prescription');
+       
+            $data=new company_slots;
+            $data->doc_id=Session('doctor_id');
+            $data->cday=implode(",",$request->cday);
+            $data->cno_slots=$request->cno_slots;
+            $data->cslot_morning_to=$request->cslot_morning_to;
+            $data->cslot_morning_from=$request->cslot_morning_from;
+            $data->cslot_afternoon_to=$request->cslot_afternoon_to;
+            $data->cslot_afternoon_from=$request->cslot_afternoon_from;
+            $data->cslot_evening_to=$request->cslot_evening_to;
+            $data->cslot_evening_from=$request->cslot_evening_from;
+            $data->save();
+           
+        return redirect('doctor-company-schedule-timings')->with('success','Schedule add success');
     }
 
     /**

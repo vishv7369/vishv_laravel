@@ -64,7 +64,6 @@
 						<div align="center">
 							<h4><span>Book Today Appointment Slots</span></h4>
 						</div>
-						<br>
 						<div>
 							<span><b>Today's Dt.<?php echo (new DateTime())->format('Y-m-d'); ?></b></span>
 						</div>

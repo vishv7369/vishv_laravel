@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\appointments;
 use App\Models\doctor;
-use App\Models\book_by_otp;
 use App\Models\patient;
 use hash;
 use session;
@@ -19,7 +18,8 @@ class appointment_controller extends Controller
      */
     public function index()
     {
-        //
+        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->get();
+        return view('doctor.doctor-dashboard',["appointments_arr"=>$data]);
     }
 
     /**

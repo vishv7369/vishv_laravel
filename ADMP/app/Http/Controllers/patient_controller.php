@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\patient;
 use App\Models\patient_fav;
 use App\Mail\welcomemail;
+use Hash;
 use Mail;
 use Alert;
-use Hash;
-
 
 class patient_controller extends Controller
 {
@@ -28,8 +27,7 @@ class patient_controller extends Controller
     {
         $data=patient::find($id);
         $data->delete();
-        Alert::success('Congrats', 'You\'ve Successfully Delete Patient');
-        return redirect('admin-patient');
+        return redirect('admin-patient')->with('success','Delete Success');
     }
 
     /////////////////////////////////patient panel////////////////////////////////////////////////////
@@ -85,6 +83,11 @@ class patient_controller extends Controller
 
     public function patientlogin(Request $request)
     {
+        $data=$request->validate([
+            
+            'email'=>'required|email',
+            'password'=>'required|min:6',
+        ]);
         $data=patient::where("email","=",$request->email)->first();
         if($data)
         {
@@ -181,7 +184,7 @@ class patient_controller extends Controller
     
     public function likedoctor($id)
     {
-        //
+        
     }
     /**
      * Remove the specified resource from storage.

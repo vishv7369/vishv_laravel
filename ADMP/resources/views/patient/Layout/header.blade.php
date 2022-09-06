@@ -84,8 +84,7 @@
 	
 	</head>
 	<body>
-
-	 	@include('sweetalert::alert')
+	@include('sweetalert::alert')
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		

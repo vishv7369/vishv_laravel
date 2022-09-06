@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::table('visitor_slots', function (Blueprint $table) {
             $table->unsignedBigInteger('doc_id');
 			$table->foreign('doc_id')->references('id')->on('doctors')->after('id');
-            $table->string('start_time')->after('doc_id');
+            $table->string('visitor_slot')->after('doc_id');
+            $table->string('start_time')->after('visitor_slot');
             $table->string('end_time')->after('start_time');
             $table->string('mr_allowed')->after('end_time');
             $table->string('manager_allowed')->after('mr_allowed');
