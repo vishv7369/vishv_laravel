@@ -83,7 +83,7 @@
 										</a>
 									</div>
 									<div class="clinic-booking">
-										<a class="apt-btn" href="{{url('/booking')}}">Book Appointment</a>
+										<a class="apt-btn" href="{{url('/booking/'.$fetch->id)}}">Book Appointment</a>
 									</div>
 								</div>
 							</div>

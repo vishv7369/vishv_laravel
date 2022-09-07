@@ -620,11 +620,20 @@ public function managerdoctorindex()
 
     public function doctorview($id)
     {
-        $data=doctor::find($id);
-        $doctor_id=$data->id;
-        $servicelist_arr=service::where('doctor_id','=',$doctor_id)->get();
-        $special_arr=drspecialitie::where('doctor_id','=',$doctor_id)->get();
-        return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
+        if(Session('patient_id'))
+        {
+            $data=doctor::find($id);
+            $doctor_id=$data->id;
+            $servicelist_arr=service::where('doctor_id','=',$doctor_id)->get();
+            $special_arr=drspecialitie::where('doctor_id','=',$doctor_id)->get();
+            return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr]);
+        }
+        else
+        {
+            alert()->info('Login Require','Please Login First');
+            return redirect('/login');
+        }
+
     }
 
 

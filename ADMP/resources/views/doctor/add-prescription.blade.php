@@ -126,6 +126,40 @@
 													</tbody>
 												</table>
 											</div>
+											<div class="table-responsive">
+													<table class="datatable table table-hover table-center mb-0">
+														<thead>
+															<tr>
+																<th>Problems</th>
+																<th>Diagnosis</th>
+																<th>care suggestions</th>
+																<th>reports</th>
+															</tr>
+														</thead>
+														<tbody>
+														
+														@if(!$pdiagnoses->isEmpty())
+															@foreach($pdiagnoses as $pdiagnoses1) 		
+															<tr>
+																<td>{{$pdiagnoses1->problems}}</td>
+																<td>{{$pdiagnoses1->diagnosis}}</td>
+																<td>{{$pdiagnoses1->care_suggestion}}</td>
+																<td>{{$pdiagnoses1->reports}}</td>
+																<td class="text-right">
+																	<div class="actions">
+																		<a  href="" class="btn btn-sm bg-danger-light">
+																			<i class="fe fe-trash"></i> Delete
+																		</a>
+																	</div>
+																</td>
+															</tr>
+															@endforeach
+														@else
+														<p class="text-danger mt-2">Not</p>
+														@endif	
+														</tbody>
+													</table>
+												</div>
 										</div>
 									</div>								
     </div>
@@ -146,7 +180,7 @@
 												<table class="table table-hover table-center">
 													<thead>
 														<tr>
-															<th style="min-width: 100px">Name</th>
+															<th style="min-width: 100px"> Medicine Name</th>
 															<th style="min-width: 100px">Quantity</th>
 															<th style="min-width: 100px">Days</th>
 															<th style="min-width: 100px;">Time</th>
@@ -157,7 +191,14 @@
 													<tbody>
 														<tr>
 															<td>
-																<input class="form-control" placeholder="" type="text" name="medicine_name">
+															<input list="browsers" name="medicine_name" id="browser" class="form-control">
+															<datalist id="browsers">
+															@if(!$doc_fav_medicine->isEmpty())
+																@foreach($doc_fav_medicine as $medicine) 		
+																<option value={{$medicine->medicine_name}}>
+																@endforeach
+															@endif
+															</datalist>
 															</td>
 															<td>
 																<input class="form-control" placeholder="" type="text" name="medicine_Quantity">
@@ -205,7 +246,43 @@
 														</tr>
 													</tbody>
 												</table>
-												
+												<div class="table-responsive">
+													<table class="datatable table table-hover table-center mb-0">
+														<thead>
+															<tr>
+																<th>Medicine Name</th>
+																<th>Quantity</th>
+																<th>Days</th>
+																<th>Time</th>
+																<th>Dose</th>
+															</tr>
+														</thead>
+														<tbody>
+														<tr>
+														@if(!$pprescriptions->isEmpty())
+															@foreach($pprescriptions as $pprescriptions1) 		
+															<tr>
+																<td>{{$pprescriptions1->medicine_name}}</td>
+																<td>{{$pprescriptions1->medicine_Quantity}}</td>
+																<td>{{$pprescriptions1->medicine_take_Days}}</td>
+																<td>{{$pprescriptions1->medicine_take_Time}}</td>
+																<td>{{$pprescriptions1->medicine_dose}}</td>
+																<td class="text-right">
+																	<div class="actions">
+																		<a  href="" class="btn btn-sm bg-danger-light">
+																			<i class="fe fe-trash"></i> Delete
+																		</a>
+																	</div>
+																</td>
+															</tr>
+															@endforeach
+														@else
+														<p class="text-danger mt-2">Not</p>
+														@endif
+															</tr>	
+														</tbody>
+													</table>
+												</div>
 											</div>
 										</div>
 										
@@ -213,9 +290,9 @@
     </div><!-- Submit Section -->
 									<div class="row">
 										<div class="col-md-12">
-											<div class="submit-section">
-												<button type="submit" class="btn btn-primary submit-btn">Save</button>
-												<button type="reset" class="btn btn-secondary submit-btn">Clear</button>
+											<div class="submit-section text-right">
+											<button type="reset" class="btn btn-secondary submit-btn">Clear</button>
+												<button type="submit" name="submit" value="send" class="btn btn-primary submit-btn">Save</button>
 											</div>
 										</div>
 									</div>

@@ -137,8 +137,8 @@ Route::get('/doctor-change-password', function (){return view('doctor.change-pas
 Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
 
 Route::get('/add-prescription/{id}',[diagnoses_controller::class,'create']);//visitor slots update
+//Route::get('/add-prescription',[diagnoses_controller::class,'index']);//diagnosis table view
 Route::post('/add-prescription/{id}',[diagnoses_controller::class,'diagnosis_store']);//diagnosis_store 
-
 Route::post('/prescription_store/{id}',[diagnoses_controller::class,'prescription_store']);//diagnosis_store 
 
 //Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});

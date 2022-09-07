@@ -8,6 +8,7 @@ use App\Models\diagnoses;
 use App\Models\prescriptions;
 use App\Models\patient;
 use App\Models\appointments;
+use App\Models\doc_fav_medicine;
 use Hash;
 use session;
 
@@ -20,7 +21,10 @@ class diagnoses_controller extends Controller
      */
     public function index()
     {
-        //
+        /*$diagnoses_arr=appointments::join('diagnoses','diagnoses.appoinment_id','=','appointments.id')->get();
+        print_r($diagnoses_arr);
+        exit();
+        return view('doctor.add-prescription',["diagnoses_arr"=>$diagnoses_arr]);*/
     }
 
     /**
@@ -33,7 +37,10 @@ class diagnoses_controller extends Controller
         $app_data=appointments::find($id)->first();
         $patient_id=$app_data->patient_id;
         $pdata=appointments::join('patients','patients.id','=','appointments.patient_id')->where('patient_id','=',$patient_id)->first();
-        return view('doctor.add-prescription',["app_data"=>$app_data,"pdata"=>$pdata]);
+        $pdiagnoses=diagnoses::where('appoinment_id','=',$id)->get();
+        $pprescriptions=prescriptions::where('appoinment_id','=',$id)->get();
+        $doc_fav_medicine=doc_fav_medicine::where('doctor_id','=',Session('doctor_id'))->get();
+        return view('doctor.add-prescription',["app_data"=>$app_data,"pdata"=>$pdata,"pdiagnoses"=>$pdiagnoses,"pprescriptions"=>$pprescriptions,"doc_fav_medicine"=>$doc_fav_medicine]);
     }
 
     /**
@@ -52,7 +59,7 @@ class diagnoses_controller extends Controller
         $data->appoinment_id=$request->appoinment_id;
         $data->patient_id=$request->patient_id;
         $res=$data->save();
-        return redirect('/add-prescription');
+        return back();
     }
 
     public function prescription_store(Request $request, $id)
@@ -66,7 +73,7 @@ class diagnoses_controller extends Controller
         $data->appoinment_id=$request->appoinment_id;
         $data->patient_id=$request->patient_id;
         $res=$data->save();
-        return redirect('/add-prescription');
+        return back();
     }
 
     /**

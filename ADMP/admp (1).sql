@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2022 at 02:09 PM
+-- Generation Time: Sep 07, 2022 at 01:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -226,9 +226,10 @@ CREATE TABLE `diagnoses` (
 --
 
 INSERT INTO `diagnoses` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `problems`, `diagnosis`, `care_suggestion`, `reports`, `status`) VALUES
-(1, '2022-09-06 03:42:49', '2022-09-06 03:42:49', NULL, 1, 'dfvd', 'dfvxdf', 'zczdf', 'zdvd', 'Pending'),
-(2, '2022-09-06 03:57:11', '2022-09-06 03:57:11', NULL, 3, 'hbvn', 'kjnjkm', 'kjnk', 'kjnkj', 'Pending'),
-(3, '2022-09-06 06:03:06', '2022-09-06 06:03:06', 1, 1, 'rsfser', 'srgrs', 'regedr', 'srgfved', 'Pending');
+(3, '2022-09-06 06:03:06', '2022-09-06 06:03:06', 1, 1, 'rsfser', 'srgrs', 'regedr', 'srgfved', 'Pending'),
+(4, '2022-09-07 00:08:10', '2022-09-07 00:08:10', 1, 1, 'hj', 'hj', 'hkj', 'ghj', 'Pending'),
+(5, '2022-09-07 03:51:24', '2022-09-07 03:51:24', 1, 1, 'rr', 'jhvgjhv', 'jhvjhv', 'jvjhvjhv', 'Pending'),
+(6, '2022-09-07 03:52:25', '2022-09-07 03:52:25', 1, 1, 'ddssdasd', 'sadsads', 'sd', 'sdsd', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -674,8 +675,9 @@ CREATE TABLE `prescriptions` (
 --
 
 INSERT INTO `prescriptions` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `medicine_name`, `medicine_Quantity`, `medicine_take_Days`, `medicine_take_Time`, `medicine_dose`, `status`) VALUES
-(1, '2022-09-06 04:22:42', '2022-09-06 04:22:42', NULL, 3, 'fdvs', '1', '2', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
-(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending');
+(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
+(3, '2022-09-07 04:53:04', '2022-09-07 04:53:04', 1, 1, 'dolo', '5', '4', 'Morning', 'Monday', 'Pending'),
+(4, '2022-09-07 04:53:34', '2022-09-07 04:53:34', 1, 1, 'aspirine', '8', '9', 'Morning,Evening', 'Monday', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -1089,7 +1091,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `diagnoses`
 --
 ALTER TABLE `diagnoses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `divisions`
@@ -1173,7 +1175,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
