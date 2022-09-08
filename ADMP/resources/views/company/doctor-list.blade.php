@@ -41,7 +41,7 @@
 													<th>Specialist</th>
 													<th>First Name</th>
 													<th>Last Name</th>
-												    <th>Doc status</th>
+												   
 													<th class="text-right">Actions</th>
 													
 													
@@ -60,20 +60,20 @@
 													<td><?php echo $data->name?></td>
 													<td><?php echo $data->first_name?></td>
 													<td><?php echo $data->last_name?></td>
-													<td><?php echo $data->doctor_status ?></td>
+													
 													<td class="text-right">
 															<div class="actions">
-																<a href="{{url('company_fav_doc/'.$data->id)}}" class="btn btn-sm bg-success-light" >
-																<i class="fe fe-bookmark">Add to Fav.</i></a>
-															<!--<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
-																	<i class="fe fe-trash"></i> Delete
-																</a>-->
-															</div>
+															<a href="{{url('company_fav_doc/'.$data->id)}}" class="btn btn-sm bg-success-light" >
+																<i class="fe fe-bookmark">Add to Fac.</i>
+															</a>	
+														
+														</div>
 													</td>
 													
 													</tr>
 												<?php
-												}
+												
+											}
 												?>
 												
 											

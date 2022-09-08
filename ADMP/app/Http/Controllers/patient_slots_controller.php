@@ -111,7 +111,8 @@ class patient_slots_controller extends Controller
             $data->save();
             $i++;
         }
-        return redirect('doctor-patient-schedule-timings')->with('success','Schedule add success');
+        Alert::success('Done', 'You\'ve Successfully Add Schedule');
+        return redirect('doctor-patient-schedule-timings');
     }
 
 

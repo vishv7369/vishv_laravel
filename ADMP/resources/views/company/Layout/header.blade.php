@@ -179,7 +179,7 @@
 									<img src="{{url('upload/companyprofile/'. Session('cprofile_img'))}}" alt="User Image" class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
-									<h6>{{session('name')}}</h6>
+									<h6>{{Session('cname')}}</h6>
 									<p class="text-muted mb-0">Administrator</p>
 								</div>
 							</div>
@@ -221,6 +221,9 @@
 								<ul style="display: none;">
 									<li>
 											<a href="{{url('/company-doctor')}}"><i class="fe fe-user"></i> <span>Manage Doctors</span></a>
+									</li>
+									<li>
+											<a href="{{url('/company-fav-doctor')}}"><i class="fe fe-user"></i> <span>My Doctors</span></a>
 									</li>
 									<li class="submenu">
 										<a href="javascript:void(0);"><i class="fe fe-calendar"></i> <span>Appointment</span> <span class="menu-arrow"></span></a>

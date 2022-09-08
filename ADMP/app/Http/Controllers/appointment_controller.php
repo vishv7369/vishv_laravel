@@ -8,6 +8,8 @@ use App\Models\doctor;
 use App\Models\patient;
 use hash;
 use session;
+use Alert;
+use Exception;
 
 class appointment_controller extends Controller
 {
@@ -46,14 +48,11 @@ class appointment_controller extends Controller
         $data->time=$request->time;
 
         $data=doctor::where("id","=",$doc_id)->get();
-       // $doctordata=doctor::find($id);
-        //$doc_id=$doctordata->id;
-        //$doctor_id_arr=doctor::where('doctor_id','=',$doctor_id)->get();
         $data->patient_id=Session('patient_id');
         $res=$data->save();
-       // $doctor_id
-       // $data->doc_id=
-       return redirect('patient.book_by_otp')->with('success','appointment add suceess');
+      
+       Alert::success('Done', 'You\'ve Successfully Add Appointment');
+       return redirect('patient.book_by_otp');
     }
 
 

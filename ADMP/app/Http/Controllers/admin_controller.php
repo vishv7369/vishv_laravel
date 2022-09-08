@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\admin;
 use Hash;
 use Session;
+use Alert;
+use Exception;
 
 class admin_controller extends Controller
 {
@@ -99,7 +101,8 @@ class admin_controller extends Controller
 		}
 
         $data->save();
-		return redirect('/admin-profile')->with('success','Update Success');
+        Alert::success('Congrats', 'You\'ve Successfully Update You\'re Profile');
+		return redirect('/admin-profile');
     }
     
     public function login(Request $request)
@@ -127,18 +130,21 @@ class admin_controller extends Controller
            {
                     $request->Session()->put('admin_id',$data->id);
                     $request->Session()->put('email',$data->email);
+                    $request->Session()->put('name',$data->name);
                     $request->Session()->put('img',$data->img);
                    return redirect('/admin');
                
            }
            else
            {
-            return redirect('/login')->with('fail','Login Failed due to Wrong Password');
+            Alert::error('Fail', 'Login Failed due to Wrong Password');
+            return redirect('/admin-login');//->with('fail','Login Failed due to Wrong Password');
            }
        }
        else
        {
-        return redirect('/login')->with('fail','Login Failed due to Wrong email');
+        Alert::error('Fail', 'Login Failed due to Wrong email');
+        return redirect('/admin-login');//->with('fail','Login Failed due to Wrong email');
        }
     }
 
@@ -146,6 +152,7 @@ class admin_controller extends Controller
     {
         Session()->pull('admin_id');
         Session()->pull('email');
+        Session()->pull('name');
         Session()->pull('img');
         return redirect('/admin-login');
     }

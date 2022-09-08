@@ -8,6 +8,8 @@ use App\Models\manager;
 use App\Models\mr;
 use Hash;
 use session;
+use Alert;
+use Exception;
 
 class mr_controller extends Controller
 {
@@ -78,7 +80,8 @@ class mr_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('admin-add-mr')->with('success','Add MR Success');
+        Alert::success('Done', 'You\'ve Successfully Add MR');
+        return redirect('admin-add-mr');
 
     }
 
@@ -147,7 +150,8 @@ class mr_controller extends Controller
         }
 
         $data->save();
-		return redirect('/admin-mr')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update MR');
+		return redirect('/admin-mr');
     }
 
     /**
@@ -160,7 +164,8 @@ class mr_controller extends Controller
     {
         $data=mr::find($id);
         $data=delete();
-        return redirect('admin-mr')->with("success","MR deleted successfully");
+        Alert::success('Done', 'You\'ve Successfully Delete MR');
+        return redirect('admin-mr');
     }
 
 
@@ -210,7 +215,8 @@ class mr_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('company-add-mr')->with('success','Add MR Success');
+        Alert::success('Done', 'You\'ve Successfully Add MR');
+        return redirect('company-add-mr');
 
     }
 
@@ -262,7 +268,8 @@ class mr_controller extends Controller
         }
 
         $data->save();
-		return redirect('/company-mr')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update MR');
+		return redirect('/company-mr');
     }
 
     //////////////////////////////////////////////////manager panel/////////////////////////////////////
@@ -311,7 +318,8 @@ class mr_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('manager-add-mr')->with('success','Add MR Success');
+        Alert::success('Done', 'You\'ve Successfully Add MR');
+        return redirect('manager-add-mr');
 
     }
 
@@ -362,7 +370,8 @@ class mr_controller extends Controller
         }
 
         $data->save();
-		return redirect('/manager-mr')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update MR');
+		return redirect('/manager-mr');
     }
 
 }

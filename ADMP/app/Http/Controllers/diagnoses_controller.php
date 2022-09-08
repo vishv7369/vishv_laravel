@@ -11,6 +11,8 @@ use App\Models\appointments;
 use App\Models\doc_fav_medicine;
 use Hash;
 use session;
+use Alert;
+use Exception;
 
 class diagnoses_controller extends Controller
 {
@@ -74,6 +76,17 @@ class diagnoses_controller extends Controller
         $data->patient_id=$request->patient_id;
         $res=$data->save();
         return back();
+    }
+
+    public function invoice_view($id)
+    {
+        $app_data=appointments::find($id)->first();
+        $patient_id=$app_data->patient_id;
+        $patient_data=patient::where('id','=',$id)->first();
+        $doctor_data=doctor::where('id','=',Session('doctor_id'))->first();
+        $diagnoses_data=diagnoses::where('appoinment_id','=',$id)->get();
+        $prescriptions_data=prescriptions::where('appoinment_id','=',$id)->get();
+        return view('doctor.invoice-view',["app_data"=>$app_data,"patient_data"=>$patient_data,"doctor_data"=>$doctor_data,"diagnoses_data"=>$diagnoses_data,"prescriptions_data"=>$prescriptions_data]);
     }
 
     /**

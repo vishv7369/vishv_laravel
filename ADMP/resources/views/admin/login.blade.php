@@ -38,7 +38,9 @@
 							<div class="login-right-wrap">
 								<h1>Admin Login</h1>
 								<p class="account-subtitle">Access to our dashboard</p>
-								
+								@if(session()->has('fail'))
+								    <i class="alert alert-danger">{{session('fail')}}</i>
+							    @endif
 								<!-- Form -->
 								<form action="{{url('/adminlogin')}}" method="post" enctype="multipart/form-data">
 									@csrf

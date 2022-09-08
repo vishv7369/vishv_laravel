@@ -75,7 +75,8 @@ class manager_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('admin-add-manager')->with('success','Add Manager Success');
+        Alert::success('Done', 'You\'ve Successfully Add Manager');
+        return redirect('admin-add-manager');
     }
 
     /**
@@ -142,7 +143,8 @@ class manager_controller extends Controller
         }
 
         $data->save();
-		return redirect('/admin-manager')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update Manager');
+		return redirect('/admin-manager');
     }
 
     /**
@@ -155,7 +157,8 @@ class manager_controller extends Controller
     {
         $data=manager::find($id);
         $data->delete();
-        return redirect('admin-manager')->with("success","Manager deleted successfully");
+        Alert::success('Done', 'You\'ve Successfully Delete Manager');
+        return redirect('admin-manager');
     }
 
 /////////////////////////////////////Company Panel/////////////////////////////////////////
@@ -203,7 +206,8 @@ public function companymanagerstore(Request $request)
     $data->visiting_card=$file_name2; // file name store in db
 
     $res=$data->save();
-    return redirect('company-add-manager')->with('success','Add Manager Success');
+    Alert::success('Done', 'You\'ve Successfully Add Manager');
+    return redirect('company-add-manager');
 }
 
 public function companymanagerindex()
@@ -250,14 +254,16 @@ public function companymanageredit($id)
         }
 
         $data->save();
-		return redirect('/company-manager')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update Manager');
+		return redirect('/company-manager');
     }
 
     public function companymanagerdestroy($id)
     {
         $data=manager::find($id);
         $data->delete();
-        return redirect('company-manager')->with("success","Manager deleted successfully");
+        Alert::success('Done', 'You\'ve Successfully Delete Manager');
+        return redirect('company-manager');
     }
 
     ////////////////////////////////////////////manager panel//////////////////////////////////
@@ -280,6 +286,8 @@ public function companymanageredit($id)
             {
                 $request->Session()->put('manager_id',$data->id);
                 $request->Session()->put('email', $data->email);
+                $mname=$data->first_name." ".$data->last_name; 
+                $request->Session()->put('mname',$mname);
                 $request->Session()->put('mprofile_img', $data->mprofile_img);
                 return redirect('manager-dashboard');
             }
@@ -299,6 +307,7 @@ public function companymanageredit($id)
         Session()->pull('manager_id');
         Session()->pull('email');
         Session()->pull('mprofile_img');
+        Session()->pull('mname');
         return redirect('/manager');
     }
 
@@ -346,7 +355,8 @@ public function companymanageredit($id)
         }
 
         $data->save();
-		return redirect('/manager-profile')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update Your Profile');
+		return redirect('/manager-profile');
     }
 
 

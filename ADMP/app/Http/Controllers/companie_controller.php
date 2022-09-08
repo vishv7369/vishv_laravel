@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\companie;
 use Hash;
 use Session;
+use Alert;
+use Exception;
 
 class companie_controller extends Controller
 {
@@ -69,7 +71,8 @@ class companie_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        return redirect('admin-add-company')->with('success','Add Company Success');
+        Alert::success('Done', 'You\'ve Successfully Add Company');
+        return redirect('admin-add-company');
 
     }
 
@@ -137,6 +140,7 @@ class companie_controller extends Controller
         }
 
         $data->save();
+        Alert::success('Done', 'You\'ve Successfully Update Company');
 		return redirect('/admin-company')->with('success','Update Success');
     }
 
@@ -150,7 +154,8 @@ class companie_controller extends Controller
     {
         $data=companie::find($id);
         $data->delete();
-        return redirect('admin-company')->with("success","Company deleted successfully");
+        Alert::success('Done', 'You\'ve Successfully Delete Company');
+        return redirect('admin-company');
     }
 
     ///=====================company panel================================================================
@@ -173,6 +178,8 @@ class companie_controller extends Controller
             {
                 $request->Session()->put('company_id',$data->id);
                 $request->Session()->put('email', $data->email);
+                $cname=$data->first_name." ".$data->last_name; 
+                $request->Session()->put('cname',$cname);
                 $request->Session()->put('cprofile_img', $data->cprofile_img);
                 return redirect('company-dashboard');
             }
@@ -192,6 +199,7 @@ class companie_controller extends Controller
         Session()->pull('company_id');
         Session()->pull('email');
         Session()->pull('cprofile_img');
+        Session()->pull('cname');
         return redirect('/company');
     }
 
@@ -239,7 +247,8 @@ class companie_controller extends Controller
         }
 
         $data->save();
-		return redirect('/company-profile')->with('success','Update Success');
+        Alert::success('Done', 'You\'ve Successfully Update Company Profile');
+		return redirect('/company-profile');
     }
 
 }

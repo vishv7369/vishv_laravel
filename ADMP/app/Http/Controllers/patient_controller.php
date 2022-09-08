@@ -9,6 +9,7 @@ use App\Mail\welcomemail;
 use Hash;
 use Mail;
 use Alert;
+use Exception;
 
 class patient_controller extends Controller
 {
@@ -27,7 +28,8 @@ class patient_controller extends Controller
     {
         $data=patient::find($id);
         $data->delete();
-        return redirect('admin-patient')->with('success','Delete Success');
+        Alert::success('Done', 'You\'ve Successfully Delete Patient');
+        return redirect('admin-patient');
     }
 
     /////////////////////////////////patient panel////////////////////////////////////////////////////
@@ -55,9 +57,11 @@ class patient_controller extends Controller
             'password'=>'required',
         ]);
         $data=new patient;
-    $name=$data->name=$request->name;
-    $email=$data->email=$request->email;
+        $name=$data->name=$request->name;
+        $email=$data->email=$request->email;
+        
         $data->password=Hash::make($request->password);
+
 
         $res=$data->save();
         if($res)
@@ -65,7 +69,8 @@ class patient_controller extends Controller
 			$details=['title'=>$email,'comment'=>"Welcome Mail"];
 	   
 			Mail::to($email)->send(new welcomemail($details));
-			return back()->with("success","Register Success");
+            Alert::success('Done', 'You\'ve Successfully Register');
+			return redirect('login');
 		}
 		else
 		{
@@ -98,22 +103,35 @@ class patient_controller extends Controller
                {
                    $request->Session()->put('patient_id',$data->id);
                    $request->Session()->put('email',$data->email);
-                   $request->Session()->put('ptprofile_img',$data->ptprofile_img);
+                   $request->Session()->put('name',$data->name);
+                   $ptprofile_img=$data->ptprofile_img;
+                   if($ptprofile_img=="null")
+                   {
+        
+                   }
+                   else
+                   {
+                    $request->Session()->put('ptprofile_img',$data->ptprofile_img);
+                   }
+                   
                    return redirect('/index');
                }
                else
                {
-                return redirect('/login')->with('fail','Login Failed due to Blocked User');
+                Alert::error('Fail', 'Login Failed due to Blocked User');
+                return redirect('/login');
                }
            }
            else
            {
-            return redirect('/login')->with('fail','Login Failed due to Wrong Password');
+            Alert::error('Fail', 'Login Failed due to Blocked User');
+            return redirect('/login');
            }
         }
         else
         {
-         return redirect('/login')->with('fail','Login Failed due to Wrong user');
+            Alert::error('Fail', 'Login Failed due to Wrong user');
+            return redirect('/login');
         }
     }
 
@@ -121,6 +139,7 @@ class patient_controller extends Controller
     {
         Session()->pull('patient_id');
         Session()->pull('email');
+        Session()->pull('name');
         Session()->pull('ptprofile_img');
         return redirect('/login');
     }
@@ -176,7 +195,8 @@ class patient_controller extends Controller
          }
 
          $data->save();
-		return redirect('/editpatient')->with('success','Update Success');
+         Alert::success('Done', 'You\'ve Successfully Update Your Profile');
+		return redirect('/editpatient');
     }
 
 

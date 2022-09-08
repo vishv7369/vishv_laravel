@@ -74,8 +74,8 @@
 										</div>
 										<div class="col-sm-6 text-sm-right">
 											<div class="billing-info">
-												<h4 class="d-block">1 November 2019</h4>
-												<span class="d-block text-muted">#INV0001</span>
+												<h4 class="d-block">Date : <?php echo (new DateTime())->format('d-m-Y'); ?></h4>
+												<span class="d-block text-muted">Appointment id : {{$app_data->id}}</span>
 											</div>
 										</div>
 									</div>
@@ -155,7 +155,7 @@
 															</tr>
 															@endforeach
 														@else
-														<p class="text-danger mt-2">Not</p>
+														<p class="text-danger mt-2">No data added</p>
 														@endif	
 														</tbody>
 													</table>
@@ -277,7 +277,7 @@
 															</tr>
 															@endforeach
 														@else
-														<p class="text-danger mt-2">Not</p>
+														<p class="text-danger mt-2">No data added</p>
 														@endif
 															</tr>	
 														</tbody>
@@ -288,14 +288,16 @@
 										
 									</div>
     </div><!-- Submit Section -->
-									<div class="row">
-										<div class="col-md-12">
-											<div class="submit-section text-right">
-											<button type="reset" class="btn btn-secondary submit-btn">Clear</button>
-												<button type="submit" name="submit" value="send" class="btn btn-primary submit-btn">Save</button>
-											</div>
-										</div>
-									</div>
+	<td class="text-right">
+			<div class="actions text-right">
+				<a  href="" class="btn btn-sm bg-danger-light">
+					<i class="fe fe-trash"></i> Clear
+				</a>
+				<a class="btn btn-sm bg-success-light" href="{{url('invoice-view/'.$app_data->id)}}">
+					<i class="fe fe-pencil"></i> Submit
+				</a>
+			</div>
+			</td>
 									<!-- /Submit Section -->
   </div>
   </form>

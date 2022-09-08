@@ -53,7 +53,8 @@ return new class extends Migration
             $table->string('followup_fees')->after('consulting_fees');
             $table->string('notification')->after('followup_fees');
             $table->enum('doctor_status',['Block','Unblock'])->default('Unblock')->after('notification');
-            $table->enum('hospital_status',['Enable','Disable'])->default('Disable')->after('doctor_status');
+            $table->enum('hospital_status',['Available','Not Available'])->default('Available')->after('doctor_status');
+            $table->enum('visitor_status',['Available','Not Available'])->default('Available')->after('hospital_status');
         });
     }
 

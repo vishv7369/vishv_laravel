@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\company_fav_doc;
 use Hash;
 use session;
+use Alert;
+use Exception;
 
 class company_fav_doc_controller extends Controller
 {
@@ -14,9 +16,10 @@ class company_fav_doc_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function companyfavdoctor()  
     {
-        //
+        $data=company_fav_doc::join('doctors','doctors.id','=','company_fav_docs.doctor_id')->join('specialists','specialists.id','=','doctors.specialist_id')->join('cities','cities.id','=','doctors.city')->join('states','states.id','=','doctors.state')->where('company_id','=',Session('company_id'))->where('visitor_status','=','Available')->get();
+        return view('company.fav-doctor',["companyfavdoctor_arr"=>$data]);
     }
 
     /**
@@ -37,14 +40,11 @@ class company_fav_doc_controller extends Controller
      */
     public function company_fav_doc($id)
     {
-        //$docdata=company_fav_doc::find($id);
-       // $doctor_id=$docdata->doctor_id;
-       // echo $doctor_id;
-    //exit();
         $data=new company_fav_doc;
         $data->company_id=Session('company_id');
         $data->doctor_id=$id; 
         $res=$data->save();
+        Alert::success('Done', 'You\'ve Successfully Add to Favourite Doctor');
         return back();
     }
 
@@ -88,8 +88,9 @@ class company_fav_doc_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function company_fav_doc_del($id)
     {
-        //
+        $data=company_fav_doc::where('doctor_id','=',$id)->where('company_id','=',Session('company_id'))->delete();
+        return back();
     }
 }

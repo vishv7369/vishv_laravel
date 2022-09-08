@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 07, 2022 at 01:18 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Sep 08, 2022 at 02:40 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -163,28 +163,8 @@ CREATE TABLE `company_fav_docs` (
 --
 
 INSERT INTO `company_fav_docs` (`id`, `created_at`, `updated_at`, `doctor_id`, `company_id`) VALUES
-(5, '2022-09-06 06:22:59', '2022-09-06 06:22:59', 2, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company_slots`
---
-
-CREATE TABLE `company_slots` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `doc_id` bigint(20) UNSIGNED NOT NULL,
-  `cday` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cslot_morning_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cslot_morning_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cslot_afternoon_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cslot_afternoon_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cslot_evening_to` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cslot_evening_from` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'null',
-  `cno_slots` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(16, '2022-09-08 18:12:56', '2022-09-08 18:12:56', 2, 1),
+(17, '2022-09-08 18:13:08', '2022-09-08 18:13:08', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -226,10 +206,10 @@ CREATE TABLE `diagnoses` (
 --
 
 INSERT INTO `diagnoses` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `problems`, `diagnosis`, `care_suggestion`, `reports`, `status`) VALUES
+(1, '2022-09-06 03:42:49', '2022-09-06 03:42:49', NULL, 1, 'dfvd', 'dfvxdf', 'zczdf', 'zdvd', 'Pending'),
+(2, '2022-09-06 03:57:11', '2022-09-06 03:57:11', NULL, 3, 'hbvn', 'kjnjkm', 'kjnk', 'kjnkj', 'Pending'),
 (3, '2022-09-06 06:03:06', '2022-09-06 06:03:06', 1, 1, 'rsfser', 'srgrs', 'regedr', 'srgfved', 'Pending'),
-(4, '2022-09-07 00:08:10', '2022-09-07 00:08:10', 1, 1, 'hj', 'hj', 'hkj', 'ghj', 'Pending'),
-(5, '2022-09-07 03:51:24', '2022-09-07 03:51:24', 1, 1, 'rr', 'jhvgjhv', 'jhvjhv', 'jvjhvjhv', 'Pending'),
-(6, '2022-09-07 03:52:25', '2022-09-07 03:52:25', 1, 1, 'ddssdasd', 'sadsads', 'sd', 'sdsd', 'Pending');
+(4, '2022-09-08 19:37:38', '2022-09-08 19:37:38', 1, 1, 'dfgv', 'fbg', 'xfgbg', 'fxgbfxg', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -297,7 +277,8 @@ CREATE TABLE `doctors` (
   `followup_fees` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notification` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `doctor_status` enum('Block','Unblock') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Unblock',
-  `hospital_status` enum('Enable','Disable') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Disable',
+  `hospital_status` enum('Available','Not Available') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Available',
+  `visitor_status` enum('Available','Not Available') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Available',
   `area` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -305,11 +286,11 @@ CREATE TABLE `doctors` (
 -- Dumping data for table `doctors`
 --
 
-INSERT INTO `doctors` (`id`, `gender`, `first_name`, `last_name`, `created_at`, `updated_at`, `specialist_id`, `short_tittle`, `email`, `password`, `dob`, `profile_img`, `liacence_no`, `education`, `experience`, `hospital_name`, `hospital_img`, `dr_mobile`, `office_no`, `visit_card`, `about`, `state`, `city`, `address`, `pincode`, `google_map`, `day`, `hospital_morning_to`, `hospital_morning_from`, `hospital_afternoon_to`, `hospital_afternoon_from`, `hospital_evening_to`, `hospital_evening_from`, `consulting_fees`, `followup_fees`, `notification`, `doctor_status`, `hospital_status`, `area`) VALUES
-(1, 'Female', 'Ayushi', 'Maurya', '2022-09-03 14:18:29', '2022-09-05 11:40:32', 1, 'Dentist', 'ayushimaurya@gmail.com', '$2y$10$0rO0XXwbvBJPMUZEUBLyVea/YoexnxiZJ1FuSSQGyW43b31qm85KO', '1990-12-05', '1662189509_profile_img.jpg', '124536987', 'BDS', '3 Year', 'Sanjivni Hospital Care', '1662397832218739hospital_img.jpg,1662397832916799hospital_img.jpg,1662397832386242hospital_img.jpg', '3625410987', '36254189', '1662189509_visit_card_img.jpg', 'I\'m a good Dentist', 1, 2, 'Opp. Railway Station , Maninagar, Ahmedabad', '325146', 'https://goo.gl/maps/vSXkPS2F6FsHfEECA', 'Monday,Wednesday,Friday', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '500', '250', 'If any help just contact me', 'Unblock', 'Disable', 1),
-(2, 'Female', 'Ritika', 'Maurya', '2022-09-03 14:26:13', '2022-09-05 11:40:57', 2, 'Mr.', 'ritikamaurya@gmail.com', '$2y$10$jdhSLq5t3idCxz/MLQufi.nnxeiOZGHxUB7jyBkrfXEUuzzOedgHi', '1985-03-03', '1662189973_profile_img.jpg', '214536', 'MD', '5 Year', 'City Hospital', '1662397857433529hospital_img.jpg,1662397857460944hospital_img.jpg,1662397857380716hospital_img.jpg', '1203654789', '25146398', '1662189973_visit_card_img.png', 'I\'m a good doctor', 5, 3, 'Andheri, Mumbai', '362514', 'https://goo.gl/maps/5ZGX5AToGK5GZrHy5', 'Tuesday,Thursday,Saturday', '08:00', '10:00', '12:00', '16:00', NULL, NULL, '1000', '500', 'Any emergency just inform me.', 'Unblock', 'Disable', 2),
-(3, 'Male', 'Vishal', 'Maurya', '2022-09-04 09:35:48', '2022-09-05 11:41:24', 3, 'Mr.', 'vishalmaurya@gmail.com', '$2y$10$atdFxSeUuBdmhCMr51AlouaHoRrMHS1PN..Tf7EKGgRZJfb/RAe0i', '1980-07-08', '1662303948_profile_img.jpg', '3748392378', 'MS, DNB', '4 Year', 'Life Care Hospital', '1662397884455115hospital_img.jpg,1662397884926921hospital_img.jpg,1662397884741150hospital_img.jpg,1662397884841882hospital_img.jpg,1662397884381100hospital_img.jpg,1662397884628112hospital_img.jpg', '8976543210', '36472682', '1662303948_visit_card_img.png', 'I\'m a good doctor', 1, 2, 'Ghatlodia, Ahmedabad', '987654', 'https://gmail.com', 'Tuesday,Wednesday,Thursday,Friday', '10:00', '12:00', NULL, NULL, '16:00', '20:00', '2000', '1000', 'Any emergency contact me', 'Unblock', 'Disable', 1),
-(4, 'Female', 'Beena', 'Gajjar', '2022-09-05 11:18:25', '2022-09-05 11:18:25', 4, 'Orthopedic', 'beenagajjar@gmail.com', '$2y$10$I8N/YTM4ef9Wn1krlzyBse93Ju7/sKSDrPyCV09hOUlQ5iFleDytO', '1985-08-20', '1662396505_profile_img.jpg', '5467858', 'MBBS', '10 YEAR', 'Civil Hospital', '1662396505980595hospital_img.jpg,1662396505160055hospital_img.jpg,1662396505906951hospital_img.jpg', '5236417890', '52364178', '1662396505_visit_card_img.png', 'I\'m a good doctor', 1, 2, 'CTM, Ahmedabad', '214578', 'https://gmail.com', 'Monday,Wednesday,Friday,Sunday', '08:00', '10:00', '13:00', '15:00', '17:00', '20:00', '1000', '500', 'any emergency then contact me', 'Unblock', 'Disable', 1);
+INSERT INTO `doctors` (`id`, `gender`, `first_name`, `last_name`, `created_at`, `updated_at`, `specialist_id`, `short_tittle`, `email`, `password`, `dob`, `profile_img`, `liacence_no`, `education`, `experience`, `hospital_name`, `hospital_img`, `dr_mobile`, `office_no`, `visit_card`, `about`, `state`, `city`, `address`, `pincode`, `google_map`, `day`, `hospital_morning_to`, `hospital_morning_from`, `hospital_afternoon_to`, `hospital_afternoon_from`, `hospital_evening_to`, `hospital_evening_from`, `consulting_fees`, `followup_fees`, `notification`, `doctor_status`, `hospital_status`, `visitor_status`, `area`) VALUES
+(1, 'Female', 'Ayushi', 'Maurya', '2022-09-03 14:18:29', '2022-09-05 11:40:32', 1, 'Dentist', 'ayushimaurya@gmail.com', '$2y$10$0rO0XXwbvBJPMUZEUBLyVea/YoexnxiZJ1FuSSQGyW43b31qm85KO', '1990-12-05', '1662189509_profile_img.jpg', '124536987', 'BDS', '3 Year', 'Sanjivni Hospital Care', '1662397832218739hospital_img.jpg,1662397832916799hospital_img.jpg,1662397832386242hospital_img.jpg', '3625410987', '36254189', '1662189509_visit_card_img.jpg', 'I\'m a good Dentist', 1, 2, 'Opp. Railway Station , Maninagar, Ahmedabad', '325146', 'https://goo.gl/maps/vSXkPS2F6FsHfEECA', 'Monday,Wednesday,Friday', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '500', '250', 'If any help just contact me', 'Unblock', '', 'Available', 1),
+(2, 'Female', 'Ritika', 'Maurya', '2022-09-03 14:26:13', '2022-09-05 11:40:57', 2, 'Mr.', 'ritikamaurya@gmail.com', '$2y$10$jdhSLq5t3idCxz/MLQufi.nnxeiOZGHxUB7jyBkrfXEUuzzOedgHi', '1985-03-03', '1662189973_profile_img.jpg', '214536', 'MD', '5 Year', 'City Hospital', '1662397857433529hospital_img.jpg,1662397857460944hospital_img.jpg,1662397857380716hospital_img.jpg', '1203654789', '25146398', '1662189973_visit_card_img.png', 'I\'m a good doctor', 5, 3, 'Andheri, Mumbai', '362514', 'https://goo.gl/maps/5ZGX5AToGK5GZrHy5', 'Tuesday,Thursday,Saturday', '08:00', '10:00', '12:00', '16:00', NULL, NULL, '1000', '500', 'Any emergency just inform me.', 'Unblock', '', 'Available', 2),
+(3, 'Male', 'Vishal', 'Maurya', '2022-09-04 09:35:48', '2022-09-05 11:41:24', 3, 'Mr.', 'vishalmaurya@gmail.com', '$2y$10$atdFxSeUuBdmhCMr51AlouaHoRrMHS1PN..Tf7EKGgRZJfb/RAe0i', '1980-07-08', '1662303948_profile_img.jpg', '3748392378', 'MS, DNB', '4 Year', 'Life Care Hospital', '1662397884455115hospital_img.jpg,1662397884926921hospital_img.jpg,1662397884741150hospital_img.jpg,1662397884841882hospital_img.jpg,1662397884381100hospital_img.jpg,1662397884628112hospital_img.jpg', '8976543210', '36472682', '1662303948_visit_card_img.png', 'I\'m a good doctor', 1, 2, 'Ghatlodia, Ahmedabad', '987654', 'https://gmail.com', 'Tuesday,Wednesday,Thursday,Friday', '10:00', '12:00', NULL, NULL, '16:00', '20:00', '2000', '1000', 'Any emergency contact me', 'Unblock', '', 'Available', 1),
+(4, 'Female', 'Beena', 'Gajjar', '2022-09-05 11:18:25', '2022-09-05 11:18:25', 4, 'Orthopedic', 'beenagajjar@gmail.com', '$2y$10$I8N/YTM4ef9Wn1krlzyBse93Ju7/sKSDrPyCV09hOUlQ5iFleDytO', '1985-08-20', '1662396505_profile_img.jpg', '5467858', 'MBBS', '10 YEAR', 'Civil Hospital', '1662396505980595hospital_img.jpg,1662396505160055hospital_img.jpg,1662396505906951hospital_img.jpg', '5236417890', '52364178', '1662396505_visit_card_img.png', 'I\'m a good doctor', 1, 2, 'CTM, Ahmedabad', '214578', 'https://gmail.com', 'Monday,Wednesday,Friday,Sunday', '08:00', '10:00', '13:00', '15:00', '17:00', '20:00', '1000', '500', 'any emergency then contact me', 'Unblock', '', 'Available', 1);
 
 -- --------------------------------------------------------
 
@@ -554,7 +535,9 @@ CREATE TABLE `patients` (
 INSERT INTO `patients` (`id`, `name`, `mobileno`, `email`, `password`, `gender`, `ptprofile_img`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Vishv Unjiya', '2514789630', 'vishvunjiya3058822@gmail.com', '$2y$10$CndUF4fiquoYMKic4/mZZOsj21/GJELPmEuVNB3YMbJ8Y54U5CNe.', 'Male', '1662191213_ptprofile_img.jpg', 'Unblock', '2022-09-03 13:49:24', '2022-09-03 14:46:53'),
 (2, 'Reena Valekar', 'null', 'riyavalekar19@gmail.com', '$2y$10$5v6NfBYh61vch2ieIy0QOe.Ih2ilsuBol1poYDKmwLNxe/i5F0OsC', 'Female', '1662207863_ptprofile_img.jpg', 'Unblock', '2022-09-03 19:18:54', '2022-09-03 19:24:23'),
-(3, 'Anchal Maurya', '8790654312', 'mohinimaurya062@gmail.com', '$2y$10$AVd3Kwe3uqnejDv2NebHluZe9hbf0WUF8ZU6LMs26nAkX0k55bbum', 'Female', '1662299753_ptprofile_img.jpg', 'Unblock', '2022-09-04 08:22:51', '2022-09-04 08:26:59');
+(3, 'Anchal Maurya', '8790654312', 'mohinimaurya062@gmail.com', '$2y$10$AVd3Kwe3uqnejDv2NebHluZe9hbf0WUF8ZU6LMs26nAkX0k55bbum', 'Female', '1662299753_ptprofile_img.jpg', 'Unblock', '2022-09-04 08:22:51', '2022-09-04 08:26:59'),
+(5, 'Mishti Maurya', 'null', 'mohinimaurya026@gmail.com', '$2y$10$8nx92y1lJKaFpAOjlnXFh.WYrTw.ZhAZmkV.u6lAmYJbJjPJqtOwy', 'null', 'null', 'Unblock', '2022-09-07 11:57:37', '2022-09-07 11:57:37'),
+(6, 'Keerti Maurya', 'null', 'mohini.maurya6201@gmail.com', '$2y$10$Ex64/Krc8bUxQfmoq7Gxpej7fHw2p1uHB7fxgVVt7z1WTtrEsJG06', 'null', 'null', 'Unblock', '2022-09-07 13:07:57', '2022-09-07 13:07:57');
 
 -- --------------------------------------------------------
 
@@ -569,6 +552,16 @@ CREATE TABLE `patient_favs` (
   `doctor_id` bigint(20) UNSIGNED NOT NULL,
   `patient_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `patient_favs`
+--
+
+INSERT INTO `patient_favs` (`id`, `created_at`, `updated_at`, `doctor_id`, `patient_id`) VALUES
+(2, '2022-09-06 09:10:23', '2022-09-06 09:10:23', 4, 3),
+(5, '2022-09-07 14:06:30', '2022-09-07 14:06:30', 2, 6),
+(7, '2022-09-08 12:22:13', '2022-09-08 12:22:13', 3, 6),
+(11, '2022-09-08 18:14:55', '2022-09-08 18:14:55', 3, 5);
 
 -- --------------------------------------------------------
 
@@ -675,9 +668,8 @@ CREATE TABLE `prescriptions` (
 --
 
 INSERT INTO `prescriptions` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `medicine_name`, `medicine_Quantity`, `medicine_take_Days`, `medicine_take_Time`, `medicine_dose`, `status`) VALUES
-(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
-(3, '2022-09-07 04:53:04', '2022-09-07 04:53:04', 1, 1, 'dolo', '5', '4', 'Morning', 'Monday', 'Pending'),
-(4, '2022-09-07 04:53:34', '2022-09-07 04:53:34', 1, 1, 'aspirine', '8', '9', 'Morning,Evening', 'Monday', 'Pending');
+(1, '2022-09-06 04:22:42', '2022-09-06 04:22:42', NULL, 3, 'fdvs', '1', '2', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
+(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -821,7 +813,8 @@ CREATE TABLE `visitor_slots` (
 INSERT INTO `visitor_slots` (`id`, `created_at`, `updated_at`, `doc_id`, `visitor_slot`, `start_time`, `end_time`, `mr_allowed`, `manager_allowed`, `company_allowed`, `day`, `status`) VALUES
 (1, '2022-09-03 18:07:26', '2022-09-03 18:36:56', 1, '1', '16:00', '19:00', '5', '2', '3', 'Wednesday', 'Disable'),
 (2, '2022-09-03 18:08:46', '2022-09-03 18:37:05', 1, '2', '10:00', '13:00', '10', '55', '5', 'Monday', 'Disable'),
-(3, '2022-09-03 19:33:19', '2022-09-03 19:33:31', 2, '1', '05:33', '22:38', '4', '9', '2', 'Tuesday', 'Disable');
+(4, '2022-09-08 14:20:45', '2022-09-08 14:20:45', 2, '1', '12:00', '18:00', '1', '2', '3', 'Thursday', 'Disable'),
+(5, '2022-09-08 14:21:33', '2022-09-08 14:21:33', 2, '2', '10:00', '16:00', '2', '3', '5', 'Friday', 'Disable');
 
 --
 -- Indexes for dumped tables
@@ -868,13 +861,6 @@ ALTER TABLE `company_fav_docs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `company_fav_docs_doctor_id_foreign` (`doctor_id`),
   ADD KEY `company_fav_docs_company_id_foreign` (`company_id`);
-
---
--- Indexes for table `company_slots`
---
-ALTER TABLE `company_slots`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `company_slots_doc_id_foreign` (`doc_id`);
 
 --
 -- Indexes for table `contacts`
@@ -1073,13 +1059,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `company_fav_docs`
 --
 ALTER TABLE `company_fav_docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `company_slots`
---
-ALTER TABLE `company_slots`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -1091,7 +1071,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `diagnoses`
 --
 ALTER TABLE `diagnoses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `divisions`
@@ -1151,13 +1131,13 @@ ALTER TABLE `mrs`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `patient_favs`
 --
 ALTER TABLE `patient_favs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `patient_slots`
@@ -1175,7 +1155,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1211,7 +1191,7 @@ ALTER TABLE `stockiests`
 -- AUTO_INCREMENT for table `visitor_slots`
 --
 ALTER TABLE `visitor_slots`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -1242,12 +1222,6 @@ ALTER TABLE `cities`
 ALTER TABLE `company_fav_docs`
   ADD CONSTRAINT `company_fav_docs_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
   ADD CONSTRAINT `company_fav_docs_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`);
-
---
--- Constraints for table `company_slots`
---
-ALTER TABLE `company_slots`
-  ADD CONSTRAINT `company_slots_doc_id_foreign` FOREIGN KEY (`doc_id`) REFERENCES `doctors` (`id`);
 
 --
 -- Constraints for table `diagnoses`

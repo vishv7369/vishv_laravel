@@ -1,6 +1,6 @@
-@extends('doctor.Layout.main_layout') 	
+@extends('patient.Layout.main_layout') 	
 @section('main_container')
-			<!-- Breadcrumb -->
+<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
 				<div class="container-fluid">
 					<div class="row align-items-center">
@@ -8,10 +8,10 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Invoice View</li>
+									<li class="breadcrumb-item active" aria-current="page">My Doctor</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Invoice View</h2>
+							<h2 class="breadcrumb-title">My Doctor</h2>
 						</div>
 					</div>
 				</div>
@@ -23,135 +23,79 @@
 				<div class="container-fluid">
 
 					<div class="row">
-						<div class="col-lg-8 offset-lg-2">
-							<div class="invoice-content">
-								<div class="invoice-item">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="invoice-logo">
-												<img src="{{url('Frontend/assets/img/logo.png')}}" alt="logo">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<p class="invoice-details">
-												<strong>Appointment id : {{$app_data->id}}</strong> <br>
-												<strong>Issued:</strong> <?php echo (new DateTime())->format('d-m-Y'); ?>
-											</p>
-										</div>
-									</div>
-								</div>
+						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+						
+							<!-- Profile Sidebar -->
+							<div class="profile-sidebar">
 								
-								<!-- Invoice Item -->
-								<div class="invoice-item">
-									<div class="row">
-										<div class="col-md-6">
-											<div class="invoice-info">
-												<strong class="customer-text">Invoice From</strong>
-												<p class="invoice-details invoice-details-two">
-												
-													
-													Dr. {{$doctor_data->first_name}} {{$doctor_data->first_name}} <br>
-													{{$doctor_data->address}},<br>
-													{{$doctor_data->city}}, {{$doctor_data->state}} <br>
-													
-															
-												</p>
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="invoice-info invoice-info2">
-												<strong class="customer-text">Invoice To</strong>
-												<p class="invoice-details">
-													{{$patient_data->name}} <br>
-													{{$patient_data->email}}<br>
-													{{$patient_data->mobileno}}<br>
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Invoice Item -->
-								<br>
-								<br>
-								<!-- Invoice Item -->
-								<div class="invoice-item invoice-table-wrap">
-									<div class="row">
-										<div class="col-md-12">
-											<strong>Patient Reports and Diagnosis</strong>
-											<br>
-											<br>
-											<div class="table-responsive">
-												<table class="invoice-table table table-bordered">
-													<thead>
-														<tr>
-															<th class="text-center">problems</th>
-															<th class="text-center">diagnosis</th>
-															<th class="text-center">care suggestion</th>
-															<th class="text-center">reports</th>
-														</tr>
-													</thead>
-													<tbody>
-													@if(!$diagnoses_data->isEmpty())
-															@foreach($diagnoses_data as $diagnoses_data)
-														<tr>
-															<td class="text-center">{{$diagnoses_data->problems}}</td>
-															<td class="text-center">{{$diagnoses_data->diagnosis}}</td>
-															<td class="text-center">{{$diagnoses_data->care_suggestion}}</td>
-															<td class="text-center">{{$diagnoses_data->reports}}</td>
-														</tr>
-														@endforeach
-														@else
-														<p class="text-danger mt-2">No data added</p>
-														@endif
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Invoice Item -->
-								<br>
-								<br>
-								<!-- Invoice Item -->
-								<div class="invoice-item invoice-table-wrap">
-									<div class="row">
-										<div class="col-md-12">
-											<strong>Patient Reports and Diagnosis</strong>
-											<br>
-											<br>
-											<div class="table-responsive">
-												<table class="invoice-table table table-bordered">	
-													<thead>
-														<tr>
-															<th class="text-center">medicine name</th>
-															<th class="text-center">medicine Quantity</th>
-															<th class="text-center">medicine take Days</th>
-															<th class="text-center">medicine take Time</th>
-															<th class="text-center">medicine dose</th>
-														</tr>
-													</thead>
-													<tbody>
-													@if(!$prescriptions_data->isEmpty())
-															@foreach($prescriptions_data as $prescriptions_data)
-														<tr>
-															<td class="text-center">{{$prescriptions_data->medicine_name}}</td>
-															<td class="text-center">{{$prescriptions_data->medicine_Quantity}}</td>
-															<td class="text-center">{{$prescriptions_data->medicine_take_Days}}</td>
-															<td class="text-center">{{$prescriptions_data->medicine_take_Time}}</td>
-															<td class="text-center">{{$prescriptions_data->medicine_dose}}</td>
-														</tr>
-														@endforeach
-														@else
-														<p class="text-danger mt-2">No data added</p>
-														@endif
-													</tbody>
-												</table>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /Invoice Item -->
+							@include('patient.Layout.patient-widget')
+								
 							</div>
+							<!-- /Profile Sidebar -->
+							
+						</div>
+						<div class="col-md-7 col-lg-8 col-xl-9">
+						<input class="form-control" id="myInput" type="text" placeholder="Search..">
+							<br>
+							<div class="myclass row row-grid">
+							
+							<?php
+								foreach($patientfavdoctor_arr as $data) 
+								{
+							?>
+
+								<div class="col-md-6 col-lg-4 col-xl-3">
+									<div class="card widget-profile pat-widget-profile">
+										<div class="card-body">
+											<div class="pro-widget-content">
+												<div class="profile-info-widget">
+													<a href="{{url('/doctor-profile/'.$data->doctor_id)}}" class="booking-doc-img">
+														<img src="{{asset('upload/doctor/'.$data->profile_img)}}" alt="User Image">
+													</a>
+													<div class="profile-det-info">
+														<h3><a href="{{url('/doctor-profile/'.$data->doctor_id)}}">Dr. <?php echo $data->first_name?> <?php echo $data->last_name?></a></h3>
+														
+														<div class="patient-details">
+															<h5><b>Doctor ID :</b> <?php echo $data->doctor_id?></h5>
+															<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> <?php echo $data->city_name?>, <?php echo $data->state_name?></h5>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="patient-info">
+												<ul>
+													<li>Phone <span><?php echo $data->dr_mobile?></span></li>
+													<li>Age <span>38 Years, <?php echo $data->gender?></span></li>
+													
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							<?php
+								}
+							?>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+							</div>
+
 						</div>
 					</div>
 
@@ -159,26 +103,19 @@
 
 			</div>		
 			<!-- /Page Content -->
-			<div class="container" id="box">
-			
-				<div class="row well">     
 
-					<center>
-					<a class="btn btn-primary" href="doctor-dashboard" role="button">Back</a>
-						<button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
-					</center>
-					<br>
-					<br>
-					<br>
-					<br>
-					
-				</div>
-			</div>
-   <script>
-	 function myFunction() {
-        window.print();
-    }
-   </script>
+			<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $(".myclass .card").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+   
 			<!-- Footer -->
 			<footer class="footer">
 				
@@ -323,16 +260,22 @@
 	  
 		<!-- jQuery -->
 		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
+
+		
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{  url('Frontend/assets/js/popper.min.js') }}"></script>
 		<script src="{{  url('Frontend/assets/js/bootstrap.min.js') }}"></script>
+		
+		<!-- Sticky Sidebar JS -->
+        <script src="{{  url('Frontend/assets/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
+        <script src="{{  url('Frontend/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}"></script>
 		
 		<!-- Custom JS -->
 		<script src="{{ url('Frontend/assets/js/script.js') }}"></script>
 		
 	</body>
 
-<!-- doccure/{{url('/invoice-view')}}  30 Nov 2019 04:12:20 GMT -->
+<!-- doccure/{{url('/my-patients')}}  30 Nov 2019 04:12:09 GMT -->
 </html>
 @endsection	

@@ -69,9 +69,17 @@
 										</ul>
 									</div>
 									<div class="doctor-action">
-										<a href="javascript:void(0)" onclick="" class="btn btn-white fav-btn">
-											<i class="far fa-bookmark"></i>
-										</a>
+										@if($fav_doctor)
+										
+											<a href="{{url('patient_fav_doc_del/'.$fetch->id)}}" onclick="" class="btn btn-success fav-btn">
+												<i class="far fa-bookmark"></i>
+											</a>
+										@else
+											<a href="{{url('patient_fav_doc/'.$fetch->id)}}" onclick="" class="btn btn-white fav-btn">
+												<i class="far fa-bookmark"></i>
+											</a>
+											
+										@endif
 										<a href="{{url('/chat')}}" class="btn btn-white msg-btn">
 											<i class="far fa-comment-alt"></i>
 										</a>
