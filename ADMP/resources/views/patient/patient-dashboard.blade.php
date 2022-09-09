@@ -76,10 +76,10 @@
 																<tr>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="{{url('/doctor-profile')}}" class="avatar avatar-sm mr-2">
+																			<a href="{{url('')}}" class="avatar avatar-sm mr-2">
 																				<img class="avatar-img rounded-circle" src="{{asset('upload/doctor/' . $data->profile_img)}}" alt="User Image">
 																			</a>
-																			<a href="{{url('/doctor-profile')}}">Dr. <?php echo $data->first_name?> <?php echo $data->last_name?> <span><?php echo $data->name?></span></a>
+																			<a href="">Dr. <?php echo $data->first_name?> <?php echo $data->last_name?> <span><?php echo $data->name?></span></a>
 																		</h2>
 																	</td>
 																	<td><?php echo $data->date?> <span class="d-block text-info"><?php echo $data->time?></span></td>
@@ -94,6 +94,9 @@
 
 																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
 																				<i class="far fa-eye"></i> View
+																			</a>
+																			<a class="edit-link" data-toggle="modal" href="#edit_personal_details" >
+																				<i class="fa fa-edit mr-1"></i>Report
 																			</a>
 																		</div>
 																	</td>

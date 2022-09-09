@@ -378,7 +378,7 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     });
 
     Route::group(['middleware'=>['managerafterlogin']], function(){
-    
+   
     Route::get('/managerlogout',[manager_controller::class,'managerlogout']);
 
 

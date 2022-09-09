@@ -8,6 +8,8 @@ use App\Models\manager;
 use App\Models\division;
 use Hash;
 use Session;
+use Alert;
+use Exception;
 
 class manager_controller extends Controller
 {
