@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2022 at 02:40 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.0
+-- Generation Time: Sep 09, 2022 at 02:47 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,8 +57,8 @@ CREATE TABLE `appointments` (
   `doc_id` bigint(20) UNSIGNED NOT NULL,
   `patient_id` bigint(20) UNSIGNED NOT NULL,
   `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `comment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Approved','Pending') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
+  `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `appointment_status` enum('Approved','Pending') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
   `time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -66,10 +66,16 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `created_at`, `updated_at`, `doc_id`, `patient_id`, `date`, `comment`, `status`, `time`) VALUES
+INSERT INTO `appointments` (`id`, `created_at`, `updated_at`, `doc_id`, `patient_id`, `date`, `comment`, `appointment_status`, `time`) VALUES
 (1, '2022-09-03 19:17:47', '2022-09-03 19:17:47', 1, 1, '2022-09-03', 'hii', 'Pending', '19:30'),
 (2, '2022-09-03 19:28:40', '2022-09-03 19:28:40', 2, 1, '2022-09-08', 'hii', 'Pending', '14:01'),
-(3, '2022-09-04 08:25:22', '2022-09-04 08:25:22', 2, 3, '2022-09-08', 'hii', 'Pending', '14:01');
+(3, '2022-09-04 08:25:22', '2022-09-04 08:25:22', 2, 3, '2022-09-08', 'hii', 'Pending', '14:01'),
+(4, '2022-09-09 12:24:09', '2022-09-09 12:24:09', 1, 6, '2022-09-15', 'abcd', 'Pending', '16:40'),
+(5, '2022-09-09 12:52:51', '2022-09-09 12:52:51', 3, 2, '2022-09-09', 'nhnfg', 'Pending', '08:10'),
+(6, '2022-09-09 14:22:27', '2022-09-09 14:22:27', 3, 1, '2022-09-09', 'sdfcsed', 'Approved', '07:20'),
+(7, '2022-09-09 04:56:01', '2022-09-09 06:39:46', 2, 1, '2022-09-09', NULL, 'Approved', '10:40'),
+(8, '2022-09-09 04:58:11', '2022-09-09 04:58:11', 2, 2, '2022-09-16', NULL, 'Pending', '10:30'),
+(9, '2022-09-09 05:00:00', '2022-09-09 07:11:00', 2, 2, '2022-09-09', NULL, 'Approved', '10:20');
 
 -- --------------------------------------------------------
 
@@ -198,7 +204,7 @@ CREATE TABLE `diagnoses` (
   `diagnosis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `care_suggestion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `reports` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Pending','Approve') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
+  `status` enum('Pending','Approved') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -206,10 +212,9 @@ CREATE TABLE `diagnoses` (
 --
 
 INSERT INTO `diagnoses` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `problems`, `diagnosis`, `care_suggestion`, `reports`, `status`) VALUES
-(1, '2022-09-06 03:42:49', '2022-09-06 03:42:49', NULL, 1, 'dfvd', 'dfvxdf', 'zczdf', 'zdvd', 'Pending'),
-(2, '2022-09-06 03:57:11', '2022-09-06 03:57:11', NULL, 3, 'hbvn', 'kjnjkm', 'kjnk', 'kjnkj', 'Pending'),
-(3, '2022-09-06 06:03:06', '2022-09-06 06:03:06', 1, 1, 'rsfser', 'srgrs', 'regedr', 'srgfved', 'Pending'),
-(4, '2022-09-08 19:37:38', '2022-09-08 19:37:38', 1, 1, 'dfgv', 'fbg', 'xfgbg', 'fxgbfxg', 'Pending');
+(4, '2022-09-08 19:37:38', '2022-09-09 02:43:04', 1, 1, 'dfgv', 'fbg', 'xfgbg', 'fxgbfxg', ''),
+(6, '2022-09-09 05:27:36', '2022-09-09 07:11:00', 9, 2, 'feever', 'feever', 'feever', 'feever', 'Approved'),
+(7, '2022-09-09 07:07:58', '2022-09-09 07:11:00', 9, 2, 'vhbn', 'jbjn', 'njk', 'bjhbh', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -313,6 +318,27 @@ CREATE TABLE `doc_fav_medicines` (
 INSERT INTO `doc_fav_medicines` (`id`, `created_at`, `updated_at`, `doctor_id`, `medicine_name`) VALUES
 (1, '2022-09-03 14:40:52', '2022-09-03 14:40:52', 1, 'Paracetamol'),
 (2, '2022-09-03 14:41:19', '2022-09-03 14:41:19', 1, 'Fusidic acid');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `doc_fav_patients`
+--
+
+CREATE TABLE `doc_fav_patients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `doctor_id` bigint(20) UNSIGNED NOT NULL,
+  `patient_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doc_fav_patients`
+--
+
+INSERT INTO `doc_fav_patients` (`id`, `created_at`, `updated_at`, `doctor_id`, `patient_id`) VALUES
+(1, '2022-09-09 07:11:00', '2022-09-09 07:11:00', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -478,7 +504,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (54, '2022_09_03_072406_create_prescriptions_table', 25),
 (55, '2022_09_03_072432_add_column_to_prescriptions_table', 25),
 (56, '2022_09_05_140402_create_diagnoses_table', 26),
-(57, '2022_09_05_140429_add_columns_to_diagnoses_table', 26);
+(57, '2022_09_05_140429_add_columns_to_diagnoses_table', 26),
+(58, '2022_09_09_121342_create_doc_fav_patients_table', 27),
+(59, '2022_09_09_121435_add_columns_to_doc_fav_patients_table', 27);
 
 -- --------------------------------------------------------
 
@@ -622,7 +650,19 @@ INSERT INTO `patient_slots` (`id`, `created_at`, `updated_at`, `doc_id`, `day`, 
 (36, '2022-09-04 00:51:51', '2022-09-04 00:51:51', 2, 'Thursday', '16:11', 'Afternoon'),
 (37, '2022-09-04 00:51:51', '2022-09-04 00:51:51', 2, 'Thursday', '16:21', 'Afternoon'),
 (38, '2022-09-04 00:51:51', '2022-09-04 00:51:51', 2, 'Thursday', '16:31', 'Afternoon'),
-(39, '2022-09-04 00:51:51', '2022-09-04 00:51:51', 2, 'Thursday', '16:41', 'Afternoon');
+(39, '2022-09-04 00:51:51', '2022-09-04 00:51:51', 2, 'Thursday', '16:41', 'Afternoon'),
+(40, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '07:10', 'Morning'),
+(41, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '07:20', 'Morning'),
+(42, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '07:30', 'Morning'),
+(43, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '07:40', 'Morning'),
+(44, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '07:50', 'Morning'),
+(45, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '08:00', 'Morning'),
+(46, '2022-09-09 18:19:42', '2022-09-09 18:19:42', 3, 'Friday', '08:10', 'Morning'),
+(47, '2022-09-09 10:23:48', '2022-09-09 10:23:48', 2, 'Friday', '10:10', 'Morning'),
+(48, '2022-09-09 10:23:48', '2022-09-09 10:23:48', 2, 'Friday', '10:20', 'Morning'),
+(49, '2022-09-09 10:23:48', '2022-09-09 10:23:48', 2, 'Friday', '10:30', 'Morning'),
+(50, '2022-09-09 10:23:48', '2022-09-09 10:23:48', 2, 'Friday', '10:40', 'Morning'),
+(51, '2022-09-09 10:23:48', '2022-09-09 10:23:48', 2, 'Friday', '10:50', 'Morning');
 
 -- --------------------------------------------------------
 
@@ -660,7 +700,7 @@ CREATE TABLE `prescriptions` (
   `medicine_take_Days` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `medicine_take_Time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `medicine_dose` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('Pending','Approve') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
+  `status` enum('Pending','Approved') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -669,7 +709,11 @@ CREATE TABLE `prescriptions` (
 
 INSERT INTO `prescriptions` (`id`, `created_at`, `updated_at`, `appoinment_id`, `patient_id`, `medicine_name`, `medicine_Quantity`, `medicine_take_Days`, `medicine_take_Time`, `medicine_dose`, `status`) VALUES
 (1, '2022-09-06 04:22:42', '2022-09-06 04:22:42', NULL, 3, 'fdvs', '1', '2', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
-(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending');
+(2, '2022-09-06 06:04:08', '2022-09-06 06:04:08', 1, 1, 'dsfgvsr', '2', '3', 'Morning,Afternoon,Night', 'Monday', 'Pending'),
+(3, '2022-09-09 05:09:55', '2022-09-09 05:09:55', 5, 2, 'dolo', '2', '1', 'Morning,Night', 'Monday', 'Pending'),
+(4, '2022-09-09 05:28:02', '2022-09-09 07:11:00', 9, 2, 'dolo', '4', '3', 'Morning,Evening', 'Tuesday', 'Approved'),
+(5, '2022-09-09 05:28:56', '2022-09-09 07:11:00', 9, 2, 'combiflame', '10', '3', 'Morning,Evening,Night', 'Tuesday', 'Approved'),
+(6, '2022-09-09 05:33:16', '2022-09-09 07:11:00', 9, 2, 'aspirine', '2', '5', 'Morning,Evening', 'Monday', 'Approved');
 
 -- --------------------------------------------------------
 
@@ -901,6 +945,14 @@ ALTER TABLE `doc_fav_medicines`
   ADD KEY `doc_fav_medicines_doctor_id_foreign` (`doctor_id`);
 
 --
+-- Indexes for table `doc_fav_patients`
+--
+ALTER TABLE `doc_fav_patients`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `doc_fav_patients_doctor_id_foreign` (`doctor_id`),
+  ADD KEY `doc_fav_patients_patient_id_foreign` (`patient_id`);
+
+--
 -- Indexes for table `drspecialities`
 --
 ALTER TABLE `drspecialities`
@@ -1035,7 +1087,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `areas`
@@ -1071,7 +1123,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `diagnoses`
 --
 ALTER TABLE `diagnoses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `divisions`
@@ -1090,6 +1142,12 @@ ALTER TABLE `doctors`
 --
 ALTER TABLE `doc_fav_medicines`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `doc_fav_patients`
+--
+ALTER TABLE `doc_fav_patients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `drspecialities`
@@ -1119,7 +1177,7 @@ ALTER TABLE `medicines`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `mrs`
@@ -1143,7 +1201,7 @@ ALTER TABLE `patient_favs`
 -- AUTO_INCREMENT for table `patient_slots`
 --
 ALTER TABLE `patient_slots`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1155,7 +1213,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -1250,6 +1308,13 @@ ALTER TABLE `doctors`
 --
 ALTER TABLE `doc_fav_medicines`
   ADD CONSTRAINT `doc_fav_medicines_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`);
+
+--
+-- Constraints for table `doc_fav_patients`
+--
+ALTER TABLE `doc_fav_patients`
+  ADD CONSTRAINT `doc_fav_patients_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`),
+  ADD CONSTRAINT `doc_fav_patients_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`);
 
 --
 -- Constraints for table `drspecialities`

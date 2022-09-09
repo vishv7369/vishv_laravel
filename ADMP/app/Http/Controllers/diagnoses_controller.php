@@ -9,6 +9,7 @@ use App\Models\prescriptions;
 use App\Models\patient;
 use App\Models\appointments;
 use App\Models\doc_fav_medicine;
+use App\Models\doc_fav_patient;
 use Hash;
 use session;
 use Alert;
@@ -34,14 +35,16 @@ class diagnoses_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create($id, Request $request)
     {
-        $app_data=appointments::find($id)->first();
+        $request->session()->get('submitid');
+        $app_data=appointments::where('id','=',$id)->first();
         $patient_id=$app_data->patient_id;
         $pdata=appointments::join('patients','patients.id','=','appointments.patient_id')->where('patient_id','=',$patient_id)->first();
         $pdiagnoses=diagnoses::where('appoinment_id','=',$id)->get();
         $pprescriptions=prescriptions::where('appoinment_id','=',$id)->get();
         $doc_fav_medicine=doc_fav_medicine::where('doctor_id','=',Session('doctor_id'))->get();
+
         return view('doctor.add-prescription',["app_data"=>$app_data,"pdata"=>$pdata,"pdiagnoses"=>$pdiagnoses,"pprescriptions"=>$pprescriptions,"doc_fav_medicine"=>$doc_fav_medicine]);
     }
 
@@ -75,18 +78,47 @@ class diagnoses_controller extends Controller
         $data->appoinment_id=$request->appoinment_id;
         $data->patient_id=$request->patient_id;
         $res=$data->save();
+        Session()->pull('submitid');
         return back();
     }
 
-    public function invoice_view($id)
-    {
-        $app_data=appointments::find($id)->first();
+    public function invoice_view(Request $request,$id)
+    {   
+        $request->session()->get('invoice');
+        $data_dia=diagnoses::where('appoinment_id','=',$id)->update(['status'=>"Approved"]);
+        $data_pri=prescriptions::where('appoinment_id','=',$id)->update(['status'=>"Approved"]);
+        $data_app=appointments::where('id','=',$id)->update(['appointment_status'=>"Approved"]);
+
+
+
+        $app_data=appointments::where('id','=',$id)->first();
         $patient_id=$app_data->patient_id;
-        $patient_data=patient::where('id','=',$id)->first();
+        $patient_data=patient::where('id','=',$patient_id)->first();
         $doctor_data=doctor::where('id','=',Session('doctor_id'))->first();
         $diagnoses_data=diagnoses::where('appoinment_id','=',$id)->get();
         $prescriptions_data=prescriptions::where('appoinment_id','=',$id)->get();
+
+        $data=doc_fav_patient::where("patient_id","=",$patient_id)->first();
+        if($data)
+        {
+
+        }
+        else
+        {
+            $data=new doc_fav_patient;
+            $data->doctor_id=Session('doctor_id');
+            $data->patient_id=$patient_id;
+            $res=$data->save();
+        }
+
+
         return view('doctor.invoice-view',["app_data"=>$app_data,"patient_data"=>$patient_data,"doctor_data"=>$doctor_data,"diagnoses_data"=>$diagnoses_data,"prescriptions_data"=>$prescriptions_data]);
+        Session()->pull('invoice');
+    }
+    public function prescription_submit(Request $request,$id)
+    {
+    
+        
     }
 
     /**

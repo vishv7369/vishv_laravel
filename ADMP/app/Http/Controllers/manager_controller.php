@@ -289,16 +289,19 @@ public function companymanageredit($id)
                 $mname=$data->first_name." ".$data->last_name; 
                 $request->Session()->put('mname',$mname);
                 $request->Session()->put('mprofile_img', $data->mprofile_img);
+                Alert::success('Congrats', 'You\'ve Successfully Login');
                 return redirect('manager-dashboard');
             }
             else
             {
-                return redirect('/manager')->with('fail','Login Failed due to Wrong Password');
+                Alert::error('Fail', 'Login Failed due to Wrong Password');
+                return redirect('/manager');
             }
         }
         else
         {
-            return redirect('/manager')->with('fail','Login Failed due to Wrong email');
+            Alert::error('Fail', 'Login Failed due to Wrong email');
+            return redirect('/manager');
         }
     }
 

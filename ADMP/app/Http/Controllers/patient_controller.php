@@ -113,7 +113,7 @@ class patient_controller extends Controller
                    {
                     $request->Session()->put('ptprofile_img',$data->ptprofile_img);
                    }
-                   
+                   Alert::success('Congrats', 'You\'ve Successfully Login');
                    return redirect('/index');
                }
                else

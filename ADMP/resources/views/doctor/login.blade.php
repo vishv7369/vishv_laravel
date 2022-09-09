@@ -28,7 +28,7 @@
 	
 	</head>
 	<body class="account-page">
-
+	@include('sweetalert::alert')
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		

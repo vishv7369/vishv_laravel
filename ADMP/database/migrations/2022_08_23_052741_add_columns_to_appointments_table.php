@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('date')->after('report_img');
             $table->string('comment')->after('date');
             $table->string('time')->after('comment');
-            $table->enum('status',['Approved','Pending'])->default('Pending')->after('comment');
+            $table->enum('appointment_status',['Approved','Pending'])->default('Pending')->after('comment');
         });
     }
 

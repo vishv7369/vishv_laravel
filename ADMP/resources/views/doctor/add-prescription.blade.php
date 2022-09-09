@@ -153,9 +153,11 @@
 																	</div>
 																</td>
 															</tr>
-															@endforeach
+														@endforeach
 														@else
-														<p class="text-danger mt-2">No data added</p>
+														<tr>
+															<td class="text-danger" colspan="5" align="center"> Data Not Found </td>
+														</tr>
 														@endif	
 														</tbody>
 													</table>
@@ -276,10 +278,13 @@
 																</td>
 															</tr>
 															@endforeach
-														@else
-														<p class="text-danger mt-2">No data added</p>
-														@endif
-															</tr>	
+															
+															@else
+															<tr>
+																<td class="text-danger" colspan="6" align="center"> Data Not Found </td>
+															</tr>
+															@endif
+																
 														</tbody>
 													</table>
 												</div>
@@ -290,9 +295,6 @@
     </div><!-- Submit Section -->
 	<td class="text-right">
 			<div class="actions text-right">
-				<a  href="" class="btn btn-sm bg-danger-light">
-					<i class="fe fe-trash"></i> Clear
-				</a>
 				<a class="btn btn-sm bg-success-light" href="{{url('invoice-view/'.$app_data->id)}}">
 					<i class="fe fe-pencil"></i> Submit
 				</a>

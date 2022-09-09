@@ -341,23 +341,27 @@ public function login(Request $request)
                     $drname=$data->first_name." ".$data->last_name; 
                     $request->Session()->put('drname',$drname);
                     $request->Session()->put('profile_img',$data->profile_img);
+                    Alert::success('Congrats', 'You\'ve Successfully Login');
                     return redirect('/doctor-dashboard');
 
                 }
                 else
                 {
-                    return redirect('/doctor')->with('fail','Login Failed due to Blocked Doctor');
+                    Alert::error('Fail', 'Login Failed due to Blocked Doctor');
+                    return redirect('/doctor');
                 }
             }
             else
             {
-                return redirect('/doctor')->with('fail','Login Failed due to Wrong Password');
+                Alert::error('Fail', 'Login Failed due to Wrong Password');
+                return redirect('/doctor');
             }
 
         }
         else
        {
-        return redirect('/doctor')->with('fail','Login Failed due to Wrong doctor');
+        Alert::error('Fail', 'Login Failed due to Wrong doctor');
+        return redirect('/doctor');
        }
     }
 

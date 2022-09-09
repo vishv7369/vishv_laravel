@@ -18,10 +18,25 @@ class appointment_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    ////////////////////////////////////////////////Doctor Panel////////////////////////////////////////////////////
     public function index()
     {
-        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->get();
-        return view('doctor.doctor-dashboard',["appointments_arr"=>$data]);
+        $today=date('Y-m-d');
+        $data_today=appointments::join('patients','patients.id','=','appointments.patient_id')
+        ->where('doc_id','=',Session('doctor_id'))
+        ->where('appointment_status','=','Pending')
+        ->where('date','=',$today)->get(['appointments.*','patients.name','patients.mobileno','patients.gender','patients.ptprofile_img']);
+        $data_upcoming=appointments::join('patients','patients.id','=','appointments.patient_id')
+        ->where('doc_id','=',Session('doctor_id'))
+        ->where('appointment_status','=','Pending')
+        ->where('date','>',$today)->get();
+        return view('doctor.doctor-dashboard',["appointments_arr"=>$data_today,"appointments_upc_arr"=>$data_upcoming]);
+    }
+
+    public function patient_appointment()
+    {
+        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->orderBy('date')->get();
+        return view('doctor.appointments',["appointments_arr"=>$data]);
     }
 
     /**
@@ -29,6 +44,15 @@ class appointment_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //////////////////////////////////////////////Patient Panel///////////////////////////////////////////////////
+
+    public function doctor_appointment()
+    {
+        $data=appointments::join('doctors','doctors.id','=','appointments.doc_id')->join('specialists','specialists.id','=','doctors.specialist_id')->where('patient_id','=',Session('patient_id'))->get();
+        return view('patient.patient-dashboard',["doc_appointments_arr"=>$data]);
+    }
+
     public function create()
     {
         return view('patient.book_appointment');

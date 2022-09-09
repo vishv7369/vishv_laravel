@@ -245,6 +245,7 @@ class patient_slots_controller extends Controller
         {
             
             Alert::error('Error OTP', 'Entered OTP Does not match'); 
+            return back();
         }
     }
     

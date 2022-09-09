@@ -132,12 +132,13 @@ class admin_controller extends Controller
                     $request->Session()->put('email',$data->email);
                     $request->Session()->put('name',$data->name);
                     $request->Session()->put('img',$data->img);
+                    Alert::success('Congrats', 'You\'ve Successfully Login');
                    return redirect('/admin');
                
            }
            else
            {
-            Alert::error('Fail', 'Login Failed due to Wrong Password');
+            Alert::error('Fail', 'Login Failed due to Wrong email');
             return redirect('/admin-login');//->with('fail','Login Failed due to Wrong Password');
            }
        }

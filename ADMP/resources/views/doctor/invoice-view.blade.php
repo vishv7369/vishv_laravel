@@ -164,7 +164,7 @@
 				<div class="row well">     
 
 					<center>
-					<a class="btn btn-primary" href="doctor-dashboard" role="button">Back</a>
+					<a class="btn btn-primary" href="{{url('/doctor-dashboard')}}" role="button">Back</a>
 						<button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
 					</center>
 					<br>
