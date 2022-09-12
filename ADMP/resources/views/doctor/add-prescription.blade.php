@@ -32,9 +32,26 @@
 								<div class="card-body">
 									<div class="pro-widget-content">
 										<div class="profile-info-widget">
+										<?php
+											$ptprofile_img=$pdata->ptprofile_img;
+											if($ptprofile_img=="null")
+											{
+										?>
+											<a href="#" class="booking-doc-img">
+												<img src="{{url('Frontend/assets/img/patients/user.png')}}" alt="User Image">
+											</a>
+										<?php
+											}
+											else
+											{
+										?>
 											<a href="#" class="booking-doc-img">
 												<img src="{{asset('upload/patient/' . $pdata->ptprofile_img)}}" alt="User Image">
 											</a>
+										<?php
+											}
+										?>
+											
 											<div class="profile-det-info">
 												<h3><a href="{{url('/patient-profile')}}"><?php echo $pdata->name?> </a></h3>
 												<div class="patient-details">
@@ -67,7 +84,7 @@
 									<div class="row">
 										<div class="col-sm-6">
 											<div class="biller-info">
-												<h4 class="d-block">Dr. Darren Elder {{Session('drname')}}</h4>
+												<h4 class="d-block">Dr. {{Session('drname')}}</h4>
 												<span class="d-block text-sm text-muted">Dentist</span>
 												<span class="d-block text-sm text-muted">Newyork, United States</span>
 											</div>
@@ -107,15 +124,27 @@
 														<tr>
 															<td>
 																<textarea class="form-control" placeholder="Write Patient Problems" name="problems"></textarea>
+																@if ($errors->has('problems'))
+																	<span class="text-danger">{{ $errors->first('problems') }}</span>
+																@endif
 															</td>
 															<td>
 															<textarea class="form-control" placeholder="Write Patient Diagnosis" name="diagnosis"></textarea>
+															@if ($errors->has('diagnosis'))
+																	<span class="text-danger">{{ $errors->first('diagnosis') }}</span>
+															@endif
 															</td>
 															<td>
 															<textarea class="form-control" placeholder="Write Patient Care suggestions" name="care_suggestion"></textarea>
+															@if ($errors->has('care_suggestion'))
+																	<span class="text-danger">{{ $errors->first('care_suggestion') }}</span>
+															@endif
 															</td>
 															<td>
 															<textarea class="form-control" placeholder="Write Patient Reports Suggestions" name="reports"></textarea>
+															@if ($errors->has('reports'))
+																	<span class="text-danger">{{ $errors->first('reports') }}</span>
+															@endif
 															</td>
 															<input type="hidden" value="<?php echo $app_data->id?>" name="appoinment_id" id="appoinment_id">
 															<input type="hidden" value="<?php echo $app_data->patient_id?>" name="patient_id" id="patient_id">
@@ -194,19 +223,28 @@
 														<tr>
 															<td>
 															<input list="browsers" name="medicine_name" id="browser" class="form-control">
-															<datalist id="browsers">
+															<datalist value="" id="browsers">
 															@if(!$doc_fav_medicine->isEmpty())
 																@foreach($doc_fav_medicine as $medicine) 		
 																<option value={{$medicine->medicine_name}}>
+																@if ($errors->has('medicine_name'))
+																	<span class="text-danger">{{ $errors->first('medicine_name') }}</span>
+																@endif
 																@endforeach
 															@endif
 															</datalist>
 															</td>
 															<td>
 																<input class="form-control" placeholder="" type="text" name="medicine_Quantity">
+																@if ($errors->has('medicine_Quantity'))
+																	<span class="text-danger">{{ $errors->first('medicine_Quantity') }}</span>
+																@endif
 															</td>
 															<td>
 																<input class="form-control" placeholder="" type="text" name="medicine_take_Days">
+																@if ($errors->has('medicine_take_Days'))
+																	<span class="text-danger">{{ $errors->first('medicine_take_Days') }}</span>
+																@endif
 															</td>
 															<td>
 																<div class="form-check form-check-inline">

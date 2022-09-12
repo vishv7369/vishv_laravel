@@ -19,6 +19,11 @@ class doc_fav_patients_controller extends Controller
     {
         //
     }
+    public function mypatient()  
+    {
+        $data=doc_fav_patient::join('patients','patients.id','=','doc_fav_patients.patient_id')->where('doctor_id','=',Session('doctor_id'))->get();
+        return view('doctor.my-patients',["mypatient"=>$data]);
+    }
 
     /**
      * Show the form for creating a new resource.

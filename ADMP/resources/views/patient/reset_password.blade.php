@@ -1,100 +1,119 @@
-@extends('doctor.Layout.main_layout') 	
-@section('main_container')
-			
-			<!-- Breadcrumb -->
-			<div class="breadcrumb-bar">
-				<div class="container-fluid">
-					<div class="row align-items-center">
-						<div class="col-md-12 col-12">
-							<nav aria-label="breadcrumb" class="page-breadcrumb">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">My Patients</li>
-								</ol>
-							</nav>
-							<h2 class="breadcrumb-title">My Patients</h2>
-						</div>
+<!DOCTYPE html> 
+<html lang="en">
+	
+<!-- doccure/{{url('/login')}}  30 Nov 2019 04:12:20 GMT -->
+<head>
+		<meta charset="utf-8">
+		<title>Doccure</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		
+		<!-- Favicons -->
+		<link href="{{url('Frontend/assets/img/favicon.png')}}" rel="icon">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{url('Frontend/assets/css/bootstrap.min.css')}}">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="{{url('Frontend/assets/plugins/fontawesome/css/fontawesome.min.css')}}">
+		<link rel="stylesheet" href="{{url('Frontend/assets/plugins/fontawesome/css/all.min.css')}}">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="{{url('Frontend/assets/css/style.css')}}">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="{{url('Frontend/assets/js/html5shiv.min.js')}}"></script>
+			<script src="{{url('Frontend/assets/js/respond.min.js')}}"></script>
+		<![endif]-->
+	
+	</head>
+	<body class="account-page">
+	@include('sweetalert::alert')
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+			<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="{{url('/index')}}" class="navbar-brand logo">
+							<img src="{{url('Frontend/assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+						</a>
 					</div>
-				</div>
-			</div>
-			<!-- /Breadcrumb -->
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="{{url('/index')}}" class="menu-logo">
+								<img src="{{url('Frontend/assets/img/logo.png')}}" class="img-fluid" alt="Logo">
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							<li>
+								<a href="{{url('/index')}}">Home</a>
+							</li>
+							
+						</ul>
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +1 315 369 5943</p>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link header-login" href="{{url('/login')}}">login / Signup </a>
+						</li>
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header -->
 			
 			<!-- Page Content -->
 			<div class="content">
 				<div class="container-fluid">
-
+					
 					<div class="row">
-						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-						
-							<!-- Profile Sidebar -->
-							<div class="profile-sidebar">
-								
-								@include('doctor/Layout/doctor-widget');
-								
-							</div>
-							<!-- /Profile Sidebar -->
+						<div class="col-md-8 offset-md-2">
 							
-						</div>
-						<div class="col-md-7 col-lg-8 col-xl-9">
-						<input class="form-control" id="myInput" type="text" placeholder="Search..">
-							<br>
-							<div class="myclass row row-grid">
-							<?php
-								foreach($mypatient as $data) 
-								{
-							?>
-								<div class="col-md-6 col-lg-4 col-xl-3">
-									<div class="card widget-profile pat-widget-profile">
-										<div class="card-body">
-											<div class="pro-widget-content">
-												<div class="profile-info-widget">
-												<?php
-													$ptprofile_img=$data->ptprofile_img;
-													if($ptprofile_img=="null")
-													{
-												?>
-													<a href="#" class="booking-doc-img">
-														<img src="{{url('Frontend/assets/img/patients/user.png')}}" alt="User Image">
-													</a>
-												<?php
-													}
-													else
-													{
-												?>
-													<a href="#" class="booking-doc-img">
-														<img src="{{asset('upload/patient/' . $data->ptprofile_img)}}" alt="User Image">
-													</a>
-												<?php
-													}
-												?>
-													
-													<div class="profile-det-info">
-														<h3><a href="{{url('/doctor-patient-profile')}}"><?php echo $data->name?></a></h3>
-														
-														<div class="patient-details">
-															<h5><b>Patient ID :</b> PT<?php echo $data->patient_id?></h5>
-															<h5 class="mb-0"></i> <?php echo $data->email?></h5>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="patient-info">
-												<ul>
-													<li>Phone <span><?php echo $data->mobileno?></span></li>
-													<li>Gender<span> <?php echo $data->gender?></span></li>
-													
-												</ul>
-											</div>
+							<!-- Account Content -->
+							<div class="account-content">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-7 col-lg-6 login-left">
+										<img src="{{url('Frontend/assets/img/login-banner.png')}}" class="img-fluid" alt="Login Banner">	
+									</div>
+									<div class="col-md-12 col-lg-6 login-right">
+										<div class="login-header">
+											<h3>Reset your password</h3>
 										</div>
+										
+										<!-- Forgot Password Form -->
+										<form action="">
+											<div class="form-group form-focus">
+												<input type="email" class="form-control floating">
+												<label class="focus-label">Enter new Password</label>
+											</div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" href="forgot_otp">Reset Password</button>
+										</form>
+										<!-- /Forgot Password Form -->
+										
 									</div>
 								</div>
-							<?php
-								}
-							?>	
-						
-								
 							</div>
-
+							<!-- /Account Content -->
+							
 						</div>
 					</div>
 
@@ -102,18 +121,6 @@
 
 			</div>		
 			<!-- /Page Content -->
-
-			<script>
-$(document).ready(function(){
-  $("#myInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
-    $(".myclass .card").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    });
-  });
-});
-</script>
-
    
 			<!-- Footer -->
 			<footer class="footer">
@@ -259,22 +266,15 @@ $(document).ready(function(){
 	  
 		<!-- jQuery -->
 		<script src="{{ url('Frontend/assets/js/jquery.min.js') }}"></script>
-
-		
 		
 		<!-- Bootstrap Core JS -->
 		<script src="{{  url('Frontend/assets/js/popper.min.js') }}"></script>
 		<script src="{{  url('Frontend/assets/js/bootstrap.min.js') }}"></script>
-		
-		<!-- Sticky Sidebar JS -->
-        <script src="{{  url('Frontend/assets/plugins/theia-sticky-sidebar/ResizeSensor.js') }}"></script>
-        <script src="{{  url('Frontend/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js') }}"></script>
 		
 		<!-- Custom JS -->
 		<script src="{{ url('Frontend/assets/js/script.js') }}"></script>
 		
 	</body>
 
-<!-- doccure/{{url('/my-patients')}}  30 Nov 2019 04:12:09 GMT -->
+<!-- doccure/{{url('/forgot-password')}}  30 Nov 2019 04:12:20 GMT -->
 </html>
-@endsection	

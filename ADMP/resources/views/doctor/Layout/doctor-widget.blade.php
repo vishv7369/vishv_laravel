@@ -1,4 +1,4 @@
-							<div class="widget-profile pro-widget-content">
+<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
 											<img src="{{url('upload/doctor/'. Session('profile_img'))}}" alt="User Image">
@@ -57,12 +57,6 @@
 												</a>
 											</li>
 											
-											<li>
-												<a href="{{url('/doctor-visitor_timings')}}">
-													<i class="fas fa-hourglass-start"></i>
-													<span>Visitor Schedule</span>
-												</a>
-											</li>
 
 											<li>
 												<a href="{{url('/doctor-my-medicine')}}">
@@ -71,12 +65,6 @@
 												</a>
 											</li>
 											
-											<li>
-												<a href="doctor-social-media">
-													<i class="fas fa-share-alt"></i>
-													<span>Social Media</span>
-												</a>
-											</li>
 											
 											<li>
 												<a href="{{url('/doctor-change-password')}}">

@@ -56,6 +56,12 @@ class diagnoses_controller extends Controller
      */
     public function diagnosis_store(Request $request, $id)
     {
+        $data=$request->validate([
+            'problems'=>'required',
+            'diagnosis'=>'required',
+            'care_suggestion'=>'required',
+            'reports'=>'required',
+        ]);
         $data=new diagnoses;
         $data->problems=$request->problems;
         $data->diagnosis=$request->diagnosis;
@@ -69,6 +75,11 @@ class diagnoses_controller extends Controller
 
     public function prescription_store(Request $request, $id)
     {
+        $data=$request->validate([
+            'medicine_name'=>'required',
+            'medicine_Quantity'=>'required',
+            'medicine_take_Days'=>'required',
+        ]);
         $data=new prescriptions;
         $data->medicine_name=$request->medicine_name;
         $data->medicine_Quantity=$request->medicine_Quantity;

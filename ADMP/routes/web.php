@@ -25,6 +25,7 @@ use App\Http\Controllers\company_slots_controller;
 use App\Http\Controllers\diagnoses_controller;
 use App\Http\Controllers\prescriptions_controller;
 use App\Http\Controllers\patient_favs_controller;
+use App\Http\Controllers\doc_fav_patients_controller;
 
 
 /*
@@ -72,6 +73,10 @@ Route::get('/patient-dashboard',[appointment_controller::class,'doctor_appointme
 Route::get('/prescription', function (){return view('patient.prescription');});
 Route::get('/prescription-view', function (){return view('patient.prescription-view');});
 
+//Route::get('update_report', function (){return view('patient.update_report');});
+Route::get('/update_report/{id}',[appointment_controller::class,'create_report']);
+Route::post('/update_report/{id}',[appointment_controller::class,'update_report']);
+
 Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
 Route::get('/patientlogout',[patient_controller::class,'patientlogout']);
 
@@ -101,7 +106,10 @@ Route::post('/register',[patient_controller::class,'store']);
 Route::get('/login',[patient_controller::class,'patientlog']);
 Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
 
-
+Route::get('/forgot-password',[patient_controller::class,'forgot_pt_password']);
+Route::post('/forgot-password',[patient_controller::class,'forgot_pt_password']);
+Route::get('/forgot_otp',[patient_controller::class,'forgot_pt_otp']);
+Route::get('/reset-password',[patient_controller::class,'reset_pt_password']);
 
 Route::get('/checkout', function (){return view('patient.checkout');});
 Route::get('/booking-success', function (){return view('patient.booking-success');});
@@ -169,7 +177,9 @@ Route::get('/addspecialitie/{id}',[service_controller::class,'specialdelete']);
 Route::post('/addspecialitie',[service_controller::class,'addspecialitie']);
 
 
-Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
+//Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
+Route::get('/doctor-my-patients',[doc_fav_patients_controller::class,'mypatient']);
+
 Route::get('/doctor-patient-profile', function (){return view('doctor.patient-profile');});
 
 //Route::get('/doctor-appointments', function (){return view('doctor.appointments');});

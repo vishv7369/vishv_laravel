@@ -93,6 +93,13 @@ class patient_slots_controller extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->validate([
+            'time'=>'required',
+            'day'=>'required',
+            'no_slots'=>'required',
+            'min'=>'required',
+            'start_time'=>'required',
+        ]);
         $time=$request->time;
         $day=$request->day;
         $no_slots=$request->no_slots;
@@ -216,7 +223,11 @@ class patient_slots_controller extends Controller
     }
 
     public function matchotp(Request $request)
-    {
+        { 
+            $data=$request->validate([
+                
+            'userotp'=>'required|numeric',
+        ]);
         $userotp=$request->userotp;
         $ptbookotp=session('ptbookotp');
         if($userotp==$ptbookotp)

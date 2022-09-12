@@ -16,21 +16,17 @@
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
-											<h3>Enter OTP to Conform your Appointment</h3>
-											<p class="small text-muted"><a href="">Resend OTP</a></p>
+											<h3>Submit Your Reports</h3>
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="{{url('/matchotp')}}" method="post" enctype="multipart/form-data">
+										<form action="{{url('/update_report')}}" method="post" enctype="multipart/form-data">
 											@csrf
-											<div class="form-group form-focus">
-												<input type="text" name="userotp" class="form-control floating">
-												<label class="focus-label">Enter OTP</label>
-												@if ($errors->has('userotp'))
-            										<span class="text-danger">{{ $errors->first('userotp') }}</span>
-       											@endif
+											<div class="form-group">
+												<input type="file" name="report_img[]" class="form-control" multiple>
+												
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" value="send" name="submit" type="submit">Conform OTP</button>
+											<button class="btn btn-primary btn-block btn-lg login-btn" value="send" name="submit" type="submit">Submit</button>
 										</form>
 										<!-- /Forgot Password Form -->
 										

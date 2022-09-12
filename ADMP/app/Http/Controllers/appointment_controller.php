@@ -79,7 +79,33 @@ class appointment_controller extends Controller
        return redirect('patient.book_by_otp');
     }
 
+    public function create_report()
+    {
+        return view('patient.update_report');
+    }
 
+    public function update_report(Request $request,$id)
+    {
+        $data=appointments::where('patient_id','=',Session('patient_id'))->first();
+        echo 'patient_id';
+        exit();
+        // report upload
+        $filesarr = [];
+        if($request->hasfile('report_img'))
+        {
+            foreach($request->file('report_img') as $file)
+            {
+                $name = time().rand(111111,999999).'report_img.'.$file->extension();
+                $file->move('upload/patient/patient_report/',$name);
+                $filesarr[] = $name;       
+            }
+            $data->report_img=implode(",",$filesarr);
+        }
+        $res=$data->save();
+      
+       Alert::success('Done', 'You\'ve Successfully Add Report');
+       return redirect('/patient-dashboard');
+    }
     /**
      * Display the specified resource.
      *

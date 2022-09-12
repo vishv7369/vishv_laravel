@@ -131,20 +131,11 @@
 							<li class="">
 								<a href="{{url('/contact')}}">Contact</a>
 							</li>
-							
 							@if(Session('patient_id'))
-							<li class="has-submenu">
-								<a href="#">Patient Dashboard <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="{{url('/patient-dashboard')}}">Dashboard</a></li>
-									<li><a href="{{url('/favourites')}}">My Doctor</a></li>
-									<li><a href="{{url('/prescription')}}">Prescription</a></li>
-									<li><a href="{{url('/report')}}">Medical Report</a></li>
-									<li><a href="{{url('/profile-settings')}}">Profile Settings</a></li>
-								</ul>
-							</li>	
+							<div class="user" style="margin-left:600px;margin-top:35px;size:35px"><a href="{{url('/patient-dashboard')}}"><i class="fa fa-user"></i></a>
 							@else
 							@endif
+							
 			<!--			<li class="has-submenu">
 								<a href="#">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">

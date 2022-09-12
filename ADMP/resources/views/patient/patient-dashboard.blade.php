@@ -95,9 +95,14 @@
 																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
 																				<i class="far fa-eye"></i> View
 																			</a>
-																			<a class="edit-link" data-toggle="modal" href="#edit_personal_details" >
-																				<i class="fa fa-edit mr-1"></i>Report
+
+																			<a href="{{url('update_report/'.$data->id)}}" class="btn btn-sm bg-info-light">
+																				<i class="far fa-edit"></i> Report
 																			</a>
+																	<!--		<a class="edit-link" class="btn btn-sm bg-info-light"  href="update_report" >
+																				<i class="fa fa-edit mr-1"></i>Report
+																			</a>-->
+																			
 																		</div>
 																	</td>
 																	<?php

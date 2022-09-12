@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2022 at 02:47 PM
+-- Generation Time: Sep 12, 2022 at 11:09 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -58,6 +58,7 @@ CREATE TABLE `appointments` (
   `patient_id` bigint(20) UNSIGNED NOT NULL,
   `date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `report_img` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `appointment_status` enum('Approved','Pending') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Pending',
   `time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -66,16 +67,18 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `created_at`, `updated_at`, `doc_id`, `patient_id`, `date`, `comment`, `appointment_status`, `time`) VALUES
-(1, '2022-09-03 19:17:47', '2022-09-03 19:17:47', 1, 1, '2022-09-03', 'hii', 'Pending', '19:30'),
-(2, '2022-09-03 19:28:40', '2022-09-03 19:28:40', 2, 1, '2022-09-08', 'hii', 'Pending', '14:01'),
-(3, '2022-09-04 08:25:22', '2022-09-04 08:25:22', 2, 3, '2022-09-08', 'hii', 'Pending', '14:01'),
-(4, '2022-09-09 12:24:09', '2022-09-09 12:24:09', 1, 6, '2022-09-15', 'abcd', 'Pending', '16:40'),
-(5, '2022-09-09 12:52:51', '2022-09-09 12:52:51', 3, 2, '2022-09-09', 'nhnfg', 'Pending', '08:10'),
-(6, '2022-09-09 14:22:27', '2022-09-09 14:22:27', 3, 1, '2022-09-09', 'sdfcsed', 'Approved', '07:20'),
-(7, '2022-09-09 04:56:01', '2022-09-09 06:39:46', 2, 1, '2022-09-09', NULL, 'Approved', '10:40'),
-(8, '2022-09-09 04:58:11', '2022-09-09 04:58:11', 2, 2, '2022-09-16', NULL, 'Pending', '10:30'),
-(9, '2022-09-09 05:00:00', '2022-09-09 07:11:00', 2, 2, '2022-09-09', NULL, 'Approved', '10:20');
+INSERT INTO `appointments` (`id`, `created_at`, `updated_at`, `doc_id`, `patient_id`, `date`, `comment`, `report_img`, `appointment_status`, `time`) VALUES
+(1, '2022-09-03 19:17:47', '2022-09-03 19:17:47', 1, 1, '2022-09-03', 'hii', NULL, 'Pending', '19:30'),
+(2, '2022-09-03 19:28:40', '2022-09-03 19:28:40', 2, 1, '2022-09-08', 'hii', NULL, 'Pending', '14:01'),
+(3, '2022-09-04 08:25:22', '2022-09-04 08:25:22', 2, 3, '2022-09-08', 'hii', NULL, 'Pending', '14:01'),
+(4, '2022-09-09 12:24:09', '2022-09-09 12:24:09', 1, 6, '2022-09-15', 'abcd', NULL, 'Pending', '16:40'),
+(5, '2022-09-09 12:52:51', '2022-09-09 12:52:51', 3, 2, '2022-09-09', 'nhnfg', NULL, 'Pending', '08:10'),
+(6, '2022-09-09 14:22:27', '2022-09-09 14:22:27', 3, 1, '2022-09-09', 'sdfcsed', NULL, 'Approved', '07:20'),
+(7, '2022-09-09 04:56:01', '2022-09-09 06:39:46', 2, 1, '2022-09-09', NULL, NULL, 'Approved', '10:40'),
+(8, '2022-09-09 04:58:11', '2022-09-09 04:58:11', 2, 2, '2022-09-16', NULL, NULL, 'Pending', '10:30'),
+(9, '2022-09-09 05:00:00', '2022-09-09 07:11:00', 2, 2, '2022-09-09', NULL, NULL, 'Approved', '10:20'),
+(10, '2022-09-12 01:29:09', '2022-09-12 01:29:09', 1, 1, '2022-09-12', NULL, NULL, 'Pending', '09:30'),
+(11, '2022-09-12 02:13:24', '2022-09-12 02:13:24', 1, 7, '2022-09-12', NULL, NULL, 'Pending', '10:45');
 
 -- --------------------------------------------------------
 
@@ -317,7 +320,8 @@ CREATE TABLE `doc_fav_medicines` (
 
 INSERT INTO `doc_fav_medicines` (`id`, `created_at`, `updated_at`, `doctor_id`, `medicine_name`) VALUES
 (1, '2022-09-03 14:40:52', '2022-09-03 14:40:52', 1, 'Paracetamol'),
-(2, '2022-09-03 14:41:19', '2022-09-03 14:41:19', 1, 'Fusidic acid');
+(2, '2022-09-03 14:41:19', '2022-09-03 14:41:19', 1, 'Fusidic acid'),
+(3, '2022-09-12 01:55:08', '2022-09-12 01:55:08', 2, 'Paracetamol');
 
 -- --------------------------------------------------------
 
@@ -565,7 +569,8 @@ INSERT INTO `patients` (`id`, `name`, `mobileno`, `email`, `password`, `gender`,
 (2, 'Reena Valekar', 'null', 'riyavalekar19@gmail.com', '$2y$10$5v6NfBYh61vch2ieIy0QOe.Ih2ilsuBol1poYDKmwLNxe/i5F0OsC', 'Female', '1662207863_ptprofile_img.jpg', 'Unblock', '2022-09-03 19:18:54', '2022-09-03 19:24:23'),
 (3, 'Anchal Maurya', '8790654312', 'mohinimaurya062@gmail.com', '$2y$10$AVd3Kwe3uqnejDv2NebHluZe9hbf0WUF8ZU6LMs26nAkX0k55bbum', 'Female', '1662299753_ptprofile_img.jpg', 'Unblock', '2022-09-04 08:22:51', '2022-09-04 08:26:59'),
 (5, 'Mishti Maurya', 'null', 'mohinimaurya026@gmail.com', '$2y$10$8nx92y1lJKaFpAOjlnXFh.WYrTw.ZhAZmkV.u6lAmYJbJjPJqtOwy', 'null', 'null', 'Unblock', '2022-09-07 11:57:37', '2022-09-07 11:57:37'),
-(6, 'Keerti Maurya', 'null', 'mohini.maurya6201@gmail.com', '$2y$10$Ex64/Krc8bUxQfmoq7Gxpej7fHw2p1uHB7fxgVVt7z1WTtrEsJG06', 'null', 'null', 'Unblock', '2022-09-07 13:07:57', '2022-09-07 13:07:57');
+(6, 'Keerti Maurya', 'null', 'mohini.maurya6201@gmail.com', '$2y$10$Ex64/Krc8bUxQfmoq7Gxpej7fHw2p1uHB7fxgVVt7z1WTtrEsJG06', 'null', 'null', 'Unblock', '2022-09-07 13:07:57', '2022-09-07 13:07:57'),
+(7, 'rajesh nagar', 'null', 'rajeshnagarn@gmail.com', '$2y$10$zqD8VtP1KnUmQskKxP9h.e6SWcd3xuAM5Djvf63mxd3iT0Hrb0xyy', 'null', 'null', 'Unblock', '2022-09-12 01:31:59', '2022-09-12 01:31:59');
 
 -- --------------------------------------------------------
 
@@ -589,7 +594,9 @@ INSERT INTO `patient_favs` (`id`, `created_at`, `updated_at`, `doctor_id`, `pati
 (2, '2022-09-06 09:10:23', '2022-09-06 09:10:23', 4, 3),
 (5, '2022-09-07 14:06:30', '2022-09-07 14:06:30', 2, 6),
 (7, '2022-09-08 12:22:13', '2022-09-08 12:22:13', 3, 6),
-(11, '2022-09-08 18:14:55', '2022-09-08 18:14:55', 3, 5);
+(11, '2022-09-08 18:14:55', '2022-09-08 18:14:55', 3, 5),
+(12, '2022-09-09 09:26:24', '2022-09-09 09:26:24', 2, 1),
+(13, '2022-09-12 02:09:34', '2022-09-12 02:09:34', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -857,8 +864,7 @@ CREATE TABLE `visitor_slots` (
 INSERT INTO `visitor_slots` (`id`, `created_at`, `updated_at`, `doc_id`, `visitor_slot`, `start_time`, `end_time`, `mr_allowed`, `manager_allowed`, `company_allowed`, `day`, `status`) VALUES
 (1, '2022-09-03 18:07:26', '2022-09-03 18:36:56', 1, '1', '16:00', '19:00', '5', '2', '3', 'Wednesday', 'Disable'),
 (2, '2022-09-03 18:08:46', '2022-09-03 18:37:05', 1, '2', '10:00', '13:00', '10', '55', '5', 'Monday', 'Disable'),
-(4, '2022-09-08 14:20:45', '2022-09-08 14:20:45', 2, '1', '12:00', '18:00', '1', '2', '3', 'Thursday', 'Disable'),
-(5, '2022-09-08 14:21:33', '2022-09-08 14:21:33', 2, '2', '10:00', '16:00', '2', '3', '5', 'Friday', 'Disable');
+(4, '2022-09-08 14:20:45', '2022-09-08 14:20:45', 2, '1', '12:00', '18:00', '1', '2', '3', 'Thursday', 'Disable');
 
 --
 -- Indexes for dumped tables
@@ -1087,7 +1093,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `areas`
@@ -1141,7 +1147,7 @@ ALTER TABLE `doctors`
 -- AUTO_INCREMENT for table `doc_fav_medicines`
 --
 ALTER TABLE `doc_fav_medicines`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `doc_fav_patients`
@@ -1189,13 +1195,13 @@ ALTER TABLE `mrs`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `patient_favs`
 --
 ALTER TABLE `patient_favs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `patient_slots`
@@ -1225,7 +1231,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `specialists`

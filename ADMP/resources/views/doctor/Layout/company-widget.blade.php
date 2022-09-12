@@ -1,10 +1,10 @@
-							<div class="widget-profile pro-widget-content">
+<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
 										<a href="#" class="booking-doc-img">
-											<img src="{{url('Frontend/assets/img/doctors/doctor-thumb-02.jpg')}}" alt="User Image">
+											<img src="{{url('upload/doctor/'. Session('profile_img'))}}" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>Dr. Darren Elder</h3>
+											<h3>Dr.{{Session('drname')}}</h3>
 											
 											<div class="patient-details">
 												<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
@@ -27,17 +27,18 @@
 													<span>Appointments</span>
 												</a>
 											</li>
-											
+
 											<li>
-												<a href="{{url('/doctor-company-schedule-timings')}}">
+												<a href="{{url('/doctor-visitor_timings')}}">
 													<i class="fas fa-hourglass-start"></i>
-													<span>Company Schedule</span>
+													<span>Visitor Schedule</span>
 												</a>
 											</li>
+											
 											<li>
 												<a href="{{url('/doctor-company-find')}}">
 													<i class="fas fa-user"></i>
-													<span>Find Company</span>
+													<span>Find Medicine</span>
 												</a>
 											</li>
 											

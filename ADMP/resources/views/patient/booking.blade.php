@@ -34,7 +34,7 @@
 									</a>
 									<div class="booking-info">
 										<h4><a href="{{url('/doctor-profile')}}">Dr. <?php echo $doctordata->first_name ?> <?php echo $doctordata->last_name ?></a></h4>
-										<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> <?php echo $doctordata->city ?>, <?php echo $doctordata->state ?></p>
+										<p class="text-muted mb-0"><i class="fas fa-map-marker-alt"></i> <?php echo $doctordata->hospital_name ?></p>
 									</div>
 								</div>
 
@@ -56,16 +56,22 @@
 					</div>
 					<!-- Schedule Widget -->
 
-
+				
 
 
 					<!-- Schedule Header-->
+				
 					<div class="schedule-header">
-						<div align="center">
-							<h4><span>Book Today Appointment Slots</span></h4>
-						</div>
-						<div>
-							<span><b>Today's Dt.<?php echo (new DateTime())->format('Y-m-d'); ?></b></span>
+						<div class="breadcrumb-bar">
+							<div class="container-fluid">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<h4><li class="breadcrumb-item"><a href="">Book Today's Appointment Slots</a></li></h4>
+									<h5 style="margin-left:205px;margin-top:5px"><li class="breadcrumb-item"><a href=""><span><b>Today's Dt.<?php echo (new DateTime())->format('Y-m-d'); ?></b></span></a></li></h5>
+								</ol>
+							</nav>
+							
+							</div>
 						</div>
 						<br>
 						<!-- Monday Slot -->

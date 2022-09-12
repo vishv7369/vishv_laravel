@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\patient;
 use App\Models\patient_fav;
+use App\Models\doctor;
+use App\Models\appointments;
 use App\Mail\welcomemail;
 use Hash;
 use Mail;
@@ -18,6 +20,7 @@ class patient_controller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    ////////////////////////////////////admin panel///////////////////////////////////////////////////
     public function index()
     {
         $data=patient::all();
@@ -31,6 +34,9 @@ class patient_controller extends Controller
         Alert::success('Done', 'You\'ve Successfully Delete Patient');
         return redirect('admin-patient');
     }
+
+    /////////////////////////////////doctor panel///////////////////////////////////////////////////
+    
 
     /////////////////////////////////patient panel////////////////////////////////////////////////////
     /**
@@ -55,13 +61,16 @@ class patient_controller extends Controller
             'name'=>'required',
             'email'=>'required',
             'password'=>'required',
+            'mobileno'=>'required|numeric|digits:10',
+            'gender'=>'required',
         ]);
         $data=new patient;
         $name=$data->name=$request->name;
         $email=$data->email=$request->email;
         
         $data->password=Hash::make($request->password);
-
+        $data->mobileno=$request->mobileno;
+        $data->gender=$request->gender;
 
         $res=$data->save();
         if($res)
@@ -202,10 +211,36 @@ class patient_controller extends Controller
 
     /*------Like doctor------*/
     
-    public function likedoctor($id)
+    public function forgot_pt_password(Request $request)
     {
-        
+        $email=$request->email;
+        $data=patient::where("email","=",$request->email)->first();
+        if($data==$email)
+        {
+            $data->email=$email;
+            $otp=rand(111111,999999);
+            $request->Session()->put('Forgot_pass',$otp);
+            $data=['Forgot_pass'=>Session('Forgot_pass'),'body'=>"Your OTP for reset your password"];
+            Mail::to($email)->send(new forgot_otp($data));
+            return redirect('/forgot_otp');
+        }
+        else
+        {
+            Alert::warning('fail', 'Email does not match with your registered mail');
+            return redirect('/forgot-password');
+        }     
     }
+
+    public function forgot_pt_otp(Request $request,$id)
+    {
+        return redirect('/reset-password');
+    }
+
+    public function reset_pt_password(Request $request,$id)
+    {
+        return redirect('/login');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

@@ -38,6 +38,25 @@
        											@endif
 											</div>
 											<div class="form-group form-focus">
+												<input type="text" class="form-control floating" value="{{old('mobileno')}}" name="mobileno">
+												<label class="focus-label">Mobile no</label>
+												@if ($errors->has('mobileno'))
+            										<span class="text-danger">{{ $errors->first('mobileno') }}</span>
+       											@endif
+											</div>
+											<div class="form-group form-focus">
+												<select class="form-control floating" name="gender">
+													<option value="null">Select Gender</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+												</select>
+												@if ($errors->has('gender'))
+            										<span class="text-danger">{{ $errors->first('gender') }}</span>
+       											@endif
+												<label class="focus-label">Gender</label>
+												
+											</div>
+											<div class="form-group form-focus">
 												<input type="password" class="form-control floating" value="{{old('password')}}" name="password">
 												<label class="focus-label">Create Password</label>
 												@if ($errors->has('password'))
@@ -48,18 +67,8 @@
 												<a class="forgot-link" href="{{url('/login')}}">Already have an account?</a>
 											</div>
 											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" name="submit" value="send">Signup</button>
-											<div class="login-or">
-												<span class="or-line"></span>
-												<span class="span-or">or</span>
-											</div>
-											<div class="row form-row social-login">
-												<div class="col-6">
-													<a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
-												</div>
-												<div class="col-6">
-													<a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
-												</div>
-											</div>
+											
+											
 										</form>
 										<!-- /Register Form -->
 										

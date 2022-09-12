@@ -13,11 +13,22 @@
 						<div class="search-box">
 							<form action="templateshub.net">
 								<div class="form-group search-location">
-									<input type="text" class="form-control" placeholder="Search Location">
-									<span class="form-text">Based on your Location</span>
+									<select class="col-lg-13 form-control" name="state">
+										<option value="">Select City</option>
+									</select>
+									<span class="form-text">Based on your City</span>
+								</div>
+								
+								<div class="form-group search-location">
+									<select class="col-lg-13 form-control" name="state">
+										<option value="">Select Area</option>
+									</select>
+									<span class="form-text">Based on your Area</span>
 								</div>
 								<div class="form-group search-info">
-									<input type="text" class="form-control" placeholder="Search Doctors, Clinics, Hospitals, Diseases Etc">
+									<select class="col-lg-13 form-control" name="state">
+										<option value="">Select Specialist</option>
+									</select>
 									<span class="form-text">Ex : Dental or Sugar Check up etc</span>
 								</div>
 								<button type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i> <span>Search</span></button>

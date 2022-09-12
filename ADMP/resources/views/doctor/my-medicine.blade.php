@@ -9,10 +9,10 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Invoices</li>
+									<li class="breadcrumb-item active" aria-current="page">Medicine</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Invoices</h2>
+							<h2 class="breadcrumb-title">My Medicines</h2>
 						</div>
 					</div>
 				</div>
@@ -38,7 +38,7 @@
                         <div class="col-md-7 col-lg-8 col-xl-9">
 							<div class="card card-table">
 								<div class="card-body">
-								<div class="row">
+								<div class="row p-3">
 									<div class="col-md-6 col-lg-6">
 										<h4>Add Medicines Form-list</h4>
 										@if(session()->has('success'))
@@ -94,7 +94,7 @@
 								@if(session()->has('suc'))
 									<i class="alert alert-success">{{session('suc')}}</i>
 								@endif
-								<div class="table-responsive">
+								<div class="table-responsive p-3">
 												<table id="table" class="table table-hover table-center mb-0">
 											<thead>
 												<tr>

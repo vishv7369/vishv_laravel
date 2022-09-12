@@ -9,10 +9,10 @@
 				<nav aria-label="breadcrumb" class="page-breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Checkout</li>
+						<li class="breadcrumb-item active" aria-current="page">Book Appointment</li>
 					</ol>
 				</nav>
-				<h2 class="breadcrumb-title">Checkout</h2>
+				<h2 class="breadcrumb-title">Appointment</h2>
 			</div>
 		</div>
 	</div>
@@ -88,19 +88,9 @@
 									<div class="doc-info-cont">
 										<h4 class="doc-name">Dr. <?php echo $doctor_data->first_name?> <?php echo $doctor_data->last_name?></h4>
 										<p class="doc-speciality"><?php echo $doctor_data->short_tittle?></p>
-										<p class="doc-department"><img src="{{asset('upload/specialities/' . $doctor_data->img)}}" class="img-fluid" alt="Speciality"><?php echo $doctor_data->specialist_id?></p>
+										<p class="fas fa-map-marker-alt">&nbsp;&nbsp;<?php echo $doctor_data->hospital_name?></p>
 										
-										<div class="clinic-details">
-											
-											<ul class="clinic-gallery">
-											            <li>
-															<a href="{{asset('upload/hospital/' . $doctor_data->hospital_img)}}" data-fancybox="gallery">
-																<img src="{{asset('upload/hospital/' . $doctor_data->hospital_img)}}" alt="Feature">
-															</a>
-														</li>
 										
-											</ul>
-										</div>
 										
 									</div>
 								</div>
@@ -120,20 +110,7 @@
 											<li><i class=""></i>  Time: {{$slot_timing}}</li>
 										</ul>
 									</div>
-									<div class="doctor-action">
-										<a href="javascript:void(0)" class="btn btn-white fav-btn">
-											<i class="far fa-bookmark"></i>
-										</a>
-										<a href="{{url('/chat')}}" class="btn btn-white msg-btn">
-											<i class="far fa-comment-alt"></i>
-										</a>
-										<a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#voice_call">
-											<i class="fas fa-phone"></i>
-										</a>
-										<a href="javascript:void(0)" class="btn btn-white call-btn" data-toggle="modal" data-target="#video_call">
-											<i class="fas fa-video"></i>
-										</a>
-									</div>
+									
 									<div class="clinic-booking">
 										<input type="submit" class="doc-slot-list" value="Book Appointment" />	
 									</div>

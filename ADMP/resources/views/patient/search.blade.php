@@ -12,22 +12,8 @@
 									<li class="breadcrumb-item active" aria-current="page">Search</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">2245 matches found for : Dentist In Bangalore</h2>
 						</div>
-						<div class="col-md-4 col-12 d-md-block d-none">
-							<div class="sort-by">
-								<span class="sort-title">Sort by</span>
-								<span class="sortby-fliter">
-									<select class="select">
-										<option>Select</option>
-										<option class="sorting">Rating</option>
-										<option class="sorting">Popular</option>
-										<option class="sorting">Latest</option>
-										<option class="sorting">Free</option>
-									</select>
-								</span>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -83,10 +69,19 @@
 						
 						<div class="col-md-12 col-lg-8 col-xl-9">
 
+						<table id="table" class="table table-hover table-center mb-0" >
+						<thead>
+							<tr>
+								<td></td>
+							</tr>
+						</thead>
+						<tbody>
 						<?php
 						foreach($doctorlist_arr as $data)
 						{
 						?>
+						<tr>
+							<td>
 							<!-- Doctor Widget -->
 							<div class="card">
 								<div class="card-body">
@@ -103,7 +98,7 @@
 												<h5 class="doc-department"><img src="{{asset('upload/specialities/' . $data->img)}}" class="img-fluid" alt="Speciality"><?php echo $data->name?></h5>
 												
 												<div class="clinic-details">
-													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></p>
+													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $data->hospital_name?></p>
 													<ul class="clinic-gallery">
 													<?php
 														$hospital_img=$data->hospital_img;
@@ -128,7 +123,7 @@
 										<div class="doc-info-right">
 											<div class="clini-infos">
 												<ul>
-													<li><i class="fas fa-map-marker-alt"></i> <?php echo $data->city?>, <?php echo $data->state?></li>
+													<li><i class="fas fa-map-marker-alt"></i> <?php echo $data->address?></li>
 													<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $data->consulting_fees?>  </li>
 													<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $data->followup_fees?>  </li>
 												
@@ -143,15 +138,14 @@
 								</div>
 							</div>
 							<!-- /Doctor Widget -->
+							</td>
+						</tr>
 							<?php
 							}
 							?>
-
-							
-
-							<div class="load-more text-center">
-								<a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>	
-							</div>	
+							</tbody>
+							</table>
+							<br>
 						</div>
 					</div>
 

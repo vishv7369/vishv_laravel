@@ -636,8 +636,9 @@ public function managerdoctorindex()
 
     public function doctorview($id)
     {
-        $data=doctor::find($id);
-        $doctor_id=$data->id;
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();
+        //$data=doctor::find($id);
+        $doctor_id=$id;
         $servicelist_arr=service::where('doctor_id','=',$doctor_id)->get();
         $special_arr=drspecialitie::where('doctor_id','=',$doctor_id)->get();
         $fav_doctor=patient_fav::where('doctor_id','=',$doctor_id)->where('patient_id','=',Session('patient_id'))->first();

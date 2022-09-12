@@ -124,13 +124,7 @@
 							</li>
 							
 							<li class="">
-								<a href="{{url('/doctor-mr-dashboard')}}">MR</a>
-							</li>
-							<li class="">
-								<a href="{{url('/doctor-manager-dashboard')}}">Health Manager</a>
-							</li>
-							<li class="">
-								<a href="{{url('/doctor-company-dashboard')}}">Company</a>
+								<a href="{{url('/doctor-company-dashboard')}}">Pharma</a>
 							</li>
 							
 							
