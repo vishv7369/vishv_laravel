@@ -316,6 +316,35 @@ public function companymanageredit($id)
         return redirect('/manager');
     }
 
+    ///////////////change password
+public function managerchangepassword(Request $request)
+{
+    $data=$request->validate([
+        'oldpassword' => 'required',
+        'newpassword' => 'required|string|min:6',
+        'confirm_password' => 'required|same:newpassword|min:6',
+    
+    ]);
+    $data=manager::where("id","=",Session('manager_id'))->first();
+    if(Hash::check($request->oldpassword, $data->password))
+       {
+        $data->password=Hash::make($request->newpassword);
+        $data->update();
+        Alert::success('Done', 'You\'re Password Change Success');
+        return back();
+       }
+       else
+       {
+        Alert::error('fail', 'Please Enter Correct Old Password');
+        return back();
+       }
+}
+
+public function managerchangecreate()
+{
+    return view('manager.setting');
+}
+
     public function managerprofile()
 	{  
 		$data=manager::where("id","=",session('manager_id'))->first();

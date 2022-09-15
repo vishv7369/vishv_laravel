@@ -88,8 +88,8 @@
 									<div class="doc-info-cont">
 										<h4 class="doc-name">Dr. <?php echo $doctor_data->first_name?> <?php echo $doctor_data->last_name?></h4>
 										<p class="doc-speciality"><?php echo $doctor_data->short_tittle?></p>
-										<p class="fas fa-map-marker-alt">&nbsp;&nbsp;<?php echo $doctor_data->hospital_name?></p>
-										
+										<p class="far fa-hospital">&nbsp;&nbsp;<?php echo $doctor_data->hospital_name?></p><br>
+										<i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<?php echo $doctor_data->address?>
 										
 										
 									</div>
@@ -97,10 +97,7 @@
 								<div class="doc-info-right">
 									<div class="clini-infos">
 										<ul>
-											<li><i class="fas fa-map-marker-alt"></i> 
-                                                <?php echo $doctor_data->address?>,<?php echo $doctor_data->area?>, <?php echo $doctor_data->city?>
-                                                <?php echo $doctor_data->state?>-<?php echo $doctor_data->pincode?>
-                                            </li>
+											
                                             
 											<li><i class="far fa-money-bill-alt"></i> Consulting Fees: <?php echo $doctor_data->consulting_fees?></li>
 											<li><i class="far fa-money-bill-alt"></i> Followup Fees: <?php echo $doctor_data->followup_fees?></li>

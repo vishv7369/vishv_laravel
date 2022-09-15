@@ -132,7 +132,12 @@
 								<a href="{{url('/contact')}}">Contact</a>
 							</li>
 							@if(Session('patient_id'))
-							<div class="user" style="margin-left:600px;margin-top:35px;size:35px"><a href="{{url('/patient-dashboard')}}"><i class="fa fa-user"></i></a>
+							<li class="">
+								<a href="{{url('/patient-dashboard')}}">My Dashboard</a>
+							</li>
+							<li class="" style="padding-left:100px">
+							<a href="{{url('/patient-dashboard')}}"><i class="fa fa-user"> </i><span>  Hii.. {{ Session('name')}}</span></a>
+							</li>
 							@else
 							@endif
 							

@@ -9,7 +9,7 @@
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
 									<li class="breadcrumb-item"><a href="{{url('/index')}}">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Invoices</li>
+									<li class="breadcrumb-item active" aria-current="page">Visitor Timings</li>
 								</ol>
 							</nav>
 							<h2 class="breadcrumb-title"> Visitor Timings</h2>

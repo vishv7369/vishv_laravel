@@ -183,7 +183,7 @@
 								</div>
 							</div>
 							<a class="dropdown-item" href="{{url('/manager-profile')}}">My Profile</a>
-							<a class="dropdown-item" href="{{url('/manager-settings')}}">Settings</a>
+							<a class="dropdown-item" href="{{url('/manager-changepassword')}}">Change Password</a>
 							<a class="dropdown-item" href="{{url('/managerlogout')}}">Logout</a>
 						</div>
 					</li>

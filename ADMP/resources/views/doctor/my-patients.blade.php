@@ -69,7 +69,7 @@
 												?>
 													
 													<div class="profile-det-info">
-														<h3><a href="{{url('/doctor-patient-profile')}}"><?php echo $data->name?></a></h3>
+														<h3><a href="{{url('doctor-patient-profile/'.$data->patient_id)}}"><?php echo $data->name?></a></h3>
 														
 														<div class="patient-details">
 															<h5><b>Patient ID :</b> PT<?php echo $data->patient_id?></h5>

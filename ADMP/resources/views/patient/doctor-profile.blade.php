@@ -38,7 +38,7 @@
 										<p class="doc-department"><img src="{{asset('upload/specialities/' . $fetch->img)}}" class="img-fluid" alt="Speciality"><?php echo $fetch->name?></p>
 										
 										<div class="clinic-details">
-										<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $fetch->hospital_name?></p>
+										<p class="doc-location"><i class="far fa-hospital"></i> <?php echo $fetch->hospital_name?></p>
 											<ul class="clinic-gallery">
 														<?php
 														$hospital_img=$fetch->hospital_img;

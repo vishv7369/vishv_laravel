@@ -8,6 +8,7 @@ use App\Models\patient_fav;
 use App\Models\doctor;
 use App\Models\appointments;
 use App\Mail\welcomemail;
+use App\Mail\forgot_otp;
 use Hash;
 use Mail;
 use Alert;
@@ -76,7 +77,6 @@ class patient_controller extends Controller
         if($res)
 		{
 			$details=['title'=>$email,'comment'=>"Welcome Mail"];
-	   
 			Mail::to($email)->send(new welcomemail($details));
             Alert::success('Done', 'You\'ve Successfully Register');
 			return redirect('login');
@@ -133,13 +133,13 @@ class patient_controller extends Controller
            }
            else
            {
-            Alert::error('Fail', 'Login Failed due to Blocked User');
+            Alert::error('Fail', 'Login Failed due to Wrong Password');
             return redirect('/login');
            }
         }
         else
         {
-            Alert::error('Fail', 'Login Failed due to Wrong user');
+            Alert::error('Fail', 'Login Failed due to Wrong user name');
             return redirect('/login');
         }
     }
@@ -153,7 +153,34 @@ class patient_controller extends Controller
         return redirect('/login');
     }
 
-    
+    ///////////////change password
+    public function changepassword(Request $request)
+    {
+        $data=$request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|string|min:6',
+            'confirm_password' => 'required|same:newpassword|min:6',
+        
+        ]);
+        $data=patient::where("id","=",Session('patient_id'))->first();
+        if(Hash::check($request->oldpassword, $data->password))
+           {
+            $data->password=Hash::make($request->newpassword);
+            $data->update();
+            Alert::success('Done', 'You\'re Password Change Success');
+            return back();
+           }
+           else
+           {
+            Alert::error('fail', 'Please Enter Correct Old Password');
+            return back();
+           }
+    }
+
+    public function changepasswordcreate()
+    {
+        return view('patient.change-password');
+    }
     /**
      * Display the specified resource.
      *
@@ -211,36 +238,85 @@ class patient_controller extends Controller
 
     /*------Like doctor------*/
     
-    public function forgot_pt_password(Request $request)
+    public function ptforgot_password(Request $request)
     {
+        $data=$request->validate([            
+            'email'=>'required|email',
+        ]);
         $email=$request->email;
         $data=patient::where("email","=",$request->email)->first();
-        if($data==$email)
+        if($data)
         {
-            $data->email=$email;
+            $otppatient_id=$data->id;
+            $request->Session()->put('otppatient_id',$otppatient_id);
             $otp=rand(111111,999999);
-            $request->Session()->put('Forgot_pass',$otp);
-            $data=['Forgot_pass'=>Session('Forgot_pass'),'body'=>"Your OTP for reset your password"];
+            $request->Session()->put('ptforgot_pass_otp',$otp);
+            $data=['ptforgot_pass_otp'=>Session('ptforgot_pass_otp'),'body'=>"Your OTP for reset your password"];
             Mail::to($email)->send(new forgot_otp($data));
-            return redirect('/forgot_otp');
+            return redirect('/ptenter_otp');
         }
         else
         {
-            Alert::warning('fail', 'Email does not match with your registered mail');
+            Alert::error('fail', 'Email does not match with your registered mail');
             return redirect('/forgot-password');
         }     
     }
 
-    public function forgot_pt_otp(Request $request,$id)
+    public function ptenter_otp(Request $request)
     {
-        return redirect('/reset-password');
+        if(Session('ptforgot_pass_otp'))
+        {
+            return view('patient.ptenter_otp');   
+        }
+        else
+        {
+            return redirect('/login');
+        }
     }
 
-    public function reset_pt_password(Request $request,$id)
+    public function ptstore_otp(Request $request)
     {
+        
+            $data=$request->validate([            
+            'otp'=>'required|numeric'
+            ]);
+
+            $otp=$request->otp;
+            $ptforgot_pass_otp=Session('ptforgot_pass_otp');
+            if($otp==$ptforgot_pass_otp)
+            {
+                Session()->pull('ptforgot_pass_otp');
+                Session()->put('ptreset_pass',$otp);
+                Alert::success('success', 'OTP match success');
+                return redirect('/reset-password');
+            }
+            else
+            {
+                Alert::error('fail', 'OTP does not match');
+                return redirect('/ptenter_otp');
+            }
+    }
+
+    public function ptreset_password(Request $request)
+    {
+        if(Session('ptreset_pass'))
+        {
+            return view('patient.reset_password');
+        }
+    }
+
+    public function ptpassword_store(Request $request)
+    {
+        $data=$request->validate([
+            'reset_pass' => 'required|string|min:6',
+            'confirm_password' => 'required|same:reset_pass|min:6',
+        ]);
+        patient::where('id','=',Session('otppatient_id'))->update(['password'=>Hash::make($request->reset_pass)]);
+        Session()->pull('otppatient_id');
+        Session()->pull('ptreset_pass');
+        Alert::success('Done', 'You\'re Password Reset Success');
         return redirect('/login');
     }
-
     /**
      * Remove the specified resource from storage.
      *

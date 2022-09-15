@@ -50,7 +50,7 @@
 												<p class="invoice-details invoice-details-two">
 												
 													
-													Dr. {{$doctor_data->first_name}} {{$doctor_data->first_name}} <br>
+													Dr. {{$doctor_data->first_name}} {{$doctor_data->last_name}} <br>
 													{{$doctor_data->address}},<br>
 													{{$doctor_data->city}}, {{$doctor_data->state}} <br>
 													

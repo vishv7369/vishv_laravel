@@ -96,15 +96,20 @@
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
-											<h3>Reset your password</h3>
+											<h3>Enter your OTP</h3>
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="">
+										<form action="{{url('ptstore_otp')}}" method="post" enctype="multipart/form-data">
+											@csrf
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating">
+												<input type="text" name="otp" class="form-control floating">
 												<label class="focus-label">Enter OTP</label>
+												@if ($errors->has('otp'))
+            										<span class="text-danger">{{ $errors->first('otp') }}</span>
+       											@endif
 											</div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" href="forgot_otp">Submit</button>
 										</form>
 										<!-- /Forgot Password Form -->
 										

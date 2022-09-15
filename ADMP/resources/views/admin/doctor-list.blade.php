@@ -41,8 +41,7 @@
 													<th>Specialist</th>
 													<th>First Name</th>
 													<th>Last Name</th>
-												    <th>Doc status</th>
-													<th class="text-right">Actions</th>
+												    <th class="text-right">Actions</th>
 													
 													
 												</tr>
@@ -58,7 +57,6 @@
 												<td><?php echo $data->name?></td>
 												<td><?php echo $data->first_name?></td>
 												<td><?php echo $data->last_name?></td>
-												<td><?php echo $data->doctor_status ?></td>
 												<td class="text-right">
 														<div class="actions">
 															<a class="btn btn-sm bg-success-light"  href="{{url('edit/'.$data->id)}}">

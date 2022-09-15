@@ -16,7 +16,7 @@ class forgot_otp extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
         $this->data=$data;
     }
@@ -30,9 +30,8 @@ class forgot_otp extends Mailable
     {
         $subject='Forgrt OTP';
         $name="Doccure";
-
-        return $this->view('patient.forgot_OTP')
+        return $this->view('patient.forgot_otp_mail')
         ->subject($subject)
-        ->with(['name'=>$this->data['name'],'Forgot_pass'=>$this->data['Forgot_pass'],'body'=>$this->data['body']]);
+        ->with(['name'=>$name,'ptforgot_pass_otp'=>$this->data['ptforgot_pass_otp'],'body'=>$this->data['body']]);
     }
 }

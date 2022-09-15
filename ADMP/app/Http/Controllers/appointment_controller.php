@@ -39,6 +39,7 @@ class appointment_controller extends Controller
         return view('doctor.appointments',["appointments_arr"=>$data]);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *

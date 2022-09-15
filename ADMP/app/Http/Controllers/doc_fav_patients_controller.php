@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\doc_fav_patient;
+use App\Models\appointments;
 use session;
 use Alert;
 use Exception;
@@ -25,6 +26,16 @@ class doc_fav_patients_controller extends Controller
         return view('doctor.my-patients',["mypatient"=>$data]);
     }
 
+
+    public function patientview($id)
+    {
+        $data=doc_fav_patient::join('patients','patients.id','=','doc_fav_patients.patient_id')->where('patients.id','=',$id)->first();
+        $patient_id=$id;
+        $patient_appointment_arr=appointments::where('appointments.patient_id','=',$id);
+        return view('doctor.patient-profile',["fetch"=>$data,"patient_appointment_arr"=>$patient_appointment_arr]);
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *

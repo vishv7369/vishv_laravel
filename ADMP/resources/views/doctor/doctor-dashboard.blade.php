@@ -126,7 +126,7 @@
 																		<th>Gender</th>
 																		<th>Appt Date</th>
 																		<th>Mobile No</th>
-																		<th class="text-center">Paid Amount</th>
+																		<th class="text-center">Add Prescription</th>
 																		<th></th>
 																	</tr>
 																</thead>
@@ -143,14 +143,17 @@
 																				if($ptprofile_img=="null")
 																				{
 																			?>
-																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('Frontend/assets/img/patients/user.png')}}" alt="dammy Image">
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('Frontend/assets/img/patients/user.png')}}" alt="dammy Image">
 																				</a>
 																			<?php
 																				}
 																				else
 																				{
 																			?>
-																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image"></a>
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image">
+																				</a>
 																			<?php
 																				}
 																			?>
@@ -196,7 +199,6 @@
 																		<th>Gender</th>
 																		<th>Appt Date</th>
 																		<th>Mobile No</th>
-																		<th class="text-center">Paid Amount</th>
 																		<th></th>
 																	</tr>
 																</thead>
@@ -232,14 +234,7 @@
 																		<td><?php echo $data->gender?></td>
 																		<td><?php echo $data->date?> <span class="d-block text-info">Time : <?php echo $data->time?></span></td>
 																		<td><?php echo $data->mobileno?></td>
-																		<td class="text-right">
-																			<div class="table-action">			
-																				<a href="{{url('add-prescription/'.$data->id)}}" class="btn btn-sm bg-success-light">
-																					<i class="fas fa-plus"></i> Add prescription
-																				</a>
-																				
-																			</div>
-																		</td>
+																		
 																	</tr>
 																<?php
 																}

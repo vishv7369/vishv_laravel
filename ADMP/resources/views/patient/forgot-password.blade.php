@@ -104,8 +104,11 @@
 										<form action="{{url('forgot-password')}}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating">
+												<input type="email" name="email" class="form-control floating">
 												<label class="focus-label">Email</label>
+												@if ($errors->has('email'))
+            										<span class="text-danger">{{ $errors->first('email') }}</span>
+       											@endif
 											</div>
 											<div class="text-right">
 												<a class="forgot-link" href="{{url('/login')}}">Remember your password?</a>

@@ -16,7 +16,7 @@
 									</div>
 									<div class="col-md-12 col-lg-6 login-right">
 										<div class="login-header">
-											<h3>Patient Register <a href="{{url('/doctor-register')}}">Are you a Doctor?</a></h3>
+											<h3>Patient Register</h3>
 										</div>
 										
 										<!-- Register Form -->
@@ -46,7 +46,7 @@
 											</div>
 											<div class="form-group form-focus">
 												<select class="form-control floating" name="gender">
-													<option value="null">Select Gender</option>
+													<option value="">Select Gender</option>
 													<option value="Male">Male</option>
 													<option value="Female">Female</option>
 												</select>

@@ -98,7 +98,7 @@
 												<h5 class="doc-department"><img src="{{asset('upload/specialities/' . $data->img)}}" class="img-fluid" alt="Speciality"><?php echo $data->name?></h5>
 												
 												<div class="clinic-details">
-													<p class="doc-location"><i class="fas fa-map-marker-alt"></i> <?php echo $data->hospital_name?></p>
+													<p class="doc-location"><i class="far fa-hospital"></i> <?php echo $data->hospital_name?></p>
 													<ul class="clinic-gallery">
 													<?php
 														$hospital_img=$data->hospital_img;

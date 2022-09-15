@@ -86,11 +86,7 @@ class doctor_controller extends Controller
             'visit_card'=>'required',
 
         ]);
-
-       
-
         $data=new doctor;
-        
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
@@ -487,6 +483,35 @@ public function login(Request $request)
         $data->save();
         Alert::success('Done', 'You\'ve Successfully Update Your Profile');
 		return redirect('/editdoctor');
+    }
+
+    ////change password
+    public function changepassworddoctor(Request $request)
+    {
+        $data=$request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required|string|min:6',
+            'confirm_password' => 'required|same:newpassword|min:6',
+        
+        ]);
+        $data=doctor::where("id","=",Session('doctor_id'))->first();
+        if(Hash::check($request->oldpassword, $data->password))
+           {
+            $data->password=Hash::make($request->newpassword);
+            $data->update();
+            Alert::success('Done', 'You\'re Password Change Success');
+            return back();
+           }
+           else
+           {
+            Alert::error('fail', 'Please Enter Correct Old Password');
+            return back();
+           }
+    }
+
+    public function changepassworddoctorcreate()
+    {
+        return view('doctor.change-password');
     }
 
     public function visitor_timings()//visitor slots show

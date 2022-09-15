@@ -66,7 +66,7 @@
 														<table id="table" class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>Doctor</th>
+																	<th>Patient</th>
 																	<th>Appt Date</th>
 																	<th>Comment</th>
 																	<th>Status</th>
@@ -85,10 +85,26 @@
 																<tr>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="{{url('/doctor-profile')}}" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image">
-																			</a>
-																			<a href="{{url('/doctor-profile')}}"><?php echo $data->name?> <span><?php echo $data->name?></span></a>
+																		    <?php
+																				$ptprofile_img=$data->ptprofile_img;
+																				if($ptprofile_img=="null")
+																				{
+																			?>
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('Frontend/assets/img/patients/user.png')}}" alt="dammy Image">
+																				</a>
+																			<?php
+																				}
+																				else
+																				{
+																			?>
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image">
+																				</a>
+																			<?php
+																				}
+																			?>
+																			<a href="{{url('/doctor-profile')}}"><?php echo $data->name?></a>
 																		</h2>
 																	</td>
 																	<td><?php echo $data->date?> <span class="d-block text-info"><?php echo $data->time?></span></td>
@@ -140,7 +156,7 @@
 													<table id="table1" class="table table-hover table-center mb-0">
 															<thead>
 																<tr>
-																	<th>Doctor</th>
+																	<th>Patient</th>
 																	<th>Appt Date</th>
 																	<th>Comment</th>
 																	<th>Status</th>
@@ -159,10 +175,26 @@
 																<tr>
 																	<td>
 																		<h2 class="table-avatar">
-																			<a href="{{url('/doctor-profile')}}" class="avatar avatar-sm mr-2">
-																				<img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image">
-																			</a>
-																			<a href="{{url('/doctor-profile')}}"><?php echo $data->name?> <span><?php echo $data->name?></span></a>
+																		<?php
+																				$ptprofile_img=$data->ptprofile_img;
+																				if($ptprofile_img=="null")
+																				{
+																			?>
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('Frontend/assets/img/patients/user.png')}}" alt="dammy Image">
+																				</a>
+																			<?php
+																				}
+																				else
+																				{
+																			?>
+																				<a href="{{url('/patient-profile')}}" class="avatar avatar-sm mr-2">
+																					<img class="avatar-img rounded-circle" src="{{url('upload/patient/'. $data->ptprofile_img)}}" alt="User Image">
+																				</a>
+																			<?php
+																				}
+																			?>
+																			<a href="{{url('/doctor-profile')}}"><?php echo $data->name?></a>
 																		</h2>
 																	</td>
 																	<td><?php echo $data->date?> <span class="d-block text-info"><?php echo $data->time?></span></td>

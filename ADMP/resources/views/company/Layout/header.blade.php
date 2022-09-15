@@ -184,7 +184,7 @@
 								</div>
 							</div>
 							<a class="dropdown-item" href="{{url('/company-profile')}}">My Profile</a>
-							<a class="dropdown-item" href="{{url('/company-settings')}}">Settings</a>
+							<a class="dropdown-item" href="{{url('/company-changepassword')}}">Change Password</a>
 							<a class="dropdown-item" href="{{url('/companylogout')}}">Logout</a>
 						</div>
 					</li>

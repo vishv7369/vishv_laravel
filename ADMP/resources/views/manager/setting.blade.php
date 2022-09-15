@@ -1,4 +1,4 @@
-@extends('admin.Layout.main_layout') 	
+@extends('manager.Layout.main_layout') 	
 @section('main_container')
 			
 			
@@ -12,7 +12,7 @@
 							<div class="col-sm-12">
 								<h3 class="page-title">Change Password</h3>
 								<ul class="breadcrumb">
-									<li class="breadcrumb-item"><a href="{{url('/admin')}}">Dashboard</a></li>
+									<li class="breadcrumb-item"><a href="{{url('/manager-dashboard')}}">Dashboard</a></li>
 									<li class="breadcrumb-item active">Change Password</li>
 								</ul>
 							</div>
@@ -29,7 +29,7 @@
 								<div class="card">
 									
 									<div class="card-body">
-									<form action="{{url('/admin-changepassword')}}" method="post" enctype="multipart/form-data">
+									<form action="{{url('/manager-changepassword')}}" method="post" enctype="multipart/form-data">
 											@csrf	
 											<div class="form-group">
 													<label>Old Password</label>
