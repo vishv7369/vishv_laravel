@@ -50,7 +50,8 @@ class appointment_controller extends Controller
 
     public function doctor_appointment()
     {
-        $data=appointments::join('doctors','doctors.id','=','appointments.doc_id')->join('specialists','specialists.id','=','doctors.specialist_id')->where('patient_id','=',Session('patient_id'))->get();
+        $data=appointments::join('doctors','doctors.id','=','appointments.doc_id')->join('specialists','specialists.id','=','doctors.specialist_id')->where('patient_id','=',Session('patient_id'))
+        ->get(['doctors.first_name','doctors.last_name','doctors.profile_img','specialists.name','appointments.*',]);
         return view('patient.patient-dashboard',["doc_appointments_arr"=>$data]);
     }
 
@@ -59,6 +60,13 @@ class appointment_controller extends Controller
         return view('patient.book_appointment');
     }
 
+    public function ptdeleteappointment($id)
+    {
+        $data=appointments::find($id);
+        $data->delete();
+        Alert::success('Done', 'You\'ve Successfully Delete Appointment');
+        return back();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -147,8 +155,5 @@ class appointment_controller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    
 }

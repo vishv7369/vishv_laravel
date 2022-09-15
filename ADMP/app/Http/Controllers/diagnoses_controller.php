@@ -120,6 +120,10 @@ class diagnoses_controller extends Controller
             $data->doctor_id=Session('doctor_id');
             $data->patient_id=$patient_id;
             $res=$data->save();
+
+
+
+            
         }
 
 
@@ -128,10 +132,39 @@ class diagnoses_controller extends Controller
     }
     public function prescription_submit(Request $request,$id)
     {
-    
-        
+        $app_data=appointments::where('id','=',$id)->first();
+        //$patient_id=$app_data->patient_id;
+        $patient_data=patient::where('id','=',Session('patient_id'))->first();
+        $doctor_data=doctor::join('appointments','appointments.doc_id','=','doctors.id')->where('appointments.doc_id','=','doctors.id')->first();
+        $diagnoses_data=diagnoses::where('appoinment_id','=',$id)->where('patient_id','=',Session('patient_id'))->get();
+        $prescriptions_data=prescriptions::where('appoinment_id','=',$id)->where('patient_id','=',Session('patient_id'))->get();
+   
     }
 
+    public function abcd($id)
+    {
+        $data=diagnoses::join('patients','patients.id','=','diagnoses.patient_id')
+        ->join('prescriptions','prescriptions.patient_id','=','patients.id')
+        ->join('appointments','appointments.id','=','prescriptions.appoinment_id')
+        ->join('doctors','doctors.id','=','appointments.doc_id')
+        ->where('id','=',Session('patient_id'))->first();
+
+        return view('patient.bill',["fetch"=>$data]);
+   
+    }
+
+    public function bill_view($id)
+    {
+       
+        $app_data=appointments::where('id','=',$id)->first();
+        $patient_data=patient::where('id','=',$app_data->patient_id)->first();
+        $doctor_data=doctor::where('id','=',$app_data->doc_id)->first();
+        $diagnoses_data=diagnoses::where('appoinment_id','=',$id)->get();
+        $prescriptions_data=prescriptions::where('appoinment_id','=',$id)->get();
+        return view('patient.bill',["app_data"=>$app_data,"patient_data"=>$patient_data,"doctor_data"=>$doctor_data,"diagnoses_data"=>$diagnoses_data,"prescriptions_data"=>$prescriptions_data]);
+       
+    }   
+    
     /**
      * Display the specified resource.
      *

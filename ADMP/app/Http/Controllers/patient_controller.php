@@ -88,6 +88,18 @@ class patient_controller extends Controller
         return redirect('login');
     }
 
+    public function getCity(Request $request)
+    {
+		$data['cities']=citie::where("sid","=",$request->sid)->get();
+        return response()->json($data);	
+        
+    }
+	public function getArea(Request $request)
+    {
+		$data['areas']=area::where("city_id","=",$request->city_id)->get();
+        return response()->json($data);	
+    }
+
     /*-----patient login-----*/
 
     public function patientlog(Request $request)

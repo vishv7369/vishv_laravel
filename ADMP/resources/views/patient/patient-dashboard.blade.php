@@ -92,7 +92,7 @@
 																	<td class="text-right">
 																		<div class="table-action">
 
-																			<a href="javascript:void(0);" class="btn btn-sm bg-info-light">
+																			<a href="{{url('bill_view/'.$data->id)}}" class="btn btn-sm bg-info-light">
 																				<i class="far fa-eye"></i> View
 																			</a>
 
@@ -113,7 +113,7 @@
 																	<td class="text-right">
 																		<div class="table-action">
 																			
-																			<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+																			<a href="{{url('ptdeleteappointment/'. $data->id)}}" class="btn btn-sm bg-danger-light">
 																				<i class="fas fa-times"></i> Cancel
 																			</a>
 																		</div>

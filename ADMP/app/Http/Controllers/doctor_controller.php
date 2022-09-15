@@ -47,6 +47,18 @@ class doctor_controller extends Controller
         return view('admin.add-doctor',["special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
     }
 
+
+    public function getCity(Request $request)
+    {
+		$data['cities']=citie::where("sid","=",$request->sid)->get();
+        return response()->json($data);	
+        
+    }
+	public function getArea(Request $request)
+    {
+		$data['areas']=area::where("city_id","=",$request->city_id)->get();
+        return response()->json($data);	
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -670,6 +682,14 @@ public function managerdoctorindex()
         return view('patient.doctor-profile',["fetch"=>$data,"servicelist_arr"=>$servicelist_arr,"special_arr"=>$special_arr,"fav_doctor"=>$fav_doctor]);
     }
 
+    public function searchdoctor()
+    {
+        //$special_id_arr=specialist::all();
+        $city_id_arr=citie::all();
+        $area_id_arr=area::all();
+        
+        return view('patient.index',["city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+    }
 
 
 

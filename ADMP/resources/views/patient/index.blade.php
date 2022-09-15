@@ -1,5 +1,6 @@
 @extends('patient.Layout.main_layout') 	
 @section('main_container')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 			<!-- Home Banner -->
 			<section class="section section-search">
 				<div class="container-fluid">
@@ -13,15 +14,24 @@
 						<div class="search-box">
 							<form action="templateshub.net">
 								<div class="form-group search-location">
-									<select class="col-lg-13 form-control" name="state">
-										<option value="">Select City</option>
+									
+									<select class="col-lg-13 form-control select" id="city_id"  name="city_id">
+										<option value="">Select</option>
+										<?php
+										foreach($city_id_arr as $c)
+										{
+										?>
+										<option value="<?php echo $c->id;?>">
+												<?php echo $c->city_name ?></option>
+										<?php
+										}
+										?>
 									</select>
 									<span class="form-text">Based on your City</span>
 								</div>
 								
 								<div class="form-group search-location">
-									<select class="col-lg-13 form-control" name="state">
-										<option value="">Select Area</option>
+									<select class="col-lg-13 form-control select"  id="area_id"  name="area_id">
 									</select>
 									<span class="form-text">Based on your Area</span>
 								</div>
@@ -582,7 +592,50 @@
 			</section>		
 			<!-- Availabe Features -->
 			
+			<script>
+$('#sid').on('change', function () {
+                var sid = this.value;
+                $('#city_id').html('');
+                $.ajax({
+				url:"{{url('/getCity')}}",
+				type: "POST",
+				data: {
+				sid: sid,
+				_token: '{{csrf_token()}}'
+				},
+				
+				success: function(result) {
+                        $('#city_id').html('<option value="">Select City</option>');
+                        $.each(result.cities, function (key, value) {
+                            $('#city_id').append('<option value="' + value.id + '">' + value.city_name + '</option>');
+                        });
+                        
+                    }
+                });
+            });
 			
+$('#city_id').on('change', function () {
+                var city_id = this.value;
+                $('#area_id').html('');
+                $.ajax({
+				url:"{{url('/getArea')}}",
+				type: "POST",
+				data: {
+				city_id: city_id,
+				_token: '{{csrf_token()}}'
+				},
+				
+				success: function(result) {
+                        $('#area_id').html('<option value="">Select Area</option>');
+                        $.each(result.areas, function (key, value) {
+                            $('#area_id').append('<option value="' + value.id + '">' + value.area_name + '</option>');
+                        });
+                        
+                    }
+                });
+            });			
+</script>
+	
 			
 			
 			

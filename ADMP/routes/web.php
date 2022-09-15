@@ -72,9 +72,12 @@ Route::post('/matchotp',[patient_slots_controller::class,'matchotp']);
 ///Route::get('/patient-dashboard', function (){return view('patient.patient-dashboard');});
 Route::get('/patient-dashboard',[appointment_controller::class,'doctor_appointment']);
 
+Route::get('/ptdeleteappointment/{id}',[appointment_controller::class,'ptdeleteappointment']);
+
 Route::get('/prescription', function (){return view('patient.prescription');});
 Route::get('/prescription-view', function (){return view('patient.prescription-view');});
 
+Route::get('/bill_view/{id}',[diagnoses_controller::class,'bill_view']);
 //Route::get('update_report', function (){return view('patient.update_report');});
 Route::get('/update_report/{id}',[appointment_controller::class,'create_report']);
 Route::post('/update_report/{id}',[appointment_controller::class,'update_report']);
@@ -88,7 +91,12 @@ Route::get('/video-call', function (){return view('patient.video-call');});
 
 
 });
-Route::get('/index', function (){return view('patient.index');});
+//Route::get('/index', function (){return view('patient.index');});
+Route::get('/index',[doctor_controller::class,'searchdoctor']);//Ajax
+
+Route::post('/getCity',[patient_controller::class,'getCity']);//Ajax
+Route::post('/getArea',[patient_controller::class,'getArea']);
+
 Route::get('/', function (){return view('patient.index');});
 Route::get('/about', function (){return view('patient.about');});
 Route::get('/developer', function (){return view('patient.developer');});
@@ -252,6 +260,9 @@ Route::post('/adminlogin',[admin_controller::class,'adminlogin']);
 Route::group(['middleware'=>['afterlogin']], function(){
 
 Route::get('/logout',[admin_controller::class,'logout']);
+
+Route::post('/getCity',[doctor_controller::class,'getCity']);//Ajax
+Route::post('/getArea',[doctor_controller::class,'getArea']);
 
 Route::get('/admin', function (){return view('admin.index');});
 Route::get('/admin-profile',[admin_controller::class,'profile']);
