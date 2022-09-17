@@ -50,22 +50,22 @@
 											<label>Medicines</label>
 											<select class="col-lg-9 form-control" name="medicine_name">
 											<option value="">Select</option>
-															<?php
-															foreach($medicine_arr as $data)
-															{
-															?>
-															<option value="<?php echo $data->medicine_name;?>">
-															       <?php echo $data->medicine_name ?></option>
-															<?php
-															}
-															?>			
+												<?php
+												foreach($medicine_arr as $data)
+												{
+												?>
+												<option value="<?php echo $data->medicine_name;?>">
+														<?php echo $data->medicine_name ?></option>
+												<?php
+												}
+												?>			
 											</select>
 											@if ($errors->has('medicine_name'))
             									<span class="text-danger">{{ $errors->first('medicine_name') }}</span>
        										@endif
 										</div>
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary" name="submit" value="Send">Submit</button>
+											<button type="submit" style="margin-right:125px" class="btn btn-primary" name="submit" value="Send">Submit</button>
 										</div>
 										</form>
 									</div>
@@ -76,7 +76,7 @@
 							            @endif
 										<form action="{{url('/addmedicine')}}" method="post" enctype="multipart/form-data">
 											@csrf
-										<div class="form-group">
+										<div class="form-group col-lg-9">
 											<label>Medicine </label>
 											<input type="text" class="form-control" name="medicine_name1" placeholder="">
 											@if ($errors->has('medicine_name1'))
@@ -84,7 +84,7 @@
        										@endif
 										</div>
 										<div class="text-right">
-											<button type="submit" class="btn btn-primary" name="submit" value="Send">Submit</button>
+											<button type="submit" style="margin-right:145px" class="btn btn-primary" name="submit" value="Send">Submit</button>
 										</div>
 										</form>
 									</div>

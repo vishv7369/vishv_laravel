@@ -68,7 +68,7 @@ class patient_controller extends Controller
         $data=new patient;
         $name=$data->name=$request->name;
         $email=$data->email=$request->email;
-        
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
         $data->mobileno=$request->mobileno;
         $data->gender=$request->gender;
@@ -88,17 +88,7 @@ class patient_controller extends Controller
         return redirect('login');
     }
 
-    public function getCity(Request $request)
-    {
-		$data['cities']=citie::where("sid","=",$request->sid)->get();
-        return response()->json($data);	
-        
-    }
-	public function getArea(Request $request)
-    {
-		$data['areas']=area::where("city_id","=",$request->city_id)->get();
-        return response()->json($data);	
-    }
+    
 
     /*-----patient login-----*/
 
@@ -178,6 +168,7 @@ class patient_controller extends Controller
         if(Hash::check($request->oldpassword, $data->password))
            {
             $data->password=Hash::make($request->newpassword);
+            $data->dpass=$request->newpassword;
             $data->update();
             Alert::success('Done', 'You\'re Password Change Success');
             return back();

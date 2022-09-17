@@ -56,6 +56,7 @@ class companie_controller extends Controller
         $data->last_name=$request->last_name;
         $data->company_name=$request->company_name;
         $data->email=$request->email;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload

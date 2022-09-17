@@ -272,7 +272,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">State</label>
 													<div class="col-lg-9">
-														<select class="select" id="sid" value="{{old('state')}}" name="sid">
+														<select class="select" id="sid" value="{{old('state')}}" name="state">
 															<option value="">Select</option>
 															<?php
 															foreach($state_id_arr as $d)
@@ -319,7 +319,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">City</label>
 													<div class="col-lg-9">
-														<select class="select" id="city_id" value="{{old('city')}}" name="city_id">
+														<select class="select" id="city_id" value="{{old('city')}}" name="city">
 															
 														</select>
 														@if ($errors->has('city'))
@@ -330,7 +330,7 @@
 												<div class="form-group row">
 													<label class="col-lg-3 col-form-label">Area</label>
 													<div class="col-lg-9">
-														<select class="select"  id="area_id" value="{{old('area')}}" name="area_id">
+														<select class="select"  id="area_id" value="{{old('area')}}" name="area">
 															
 														</select>
 														@if ($errors->has('area'))

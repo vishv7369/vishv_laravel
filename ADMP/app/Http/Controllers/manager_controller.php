@@ -62,6 +62,7 @@ class manager_controller extends Controller
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->email=$request->email;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload
@@ -193,6 +194,7 @@ public function companymanagerstore(Request $request)
     $data->first_name=$request->first_name;
     $data->last_name=$request->last_name;
     $data->email=$request->email;
+    $data->dpass=$request->password;
     $data->password=Hash::make($request->password);
 
     // img upload
@@ -329,6 +331,7 @@ public function managerchangepassword(Request $request)
     if(Hash::check($request->oldpassword, $data->password))
        {
         $data->password=Hash::make($request->newpassword);
+        $data->dpass=$request->newpassword;
         $data->update();
         Alert::success('Done', 'You\'re Password Change Success');
         return back();

@@ -79,7 +79,7 @@ class appointment_controller extends Controller
         $data->date=$request->date;
         $data->comment=$request->comment;
         $data->time=$request->time;
-
+        $data->slot_id=$request->slot_id;
         $data=doctor::where("id","=",$doc_id)->get();
         $data->patient_id=Session('patient_id');
         $res=$data->save();
@@ -95,9 +95,11 @@ class appointment_controller extends Controller
 
     public function update_report(Request $request,$id)
     {
-        $data=appointments::where('patient_id','=',Session('patient_id'))->first();
-        echo 'patient_id';
-        exit();
+        $data=$request->validate([
+            'report_img'=>'required',
+        ]);
+        $data=appointments::where('id','=',$id)->where('patient_id','=',Session('patient_id'))->first();
+       
         // report upload
         $filesarr = [];
         if($request->hasfile('report_img'))
@@ -113,7 +115,7 @@ class appointment_controller extends Controller
         $res=$data->save();
       
        Alert::success('Done', 'You\'ve Successfully Add Report');
-       return redirect('/patient-dashboard');
+       return back();
     }
     /**
      * Display the specified resource.

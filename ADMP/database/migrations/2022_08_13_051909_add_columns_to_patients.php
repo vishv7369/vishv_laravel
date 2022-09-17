@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('mobileno')->after('name');
             $table->string('email')->after('mobileno');
             $table->string('password')->after('email');
-            $table->string('gender')->after('password');
+            $table->string('dpass')->after('password');
+            $table->string('gender')->after('dpass');
             $table->string('ptprofile_img')->default('null')->after('gender');
             $table->enum('status',['Block','Unblock'])->default('Unblock')->after('ptprofile_img');
         });

@@ -65,6 +65,7 @@ class mr_controller extends Controller
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->email=$request->email;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload
@@ -200,6 +201,7 @@ class mr_controller extends Controller
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->email=$request->email;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload
@@ -303,6 +305,7 @@ class mr_controller extends Controller
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->email=$request->email;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload

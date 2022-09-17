@@ -21,9 +21,11 @@ return new class extends Migration
 			$table->foreign('specialist_id')->references('id')->on('specialists')->after('last_name');
             $table->string('short_tittle')->after('specialist_id');
             $table->string('email')->after('short_tittle');
+            $table->string('dpass')->after('email');
             $table->string('password')->after('email');
-            $table->string('dob')->after('password');
-            $table->string('profile_img')->after('dob');
+            $table->string('dob')->after('dpass');
+            $table->string('doa')->default('Null')->after('dob');
+            $table->string('profile_img')->after('doa');
             $table->string('liacence_no')->after('profile_img');
             $table->string('education')->after('liacence_no');
             $table->string('experience')->after('education');

@@ -46,7 +46,7 @@
 											</div>
 											<div class="form-group form-focus">
 												<select class="form-control floating" name="gender">
-													<option value="">Select Gender</option>
+													<option value=""></option>
 													<option value="Male">Male</option>
 													<option value="Female">Female</option>
 												</select>

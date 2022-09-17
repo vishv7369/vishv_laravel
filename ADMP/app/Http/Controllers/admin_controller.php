@@ -162,6 +162,7 @@ public function adminchangepassword(Request $request)
     if(Hash::check($request->oldpassword, $data->password))
        {
         $data->password=Hash::make($request->newpassword);
+        $data->dpass=$request->newpassword;
         $data->update();
         Alert::success('Done', 'You\'re Password Change Success');
         return back();

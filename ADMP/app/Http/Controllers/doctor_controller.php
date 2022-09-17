@@ -104,6 +104,7 @@ class doctor_controller extends Controller
         $data->short_tittle=$request->short_tittle;
         $data->email=$request->email;
         $data->gender=$request->gender;
+        $data->dpass=$request->password;
         $data->password=Hash::make($request->password);
         $data->dob=$request->dob;
         $data->liacence_no=$request->liacence_no;
@@ -510,6 +511,7 @@ public function login(Request $request)
         if(Hash::check($request->oldpassword, $data->password))
            {
             $data->password=Hash::make($request->newpassword);
+            $data->dpass=$request->newpassword;
             $data->update();
             Alert::success('Done', 'You\'re Password Change Success');
             return back();
@@ -637,25 +639,6 @@ public function companydoctorindex()
 
 
 
-/*--public function visitor_slots(Request $request)//visitor slots add
-    {
-       $data=new visitor_slots;
-        $data->start_time=$request->start_time;
-        $data->end_time=$request->end_time;
-        $data->mr_allowed=$request->mr_allowed;
-        $data->manager_allowed=$request->manager_allowed;
-        $data->company_allowed=$request->company_allowed;
-        $data->day=$request->day;
-        $data->doc_id=$request->doc_id;
-
-        $res=$data->save();
-        return redirect('/visitor_slots');
-    }
-
-    public function visitor_timings()//visitor slots show
-    {
-            return view('doctor.visitor_timings');
-    }*/
 //////////////////////////manager panel////////////////////////////////////////////////////////////
 
 public function managerdoctorindex()
@@ -667,9 +650,15 @@ public function managerdoctorindex()
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
     public function doctorlist()
     {
+        $special_id_arr=specialist::all();
+        $state_id_arr=state::all();
+        $city_id_arr=citie::all();
+        $area_id_arr=area::all();
         $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();//->join('cities','cities.id','=','doctors.city')->join('states','states.id','=','doctors.state')->get();
-		return view('patient.search',["doctorlist_arr"=>$data]);
+		return view('patient.search',["doctorlist_arr"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
     }
+
+    
 
     public function doctorview($id)
     {
@@ -684,14 +673,29 @@ public function managerdoctorindex()
 
     public function searchdoctor()
     {
-        //$special_id_arr=specialist::all();
+        $special_id_arr=specialist::all();
         $city_id_arr=citie::all();
         $area_id_arr=area::all();
         
-        return view('patient.index',["city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+        return view('patient.index',["city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr,"special_id_arr"=>$special_id_arr]);
     }
 
+    public function getptArea(Request $request)
+    {
+		$data['areas']=area::where("city_id","=",$request->city_id)->get();
+        return response()->json($data);	
+    }
 
-
+    public function getdtCity(Request $request)
+    {
+		$data['cities']=citie::where("sid","=",$request->sid)->get();
+        return response()->json($data);	
+        
+    }
+	public function getdtArea(Request $request)
+    {
+		$data['areas']=area::where("city_id","=",$request->city_id)->get();
+        return response()->json($data);	
+    }
 
 } 

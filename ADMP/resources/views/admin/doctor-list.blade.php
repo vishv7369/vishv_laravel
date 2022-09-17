@@ -47,10 +47,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php
-													foreach($doctor_arr as $data) 
-													{
-												?>
+												@if(!$doctor_arr->isEmpty())
+											   @foreach($doctor_arr as $data)
 												<tr>
 												<td><?php echo $data->id?></td>
 												<td><img src="{{asset('upload/doctor/' . $data->profile_img)}}" height="50px" width="50px"/></td>
@@ -69,9 +67,10 @@
 												</td>
 												
 												</tr>
-												<?php
-												}
-												?>
+												@endforeach
+												@else
+													<p class="text-danger mt-2">No Doctors Available</p>
+												@endif
 												
 											
 													
