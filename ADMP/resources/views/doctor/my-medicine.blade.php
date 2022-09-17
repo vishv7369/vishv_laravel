@@ -104,10 +104,8 @@
 												</tr>
 											</thead>
 											<tbody>
-											<?php
-													foreach($medi_arr as $fetch) 
-													{
-												?>
+											 @if(!$medi_arr->isEmpty())
+											   @foreach($medi_arr as $fetch)
 												<tr>
 													<td><?php echo $fetch->id?></td>
 													<td><?php echo $fetch->medicine_name?></td>
@@ -119,9 +117,10 @@
 														</div>
 													</td>
 												</tr>
-												<?php
-												}
-												?>
+												@endforeach
+												@else
+													<p class="text-danger mt-2">No Medicines Available</p>
+												@endif
 												
 												
 												

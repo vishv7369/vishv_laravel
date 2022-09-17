@@ -131,10 +131,8 @@
 																	</tr>
 																</thead>
 																<tbody>
-																<?php
-																	foreach($appointments_arr as $data)
-																	{
-																	?>
+																   @if(!$appointments_arr->isEmpty())
+											   						@foreach($appointments_arr as $data)
 																	<tr>
 																		<td>
 																			<h2 class="table-avatar">
@@ -172,9 +170,10 @@
 																			</div>
 																		</td>
 																	</tr>
-																<?php
-																}
-																?>
+																	@endforeach
+																	@else
+																		<p class="text-danger mt-2">No Appointments Available</p>
+																	@endif
 																	
 																	
 																	

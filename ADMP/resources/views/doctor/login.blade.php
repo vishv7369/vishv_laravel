@@ -125,8 +125,7 @@
 											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" name="submit" value="send">Login</button>
 											
 											
-											<div class="text-center dont-have">Don’t have an account? <a href="{{url('/contact')}}">Contact Us</a></div>
-										</form>
+											</form>
 									</div>
 								</div>
 							</div>
