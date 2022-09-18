@@ -234,7 +234,7 @@ Route::get('/logout',[admin_controller::class,'logout']);
 Route::post('/getCity',[doctor_controller::class,'getCity']);//Ajax
 Route::post('/getArea',[doctor_controller::class,'getArea']);
 
-Route::get('/admin', function (){return view('admin.index');});
+Route::get('/admin', [admin_controller::class,'dashboard']);
 Route::get('/admin-profile',[admin_controller::class,'profile']);
 Route::get('/editadmin/{id}',[admin_controller::class,'editadmin']);
 Route::post('/admin-profile/{id}',[admin_controller::class,'update']);

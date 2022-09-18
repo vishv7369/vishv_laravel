@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\admin;
+use App\Models\doctor;
+use App\Models\patient;
 use Hash;
 use Session;
 use Alert;
@@ -197,5 +199,12 @@ public function adminchangecreate()
     public function destroy($id)
     {
         //
+    }
+
+    public function dashboard()
+    {
+        $data=patient::all();
+        $total_patient=count($data);
+        return view('admin.index',['total_patient'=>$total_patient]);
     }
 }
