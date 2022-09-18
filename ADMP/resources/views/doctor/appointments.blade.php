@@ -74,7 +74,10 @@
 																</tr>
 															</thead>
 															<tbody>
+															
 															<?php
+															if(!empty($appointments_arr))
+															{
 																	foreach($appointments_arr as $data)
 																	{
 																	?>
@@ -135,7 +138,14 @@
 																	?>
 															<?php
 															}
+														}
+														else
+														{
 															?>
+															<?php
+															
+														}
+														?>	
 																
 																
 																
@@ -165,6 +175,8 @@
 															</thead>
 															<tbody>
 															<?php
+															if(!empty($appointments_arr))
+															{
 																	foreach($appointments_arr as $data)
 																	{
 																	?>
@@ -210,9 +222,6 @@
 																		
 																		</div>
 																	</td>
-																	
-																	
-																	
 																</tr>
 																<?php
 																	}
@@ -220,8 +229,14 @@
 																	?>
 															<?php
 															}
+														}
+														else
+														{
 															?>
-																
+															<?php
+															
+														}
+														?>	
 																
 																
 																

@@ -20,7 +20,7 @@ return new class extends Migration
 			$table->foreign('patient_id')->references('id')->on('patients')->after('doc_id');
             $table->unsignedBigInteger('slot_id');
 			$table->foreign('slot_id')->references('id')->on('patient_slots')->after('patient_id');
-            $table->string('report_img')->default('Pending')->after('slot_id');
+            $table->string('report_img')->default('Null')->after('slot_id');
             $table->string('date')->after('report_img');
             $table->string('comment')->after('date');
             $table->string('time')->after('comment');

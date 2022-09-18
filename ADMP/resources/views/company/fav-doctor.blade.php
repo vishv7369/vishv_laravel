@@ -38,10 +38,8 @@
 							<br>
 							<div class="myclass row row-grid">
 							
-							<?php
-								foreach($companyfavdoctor_arr as $data) 
-								{
-							?>
+							@if(!$companyfavdoctor_arr->isEmpty())
+							@foreach($companyfavdoctor_arr as $data)
 
 								<div class="col-md-6 col-lg-4 col-xl-3">
 									<div class="card widget-profile pat-widget-profile">
@@ -72,9 +70,10 @@
 										</div>
 									</div>
 								</div>
-							<?php
-								}
-							?>
+								@endforeach
+								@else
+									<p class="text-danger mt-2">No Favourite Doctors Available</p>
+								@endif
 								
 								
 								

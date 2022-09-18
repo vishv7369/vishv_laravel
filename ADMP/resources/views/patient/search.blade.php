@@ -125,7 +125,7 @@
 														?>
 														<li>
 															<a href="{{asset('upload/hospital/'.$d)}}" data-fancybox="gallery">
-																<img src="{{asset('upload/hospital/'.$d)}}" alt="Feature">
+																<img src="{{asset('upload/hospital/'.$d)}}" style="height:50px;width:50px;" alt="Feature">
 															</a>
 														</li>
 														<?php

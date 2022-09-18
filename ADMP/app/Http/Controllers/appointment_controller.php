@@ -88,9 +88,10 @@ class appointment_controller extends Controller
        return redirect('patient.book_by_otp');
     }
 
-    public function create_report()
+    public function create_report($id)
     {
-        return view('patient.update_report');
+        $appo_id=$id;
+        return view('patient.update_report',['id'=>$id]);
     }
 
     public function update_report(Request $request,$id)
@@ -98,9 +99,8 @@ class appointment_controller extends Controller
         $data=$request->validate([
             'report_img'=>'required',
         ]);
-        $data=appointments::where('id','=',$id)->where('patient_id','=',Session('patient_id'))->first();
-       
-        // report upload
+          // report upload
+        $data=appointments::find($id);  
         $filesarr = [];
         if($request->hasfile('report_img'))
         {
@@ -112,10 +112,11 @@ class appointment_controller extends Controller
             }
             $data->report_img=implode(",",$filesarr);
         }
-        $res=$data->save();
-      
-       Alert::success('Done', 'You\'ve Successfully Add Report');
-       return back();
+
+       
+        $data->save();
+        Alert::success('Done', 'You\'ve Successfully Add Report');
+        return redirect('/patient-dashboard');
     }
     /**
      * Display the specified resource.

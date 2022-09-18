@@ -69,10 +69,8 @@
 																</tr>
 															</thead>
 															<tbody>
-															<?php
-																	foreach($doc_appointments_arr as $data)
-																	{
-																	?>
+															@if(!$doc_appointments_arr->isEmpty())
+											   				@foreach($doc_appointments_arr as $data)
 																<tr>
 																	<td>
 																		<h2 class="table-avatar">
@@ -85,10 +83,9 @@
 																	<td><?php echo $data->date?> <span class="d-block text-info"><?php echo $data->time?></span></td>
 																	<td><?php echo $data->comment?> </td>
 																	<td><span class="badge badge-pill bg-success-light"><?php echo $data->appointment_status?></span></td>
-															<?php
-																	if($data->appointment_status=="Approved")
-																	{
-																	?>
+															
+																	@if($data->appointment_status=="Approved")
+																	
 																	<td class="text-right">
 																		<div class="table-action">
 
@@ -105,11 +102,8 @@
 																			
 																		</div>
 																	</td>
-																	<?php
-																	}
-																	else
-																	{
-																	?>
+																	@else
+																	
 																	<td class="text-right">
 																		<div class="table-action">
 																			
@@ -118,13 +112,12 @@
 																			</a>
 																		</div>
 																	</td>
-																	<?php
-																}
-																?>
+																	@endif
 																</tr>
-																<?php
-																}
-																?>
+																@endforeach
+																@else
+																	<p class="text-danger mt-2">No Appointments Available</p>
+																@endif
 																
 																
 																

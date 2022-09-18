@@ -89,6 +89,7 @@
 									<form action="{{url('/book_app_sess')}}" method="post">
 										@csrf
 										<input type="hidden" value="{{$d->slot_timing}}" name="slot_timing">
+										<input type="hidden" value="{{$d->id}}" name="slot_id">
 										<input type="hidden" value="{{$doctordata->id}}" name="doc_id">
 										<input type="hidden" value="<?php if(isset($value)){ echo $value; }else { echo (new DateTime())->format('Y-m-d');} ?>" name="appointment_date" />
 										<input type="submit" class="doc-slot-list" value="{{$d->slot_timing}}" />
@@ -110,6 +111,7 @@
 									<form action="{{url('/book_app_sess')}}" method="post">
 										@csrf
 										<input type="hidden" value="{{$d->slot_timing}}" name="slot_timing">
+										<input type="hidden" value="{{$d->id}}" name="slot_id">
 										<input type="hidden" value="{{$doctordata->id}}" name="doc_id">
 										<input type="hidden" value="<?php if(isset($value)){ echo $value; }else { echo (new DateTime())->format('Y-m-d');} ?>" name="appointment_date" />
 										<input type="submit" class="doc-slot-list" value="{{$d->slot_timing}}" />
@@ -131,6 +133,7 @@
 									<form action="{{url('/book_app_sess')}}" method="post">
 										@csrf
 										<input type="hidden" value="{{$d->slot_timing}}" name="slot_timing">
+										<input type="hidden" value="{{$d->id}}" name="slot_id">
 										<input type="hidden" value="{{$doctordata->id}}" name="doc_id">
 										<input type="hidden" value="<?php if(isset($value)){ echo $value; }else { echo (new DateTime())->format('Y-m-d');} ?>" name="appointment_date" />
 										<input type="submit" class="doc-slot-list" value="{{$d->slot_timing}}" />

@@ -403,6 +403,7 @@ public function login(Request $request)
             //'gender'=>'required|in:male,female',//check
             //'password'=>'required|string|unique:doctors|min:6',
             'dob'=>'date',
+            'doa'=>'date',
             //'liacence_no'=>'required',//check
             'education'=>'regex:/[a-zA-z0-9\s]+/',
             'experience'=>'regex:/[a-zA-z0-9\s]+/',
@@ -420,18 +421,21 @@ public function login(Request $request)
             //'state'=>'required',
             //'city'=>'required',
             //'area'=>'required',
-            'profile_img'=>'mimes:jpeg,png,jpg,gif',
-            //'hospital_img'=>'mimes:jpeg,png,jpg,gif',
-            'visit_card'=>'mimes:jpeg,png,jpg,gif',
+            
+            'profile_img.*'=>'mimes:jpeg,png,jpg,gif',
+            'hospital_img.*' => 'mimes:jpg,png,jpeg,gif',
+            'visit_card.*'=>'mimes:jpeg,png,jpg,gif',
 
         ]);
 
         $data=doctor::where("id","=",session('doctor_id'))->first();
+        
         $data->first_name=$request->first_name;
         $data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
         $data->gender=$request->gender;
         $data->dob=$request->dob;
+        $data->doa=$request->doa;
         $data->liacence_no=$request->liacence_no;
         $data->education=$request->education;
         $data->experience=$request->experience;
@@ -452,7 +456,10 @@ public function login(Request $request)
         $data->consulting_fees=$request->consulting_fees;
         $data->followup_fees=$request->followup_fees;
         $data->notification=$request->notification;
-       // $old_img=$data->profile_img;
+        $data->visit_pharma_per=$request->visit_pharma_per;
+        
+        // unlink img
+        $old_img=$data->profile_img;
         $old_img2=$data->hospital_img;
         $old_img3=$data->visit_card;
 
@@ -468,7 +475,7 @@ public function login(Request $request)
 			$file_name=time() . "_profile_img." . $request->file('profile_img')->getClientOriginalExtension();// make file name
 			$file->move('upload/doctor',$file_name); //file name move upload in public		
 			$data->profile_img=$file_name; // file name store in db
-			//unlink('upload/doctor/'.$old_img);
+			unlink('upload/doctor/'.$old_img);
 		}
          // hospital upload
          $filesarr = [];
@@ -482,7 +489,12 @@ public function login(Request $request)
                 
             }
             $data->hospital_img=implode(",",$filesarr);
-        }
+            $old_img2_arr=explode(",",$old_img2);
+            foreach($old_img2_arr as $deleteimg)
+            {
+                unlink('upload/hospital/'.$deleteimg);
+            }
+        }  
          // visiting card upload
          if($request->hasFile('visit_card'))
          {

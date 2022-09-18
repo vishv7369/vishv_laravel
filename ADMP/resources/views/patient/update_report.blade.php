@@ -20,10 +20,10 @@
 										</div>
 										
 										<!-- Forgot Password Form -->
-										<form action="{{url('/update_report/{id}')}}" method="post" enctype="multipart/form-data">
+										<form action="{{url('/update_report/'.$id)}}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group">
-												<input type="file" name="report_img[]" class="form-control" multiple>
+												<input type="file" name="report_img[]" class="form-control" multiple />
 												@if ($errors->has('report_img'))
 													<span class="text-danger">{{ $errors->first('report_img') }}</span>
 												@endif

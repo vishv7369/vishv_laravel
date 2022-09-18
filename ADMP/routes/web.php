@@ -42,7 +42,6 @@ use App\Http\Controllers\doc_fav_patients_controller;
 
 Route::group(['middleware'=>['patientafterlogin']], function(){
 
-//Route::get('/change-password', function (){return view('patient.change-password');});
 Route::get('/change-password',[patient_controller::class,'changepasswordcreate']);
 Route::post('/change-password',[patient_controller::class,'changepassword']);
 
@@ -53,14 +52,11 @@ Route::get('/favourites',[patient_favs_controller::class,'patientfavdoctor']);
 Route::get('/patient_fav_doc/{id}',[patient_favs_controller::class,'patient_fav_doc']);
 Route::get('/patient_fav_doc_del/{id}',[patient_favs_controller::class,'patient_fav_doc_del']);
 
-//Route::get('/booking', function (){return view('patient.booking');});
 Route::get('/booking/{id}',[patient_slots_controller::class,'showpatient']);
 Route::post('/booking/{id}',[patient_slots_controller::class,'showpatient']);
-//Route::get('/book_app_sess',[patient_slots_controller::class,'book_app_sess']);
 Route::post('/book_app_sess',[patient_slots_controller::class,'book_app_sess']);//new case banayo che
 
 Route::get('/book_appointment',[patient_slots_controller::class,'book_appointment']);
-//Route::post('/book_appointment',[patient_slots_controller::class,'book_appointment']);
 
 Route::get('/book_by_otp',[patient_slots_controller::class,'book_by_otp']);
 Route::post('/book_by_otp',[patient_slots_controller::class,'send_otp']);
@@ -69,7 +65,6 @@ Route::post('/book_by_otp',[patient_slots_controller::class,'send_otp']);
 Route::get('/matchotp',[patient_slots_controller::class,'matchotp']);
 Route::post('/matchotp',[patient_slots_controller::class,'matchotp']);
 
-///Route::get('/patient-dashboard', function (){return view('patient.patient-dashboard');});
 Route::get('/patient-dashboard',[appointment_controller::class,'doctor_appointment']);
 
 Route::get('/ptdeleteappointment/{id}',[appointment_controller::class,'ptdeleteappointment']);
@@ -78,7 +73,6 @@ Route::get('/prescription', function (){return view('patient.prescription');});
 Route::get('/prescription-view', function (){return view('patient.prescription-view');});
 
 Route::get('/bill_view/{id}',[diagnoses_controller::class,'bill_view']);
-//Route::get('update_report', function (){return view('patient.update_report');});
 Route::get('/update_report/{id}',[appointment_controller::class,'create_report']);
 Route::post('/update_report/{id}',[appointment_controller::class,'update_report']);
 
@@ -91,7 +85,6 @@ Route::get('/video-call', function (){return view('patient.video-call');});
 
 
 });
-//Route::get('/index', function (){return view('patient.index');});
 Route::get('/index',[doctor_controller::class,'searchdoctor']);//Ajax
 
 Route::post('/getptArea',[doctor_controller::class,'getptArea']);
@@ -112,11 +105,9 @@ Route::get('/search',[doctor_controller::class,'doctorlist']);
 
 Route::group(['middleware'=>['patientbeforelogin']], function(){
 
-//Route::get('/login', function (){return view('patient.login');});
 Route::get('/register',[patient_controller::class,'create']);
 Route::post('/register',[patient_controller::class,'store']);
 
-//Route::get('/register', function (){return view('patient.register');});
 Route::get('/login',[patient_controller::class,'patientlog']);
 Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
 
@@ -130,10 +121,6 @@ Route::post('/ptpassword_store',[patient_controller::class,'ptpassword_store']);
 
 Route::get('/checkout', function (){return view('patient.checkout');});
 Route::get('/booking-success', function (){return view('patient.booking-success');});
-
-
-//Route::get('/profile-settings', function (){return view('patient.profile-settings');});
-
 
 Route::get('/forgot-password', function (){return view('patient.forgot-password');});
 
@@ -149,9 +136,6 @@ Route::get('components', function (){return view('patient.components');});
 Route::group(['middleware'=>['doctorbeforelogin']], function(){
 Route::get('/doctor',[doctor_controller::class,'login'])->middleware('doctorbeforelogin');
 
-//Route::get('/doctor', function (){return view('doctor.login');});
-
-
 });
 Route::post('/doctorlogin',[doctor_controller::class,'doctorlogin']);
 Route::group(['middleware'=>['doctorafterlogin']], function(){
@@ -159,27 +143,21 @@ Route::group(['middleware'=>['doctorafterlogin']], function(){
 
 Route::get('/doctorlogout',[doctor_controller::class,'doctorlogout']);
     
-//Route::get('/doctor-change-password', function (){return view('doctor.change-password');});
 Route::get('/doctor-change-password',[doctor_controller::class,'changepassworddoctorcreate']);
 Route::post('/doctor-change-password',[doctor_controller::class,'changepassworddoctor']);
 
 Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
 
 Route::get('/add-prescription/{id}',[diagnoses_controller::class,'create']);//visitor slots update
-//Route::get('/add-prescription',[diagnoses_controller::class,'index']);//diagnosis table view
 Route::post('/add-prescription/{id}',[diagnoses_controller::class,'diagnosis_store']);//diagnosis_store 
 Route::post('/prescription_store/{id}',[diagnoses_controller::class,'prescription_store']);//diagnosis_store
 Route::get('/invoice-view/{id}',[diagnoses_controller::class,'invoice_view']); 
 Route::get('/prescription_submit/{id}',[diagnoses_controller::class,'prescription_submit']); 
-//Route::post('/invoice-view/{id}',[diagnoses_controller::class,'invoice_view']);//invoice view form
-
-//Route::get('/doctor-dashboard', function (){return view('doctor.doctor-dashboard');});
 Route::get('/doctor-dashboard',[appointment_controller::class,'index']);
 
 
 Route::get('/editdoctor',[doctor_controller::class,'editdoctor']);
 Route::post('/editdoctor/{doctor_id}',[doctor_controller::class,'updatedoctor']);
-//Route::get('/doctor-profile-settings', function (){return view('doctor.doctor-profile-settings');});
 Route::get('/doctor-social-media', function (){return view('doctor.social-media');});
 
 Route::get('/doctor-visitor_timings',[doctor_controller::class,'visitor_timings']);//visitor slots show
@@ -190,39 +168,26 @@ Route::get('/doctor-visitor_slots/{id}',[doctor_controller::class,'delete_slots'
 Route::get('/edit_visitor_slots/{id}',[doctor_controller::class,'editslots']);//visitor slots update
 Route::post('/edit_visitor_slots/{id}',[doctor_controller::class,'update_visitor_slots']);//visitor slots update
 
-//Route::get('/doctor-service-specialization', function (){return view('doctor.add-service-specialization');});
 Route::get('/doctor-service-specialization',[service_controller::class,'create']);
 Route::post('/addservice',[service_controller::class,'addservice']);
 Route::get('/doctor-service-specialization',[service_controller::class,'index']);
 Route::get('/addservice/{id}',[service_controller::class,'servicedelete']);
 Route::get('/addspecialitie/{id}',[service_controller::class,'specialdelete']);
-
-//Route::get('/addspeciality',[drspecialitie_controller::class,'addspeciality']);
 Route::post('/addspecialitie',[service_controller::class,'addspecialitie']);
 
-
-//Route::get('/doctor-my-patients', function (){return view('doctor.my-patients');});
 Route::get('/doctor-my-patients',[doc_fav_patients_controller::class,'mypatient']);
 
 Route::get('/doctor-patient-profile/{id}',[doc_fav_patients_controller::class,'patientview']);
 
-//Route::get('/doctor-patient-profile/{id}',[doc_fav_patients_controller::class,'patientprofileappointmnent']);
-//Route::get('/doctor-patient-profile', function (){return view('doctor.patient-profile');});
-
-//Route::get('/doctor-appointments', function (){return view('doctor.appointments');});
 Route::get('/doctor-appointments',[appointment_controller::class,'patient_appointment']);
 
-//Route::get('/doctor-patient-schedule-timings', function (){return view('doctor.patient-schedule-timings');});
 Route::get('/doctor-patient-schedule-timings',[patient_slots_controller::class,'create']);
 Route::post('/doctor-patient-schedule-timings',[patient_slots_controller::class,'store']);
 
-
-//Route::get('/doctor-my-medicine', function (){return view('doctor.my-medicine');});
 Route::get('/doctor-my-medicine',[doc_fav_medicines_controller::class,'create']);
 Route::post('/addlistmedicine',[doc_fav_medicines_controller::class,'addlistmedicine']);
 Route::post('/addmedicine',[doc_fav_medicines_controller::class,'addmedicine']);
 Route::get('/doctor-my-medicine/{id}',[doc_fav_medicines_controller::class,'destroy']);
-//Route::get('/doctor-my-medicine',[doc_fav_medicines_controller::class,'index']);
 
 Route::get('/doctor-mr-dashboard', function (){return view('doctor.mr-dashboard');});
 Route::get('/doctor-mr-schedule-timings', function (){return view('doctor.mr-schedule-timings');});
@@ -236,7 +201,6 @@ Route::get('/doctor-manager-appointments', function (){return view('doctor.manag
 Route::get('/doctor-manager-find', function (){return view('doctor.manager-find');});
 
 Route::get('/doctor-company-dashboard', function (){return view('doctor.company-dashboard');});
-//Route::get('/doctor-company-schedule-timings', function (){return view('doctor.company-schedule-timings');});
 Route::get('/doctor-company-schedule-timings',[company_slots_controller::class,'create']);
 Route::post('/doctor-company-schedule-timings',[company_slots_controller::class,'store']);
 
@@ -275,7 +239,6 @@ Route::get('/admin-profile',[admin_controller::class,'profile']);
 Route::get('/editadmin/{id}',[admin_controller::class,'editadmin']);
 Route::post('/admin-profile/{id}',[admin_controller::class,'update']);
 
-//Route::get('/admin-changepassword', function (){return view('admin.settings');});
 Route::get('/admin-changepassword',[admin_controller::class,'adminchangecreate']);
 Route::post('/admin-changepassword',[admin_controller::class,'adminchangepassword']);
 
@@ -284,8 +247,6 @@ Route::get('/admin-medicine',[doc_fav_medicines_controller::class,'adminmedicine
 Route::get('/admin-contact',[contact_controller::class,'index']);
 Route::get('/contact/{id}',[contact_controller::class,'destroy']);
 
-//Route::get('/admin-location', function (){return view('admin.location');});
-//Route::get('/admin-location',[state_controller::class,'create']);
 Route::post('/addstate',[state_controller::class,'addstate']);
 Route::post('/addcity',[state_controller::class,'addcity']);
 Route::post('/addarea',[state_controller::class,'addarea']);
@@ -300,8 +261,7 @@ Route::post('/admin-add-specialities',[specialist_controller::class,'store']);
 Route::get('/edit-specialist/{id}',[specialist_controller::class,'edit']);
 Route::post('/edit-specialist/{id}',[specialist_controller::class,'update']);
 Route::get('/admin-add-specialities/{id}',[specialist_controller::class,'destroy']); 
-//
-//Route::get('/admin-patient', function (){return view('admin.patient-list');});
+
 Route::get('/admin-patient',[patient_controller::class,'index']);
 Route::get('/register/{id}',[patient_controller::class,'destroy']); 
 Route::get('/admin-patient-appointment', function (){return view('admin.patient-appointment');});
@@ -372,9 +332,8 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::get('/editcompany{id}',[companie_controller::class,'editcompany']);
     Route::post('/company-profile/{id}',[companie_controller::class,'companyupdate']);
 
- //Route::get('/company-changepassword', function (){return view('company.settings');});
-Route::get('/company-changepassword',[companie_controller::class,'companychangecreate']);
-Route::post('/company-changepassword',[companie_controller::class,'companychangepassword']);
+    Route::get('/company-changepassword',[companie_controller::class,'companychangecreate']);
+    Route::post('/company-changepassword',[companie_controller::class,'companychangepassword']);
     
     Route::get('/company-doctor',[doctor_controller::class,'companydoctorindex']);
     Route::get('/company_fav_doc/{id}',[company_fav_doc_controller::class,'company_fav_doc']);
@@ -434,9 +393,8 @@ Route::post('/company-changepassword',[companie_controller::class,'companychange
     Route::get('/editmanager{id}',[manager_controller::class,'editmanager']);
     Route::post('/manager-profile/{id}',[manager_controller::class,'managerupdate']);
 
-    //Route::get('/manager-changepassword', function (){return view('manager.setting');});
-Route::get('/manager-changepassword',[manager_controller::class,'managerchangecreate']);
-Route::post('/manager-changepassword',[manager_controller::class,'managerchangepassword']);
+    Route::get('/manager-changepassword',[manager_controller::class,'managerchangecreate']);
+    Route::post('/manager-changepassword',[manager_controller::class,'managerchangepassword']);
     
     Route::get('/manager-doctor',[doctor_controller::class,'managerdoctorindex']);
     Route::get('/manager-doctor-appointment', function (){return view('manager.doctor-appointment');});

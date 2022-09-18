@@ -146,7 +146,28 @@
 														@endif
 													</tbody>
 												</table>
-											</div>
+											</div><br><br>
+											<div class="clinic-details">
+													<p class="doc-location"> <b>Reports</b></p>
+													<ul class="clinic-gallery">
+													<?php
+														$report_img=$app_data->report_img;
+														$report_img=explode(",",$report_img);
+								
+														foreach($report_img as $data)
+														{
+														?>
+														<li>
+															<a href="{{asset('upload/patient/patient_report/'.$data)}}" data-fancybox="gallery">
+																<img src="{{asset('upload/patient/patient_report/'.$data)}}" style="height:50px;width:50px;" alt="Feature">
+															</a>
+														</li>
+														<?php
+														}
+														?>
+													</ul>
+													
+												</div>
 										</div>
 									</div>
 								</div>

@@ -48,11 +48,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												<?php
-													foreach($alldoctor_arr as $data) 
-													{
-														
-												?>
+												@if(!$alldoctor_arr->isEmpty())
+											    @foreach($alldoctor_arr as $data)
 													<tr>
 													<input type="hidden" value="<?php echo $data->id?>" name="doctor_id" id="doctor_id">
 													<td><?php echo $data->id?></td>
@@ -71,10 +68,10 @@
 													</td>
 													
 													</tr>
-												<?php
-												
-											}
-												?>
+													@endforeach
+												@else
+													<p class="text-danger mt-2">No Doctors Available</p>
+												@endif
 												
 											
 													

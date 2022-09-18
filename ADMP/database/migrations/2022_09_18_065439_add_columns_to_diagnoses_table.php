@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('diagnosis', function (Blueprint $table) {
+        Schema::table('diagnoses', function (Blueprint $table) {
             $table->unsignedBigInteger('appoinment_id');
             $table->foreign('appoinment_id')->references('id')->on('appointments')->after('id');
             $table->unsignedBigInteger('patient_id');
@@ -23,7 +23,6 @@ return new class extends Migration
             $table->String('care_suggestion')->after('diagnosis');
             $table->String('reports')->after('care_suggestion');
             $table->enum('status',['Pending','Approved'])->default('Pending')->after('reports');
-            $table->timestamps();
         });
     }
 
@@ -34,7 +33,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('diagnosis', function (Blueprint $table) {
+        Schema::table('diagnoses', function (Blueprint $table) {
             //
         });
     }

@@ -40,6 +40,8 @@
 							<br>
 							<div class="myclass row row-grid">
 							<?php
+							if(!empty($mypatient))
+							{
 								foreach($mypatient as $data) 
 								{
 							?>
@@ -90,7 +92,15 @@
 								</div>
 							<?php
 								}
-							?>	
+
+							}
+							else
+							{
+								?>
+								<?php
+								
+							}
+							?>		
 						
 								
 							</div>
