@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\admin;
 use App\Models\doctor;
 use App\Models\patient;
+use App\Models\companie;
+use App\Models\appointments;
+use App\Models\manager;
+use App\Models\mr;
 use Hash;
 use Session;
 use Alert;
@@ -204,7 +208,18 @@ public function adminchangecreate()
     public function dashboard()
     {
         $data=patient::all();
+        $data1=doctor::all();
+        $data2=companie::all();
+        $data3=manager::all();
+        $data4=appointments::all();
+        $data5=mr::all();
         $total_patient=count($data);
-        return view('admin.index',['total_patient'=>$total_patient]);
+        $total_doctor=count($data1);
+        $total_company=count($data2);
+        $total_manager=count($data3);
+        $total_appointment=count($data4);
+        $total_mr=count($data5);
+        return view('admin.index',['total_patient'=>$total_patient,'total_doctor'=>$total_doctor,'total_company'=>$total_company,
+        'total_manager'=>$total_manager,'total_appointment'=>$total_appointment,'total_mr'=>$total_mr]);
     }
 }

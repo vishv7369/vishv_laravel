@@ -166,6 +166,18 @@ class diagnoses_controller extends Controller
         return view('patient.bill',["app_data"=>$app_data,"patient_data"=>$patient_data,"doctor_data"=>$doctor_data,"diagnoses_data"=>$diagnoses_data,"prescriptions_data"=>$prescriptions_data]);
        
     }   
+
+    public function dtbill_view($id)
+    {
+       
+        $app_data=appointments::where('id','=',$id)->first();
+        $patient_data=patient::where('id','=',$app_data->patient_id)->first();
+        $doctor_data=doctor::where('id','=',$app_data->doc_id)->first();
+        $diagnoses_data=diagnoses::where('appoinment_id','=',$id)->get();
+        $prescriptions_data=prescriptions::where('appoinment_id','=',$id)->get();
+        return view('doctor.dtbill',["app_data"=>$app_data,"patient_data"=>$patient_data,"doctor_data"=>$doctor_data,"diagnoses_data"=>$diagnoses_data,"prescriptions_data"=>$prescriptions_data]);
+       
+    }
     
     /**
      * Display the specified resource.

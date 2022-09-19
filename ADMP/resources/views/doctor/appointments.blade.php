@@ -117,12 +117,9 @@
 																	<td class="text-right">
 																		<div class="table-action">
 
-																		<a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
-																			<i class="far fa-eye"></i> View
-																		</a>
-																		<a href="javascript:void(0);" class="btn btn-sm bg-success-light">
-																			<i class="fas fa-check"></i> Accept
-																		</a>
+																		<a href="{{url('add-prescription/'.$data->id)}}" class="btn btn-sm bg-success-light">
+																					<i class="fas fa-plus"></i> Add prescription
+																				</a>
 																		<a href="javascript:void(0);" class="btn btn-sm bg-danger-light">
 																			<i class="fas fa-times"></i> Cancel
 																		</a>
@@ -216,7 +213,7 @@
 																	<td class="text-right">
 																		<div class="table-action">
 
-																		<a href="#" class="btn btn-sm bg-info-light" data-toggle="modal" data-target="#appt_details">
+																		<a href="{{url('dtbill_view/'.$data->id)}}" class="btn btn-sm bg-info-light" >
 																			<i class="far fa-eye"></i> View
 																		</a>
 																		

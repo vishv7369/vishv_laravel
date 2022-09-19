@@ -1,4 +1,4 @@
-@extends('patient.Layout.main_layout') 	
+@extends('doctor.Layout.main_layout') 	
 @section('main_container')
 			<!-- Breadcrumb -->
 			<div class="breadcrumb-bar">
@@ -182,12 +182,12 @@
 
 			</div>		
 			<!-- /Page Content -->
-			<div class="container " id="box">
+			<div class="container" id="box">
 			
 				<div class="row well">     
 
 					<center>
-					<a class="btn btn-primary" href="{{url('/patient-dashboard')}}" role="button">Back</a>
+					<a class="btn btn-primary" href="{{url('/doctor-appointments')}}" role="button">Back</a>
 						<button class="btn btn-primary hidden-print" onclick="myFunction()"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Print</button>
 					</center>
 					<br>

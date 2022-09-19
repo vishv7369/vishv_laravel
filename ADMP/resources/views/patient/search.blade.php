@@ -32,10 +32,11 @@
 									<h4 class="card-title mb-0">Search Filter</h4>
 								</div>
 								<div class="card-body">
-								
+								<form action="/search" method="post">
+								@csrf	
 								<div class="filter-widget">
 									<label>State</label>
-									<select class="col-lg-11 form-control select" id="sid" value="" name="sid">
+									<select class="col-lg-11 form-control select" id="sid" value="{{$state}}" name="sid">
 										<option value="">Select State</option>
 										<?php
 										foreach($state_id_arr as $d)
@@ -50,17 +51,17 @@
 								</div>
 								<div class="filter-widget">
 									<label>City</label>
-									<select class="col-lg-11 form-control select" id="city_id" value="" name="city_id">
+									<select class="col-lg-11 form-control select" id="city_id" value="{{$city}}" name="city_id">
 									</select>
 								</div>
 								<div class="filter-widget">
 									<label>Area</label>
-									<select class="col-lg-11 form-control select"  id="area_id" value="" name="area_id">
+									<select class="col-lg-11 form-control select"  id="area_id" value="{{$area}}" name="area_id">
 									</select>
 								</div>
 								<div class="filter-widget">
 									<label>Specialist</label>
-									<select class="col-lg-11 form-control select" value="" name="specialist_id">
+									<select class="col-lg-11 form-control select" value="{{$specialist_id}}" name="specialist_id">
 										<option value="">Select Specialist</option>
 										<?php
 										foreach($special_id_arr as $data)
@@ -75,8 +76,9 @@
 								</div>
 
 									<div class="btn-search">
-										<button type="button" class="btn btn-block">Search</button>
-									</div>	
+										<button type="submit" value="send" name="submit" class="btn btn-block">Search</button>
+									</div>
+								</form>		
 								</div>
 							</div>
 							<!-- /Search Filter -->

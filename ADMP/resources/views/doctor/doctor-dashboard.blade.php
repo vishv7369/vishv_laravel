@@ -52,9 +52,8 @@
 															</div>
 														</div>
 														<div class="dash-widget-info">
-															<h6>Total Patient</h6>
-															<h3>1500</h3>
-															<p class="text-muted">Till Today</p>
+															<h6>My Patient</h6>
+															<h3>{{$total_fav_patient}}</h3>
 														</div>
 													</div>
 												</div>
@@ -68,8 +67,25 @@
 														</div>
 														<div class="dash-widget-info">
 															<h6>Today Patient</h6>
-															<h3>160</h3>
-															<p class="text-muted">06, Nov 2019</p>
+															<h3>
+															<?php
+															if(!empty($appointments_arr))
+															{
+																echo count($appointments_arr);
+															}
+															else
+															{
+																echo "0";
+															}
+															
+															?>
+															
+															</h3>
+															<p class="text-muted">
+																<?php
+																echo date('d - m -y');
+																?>
+															</p>
 														</div>
 													</div>
 												</div>
@@ -83,8 +99,7 @@
 														</div>
 														<div class="dash-widget-info">
 															<h6>Appoinments</h6>
-															<h3>85</h3>
-															<p class="text-muted">06, Apr 2019</p>
+															<h3>{{$total_appointment}}</h3>
 														</div>
 													</div>
 												</div>

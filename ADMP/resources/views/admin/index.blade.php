@@ -28,7 +28,7 @@
 											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
-											<h3>168</h3>
+											<h3>{{$total_doctor}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
@@ -48,11 +48,11 @@
 											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
-											<h3>168</h3>
+											<h3>{{$total_company}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
-										<h6 class="text-muted">Doctors</h6>
+										<h6 class="text-muted">Companies</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-primary w-50"></div>
 										</div>
@@ -68,11 +68,11 @@
 											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
-											<h3>168</h3>
+											<h3>{{$total_manager}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
-										<h6 class="text-muted">Doctors</h6>
+										<h6 class="text-muted">Managers</h6>
 										<div class="progress progress-sm">
 											<div class="progress-bar bg-primary w-50"></div>
 										</div>
@@ -85,7 +85,7 @@
 								<div class="card-body">
 									<div class="dash-widget-header">
 										<span class="dash-widget-icon text-success">
-											<i class="fe fe-credit-card"></i>
+											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
 											<h3>{{$total_patient}}</h3>
@@ -101,23 +101,22 @@
 								</div>
 							</div>
 						</div>
-						
 						<div class="col-xl-2 col-sm-6 col-12">
 							<div class="card">
 								<div class="card-body">
 									<div class="dash-widget-header">
-										<span class="dash-widget-icon text-danger border-danger">
-											<i class="fe fe-money"></i>
+										<span class="dash-widget-icon text-warning border-warning">
+											<i class="fe fe-users"></i>
 										</span>
 										<div class="dash-count">
-											<h3>485</h3>
+											<h3>{{$total_mr}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Appointment</h6>
+										<h6 class="text-muted">MR</h6>
 										<div class="progress progress-sm">
-											<div class="progress-bar bg-danger w-50"></div>
+											<div class="progress-bar bg-warning w-50"></div>
 										</div>
 									</div>
 								</div>
@@ -127,18 +126,18 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="dash-widget-header">
-										<span class="dash-widget-icon text-warning border-warning">
-											<i class="fe fe-folder"></i>
+										<span class="dash-widget-icon text-danger border-danger">
+											<i class="fe fe-money"></i>
 										</span>
 										<div class="dash-count">
-											<h3>$62523</h3>
+											<h3>{{$total_appointment}}</h3>
 										</div>
 									</div>
 									<div class="dash-widget-info">
 										
-										<h6 class="text-muted">Revenue</h6>
+										<h6 class="text-muted">Appointment</h6>
 										<div class="progress progress-sm">
-											<div class="progress-bar bg-warning w-50"></div>
+											<div class="progress-bar bg-danger w-50"></div>
 										</div>
 									</div>
 								</div>

@@ -13,10 +13,13 @@ use App\Models\drspecialitie;
 use App\Models\visitor_slots;
 use App\Models\company_fav_doc;
 use App\Models\patient_fav;
+use App\Models\doc_fav_patient;
+use App\Models\appointments;
 use Hash;
 use session;
 use Alert;
 use Exception;
+use Mail;
 
 class doctor_controller extends Controller
 {
@@ -324,6 +327,88 @@ class doctor_controller extends Controller
     }
 
 ////////////////////////doctor panel///////////////////////////////////////////////////////////////////
+/////////////////forget password
+public function dtforget_password(Request $request)
+    {
+        $data=$request->validate([            
+            'email'=>'required|email',
+        ]);
+        $email=$request->email;
+        $data=doctor::where("email","=",$request->email)->first();
+        if($data)
+        {
+            $otpdoctor_id=$data->id;
+            $request->Session()->put('otpdoctor_id',$otpdoctor_id);
+            $otp=rand(111111,999999);
+            $request->Session()->put('dtforgot_pass_otp',$otp);
+            $data=['dtforgot_pass_otp'=>Session('dtforgot_pass_otp'),'body'=>"Your OTP for reset your password"];
+            Mail::to($email)->send(new forgot_otp($data));
+            return redirect('/dtenter_otp');
+        }
+        else
+        {
+            Alert::error('fail', 'Email does not match with your registered mail');
+            return redirect('/dtforget_password');
+        }     
+    }
+
+    public function dtenter_otp(Request $request)
+    {
+        if(Session('dtforgot_pass_otp'))
+        {
+            return view('doctor.dtenter_otp');   
+        }
+        else
+        {
+            return redirect('/doctor');
+        }
+    }
+
+    public function dtstore_otp(Request $request)
+    {
+        
+            $data=$request->validate([            
+            'otp'=>'required|numeric'
+            ]);
+
+            $otp=$request->otp;
+            $dtforgot_pass_otp=Session('dtforgot_pass_otp');
+            if($otp==$dtforgot_pass_otp)
+            {
+                Session()->pull('dtforgot_pass_otp');
+                Session()->put('dtreset_pass',$otp);
+                Alert::success('success', 'OTP match success');
+                return redirect('/dtreset_password');
+            }
+            else
+            {
+                Alert::error('fail', 'OTP does not match');
+                return redirect('/dtenter_otp');
+            }
+    }
+
+    public function dtreset_password(Request $request)
+    {
+        if(Session('dtreset_pass'))
+        {
+            return view('doctor.dtreset_password');
+        }
+    }
+
+    public function dtpassword_store(Request $request)
+    {
+        $data=$request->validate([
+            'reset_pass' => 'required|string|min:6',
+            'confirm_password' => 'required|same:reset_pass|min:6',
+        ]);
+        doctor::where('id','=',Session('otpdoctor_id'))->update(['password'=>Hash::make($request->reset_pass)]);
+        $data->dpass=$request->reset_pass;
+        Session()->pull('otpdoctor_id');
+        Session()->pull('dtreset_pass');
+        Alert::success('Done', 'You\'re Password Reset Success');
+        return redirect('/doctor');
+    }
+///////////////////login
 public function login(Request $request)
     {
         return view('doctor.login');
@@ -347,6 +432,7 @@ public function login(Request $request)
                 {
                     $request->Session()->put('doctor_id',$data->id);
                     $request->Session()->put('email',$data->email);
+                    $request->Session()->put('address',$data->address);
                     $drname=$data->first_name." ".$data->last_name; 
                     $request->Session()->put('drname',$drname);
                     $request->Session()->put('profile_img',$data->profile_img);
@@ -380,6 +466,7 @@ public function login(Request $request)
         Session()->pull('email');
         Session()->pull('profile_img');
         Session()->pull('drname');
+        Session()->pull('address');
         return redirect('/doctor');
     }
 
@@ -638,6 +725,14 @@ public function login(Request $request)
 		return redirect('/doctor-visitor_timings');
     }
     
+   /*-- public function doctor_dashboard()
+    {
+        $doc_fav_patient=doc_fav_patient::where('doctor_id','=',Session('doctor_id'));
+        $appointments=appointments::where('doctor_id','=',Session('doctor_id'));
+        $total_fav_patient=count($doc_fav_patient);
+        $total_appointment=count($appointments);
+        return view('doctor.doctor-dashboard',['total_fav_patient'=>$total_fav_patient,'total_appointment'=>$total_appointment]);
+    }--*/
 //////////////////////////Company panel////////////////////////////////////////////////////////////
 
 public function companydoctorindex()
@@ -660,14 +755,94 @@ public function managerdoctorindex()
 }
 
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
-    public function doctorlist()
+    public function doctorlist(Request $request)
     {
         $special_id_arr=specialist::all();
         $state_id_arr=state::all();
         $city_id_arr=citie::all();
         $area_id_arr=area::all();
-        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();//->join('cities','cities.id','=','doctors.city')->join('states','states.id','=','doctors.state')->get();
-		return view('patient.search',["doctorlist_arr"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+
+        $state=$request->sid;
+        $city=$request->city_id;
+        $area=$request->area_id;
+        $specialist_id=$request->specialist_id;
+
+        $state1=$request->sid;
+        $city1=$request->city_id;
+        $specialist_id1=$request->specialist_id;
+        if($state!="" && $city!="" && $area!="" && $specialist_id!="")
+        {        
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)
+            ->Where('city','=',$city)
+            ->Where('area','=',$area)
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        elseif($state!="" && $city!="" && $specialist_id!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)
+            ->Where('city','=',$city)
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        elseif($state!="" && $specialist_id!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        elseif($state!="" && $city!="" && $area!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)
+            ->Where('city','=',$city)
+            ->Where('area','=',$area)->get();
+        }
+        elseif($state!="" && $city!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)
+            ->Where('city','=',$city)->get();
+        }
+        elseif($state!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('state','=',$state)->get();
+        }
+        elseif($specialist_id!="")
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        elseif($city!="")//index
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('city','=',$city)->get();
+        }
+        elseif($city!="" && $area!="")//index
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->Where('city','=',$city)
+            ->where('area','=',$area)->get();
+        }
+        elseif($city!="" && $specialist_id!="")//index
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->where('city','=',$city)
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        elseif($city!="" && $area!="" && $specialist_id!="")//index
+        {        
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
+            ->Where('city','=',$city)
+            ->Where('area','=',$area)
+            ->Where('specialist_id','=',$specialist_id)->get();
+        }
+        else
+        {
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
+        }
+		return view('patient.search',["doctorlist_arr"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr,"state"=>$state,"city"=>$city,"area"=>$area,"specialist_id"=>$specialist_id]);
     }
 
     

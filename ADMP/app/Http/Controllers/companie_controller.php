@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\companie;
+use App\Models\company_fav_doc;
+use App\Models\manager;
 use Hash;
 use Session;
 use Alert;
@@ -284,6 +286,32 @@ public function companychangecreate()
         $data->save();
         Alert::success('Done', 'You\'ve Successfully Update Company Profile');
 		return redirect('/company-profile');
+    }
+
+    public function companydashboard()
+    {
+        $data1=company_fav_doc::where('company_id','=',Session('company_id'))->get();
+        if(!empty($data1))
+        {
+            $total_company_fav_doc=count($data1);
+        }
+        else
+        {
+            $total_company_fav_doc="0";
+        }     
+
+        $data2=manager::where('company_id','=',Session('company_id'))->get();
+        if(!empty($data2))
+        {
+            $total_manager=count($data2);
+        }
+        else
+        {
+            $total_manager="0";
+        }   
+        //$total_company_fav_doc=count($data1);
+        //$total_manager=count($data2);
+        return view('company.index',['total_company_fav_doc'=>$total_company_fav_doc,'total_manager'=>$total_manager]);
     }
 
 }

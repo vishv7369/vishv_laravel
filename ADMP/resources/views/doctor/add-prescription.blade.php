@@ -85,8 +85,7 @@
 										<div class="col-sm-6">
 											<div class="biller-info">
 												<h4 class="d-block">Dr. {{Session('drname')}}</h4>
-												<span class="d-block text-sm text-muted">Dentist</span>
-												<span class="d-block text-sm text-muted">Newyork, United States</span>
+												<span class="d-block text-sm text-muted">{{Session('address')}}</span>
 											</div>
 										</div>
 										<div class="col-sm-6 text-sm-right">

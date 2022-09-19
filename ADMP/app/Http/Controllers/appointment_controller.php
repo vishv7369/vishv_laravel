@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\appointments;
 use App\Models\doctor;
 use App\Models\patient;
+use App\Models\doc_fav_patient;
 use hash;
 use session;
 use Alert;
@@ -21,6 +22,24 @@ class appointment_controller extends Controller
     ////////////////////////////////////////////////Doctor Panel////////////////////////////////////////////////////
     public function index()
     {
+        $doc_fav_patient=doc_fav_patient::where('doctor_id','=',Session('doctor_id'))->get();
+        if(!empty($doc_fav_patient))
+        {
+            $total_fav_patient=count($doc_fav_patient);
+        }
+        else
+        {
+            $total_fav_patient="0";
+        }
+        $appointments=appointments::where('doc_id','=',Session('doctor_id'))->get();
+        if(!empty($appointments))
+        {
+            $total_appointment=count($appointments);
+        }
+        else
+        {
+            $total_appointment="0";
+        }     
         $today=date('Y-m-d');
         $data_today=appointments::join('patients','patients.id','=','appointments.patient_id')
         ->where('doc_id','=',Session('doctor_id'))
@@ -30,12 +49,13 @@ class appointment_controller extends Controller
         ->where('doc_id','=',Session('doctor_id'))
         ->where('appointment_status','=','Pending')
         ->where('date','>',$today)->get();
-        return view('doctor.doctor-dashboard',["appointments_arr"=>$data_today,"appointments_upc_arr"=>$data_upcoming]);
+        return view('doctor.doctor-dashboard',["appointments_arr"=>$data_today,
+        "appointments_upc_arr"=>$data_upcoming,"total_fav_patient"=>$total_fav_patient,"total_appointment"=>$total_appointment,]);
     }
 
     public function patient_appointment()
     {
-        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->orderBy('date')->get();
+        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->orderBy('date')->get(['patients.ptprofile_img','patients.name','appointments.*',]);
         return view('doctor.appointments',["appointments_arr"=>$data]);
     }
 

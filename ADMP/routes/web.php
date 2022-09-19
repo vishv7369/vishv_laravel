@@ -102,6 +102,7 @@ Route::post('/contact',[contact_controller::class,'store']);
 
 Route::get('/doctor-profile/{id}',[doctor_controller::class,'doctorview']);
 Route::get('/search',[doctor_controller::class,'doctorlist']);
+Route::post('/search',[doctor_controller::class,'doctorlist']);
 
 Route::group(['middleware'=>['patientbeforelogin']], function(){
 
@@ -135,9 +136,18 @@ Route::get('components', function (){return view('patient.components');});
 
 Route::group(['middleware'=>['doctorbeforelogin']], function(){
 Route::get('/doctor',[doctor_controller::class,'login'])->middleware('doctorbeforelogin');
+Route::post('/doctorlogin',[doctor_controller::class,'doctorlogin']);
+
+Route::get('/dtforget_password',[doctor_controller::class,'dtforget_password']);
+Route::post('/dtforget_password',[doctor_controller::class,'dtforget_password']);
+Route::get('/dtenter_otp',[doctor_controller::class,'dtenter_otp']);
+Route::post('/dtstore_otp',[doctor_controller::class,'dtstore_otp']);
+Route::get('/dtreset_password',[doctor_controller::class,'dtreset_password']);
+Route::post('/dtpassword_store',[doctor_controller::class,'dtpassword_store']);
+
 
 });
-Route::post('/doctorlogin',[doctor_controller::class,'doctorlogin']);
+
 Route::group(['middleware'=>['doctorafterlogin']], function(){
 
 
@@ -146,7 +156,7 @@ Route::get('/doctorlogout',[doctor_controller::class,'doctorlogout']);
 Route::get('/doctor-change-password',[doctor_controller::class,'changepassworddoctorcreate']);
 Route::post('/doctor-change-password',[doctor_controller::class,'changepassworddoctor']);
 
-Route::get('/doctor-forgot-password', function (){return view('doctor.forgot-password');});
+Route::get('/dtbill_view/{id}',[diagnoses_controller::class,'dtbill_view']);
 
 Route::get('/add-prescription/{id}',[diagnoses_controller::class,'create']);//visitor slots update
 Route::post('/add-prescription/{id}',[diagnoses_controller::class,'diagnosis_store']);//diagnosis_store 
@@ -155,6 +165,7 @@ Route::get('/invoice-view/{id}',[diagnoses_controller::class,'invoice_view']);
 Route::get('/prescription_submit/{id}',[diagnoses_controller::class,'prescription_submit']); 
 Route::get('/doctor-dashboard',[appointment_controller::class,'index']);
 
+//Route::get('/doctor-dashboard', [doctor_controller::class,'doctor_dashboard']);
 
 Route::get('/editdoctor',[doctor_controller::class,'editdoctor']);
 Route::post('/editdoctor/{doctor_id}',[doctor_controller::class,'updatedoctor']);
@@ -327,7 +338,8 @@ Route::post('/companylogin',[companie_controller::class,'companylogin']);
 Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::get('/companylogout',[companie_controller::class,'companylogout']);
 
-    Route::get('/company-dashboard', function (){return view('company.index');});
+    //Route::get('/company-dashboard', function (){return view('company.index');});
+    Route::get('/company-dashboard', [companie_controller::class,'companydashboard']);
     Route::get('/company-profile',[companie_controller::class,'companyprofile']);
     Route::get('/editcompany{id}',[companie_controller::class,'editcompany']);
     Route::post('/company-profile/{id}',[companie_controller::class,'companyupdate']);
@@ -341,6 +353,7 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::get('/company_fav_doc_del/{id}',[company_fav_doc_controller::class,'company_fav_doc_del']);
     Route::get('/company-doctor-appointment', function (){return view('company.doctor-appointment');});
     Route::get('/company-doctor-cancel-appointment', function (){return view('company.doctor-cancel-appointment');});
+    Route::get('/company-doctor-profile', function (){return view('company.doctor-profile');});
     
     Route::get('/company-add-manager',[manager_controller::class,'companymanagercreate']);
     Route::post('/company-add-manager',[manager_controller::class,'companymanagerstore']);

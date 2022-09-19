@@ -12,7 +12,7 @@
 <!-- Stylesheets -->
 <link href="{{url('Frontend/css/style.css')}}" rel="stylesheet">
 <link href="{{url('Frontend/css/responsive.css')}}" rel="stylesheet">
-<link rel="icon" href="{{url('Frontend/images/favicon.ico')}}" type="image/x-icon">
+<link rel="icon" href="{{url('Frontend/images/logo/LOGO.png')}}" type="image/x-icon">
 
 </head>
 
@@ -88,7 +88,7 @@
             <div class="container">
                 <div class="inner-container clearfix">
                     <div class="left-content pull-left">
-                        <figure class="logo-box"><a href="index"><img src="{{url('Frontend/images/logo-9.png')}}" alt=""></a></figure>
+                        <figure class="logo-box"><a href="index"><img class="rounded-circle" src="{{url('Frontend/images/logo/LOGO.png')}}" style="height:80;width:80px" alt=""></a></figure>
                     </div>
                     <div class="right-content pull-right">
                         <div class="info-box">
