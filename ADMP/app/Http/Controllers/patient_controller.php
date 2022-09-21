@@ -7,7 +7,7 @@ use App\Models\patient;
 use App\Models\patient_fav;
 use App\Models\doctor;
 use App\Models\appointments;
-use App\Mail\welcomemail;
+use App\Mail\ptregister;
 use App\Mail\forgot_otp;
 use Hash;
 use Mail;
@@ -56,7 +56,7 @@ class patient_controller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function register_sess(Request $request)
     {
         $data=$request->validate([
             'name'=>'required',
@@ -65,30 +65,80 @@ class patient_controller extends Controller
             'mobileno'=>'required|numeric|digits:10',
             'gender'=>'required',
         ]);
-        $data=new patient;
-        $name=$data->name=$request->name;
-        $email=$data->email=$request->email;
-        $data->dpass=$request->password;
-        $data->password=Hash::make($request->password);
-        $data->mobileno=$request->mobileno;
-        $data->gender=$request->gender;
+        $name=$request->name;
+        $email=$request->email;
+        $dpass=$request->password;
+        $password=Hash::make($request->password);
+        $mobileno=$request->mobileno;
+        $gender=$request->gender;
 
-        $res=$data->save();
-        if($res)
-		{
-			$details=['title'=>$email,'comment'=>"Welcome Mail"];
-			Mail::to($email)->send(new welcomemail($details));
-            Alert::success('Done', 'You\'ve Successfully Register');
-			return redirect('login');
-		}
-		else
-		{
-			alert("Not success");
-		}
-        return redirect('login');
+        $request->Session()->put('name_session',$name);
+        $request->Session()->put('email_session',$email);
+        $request->Session()->put('dpass_session',$dpass);
+        $request->Session()->put('passwordsession',$password);
+        $request->Session()->put('mobileno_session',$mobileno);
+        $request->Session()->put('gender_session',$gender);
+        
+        $otp=rand(111111,999999);
+        $request->Session()->put('ptregisterotp',$otp);
+        $data=['email'=>$email,'name'=>$name,'ptregisterotp'=>Session('ptregisterotp'),'body'=>"For Registration conform OTP first"];   
+        Mail::to($email)->send(new ptregister($data));
+        return redirect('/register_by_otp');
     }
 
+    public function register_by_otp(Request $request)
+    {
+        if(session('ptregisterotp'))
+        {            
+            return view('patient.ptregisterenterotp');
+        }
+        else
+        {
+            return view('patient.login');    
+        }
+        
+    }
     
+    public function match_register_otp(Request $request)
+        { 
+            $data=$request->validate([           
+            'registerotp'=>'required|numeric',
+        ]);
+        $registerotp=$request->registerotp;
+        $ptregisterotp=session('ptregisterotp');
+        if($registerotp==$ptregisterotp)
+        {
+           // $data->userotp=$request->userotp;
+           // $data->ptbookotp=$request->ptbookotp;
+            $data=new patient;
+            $data->name=session('name_session');
+            $data->email=session('email_session');
+            $data->dpass=session('dpass_session');
+            $data->password=session('passwordsession');
+            $data->mobileno=session('mobileno_session');
+            $data->gender=session('gender_session');
+            $data->save();
+
+            Session()->pull('name_session');
+            Session()->pull('email_session');
+            Session()->pull('dpass_session');
+            Session()->pull('mobileno_session');
+            Session()->pull('mobileno_session');
+            Session()->pull('gender_session');
+            Session()->pull('ptregisterotp');
+            Alert::success('Congrats', 'You\'ve Successfully Registered ');
+            
+            return redirect('/login');
+
+
+        }
+        else
+        {
+            
+            Alert::error('Error OTP', 'Entered OTP Does not match'); 
+            return back();
+        }
+    }
 
     /*-----patient login-----*/
 
@@ -124,7 +174,7 @@ class patient_controller extends Controller
                    {
                     $request->Session()->put('ptprofile_img',$data->ptprofile_img);
                    }
-                   Alert::success('Congrats', 'You\'ve Successfully Login');
+                   Alert::success('Success', 'Login Success');
                    return redirect('/index');
                }
                else

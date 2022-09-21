@@ -767,8 +767,9 @@ public function managerdoctorindex()
         $area=$request->area_id;
         $specialist_id=$request->specialist_id;
 
-        $state1=$request->sid;
+       // $state1=$request->sid;
         $city1=$request->city_id;
+        $area1=$request->area_id;
         $specialist_id1=$request->specialist_id;
         if($state!="" && $city!="" && $area!="" && $specialist_id!="")
         {        

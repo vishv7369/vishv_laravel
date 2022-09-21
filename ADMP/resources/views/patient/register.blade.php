@@ -20,7 +20,7 @@
 										</div>
 										
 										<!-- Register Form -->
-										<form action="{{url('/register')}}" method="post" enctype="multipart/form-data">
+										<form action="{{url('/register_sess')}}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group form-focus">
 												<input type="text" class="form-control floating" value="{{old('name')}}" name="name">
