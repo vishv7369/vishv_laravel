@@ -12,9 +12,10 @@
                          
 						<!-- Search -->
 						<div class="search-box">
-						<form action="/search" method="post">
-							@csrf
-								<div class="form-group search-location">
+							<form action="/search" method="post">
+								@csrf
+							<div class="form-group search-location">
+									
 									<select class="col-lg-13 form-control" id="city_id"  name="city_id">
 										<option value="">Select</option>
 										<?php
@@ -30,12 +31,12 @@
 									<span class="form-text">Based on your City</span>
 								</div>
 								<div class="form-group search-location">
-									<select class="col-lg-13 form-control" id="area_id"  name="area_id">
+									<select class="col-lg-13 form-control"  id="area_id"  name="area_id">
 									</select>
 									<span class="form-text">Based on your Area</span>
 								</div>
-								<div class="form-group search-location">
-									<select class="col-lg-13 form-control" name="specialist_id">
+								<div class="form-group search-info">
+									<select class="col-lg-13 form-control" value="" name="specialist_id">
 										<option value="">Select Specialist</option>
 										<?php
 										foreach($special_id_arr as $data)

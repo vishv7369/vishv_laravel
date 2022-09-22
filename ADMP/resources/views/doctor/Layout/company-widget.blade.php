@@ -18,13 +18,25 @@
 											<li class="active">
 												<a href="{{url('/doctor-company-dashboard')}}">
 													<i class="fas fa-columns"></i>
-													<span>company Dashboard</span>
+													<span> Dashboard</span>
+												</a>
+											</li>
+											<li>
+												<a href="{{url('/')}}">
+													<i class="fas fa-calendar-check"></i>
+													<span>MR Appointments</span>
+												</a>
+											</li>
+											<li>
+												<a href="{{url('/')}}">
+													<i class="fas fa-calendar-check"></i>
+													<span>Manager Appointments</span>
 												</a>
 											</li>
 											<li>
 												<a href="{{url('/doctor-company-appointments')}}">
 													<i class="fas fa-calendar-check"></i>
-													<span>Appointments</span>
+													<span>Company Appointments</span>
 												</a>
 											</li>
 

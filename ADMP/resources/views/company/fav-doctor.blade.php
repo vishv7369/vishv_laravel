@@ -34,7 +34,7 @@
 					<div class="row">
 						
 						<div class="col-md-12 col-lg-12 col-xl-12">
-						<input class="form-control" id="myInput" type="text" placeholder="Search..">
+						    <input class="form-control" id="myInput" type="text" placeholder="Search..">
 							<br>
 							<div class="myclass row row-grid">
 							
@@ -46,7 +46,7 @@
 										<div class="card-body">
 											<div class="pro-widget-content">
 												<div class="profile-info-widget">
-													<a href="" class="booking-doc-img">
+													<a href="{{url('company-doctor-profile/'.$data->doctor_id)}}" class="booking-doc-img">
 														<img class="rounded-circle" src="{{asset('upload/doctor/'.$data->profile_img)}}" style="margin-left:30px;height:120px;width:120px;" alt="User Image">
 													</a>
 													<div class="profile-det-info">
@@ -54,16 +54,39 @@
 														
 														<div class="patient-details">
 															<h6 style="margin-left:50px"><b>Doctor ID :</b> <?php echo $data->doctor_id?></h6>
-															<h6 style="margin-left:10px" class="mb-0"><i class="fe fe-location"></i> <?php echo $data->city_name?>, <?php echo $data->state_name?></h6>
 														</div>
 													</div>
 												</div>
 											</div>
 											<div class="patient-info ">
 											<br><ul>
-													<h6><b>Phone :</b> <?php echo $data->dr_mobile?><br></h6>
-													<h6 ><b>Age :</b> 38 Years, <?php echo $data->gender?></h6>
-													
+											@php
+											$current=date('d-m-Y');
+											$timestamp = strtotime($current);
+											$day=date('l',$timestamp);
+											
+											@endphp	
+											@if(!$slot_company_arr->isEmpty())
+											<form action="{{url('/company_app_book')}}" method="post" enctype="multipart/form-data">
+												@csrf
+											@foreach($slot_company_arr as $slots)
+												@if($slots->doc_id==$data->doctor_id && $slots->day==$day)
+												<div class="radio">
+													<label><input type="radio" value="<?php echo $slots->id?>" name="slot_id" checked /> <?php echo $slots->start_time?> to <?php echo $slots->end_time?></label>
+													<input type="hidden" name="doctor_id" value="<?php echo $slots->doc_id?>">
+												</div>
+											@endif	
+											@endforeach
+											<td class="text-center">
+											<div class="table-action">
+												<button type="submit" value="send" name="submit" class="btn btn-sm bg-info-light">
+													<i class="far fa-save"></i> Save
+												</button>
+											</div>
+											</td>
+											</form>
+											@endif
+
 												</ul>
 											</div>
 											

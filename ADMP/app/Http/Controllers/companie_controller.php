@@ -39,7 +39,7 @@ class companie_controller extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     *///
     public function admincompanystore(Request $request)
     {   
         $data=$request->validate([

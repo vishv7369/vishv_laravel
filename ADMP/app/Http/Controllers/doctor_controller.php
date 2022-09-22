@@ -15,6 +15,7 @@ use App\Models\company_fav_doc;
 use App\Models\patient_fav;
 use App\Models\doc_fav_patient;
 use App\Models\appointments;
+use App\Models\company_slots;
 use Hash;
 use session;
 use Alert;
@@ -743,7 +744,16 @@ public function companydoctorindex()
     return view('company.doctor-list',["alldoctor_arr"=>$alldoctor_arr,"favdoctor_arr"=>$favdoctor_arr]);
 }
 
+public function company_doctorview($id)
+    {
+        
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();
+        $slot_arr=visitor_slots::where('doc_id','=',$id)->get();
+        $favdoctor_arr=company_fav_doc::where('doctor_id','=',$id)->where('company_id','=',Session('company_id'))->first();
+        return view('company.doctor-profile',["fetch"=>$data,"slot_arr"=>$slot_arr,"favdoctor_arr"=>$favdoctor_arr]);
+    }
 
+   
 
 
 //////////////////////////manager panel////////////////////////////////////////////////////////////
@@ -755,6 +765,7 @@ public function managerdoctorindex()
 }
 
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
+
     public function doctorlist(Request $request)
     {
         $special_id_arr=specialist::all();
@@ -847,7 +858,6 @@ public function managerdoctorindex()
     }
 
     
-
     public function doctorview($id)
     {
         $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();

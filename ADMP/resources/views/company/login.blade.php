@@ -39,7 +39,7 @@
 								<h1>Company Login</h1>
 								<p class="account-subtitle">Access to our dashboard</p>
 								
-								<!-- Form -->
+								<!-- Form ---->
 								<form action="{{url('/companylogin')}}" method="post" enctype="multipart/form-data">
 									@csrf
 									<div class="form-group">

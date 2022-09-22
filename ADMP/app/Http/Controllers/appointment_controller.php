@@ -55,7 +55,9 @@ class appointment_controller extends Controller
 
     public function patient_appointment()
     {
-        $data=appointments::join('patients','patients.id','=','appointments.patient_id')->where('doc_id','=',Session('doctor_id'))->orderBy('date')->get(['patients.ptprofile_img','patients.name','appointments.*',]);
+        $data=appointments::join('patients','patients.id','=','appointments.patient_id')
+        ->where('doc_id','=',Session('doctor_id'))->orderBy('date')
+        ->get(['patients.ptprofile_img','patients.name','appointments.*',]);
         return view('doctor.appointments',["appointments_arr"=>$data]);
     }
 

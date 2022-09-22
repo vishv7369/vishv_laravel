@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\company_fav_doc;
+use App\Models\visitor_slots;
 use Hash;
 use session;
 use Alert;
@@ -18,8 +19,12 @@ class company_fav_doc_controller extends Controller
      */
     public function companyfavdoctor()  
     {
-        $data=company_fav_doc::join('doctors','doctors.id','=','company_fav_docs.doctor_id')->join('specialists','specialists.id','=','doctors.specialist_id')->join('cities','cities.id','=','doctors.city')->join('states','states.id','=','doctors.state')->where('company_id','=',Session('company_id'))->where('visitor_status','=','Available')->get();
-        return view('company.fav-doctor',["companyfavdoctor_arr"=>$data]);
+        $data=company_fav_doc::join('doctors','doctors.id','=','company_fav_docs.doctor_id')
+        ->where('company_fav_docs.company_id','=',Session('company_id'))->where('visitor_status','=','Available')
+        ->get(['doctors.first_name','doctors.last_name','doctors.profile_img','company_fav_docs.doctor_id']);
+        
+        $slot_company_arr=visitor_slots::all();
+        return view('company.fav-doctor',["companyfavdoctor_arr"=>$data,"slot_company_arr"=>$slot_company_arr]);
     }
 
     /**

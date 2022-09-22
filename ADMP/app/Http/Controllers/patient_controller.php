@@ -140,6 +140,8 @@ class patient_controller extends Controller
         }
     }
 
+    
+
     /*-----patient login-----*/
 
     public function patientlog(Request $request)
@@ -174,7 +176,7 @@ class patient_controller extends Controller
                    {
                     $request->Session()->put('ptprofile_img',$data->ptprofile_img);
                    }
-                   Alert::success('Success', 'Login Success');
+                   Alert::success('Congrats', 'You\'ve Successfully Login');
                    return redirect('/index');
                }
                else

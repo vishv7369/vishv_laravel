@@ -26,6 +26,7 @@ use App\Http\Controllers\diagnoses_controller;
 use App\Http\Controllers\prescriptions_controller;
 use App\Http\Controllers\patient_favs_controller;
 use App\Http\Controllers\doc_fav_patients_controller;
+use App\Http\Controllers\company_app;
 
 
 /*
@@ -40,45 +41,6 @@ use App\Http\Controllers\doc_fav_patients_controller;
 */
 /////////////////////////////////patient panel////////////////////////////////////////////////////////////////
 
-
-
-// before login
-Route::group(['middleware'=>['patientbeforelogin']], function(){
-
-    Route::get('/register',[patient_controller::class,'create']);
-    Route::post('/register_sess',[patient_controller::class,'register_sess']);
-    Route::get('/register_by_otp',[patient_controller::class,'register_by_otp']);
-    Route::get('/match_register_otp',[patient_controller::class,'match_register_otp']);
-    Route::post('/match_register_otp',[patient_controller::class,'match_register_otp']);
-    //Route::post('/send_register_otp',[patient_controller::class,'send_register_otp']);
-  
-    Route::get('/login',[patient_controller::class,'patientlog']);
-    Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
-    
-    
-    Route::get('/forgot-password',[patient_controller::class,'ptforgot_password']);
-    Route::post('/forgot-password',[patient_controller::class,'ptforgot_password']);
-    Route::get('/ptenter_otp',[patient_controller::class,'ptenter_otp']);
-    Route::post('/ptstore_otp',[patient_controller::class,'ptstore_otp']);
-    Route::get('/reset-password',[patient_controller::class,'ptreset_password']);
-    Route::post('/ptpassword_store',[patient_controller::class,'ptpassword_store']);
-    
-    
-    Route::get('/checkout', function (){return view('patient.checkout');});
-    Route::get('/booking-success', function (){return view('patient.booking-success');});
-    
-    Route::get('/forgot-password', function (){return view('patient.forgot-password');});
-    
-    
-    Route::get('reviews', function (){return view('patient.reviews');});
-    Route::get('calendar', function (){return view('patient.calendar');});
-    Route::get('components', function (){return view('patient.components');});
-    
-    });
-    
-
-
-// after login
 Route::group(['middleware'=>['patientafterlogin']], function(){
 
 Route::get('/change-password',[patient_controller::class,'changepasswordcreate']);
@@ -115,21 +77,22 @@ Route::get('/bill_view/{id}',[diagnoses_controller::class,'bill_view']);
 Route::get('/update_report/{id}',[appointment_controller::class,'create_report']);
 Route::post('/update_report/{id}',[appointment_controller::class,'update_report']);
 
-
+Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
 Route::get('/patientlogout',[patient_controller::class,'patientlogout']);
+
+Route::get('/chat', function (){return view('patient.chat');});
+Route::get('/voice-call', function (){return view('patient.voice-call');});
+Route::get('/video-call', function (){return view('patient.video-call');});
 
 
 });
-
-Route::get('/',[doctor_controller::class,'searchdoctor']);//Ajax
+Route::get('/',[doctor_controller::class,'searchdoctor']);
 Route::get('/index',[doctor_controller::class,'searchdoctor']);//Ajax
 
 Route::post('/getptArea',[doctor_controller::class,'getptArea']);
 
 Route::post('/getdtCity',[doctor_controller::class,'getdtCity']);//Ajax
 Route::post('/getdtArea',[doctor_controller::class,'getdtArea']);
-
-
 
 
 Route::get('/about', function (){return view('patient.about');});
@@ -141,8 +104,36 @@ Route::get('/doctor-profile/{id}',[doctor_controller::class,'doctorview']);
 Route::get('/search',[doctor_controller::class,'doctorlist']);
 Route::post('/search',[doctor_controller::class,'doctorlist']);
 
+Route::group(['middleware'=>['patientbeforelogin']], function(){
+
+Route::get('/register',[patient_controller::class,'create']);
+Route::post('/register_sess',[patient_controller::class,'register_sess']);
+Route::get('/register_by_otp',[patient_controller::class,'register_by_otp']);
+Route::get('/match_register_otp',[patient_controller::class,'match_register_otp']);
+Route::post('/match_register_otp',[patient_controller::class,'match_register_otp']);
+
+Route::get('/login',[patient_controller::class,'patientlog']);
+Route::post('/patientlogin',[patient_controller::class,'patientlogin']);
+
+Route::get('/forgot-password',[patient_controller::class,'ptforgot_password']);
+Route::post('/forgot-password',[patient_controller::class,'ptforgot_password']);
+Route::get('/ptenter_otp',[patient_controller::class,'ptenter_otp']);
+Route::post('/ptstore_otp',[patient_controller::class,'ptstore_otp']);
+Route::get('/reset-password',[patient_controller::class,'ptreset_password']);
+Route::post('/ptpassword_store',[patient_controller::class,'ptpassword_store']);
 
 
+Route::get('/checkout', function (){return view('patient.checkout');});
+Route::get('/booking-success', function (){return view('patient.booking-success');});
+
+Route::get('/forgot-password', function (){return view('patient.forgot-password');});
+
+
+Route::get('reviews', function (){return view('patient.reviews');});
+Route::get('calendar', function (){return view('patient.calendar');});
+Route::get('components', function (){return view('patient.components');});
+
+});
 
 //====================================doctor panel-----=====================================================
 
@@ -223,11 +214,13 @@ Route::get('/doctor-manager-schedule-timings', function (){return view('doctor.m
 Route::get('/doctor-manager-appointments', function (){return view('doctor.manager-appointments');});
 Route::get('/doctor-manager-find', function (){return view('doctor.manager-find');});
 
-Route::get('/doctor-company-dashboard', function (){return view('doctor.company-dashboard');});
 Route::get('/doctor-company-schedule-timings',[company_slots_controller::class,'create']);
 Route::post('/doctor-company-schedule-timings',[company_slots_controller::class,'store']);
 
-Route::get('/doctor-company-appointments', function (){return view('doctor.company-appointments');});
+Route::get('/doctor-company-dashboard',[company_app::class,'companydashboard_appointment']);
+Route::get('/doctor-company-appointments',[company_app::class,'company_appointment']);
+Route::get('/appointment_destroy/{id}',[company_app::class,'appointment_destroy']);
+
 Route::get('/doctor-company-find', function (){return view('doctor.company-find');});
 
 
@@ -360,6 +353,12 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::post('/company-changepassword',[companie_controller::class,'companychangepassword']);
     
     Route::get('/company-doctor',[doctor_controller::class,'companydoctorindex']);
+    Route::get('/company-doctor-profile/{id}',[doctor_controller::class,'company_doctorview']);
+
+    Route::post('/company_app_book',[company_app::class,'company_app_book']);
+    Route::get('/company-myappointment',[company_app::class,'index']);
+    Route::get('/destroy/{id}',[company_app::class,'destroy']);
+
     Route::get('/company_fav_doc/{id}',[company_fav_doc_controller::class,'company_fav_doc']);
     Route::get('/company-fav-doctor',[company_fav_doc_controller::class,'companyfavdoctor']);
     Route::get('/company_fav_doc_del/{id}',[company_fav_doc_controller::class,'company_fav_doc_del']);

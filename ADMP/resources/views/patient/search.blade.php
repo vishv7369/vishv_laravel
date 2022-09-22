@@ -33,7 +33,7 @@
 								</div>
 								<div class="card-body">
 								<form action="/search" method="post">
-								@csrf	
+									@csrf
 								<div class="filter-widget">
 									<label>State</label>
 									<select class="col-lg-11 form-control select" id="sid" value="{{$state}}" name="sid">
@@ -76,9 +76,9 @@
 								</div>
 
 									<div class="btn-search">
-										<button type="submit" value="send" name="submit" class="btn btn-block">Search</button>
+										<button type="submit" name="submit" value="send" class="btn btn-block">Search</button>
 									</div>
-								</form>		
+									</form>	
 								</div>
 							</div>
 							<!-- /Search Filter -->
