@@ -18,6 +18,7 @@ use App\Http\Controllers\patient_controller;
 use App\Http\Controllers\patient_slots_controller;
 use App\Http\Controllers\doc_fav_medicines_controller;
 use App\Http\Controllers\company_fav_doc_controller;
+use App\Http\Controllers\manager_fav_doc_controller;
 use App\Http\Controllers\contact_controller;
 use App\Http\Controllers\book_by_otp_controller;
 use App\Http\Controllers\appointment_controller;
@@ -27,6 +28,7 @@ use App\Http\Controllers\prescriptions_controller;
 use App\Http\Controllers\patient_favs_controller;
 use App\Http\Controllers\doc_fav_patients_controller;
 use App\Http\Controllers\company_app;
+use App\Http\Controllers\manager_app;
 
 
 /*
@@ -168,7 +170,7 @@ Route::get('/invoice-view/{id}',[diagnoses_controller::class,'invoice_view']);
 Route::get('/prescription_submit/{id}',[diagnoses_controller::class,'prescription_submit']); 
 Route::get('/doctor-dashboard',[appointment_controller::class,'index']);
 
-//Route::get('/doctor-dashboard', [doctor_controller::class,'doctor_dashboard']);
+
 
 Route::get('/editdoctor',[doctor_controller::class,'editdoctor']);
 Route::post('/editdoctor/{doctor_id}',[doctor_controller::class,'updatedoctor']);
@@ -220,6 +222,10 @@ Route::post('/doctor-company-schedule-timings',[company_slots_controller::class,
 Route::get('/doctor-company-dashboard',[company_app::class,'companydashboard_appointment']);
 Route::get('/doctor-company-appointments',[company_app::class,'company_appointment']);
 Route::get('/appointment_destroy/{id}',[company_app::class,'appointment_destroy']);
+
+Route::get('/doctor-manager-dashboard',[manager_app::class,'companydashboard_appointment']);
+Route::get('/doctor-manager-appointments',[manager_app::class,'manager_appointment']);
+Route::get('/appointment_destroy/{id}',[manager_app::class,'appointment_destroy']);
 
 Route::get('/doctor-company-find', function (){return view('doctor.company-find');});
 
@@ -343,7 +349,7 @@ Route::post('/companylogin',[companie_controller::class,'companylogin']);
 Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::get('/companylogout',[companie_controller::class,'companylogout']);
 
-    //Route::get('/company-dashboard', function (){return view('company.index');});
+    
     Route::get('/company-dashboard', [companie_controller::class,'companydashboard']);
     Route::get('/company-profile',[companie_controller::class,'companyprofile']);
     Route::get('/editcompany{id}',[companie_controller::class,'editcompany']);
@@ -355,9 +361,16 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::get('/company-doctor',[doctor_controller::class,'companydoctorindex']);
     Route::get('/company-doctor-profile/{id}',[doctor_controller::class,'company_doctorview']);
 
+    Route::get('/manager-doctor',[doctor_controller::class,'managerdoctorindex']);
+    Route::get('/manager-doctor-profile/{id}',[doctor_controller::class,'manager_doctorview']);
+
     Route::post('/company_app_book',[company_app::class,'company_app_book']);
     Route::get('/company-myappointment',[company_app::class,'index']);
     Route::get('/destroy/{id}',[company_app::class,'destroy']);
+
+    Route::post('/manager_app_book',[manager_app::class,'manager_app_book']);
+    Route::get('/manager-myappointment',[manager_app::class,'index']);
+    Route::get('/destroy/{id}',[manager_app::class,'destroy']);
 
     Route::get('/company_fav_doc/{id}',[company_fav_doc_controller::class,'company_fav_doc']);
     Route::get('/company-fav-doctor',[company_fav_doc_controller::class,'companyfavdoctor']);
@@ -419,8 +432,19 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
 
     Route::get('/manager-changepassword',[manager_controller::class,'managerchangecreate']);
     Route::post('/manager-changepassword',[manager_controller::class,'managerchangepassword']);
-    
+
     Route::get('/manager-doctor',[doctor_controller::class,'managerdoctorindex']);
+    Route::get('/manager-doctor-profile/{id}',[doctor_controller::class,'manager_doctorview']);
+    
+
+    Route::post('/manager_app_book',[manager_app::class,'manager_app_book']);
+    Route::get('/manager-myappointment',[manager_app::class,'index']);
+    Route::get('/destroy/{id}',[manager_app::class,'destroy']);
+
+    Route::get('/manager_fav_doc/{id}',[manager_fav_doc_controller::class,'manager_fav_doc']);
+    Route::get('/manager-fav-doctor',[manager_fav_doc_controller::class,'managerfavdoctor']);
+    Route::get('/manager_fav_doc_del/{id}',[manager_fav_doc_controller::class,'manager_fav_doc_del']);
+    
     Route::get('/manager-doctor-appointment', function (){return view('manager.doctor-appointment');});
     Route::get('/manager-doctor-cancel-appointment', function (){return view('manager.doctor-cancel-appointment');});
     

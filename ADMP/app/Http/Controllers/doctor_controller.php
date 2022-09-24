@@ -16,6 +16,7 @@ use App\Models\patient_fav;
 use App\Models\doc_fav_patient;
 use App\Models\appointments;
 use App\Models\company_slots;
+use App\Models\manager_fav_doc;
 use Hash;
 use session;
 use Alert;
@@ -738,7 +739,7 @@ public function login(Request $request)
 
 public function companydoctorindex()
 {
-    $alldoctor_arr=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
+    $alldoctor_arr=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get(['doctors.*','specialists.img','specialists.name']);
     $favdoctor_arr=company_fav_doc::where('company_id','=',Session('company_id'))->get();
    
     return view('company.doctor-list',["alldoctor_arr"=>$alldoctor_arr,"favdoctor_arr"=>$favdoctor_arr]);
@@ -760,9 +761,20 @@ public function company_doctorview($id)
 
 public function managerdoctorindex()
 {
-    $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
-    return view('manager.doctor-list',["companydoctor_arr"=>$data]);
+    $alldoctor_arr=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get(['doctors.*','specialists.img','specialists.name']);
+    //$favdoctor_arr=manager_fav_doc::where('manager_id','=',Session('manager_id'))->get(['manager.*']);,"favdoctor_arr"=>$favdoctor_arr
+   
+    return view('manager.doctor-list',["alldoctor_arr"=>$alldoctor_arr]);
 }
+
+public function manager_doctorview($id)
+    {
+        
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();
+        $slot_arr=visitor_slots::where('doc_id','=',$id)->get();
+        $favdoctor_arr=manager_fav_doc::where('doctor_id','=',$id)->where('manager_id','=',Session('manager_id'))->first();
+        return view('manager.doctor-profile',["fetch"=>$data,"slot_arr"=>$slot_arr,"favdoctor_arr"=>$favdoctor_arr]);
+    }
 
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
 
@@ -788,71 +800,71 @@ public function managerdoctorindex()
             ->where('state','=',$state)
             ->Where('city','=',$city)
             ->Where('area','=',$area)
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($state!="" && $city!="" && $specialist_id!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->where('state','=',$state)
             ->Where('city','=',$city)
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($state!="" && $specialist_id!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->where('state','=',$state)
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($state!="" && $city!="" && $area!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->where('state','=',$state)
             ->Where('city','=',$city)
-            ->Where('area','=',$area)->get();
+            ->Where('area','=',$area)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($state!="" && $city!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->where('state','=',$state)
-            ->Where('city','=',$city)->get();
+            ->Where('city','=',$city)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($state!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
-            ->where('state','=',$state)->get();
+            ->where('state','=',$state)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($specialist_id!="")
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($city!="")//index
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
-            ->where('city','=',$city)->get();
+            ->where('city','=',$city)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($city!="" && $area!="")//index
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->Where('city','=',$city)
-            ->where('area','=',$area)->get();
+            ->where('area','=',$area)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($city!="" && $specialist_id!="")//index
         {
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->where('city','=',$city)
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         elseif($city!="" && $area!="" && $specialist_id!="")//index
         {        
             $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')
             ->Where('city','=',$city)
             ->Where('area','=',$area)
-            ->Where('specialist_id','=',$specialist_id)->get();
+            ->Where('specialist_id','=',$specialist_id)->get(['doctors.*','specialists.name','specialists.img']);
         }
         else
         {
-            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get();
+            $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get(['doctors.*','specialists.name','specialists.img']);
         }
 		return view('patient.search',["doctorlist_arr"=>$data,"special_id_arr"=>$special_id_arr,"state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr,"state"=>$state,"city"=>$city,"area"=>$area,"specialist_id"=>$specialist_id]);
     }
@@ -860,7 +872,7 @@ public function managerdoctorindex()
     
     public function doctorview($id)
     {
-        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first(['doctors.*','specialists.name','specialists.img']);
         //$data=doctor::find($id);
         $doctor_id=$id;
         $servicelist_arr=service::where('doctor_id','=',$doctor_id)->get();

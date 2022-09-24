@@ -288,8 +288,11 @@ public function companymanageredit($id)
         {
             if(Hash::check($request->password, $data->password))
             {
+
                 $request->Session()->put('manager_id',$data->id);
                 $request->Session()->put('email', $data->email);
+                $request->Session()->put('manager_company_id',$data->company_id);
+                $request->Session()->put('manager_division_id',$data->division_id);
                 $mname=$data->first_name." ".$data->last_name; 
                 $request->Session()->put('mname',$mname);
                 $request->Session()->put('mprofile_img', $data->mprofile_img);
@@ -313,6 +316,8 @@ public function companymanageredit($id)
     {
         Session()->pull('manager_id');
         Session()->pull('email');
+        Session()->pull('manager_company_id');
+        Session()->pull('manager_division_id');
         Session()->pull('mprofile_img');
         Session()->pull('mname');
         return redirect('/manager');

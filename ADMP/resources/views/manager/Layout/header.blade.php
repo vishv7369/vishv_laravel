@@ -219,15 +219,9 @@
 									<li>
 											<a href="{{url('/manager-doctor')}}"><i class="fe fe-user"></i> <span>Manage Doctors</span></a>
 									</li>
-									<li class="submenu">
-										<a href="javascript:void(0);"><i class="fe fe-calendar"></i> <span>Appointment</span> <span class="menu-arrow"></span></a>
-										<ul style="display: none;">
-											<li><a href="{{url('/manager-doctor-appointment')}}"><span>Approve</span></a></li>
-											
-											<li><a href="{{url('/manager-doctor-cancel-appointment')}}"> <span>Cancel</span></a></li>
-										</ul>
-									</li>
-									
+									<li>
+											<a href="{{url('/manager-fav-doctor')}}"><i class="fe fe-user"></i> <span>My Doctors</span></a>
+									</li>		
 								</ul>
 							</li>
 							

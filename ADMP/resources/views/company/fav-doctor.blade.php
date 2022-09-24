@@ -75,7 +75,8 @@
 													<label><input type="radio" value="<?php echo $slots->id?>" name="slot_id" checked /> <?php echo $slots->start_time?> to <?php echo $slots->end_time?></label>
 													<input type="hidden" name="doctor_id" value="<?php echo $slots->doc_id?>">
 												</div>
-											@endif	
+												@endif	
+
 											@endforeach
 											<td class="text-center">
 											<div class="table-action">

@@ -24,7 +24,7 @@ class company_app extends Controller
     {
         $data=company_appointment::join('doctors','doctors.id','=','company_appointments.doctor_id')
         ->join('visitor_slots','visitor_slots.id','=','company_appointments.slot_id')
-        ->get(['doctors.first_name','doctors.last_name','visitor_slots.start_time','visitor_slots.end_time','company_appointments.*']);
+        ->get(['doctors.*','visitor_slots.start_time','visitor_slots.end_time','company_appointments.*']);
        return view('company.myappointment',["myappointment_arr"=>$data]);
     }
 

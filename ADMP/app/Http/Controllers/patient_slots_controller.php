@@ -105,6 +105,7 @@ class patient_slots_controller extends Controller
         $no_slots=$request->no_slots;
         $min=$request->min;
         $start_time=$request->start_time;
+        $doc_id=Session('doctor_id');
         date_default_timezone_set('asia/calcutta');
         $i=0;
         while($i<$no_slots)
@@ -127,10 +128,17 @@ class patient_slots_controller extends Controller
 
     public function showpatient(Request $request, $id)
     {
+     
         $doctordata=doctor::find($id);
+        
         $doc_id=$doctordata->id;
         $searchbydate=$request->searchbydate;
-        if($searchbydate!="")
+        
+        date_default_timezone_set('asia/calcutta');
+        $plus10=time()+(10*60);
+        $cur_time=date('H:i');
+        $cur_date=date('Y-m-d');
+        if($searchbydate!="" && $searchbydate > $cur_date)
         {        
             $timestamp = strtotime($searchbydate);
             $day=date('l', $timestamp); 
@@ -138,14 +146,23 @@ class patient_slots_controller extends Controller
             $afternoonsearchdate=patient_slots::where('day','=',$day)->where('time','=','afternoon')->where('doc_id','=',$doc_id)->get();
             $eveningsearchdate=patient_slots::where('day','=',$day)->where('time','=','evening')->where('doc_id','=',$doc_id)->get();
         }
+        elseif($searchbydate==$cur_date)
+        {        
+            $current=date('d-m-Y');
+            $timestamp = strtotime($current);
+            $day=date('l', $timestamp); 
+            $Morningsearchdate=patient_slots::where('day','=',$day)->where('time','=','Morning')->where('slot_timing','>',$cur_time)->where('doc_id','=',$doc_id)->get();
+            $afternoonsearchdate = patient_slots::where('day', '=', $day)->where('time', '=', 'afternoon')->where('slot_timing','>',$cur_time)->where('doc_id','=',$doc_id)->get();
+            $eveningsearchdate=patient_slots::where('day','=',$day)->where('time','=','evening')->where('slot_timing','>',$cur_time)->where('doc_id','=',$doc_id)->get();
+        }
         else
         {
             $current=date('d-m-Y');
             $timestamp = strtotime($current);
             $day=date('l', $timestamp); 
-            $Morningsearchdate=patient_slots::where('day','=',$day)->where('time','=','Morning')->where('doc_id','=',$doc_id)->get();
-            $afternoonsearchdate = patient_slots::where('day', '=', $day)->where('time', '=', 'afternoon')->where('doc_id', '=', $doc_id)->get();
-            $eveningsearchdate=patient_slots::where('day','=',$day)->where('time','=','evening')->where('doc_id','=',$doc_id)->get();
+            $Morningsearchdate=patient_slots::where('day','=',$day)->where('time','=','Morning')->where('slot_timing','>',$cur_time)->where('doc_id','=',$doc_id)->get();
+            $afternoonsearchdate = patient_slots::where('day', '=', $day)->where('time', '=', 'afternoon')->where('slot_timing','>',$cur_time)->where('doc_id', '=',$doc_id)->get();
+            $eveningsearchdate=patient_slots::where('day','=',$day)->where('time','=','evening')->where('slot_timing','>',$cur_time)->where('doc_id','=',$doc_id)->get();
         }
 
         return view('patient.booking',[

@@ -158,6 +158,7 @@ class stockiest_controller extends Controller
         ]);
        $data=new stockiest;
        $data->manager_id=Session('manager_id');
+       $data->company_id=Session('manager_company_id');
        $data->name=$request->name;
        $data->state=$request->state;
        $data->city=$request->city;

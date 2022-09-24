@@ -28,7 +28,7 @@
 												</a>
 											</li>
 											<li>
-												<a href="{{url('/')}}">
+												<a href="{{url('/doctor-manager-appointments')}}">
 													<i class="fas fa-calendar-check"></i>
 													<span>Manager Appointments</span>
 												</a>

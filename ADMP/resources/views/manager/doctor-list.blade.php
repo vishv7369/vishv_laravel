@@ -47,8 +47,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												@if(!$companydoctor_arr->isEmpty())
-											   @foreach($companydoctor_arr as $data)
+												@if(!$alldoctor_arr->isEmpty())
+											   @foreach($alldoctor_arr as $data)
 												<tr>
 												<td><?php echo $data->id?></td>
 												<td><img src="{{asset('upload/doctor/' . $data->profile_img)}}" height="50px" width="50px"/></td>
@@ -56,11 +56,11 @@
 												<td><?php echo $data->first_name?></td>
 												<td><?php echo $data->last_name?></td>
 												<td class="text-right">
-														<div class="actions">
-															<a  href="{{url('admin-add-doctor/'. $data->id)}}" class="btn btn-sm bg-danger-light">
-																<i class="fe fe-trash"></i> Delete
-															</a>
-														</div>
+													<div class="actions">	
+														<a href="{{url('manager-doctor-profile/'.$data->id)}}" class="btn btn-sm bg-success-light" >
+															View Profile
+														</a>
+													</div>
 												</td>
 												
 												</tr>
