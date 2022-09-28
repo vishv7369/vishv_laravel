@@ -66,11 +66,17 @@ class productadv_controller extends Controller
      */
     public function show()// product show frontend side
     {
+        $data1=categorie::all();
         $data=productadv::all();
-		return view('Frontend.shop-2',["front_arr"=>$data]);
+		return view('Frontend.shop-2',["front_arr"=>$data,"cat_arr"=>$data1]);
     }
 
-  
+    public function getproduct(Request $request)
+    {
+		$data['productadvs']=productadv::where("cate_id","=",$request->cate_id)->get();
+        return response()->json($data);	
+        
+    }
 
 
     /**

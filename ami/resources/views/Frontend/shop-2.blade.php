@@ -25,9 +25,14 @@
                             <div class="categories-widget sidebar-widget">
                                 <h3 class="widget-title">Categories</h3>
                                 <ul class="shop-categories">
-                               
-                                    <li><a href="#">hi</a></li>
-                                    
+                                <?php
+									foreach($cat_arr as $data)
+									{
+									?>
+                                    <li><a id="cate_id" name="cate_id" value="productadvs"><?php echo $data->category_name;?></a></li>
+                                    <?php
+									}
+									?>
                                 </ul>
                             </div>
                         </div>
@@ -50,8 +55,10 @@
                                                 <div class="price">
                                                     <span><?php echo $data->productprice;?></span>
                                                 </div>
-                                                
+                                                    <span><?php echo $data->description;?></span> 
                                                 <div class="btn-box"><a href="<?php echo $data->productlink;?>">Buy Now</a></div>
+                                                <br>
+                                                <div class="btn-box"><a href="">Download catelog</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -133,6 +140,27 @@
         </div>
     </section>
     <!-- shipping-service end -->
-
+    <script>
+$('#cate_id').on('change', function () {
+                var cate_id = this.value;
+                $('#id').html('');
+                $.ajax({
+				url:"{{url('/getproduct')}}",
+				type: "POST",
+				data: {
+				sid: sid,
+				_token: '{{csrf_token()}}'
+				},
+				
+				success: function(result) {
+                        $('#id').html('');
+                        $.each(result.productadvs, function (key, value) {
+                            $('#id').append('');
+                        });
+                        
+                    }
+                });
+            });			
+</script>	
 
    @endsection

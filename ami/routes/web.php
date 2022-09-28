@@ -34,6 +34,7 @@ Route::view('/gallery_site','Frontend.gallery');
 /*------------------------Product adv Frontend-------------------------*/
 Route::get('/shop',[productadv_controller::class,'show']);//view
 Route::get('/shop-single',[productadv_controller::class,'shopsingle']);
+Route::post('/getproduct',[productadv_controller::class,'getproduct']);
 
 
 /*------------------------contact-------------------------*/

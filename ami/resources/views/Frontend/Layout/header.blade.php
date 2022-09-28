@@ -67,17 +67,6 @@
                     <ul class="header-nav pull-right">
                         <li>Time : Monday-Friday 09am-6pm</li>
                         <li class="phone"><i class="flaticon-telephone-auricular-with-cable"></i><a href="tel:(+91)9313403430">(+91) 9313403430</a></li>
-                        <li>
-                            <div class="language dropdownn">
-                                <a class="dropdown-toggle" id="dropdownMenu4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" href="#">Eng</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-                                    <li><a href="#">Eng</a></li>
-                                    <li><a href="#">Chi</a></li>
-                                    <li><a href="#">Ger</a></li>
-                                    <li><a href="#">Fre</a></li>
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -87,8 +76,15 @@
         <div class="header-upper">
             <div class="container">
                 <div class="inner-container clearfix">
-                    <div class="left-content pull-left">
+                   <!-- <div class="left-content pull-left">
                         <figure class="logo-box"><a href="index"><img class="rounded-circle" src="{{url('Frontend/images/logo/LOGO.png')}}" style="height:80;width:80px" alt=""></a></figure>
+                    </div> -->
+                    <div class="top-bar">
+                        <div class="logo">
+                            <a href="index">
+                                <h1>Ami<span>Enterprise</span></h1>
+                            </a>
+                        </div>
                     </div>
                     <div class="right-content pull-right">
                         <div class="info-box">
@@ -123,13 +119,10 @@
                                 <div class="navbar-collapse collapse clearfix">
                                     <ul class="navigation clearfix">
                                         <li><a href="index">Home</a></li>
-                                        <li><a href="service">Services</a></li>
                                         <li><a href="shop">shop</a></li>
-                                        <li><a href="gallery_site">Gallery</a></li>
-                                        <li><a href="case">case</a></li>
                                         <li><a href="about">About</a></li>
-                                        <li><a href="about">Reviews</a></li>
-										
+                                        <li><a href="contact">Contact</a></li>
+                                        
 										@if(Session('customer_id'))
 										   <li><a href="flogout">Logout</a></li>
 										 									   
@@ -143,16 +136,12 @@
                         </div>
                         <div class="info-box pull-right clearfix">
                             <ul class="social-links">
-                                <li><a href="#"><i class="fab fa-skype"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="#"><i class="fab fa-indiamart-in"></i></a></li>
                             </ul>
-                            <div class="search-box">
-                                <div class="header-flyout-searchbar">
-                                    <i class="fa fa-search"></i>
-                                </div>
-                            </div>
+                            
 							@if(Session('customer_id'))
 										   
 										   <div class="user" ><a href="myaccount"><i class="fa fa-user"></i></a>								   
