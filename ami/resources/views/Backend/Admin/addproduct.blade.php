@@ -70,6 +70,13 @@
                                                 <textarea name="description" class="form-control floating" name="description"></textarea>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="focus-label">Catelog</label>
+                                                <input type="file" class="form-control floating" name="catelog">
+                                            </div>
+                                        </div>
 										
 									 <div class="col-md-6">
 										 <div class="form-group row">

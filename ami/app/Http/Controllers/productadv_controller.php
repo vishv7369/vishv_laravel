@@ -46,6 +46,12 @@ class productadv_controller extends Controller
 		$file_name=time() . "_img." . $request->file('img')->getClientOriginalExtension();// make file name
 		$file->move('upload/product',$file_name); //file name move upload in public		
 		$data->img=$file_name; // file name store in db
+
+        // catelog upload
+		$file=$request->file('catelog');  // get file
+		$file_name=time() . "_catelog." . $request->file('catelog')->getClientOriginalExtension();// make file name
+		$file->move('upload/catelog',$file_name); //file name move upload in public		
+		$data->catelog=$file_name; // file name store in db
 		
 		$data->productname=$request->productname;
 		$data->productprice=$request->productprice;
@@ -80,6 +86,7 @@ class productadv_controller extends Controller
 
     public function getproduct(Request $request)
     {
+        //$category=categorie::where('id',$id)->first('categories.*');   
 		$data['productadvs']=productadv::where("cate_id","=",$request->cate_id)->get();
         return response()->json($data);	
         
@@ -125,8 +132,18 @@ class productadv_controller extends Controller
 			$data->img=$file_name; // file name store in db
             unlink('upload/product/'.$old_img);
 		}
-		
-		$data->save();
+
+		if($request->hasFile('catelog'))
+        {
+            // catelog upload
+            $file=$request->file('catelog');  // get file
+            $file_name=time() . "_catelog." . $request->file('catelog')->getClientOriginalExtension();// make file name
+            $file->move('upload/catelog',$file_name); //file name move upload in public		
+            $data->catelog=$file_name; // file name store in db
+            unlink('upload/catelog/'.$old_img);
+        }
+
+		$data->update();
 		return redirect('/manageproduct')->with('success','Update Success');
     }
 
@@ -141,5 +158,14 @@ class productadv_controller extends Controller
         $data=productadv::find($id);
 		$data->delete();
 		return redirect('admin-manageproduct')->with("success","Product deleted successfully");
+    }
+
+    public function downloadcatelog($id)
+    {
+        $data=productadv::find($id);
+        $catelog=$data->catelog;
+        header('Content-type:application/octect-stream'); // we will be outputing a pdf and octect-stream for any file download
+        header('Content-Disposition:attachment;filename='.$catelog); // we will called downlod pdf
+        readfile('upload/catelog/'.$catelog); // download lower side in loading it must readfile full path/rename of original file
     }
 }

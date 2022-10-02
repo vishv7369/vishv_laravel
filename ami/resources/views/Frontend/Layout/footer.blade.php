@@ -57,14 +57,13 @@
                         </div>
                     </div>
                 </div>
+</div>
             </div>
-            <div class="footer-bottom clearfix" style="width:1334px;">
-                <div class="copyright "><a href="#">Ami </a></div>
-                <ul class="footer-social pull-right" >
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <div class="footer-bottom clearfix">
+                <div class="copyright ml-5"><a href="#"></a></div>
+                <ul class="footer-social pull-right" style="margin-right:100px">
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
                     <li><a href="#"><i class="fab fa-google"></i></a></li>
                 </ul>
             </div>

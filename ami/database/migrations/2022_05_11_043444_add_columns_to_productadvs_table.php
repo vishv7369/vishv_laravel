@@ -21,6 +21,7 @@ return new class extends Migration
 			$table->string('productprice')->after('productname');
 			$table->string('description')->after('productprice');
 		    $table->string('productlink')->after('description');
+            $table->string('catelog')->after('productlink');
         });
     }
 

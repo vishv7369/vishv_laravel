@@ -5,8 +5,8 @@
     <!-- shop-style-two -->
     <section class="shop-style-two shop-page-2">
         <div class="container">
-            
-            <div class="upper-box">
+        <h1>{{$category->category_name}}</h1>            
+        <div class="upper-box">
                 <div class="row">
                     <div class="col-lg-9 col-md-12 col-sm-12 product-block">
                     <a class="btn btn-primary" href="/shop" role="button">Back</a>
@@ -31,7 +31,7 @@
                                                     <span><?php echo $data->description;?></span> 
                                                 <div class="btn-box"><a href="<?php echo $data->productlink;?>">Buy Now</a></div>
                                                 <br>
-                                                <div class="btn-box"><a href="">Download catelog</a></div>
+                                                <div class="btn-box"><a href="{{url('/downloadcatelog')}}">Download catelog</a></div>
                                             </div>
                                         </div>
                                     </div>

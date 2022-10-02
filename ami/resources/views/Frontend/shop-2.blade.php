@@ -47,7 +47,7 @@
                                                     <span><?php echo $data->description;?></span> 
                                                 <div class="btn-box"><a href="<?php echo $data->productlink;?>">Buy Now</a></div>
                                                 <br>
-                                                <div class="btn-box"><a href="">Download catelog</a></div>
+                                                <div class="btn-box"><a href="{{url('/downloadcatelog/'.$data->id)}}">Download catelog</a></div>
                                             </div>
                                         </div>
                                     </div>

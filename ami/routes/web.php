@@ -36,6 +36,7 @@ Route::get('/shop',[productadv_controller::class,'show']);//view
 Route::get('/shop-single',[productadv_controller::class,'shopsingle']);
 Route::post('/getproduct',[productadv_controller::class,'getproduct']);
 Route::get('/viewcategory/{id}',[productadv_controller::class,'viewcate']);//category
+Route::get('/downloadcatelog/{id}',[productadv_controller::class,'downloadcatelog']);//download catelog
 
 
 /*------------------------contact-------------------------*/
