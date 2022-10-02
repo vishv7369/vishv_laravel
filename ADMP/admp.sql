@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 01, 2022 at 12:20 PM
+-- Generation Time: Oct 02, 2022 at 08:23 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -153,7 +153,9 @@ CREATE TABLE `companies` (
 
 INSERT INTO `companies` (`id`, `company_name`, `first_name`, `last_name`, `email`, `password`, `dpass`, `cprofile_img`, `visiting_card`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Hi-Tech Pvt.Ltd.', 'Anand', 'Maurya', 'anandmaurya@gmail.com', '$2y$10$vZ4zdCC1E3XPR5JH6x1zKOwp7RRmQqz7W9TCSC6dyBWXQUNI2crHO', '123456789', '1663426509_cprofile_img.jpg', '1663426509_visiting_card.png', 'Available', '2022-09-17 09:25:09', '2022-09-17 09:25:09'),
-(2, 'Technostacks Pvt.Ltd.', 'Mohini', 'Maurya', 'mohinimaurya@gmail.com', '$2y$10$u6X.Vf1tGf9M4/pcgnMvs.ADBSzCuSUQdA4qxPEXQbDw0CKn/toyS', '123456789', '1664000412_cprofile_img.png', '1664000412_visiting_card.png', 'Available', '2022-09-24 00:50:12', '2022-09-24 00:50:12');
+(2, 'Technostacks Pvt.Ltd.', 'Mohini', 'Maurya', 'mohinimaurya@gmail.com', '$2y$10$u6X.Vf1tGf9M4/pcgnMvs.ADBSzCuSUQdA4qxPEXQbDw0CKn/toyS', '123456789', '1664000412_cprofile_img.png', '1664000412_visiting_card.png', 'Available', '2022-09-24 00:50:12', '2022-09-24 00:50:12'),
+(5, 'Sindhiya Tech', 'Yash', 'Sindhiya', '181260107036setice@gmail.com', '$2y$10$PAiN7rffw/GWJviC5vzsBuu74o.GUPNAcMwXlCT1ZnTkt2Vm9.8wG', '123456789', '1664682245_cprofile_img.jpg', '1664682246_visiting_card.jpg', 'Available', '2022-10-01 22:14:06', '2022-10-01 22:14:06'),
+(7, 'Unjiya Tech Ltd.', 'Ayushi', 'Maurya', 'vishvunjiya3058822@gmail.com', '$2y$10$xiPa5/oyFcImz9ggqVxqGeRWA0xoOE/4bIY5ysl4tKfHK4dSRGTf.', '123456789', '1664691637_cprofile_img.jpg', '1664691637_visiting_card.jpg', 'Available', '2022-10-02 00:50:37', '2022-10-02 00:50:37');
 
 -- --------------------------------------------------------
 
@@ -301,7 +303,8 @@ CREATE TABLE `divisions` (
 INSERT INTO `divisions` (`id`, `created_at`, `updated_at`, `company_id`, `division_name`) VALUES
 (1, '2022-09-17 09:27:00', '2022-09-17 09:27:00', 1, 'A'),
 (2, '2022-09-17 09:27:08', '2022-09-17 09:27:08', 1, 'B'),
-(3, '2022-09-24 01:09:06', '2022-09-24 01:09:06', 2, 'A');
+(3, '2022-09-24 01:09:06', '2022-09-24 01:09:06', 2, 'A'),
+(4, '2022-10-01 22:30:47', '2022-10-01 22:30:47', 5, 'A');
 
 -- --------------------------------------------------------
 
@@ -362,7 +365,9 @@ CREATE TABLE `doctors` (
 INSERT INTO `doctors` (`id`, `gender`, `first_name`, `last_name`, `created_at`, `updated_at`, `specialist_id`, `short_tittle`, `email`, `password`, `visit_pharma_per`, `dpass`, `dob`, `doa`, `profile_img`, `liacence_no`, `education`, `experience`, `hospital_name`, `hospital_img`, `dr_mobile`, `office_no`, `visit_card`, `about`, `state`, `city`, `address`, `pincode`, `google_map`, `day`, `hospital_morning_to`, `hospital_morning_from`, `hospital_afternoon_to`, `hospital_afternoon_from`, `hospital_evening_to`, `hospital_evening_from`, `consulting_fees`, `followup_fees`, `notification`, `doctor_status`, `hospital_status`, `visitor_status`, `area`) VALUES
 (1, 'Female', 'Ayushi', 'Maurya', '2022-09-17 09:14:42', '2022-09-18 03:22:55', 1, 'Dentist', 'mohini.maurya6201@gmail.com', '$2y$10$nI08ZiCZjymCNRncBdLDnOAPM8fDpUoVBWAYr4ioady/O3NZfbIZO', '1-1', '123456789', '1995-08-15', '2021-02-06', '1663425882_profile_img.jpg', '32564789', 'B.D.S', '3 year', 'Sanjivni Hospital Care', '1663489120196177hospital_img.jpg,1663489120654347hospital_img.jpg,1663489120297214hospital_img.jpg,1663489120752963hospital_img.jpg', '7896541230', '25147896', '1663425882_visit_card_img.png', 'I\'m a Good Doctor', 1, 1, 'Oppo. Railway Station , Maninagar , Ahmedabad', '362514', 'https://goo.gl/maps/eGSNHMvABexPTpn7A', 'Monday,Thursday', '09:00', '12:00', '13:00', '15:00', '17:00', '19:00', '5000', '2500', 'If any emergency then just call me', 'Unblock', 'Available', 'Available', 1),
 (2, 'Female', 'Ritika', 'Maurya', '2022-09-17 09:22:41', '2022-09-19 00:13:31', 2, 'Urology', 'ritikamaurya@gmail.com', '$2y$10$gD4VUhkBbZEODsTtLWtdNOoD0U5i56Q5205CCihBwR0pKSoQs1HLW', NULL, '123456789', '1990-04-15', NULL, '1663426361_profile_img.jpg', '32547896', 'MS/DNB', '5 year', 'City Hospital', '1663426361365723hospital_img.jpg,1663426361728485hospital_img.jpg,1663426361292188hospital_img.jpg', '3625147890', '32561478', '1663426361_visit_card_img.jpg', 'I\'m a good doctor', 1, 1, 'Oppo. Scien city , Bhadaj circle Ahmedabad', '251463', 'https://goo.gl/maps/nMFgi66itgJXwrh4A', 'Monday,Wednesday,Friday,Sunday', '08:30', '11:30', '14:30', '17:30', '20:00', '21:00', '7000', '3500', 'If any Emergency inform me', 'Unblock', 'Available', 'Available', 4),
-(3, 'Male', 'Vishv', 'Unjiya', '2022-09-22 05:41:33', '2022-09-24 00:49:12', 4, 'gvaWEgf', 'vishvunjiya3058822@gmail.com', '$2y$10$ZyxMYWppD8LoKnsNXqIW6ONPL/rDR9jVssxDx7gzux51AFHxT7ef6', 'Select Schedule', '123456789', '2022-09-05', '2022-09-19', '1664000352_profile_img.jpg', 'DFB789', 'MS/DNB', '5 year', 'Zydus', '1663845093683258hospital_img.jpg,1663845093816570hospital_img.jpg,1663845093786188hospital_img.jpg,1663845093693339hospital_img.webp', '7990235200', '8347256265', '1663845093_visit_card_img.png', 'dfbsdgserga', 1, 1, 'nzdxgbzs', '380008', 'https://goo.gl/maps/eGSNHMvABexPTpn7A', 'Tuesday,Wednesday', '16:41', '17:41', '18:41', '19:41', '20:41', '22:41', '1000', '500', 'fbsdrbgsxe', 'Unblock', 'Available', 'Available', 1);
+(3, 'Male', 'Vishv', 'Unjiya', '2022-09-22 05:41:33', '2022-09-24 00:49:12', 4, 'gvaWEgf', 'vishvunjiya3058822@gmail.com', '$2y$10$ZyxMYWppD8LoKnsNXqIW6ONPL/rDR9jVssxDx7gzux51AFHxT7ef6', 'Select Schedule', '123456789', '2022-09-05', '2022-09-19', '1664000352_profile_img.jpg', 'DFB789', 'MS/DNB', '5 year', 'Zydus', '1663845093683258hospital_img.jpg,1663845093816570hospital_img.jpg,1663845093786188hospital_img.jpg,1663845093693339hospital_img.webp', '7990235200', '8347256265', '1663845093_visit_card_img.png', 'dfbsdgserga', 1, 1, 'nzdxgbzs', '380008', 'https://goo.gl/maps/eGSNHMvABexPTpn7A', 'Tuesday,Wednesday', '16:41', '17:41', '18:41', '19:41', '20:41', '22:41', '1000', '500', 'fbsdrbgsxe', 'Unblock', 'Available', 'Available', 1),
+(9, 'Male', 'Harsh', 'Maurya', '2022-10-01 22:00:15', '2022-10-01 22:00:15', 3, 'Cardiyologist', 'harshmauryas058@gmail.com', '$2y$10$xCapx5MwNoVEBtp5fn5XT.voyCTj603dkmviuImFMTAQH1XGuXEbC', NULL, '123456789', '2005-08-05', NULL, '1664681415_profile_img.jpg', '214578', 'MS/DNB', '1 year', 'Sinrji Hospital', '1664681415295148hospital_img.jpg,1664681415562336hospital_img.jpg,1664681415616675hospital_img.jpg', '9725456541', '321457', '1664681415_visit_card_img.png', 'good doctor', 1, 1, 'near ctm', '362514', 'https://goo.gl/maps/Bp1UntRRyPzXg8eV7', 'Tuesday,Thursday', '08:00', '10:00', '13:00', '15:00', '17:00', '19:00', '3500', '2514', 'hii', 'Unblock', 'Available', 'Available', 1),
+(10, 'Male', 'vishv', 'unjiya', '2022-10-02 00:40:42', '2022-10-02 00:40:42', 3, 'Cardiyologist', 'vishvunjiya742003@gmail.com', '$2y$10$AP2h.KTVYh6gvwF8j3oQqe/0syV47gidjbEshamsj665o6fTil9Fa', NULL, '123456789', '2022-10-04', NULL, '1664691042_profile_img.jpg', '5467858', 'MS/DNB', '1 year', 'Appolo Hospital', '1664691042947678hospital_img.jpg,1664691042617987hospital_img.jpg,1664691042964576hospital_img.jpg', '1020304050', '5', '1664691042_visit_card_img.jpg', 'hello', 1, 1, 'hii', '555555', 'http://localhost/phpmyadmin/index.php?route=/sql&db=admp&table=doctors&pos=0', 'Monday,Tuesday', '13:38', '13:39', '17:39', '16:39', '16:39', '14:39', '1245', '500', 'hiii', 'Unblock', 'Available', 'Available', 1);
 
 -- --------------------------------------------------------
 
@@ -476,7 +481,8 @@ CREATE TABLE `managers` (
 
 INSERT INTO `managers` (`id`, `created_at`, `updated_at`, `company_id`, `division_id`, `Manager_name`, `first_name`, `last_name`, `email`, `password`, `dpass`, `mprofile_img`, `visiting_card`, `status`) VALUES
 (1, '2022-09-17 09:49:54', '2022-09-17 09:52:17', 1, 1, 'Riya', 'Reena', 'Valekar', 'reenavalekar@gmail.com', '$2y$10$xDz82hbblgBE.PDE/qoMtuvExZu94gQtexWI6s50K4RzH/tsBaVTa', '123456789', '1663427994_mprofile_img.jpg', '1663427994_visiting_card.jpg', 'Unblock'),
-(2, '2022-09-24 06:37:29', '2022-09-24 06:37:29', 2, 3, 'reeeeeeeeya', 'fresh', 'saru', 'fresh@gmail.com', '$2y$10$nrYgEomHHuwNaMDo4Wf0KejguoFrS5oVEZsAT4G870D6f95EA9h0u', '123456789', '1664021249_mprofile_img.png', '1664021249_visiting_card.png', 'Unblock');
+(2, '2022-09-24 06:37:29', '2022-09-24 06:37:29', 2, 3, 'reeeeeeeeya', 'fresh', 'saru', 'fresh@gmail.com', '$2y$10$nrYgEomHHuwNaMDo4Wf0KejguoFrS5oVEZsAT4G870D6f95EA9h0u', '123456789', '1664021249_mprofile_img.png', '1664021249_visiting_card.png', 'Unblock'),
+(3, '2022-10-01 22:31:43', '2022-10-01 22:31:43', 5, 4, 'ritika', 'Rtk', 'Maurya', '181260107036setice@gmail.com', '$2y$10$WvbKjKZN6yFplYMZrihGfe5WNlhpRLIDrNyWXcAmQOaaRf9HtfAg6', '123456789', '1664683303_mprofile_img.jpg', '1664683303_visiting_card.png', 'Unblock');
 
 -- --------------------------------------------------------
 
@@ -1371,7 +1377,7 @@ ALTER TABLE `cities`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `company_appointments`
@@ -1383,7 +1389,7 @@ ALTER TABLE `company_appointments`
 -- AUTO_INCREMENT for table `company_fav_docs`
 --
 ALTER TABLE `company_fav_docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `company_slots`
@@ -1413,13 +1419,13 @@ ALTER TABLE `diagnoses`
 -- AUTO_INCREMENT for table `divisions`
 --
 ALTER TABLE `divisions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doctors`
 --
 ALTER TABLE `doctors`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `doc_fav_medicines`
@@ -1449,7 +1455,7 @@ ALTER TABLE `hospital_daytimes`
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `manager_appointments`
@@ -1461,7 +1467,7 @@ ALTER TABLE `manager_appointments`
 -- AUTO_INCREMENT for table `manager_fav_docs`
 --
 ALTER TABLE `manager_fav_docs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `medicines`

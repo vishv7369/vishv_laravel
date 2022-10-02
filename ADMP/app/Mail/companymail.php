@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class doctormail extends Mailable
+class companymail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,7 +31,7 @@ class doctormail extends Mailable
         $subject='Please Save Your Password';
         $name="Doccure";
 
-        return $this->view('admin.doctor_mail')
+        return $this->view('admin.company_mail')
         ->subject($subject)
         ->with(['first_name'=>$this->data['first_name'],'last_name'=>$this->data['last_name'],'email'=>$this->data['email'],
         'dpass'=>$this->data['dpass'],'body'=>$this->data['body']]);

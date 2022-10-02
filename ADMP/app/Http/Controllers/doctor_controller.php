@@ -169,16 +169,17 @@ class doctor_controller extends Controller
         $res=$data->save();
         if($res)
 		{
-			$data=['title'=>$email,'first_name'=>$first_name,'last_name'=>$last_name,'dpass'=>$dpass,'body'=>"Your Username & Password"];
+			$data=['title'=>$email,'first_name'=>$first_name,'last_name'=>$last_name,'dpass'=>$dpass,'body'=>"Your Password"];
            
 			Mail::to($email)->send(new doctormail($data));
-			return back()->with("success","Register Success");
+            Alert::success('Done', 'You\'ve Successfully Add Doctor');
+			return back();
 		}
 		else
 		{
 			alert("Not success");
 		}
-        Alert::success('Done', 'You\'ve Successfully Add Doctor');
+        //Alert::success('Done', 'You\'ve Successfully Add Doctor');
         return redirect('admin-add-doctor');
 
     }

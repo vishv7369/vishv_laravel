@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\companie;
 use App\Models\company_fav_doc;
 use App\Models\manager;
+use App\Mail\companymail;
+use Mail;
 use Hash;
 use Session;
 use Alert;
@@ -54,11 +56,11 @@ class companie_controller extends Controller
         ]);
         $data=new companie;
         
-        $data->first_name=$request->first_name;
-        $data->last_name=$request->last_name;
+    $first_name=$data->first_name=$request->first_name;
+    $last_name=$data->last_name=$request->last_name;
         $data->company_name=$request->company_name;
-        $data->email=$request->email;
-        $data->dpass=$request->password;
+    $email=$data->email=$request->email;
+    $dpass=$data->dpass=$request->password;
         $data->password=Hash::make($request->password);
 
         // img upload
@@ -74,7 +76,19 @@ class companie_controller extends Controller
 		$data->visiting_card=$file_name2; // file name store in db
 
         $res=$data->save();
-        Alert::success('Done', 'You\'ve Successfully Add Company');
+        if($res)
+		{
+			$data=['email'=>$email,'first_name'=>$first_name,'last_name'=>$last_name,'dpass'=>$dpass,'body'=>""];
+           
+			Mail::to($email)->send(new companymail($data));
+            Alert::success('Done', 'You\'ve Successfully Add Company');
+			return back();
+		}
+		else
+		{
+			 Alert::error('Fail', 'Not Success');
+		}
+       // Alert::success('Done', 'You\'ve Successfully Add Company');
         return redirect('admin-add-company');
 
     }

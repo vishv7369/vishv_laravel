@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\companie;
 use App\Models\manager;
 use App\Models\division;
+use App\Mail\company_managermail;
+use Mail;
 use Hash;
 use Session;
 use Alert;
@@ -191,10 +193,10 @@ public function companymanagerstore(Request $request)
     $data->Manager_name=$request->Manager_name;
     $data->company_id=Session('company_id');
     $data->division_id=$request->division_id;
-    $data->first_name=$request->first_name;
-    $data->last_name=$request->last_name;
-    $data->email=$request->email;
-    $data->dpass=$request->password;
+$first_name=$data->first_name=$request->first_name;
+$last_name=$data->last_name=$request->last_name;
+$email=$data->email=$request->email;
+$dpass=$data->dpass=$request->password;
     $data->password=Hash::make($request->password);
 
     // img upload
@@ -210,6 +212,18 @@ public function companymanagerstore(Request $request)
     $data->visiting_card=$file_name2; // file name store in db
 
     $res=$data->save();
+    if($res)
+    {
+        $data=['title'=>$email,'first_name'=>$first_name,'last_name'=>$last_name,'dpass'=>$dpass,'body'=>""];
+       
+        Mail::to($email)->send(new company_managermail($data));
+        Alert::success('Done', 'You\'ve Successfully Add Company');
+        return back();
+    }
+    else
+    {
+         Alert::error('Fail', 'Not Success');
+    }
     Alert::success('Done', 'You\'ve Successfully Add Manager');
     return redirect('company-add-manager');
 }
