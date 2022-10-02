@@ -577,10 +577,10 @@ img {
 }
 
 .main-header .header-upper .inner-container .top-bar .logo h1 {
-    margin: 50px;
+    margin: 10px;
     color: #e81c2e;
-    font-size: 50px;
-    line-height: 50px;
+    font-size: 30px;
+    line-height: 30px;
     font-weight: 800;
     letter-spacing: 1px;
     font-style: italic;
@@ -591,6 +591,31 @@ img {
 }
 
 .main-header .header-upper .inner-container .top-bar .info-box {
+    position: relative;
+    display: inline-block;
+    padding: 0px 0px 0px 50px;
+}
+
+.main-header .header-top .inner-container .header-info .top-bar .logo {
+    text-align: left;
+    overflow: hidden;
+}
+
+.main-header .header-top .inner-container .header-info .top-bar .logo h1 {
+    margin: 10px;
+    color: #f3b140;
+    font-size: 40px;
+    line-height: 30px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-style: italic;
+}
+
+.main-header .header-top .inner-container .header-info .top-bar .logo h1 span {
+    color: #007883;
+}
+
+.main-header .header-top .inner-container .header-info .top-bar .info-box {
     position: relative;
     display: inline-block;
     padding: 0px 0px 0px 50px;
@@ -843,7 +868,7 @@ img {
 }
 
 .main-menu .navigation > li > ul > li:hover a {
-    color: #fff;
+    color: #007883;
 }
 
 .main-menu .navigation > li > ul > li:last-child:hover {
@@ -855,8 +880,8 @@ img {
     right: 15px;
     top: 8px;
     font-size: 18px;
-    border: 1px solid #ffffff;
-    color: #ffffff;
+    border: 1px solid #007883;
+    color: #007883;
     width: 35px;
     height: 30px;
     line-height: 30px;
@@ -880,7 +905,7 @@ img {
     z-index: 100;
     display: none;
     padding: 0px 0px;
-    background-color: #ffffff;
+    background-color: #007883;
     border-top: 3px solid #fd571c;
     -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.05),
         -2px 0px 5px 1px rgba(0, 0, 0, 0.05);
@@ -947,7 +972,7 @@ img {
 }
 
 .main-menu .navigation > li > ul > li.dropdown:hover > a:after {
-    color: #fff;
+    color: #007883;
 }
 
 /** header-bottom **/
@@ -961,6 +986,7 @@ img {
 .main-header .header-bottom .outer-container {
     position: relative;
     width: 100%;
+    background: #f3b140;
 }
 
 .main-header .header-bottom .outer-container .nav-outer {
@@ -968,7 +994,7 @@ img {
     left: 0px;
     top: -36px;
     width: 100%;
-    background: #fff;
+    background: #f3b140;
 }
 
 .main-header .header-bottom .outer-container .nav-outer .menu-area .button-box {
@@ -989,7 +1015,7 @@ img {
     font-size: 16px;
     font-weight: 700;
     line-height: 26px;
-    background: #fbef55;
+    background: #f3b140;
     color: #192d66;
     text-align: center;
     padding: 24px 29px;
@@ -1002,7 +1028,7 @@ img {
     .menu-area
     .button-box
     a:hover {
-    background: #f3e426;
+    background: #f3b140;
 }
 
 .main-header
@@ -1074,7 +1100,7 @@ img {
     font-size: 25px;
     font-weight: 500;
     color: #0f0e05;
-    background: #fbef55;
+    background: #f3b140;
     padding: 7.5px 12px;
     text-align: center;
     border-radius: 10px;
@@ -1082,13 +1108,13 @@ img {
 
 .main-header .header-bottom .info-box .user a:hover {
     background: #192d66;
-    color: #fff;
+    color: #f3b140;
 }
 
 .main-header .header-bottom .info-box .user:before {
     position: absolute;
     content: "";
-    background: #e1e2e3;
+    background: #f3b140;
     height: 100%;
     width: 1px;
     top: 0px;
@@ -1105,7 +1131,7 @@ img {
     font-weight: 400;
     line-height: 20px;
     text-align: center;
-    background: #fff;
+    background: #f3b140;
     border-radius: 50%;
     margin-left: 5px;
     top: -3px;
@@ -3364,18 +3390,22 @@ body.flyout-searchbar-active
     display: block;
     padding: 38px 0px;
     z-index: 1;
+    width: 100%;
+    background: #f3b140;
 }
 
 .main-footer .footer-bottom .copyright {
     position: relative;
     font-size: 15px;
-    color: #616b8c;
+    color: #007883;
+    background: #f3b140;
 }
 
 .main-footer .footer-bottom .footer-social li {
     position: relative;
     display: inline-block;
     margin-right: 20px;
+    background: #f3b140;
 }
 
 .main-footer .footer-bottom .footer-social li:last-child {
@@ -3414,7 +3444,7 @@ body.flyout-searchbar-active
 .main-header.style-two .header-top .header-info li,
 .main-header.style-two .header-top .header-info li a,
 .main-header.style-two .header-top .header-nav li a {
-    color: #dfe0e6;
+    color: #f3b140;
 }
 
 .main-header.style-two .header-top .language .dropdown-toggle {
@@ -3423,7 +3453,7 @@ body.flyout-searchbar-active
 
 .main-header.style-two .header-top .header-info li a:hover,
 .main-header.style-two .header-top .header-nav li a:hover {
-    color: #fd571c;
+    color: #f3b140;
 }
 
 .main-header.style-two .header-bottom .outer-container .nav-outer {
@@ -3479,7 +3509,7 @@ body.flyout-searchbar-active
 
 .main-header.style-two .header-bottom .info-box .user span {
     background: #fd571c;
-    color: #fff;
+    color: #f3b140;
 }
 
 .main-header.style-two .header-bottom .info-box .search-box {
@@ -3515,7 +3545,7 @@ body.flyout-searchbar-active
     display: block;
     max-width: 920px;
     width: 100%;
-    background: #fff;
+    background: #f3b140;
     padding: 50px 30px 79px 100px;
 }
 
@@ -3539,7 +3569,7 @@ body.flyout-searchbar-active
     width: 80px;
     height: 80px;
     line-height: 80px;
-    border: 3px solid #eaefff;
+    border: 3px solid #f3b140;
     border-radius: 50%;
     text-align: center;
 }
@@ -3547,7 +3577,7 @@ body.flyout-searchbar-active
 .slider-style-two .content-box .video-button a:hover {
     border-color: #fd571c;
     background: #fd571c;
-    color: #fff;
+    color: #f3b140;
 }
 
 .slider-style-two .content-box h1 {
@@ -3574,7 +3604,7 @@ body.flyout-searchbar-active
     display: inline-block;
     font-size: 16px;
     font-weight: 700;
-    color: #fff;
+    color: #f3b140;
     background: #fd571c;
     padding: 17px 40px;
     text-transform: uppercase;
@@ -3621,7 +3651,7 @@ body.flyout-searchbar-active
     color: #fd571c;
     font-size: 20px;
     line-height: 80px;
-    background: #fff;
+    background: #f3b140;
     text-align: center;
     cursor: pointer;
     transition: all 500ms ease;

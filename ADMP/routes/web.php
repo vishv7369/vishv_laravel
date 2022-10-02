@@ -29,6 +29,8 @@ use App\Http\Controllers\patient_favs_controller;
 use App\Http\Controllers\doc_fav_patients_controller;
 use App\Http\Controllers\company_app;
 use App\Http\Controllers\manager_app;
+use App\Http\Controllers\mr_app;
+use App\Http\Controllers\mr_fav_doc_controller;
 
 
 /*
@@ -207,14 +209,10 @@ Route::get('/doctor-my-medicine/{id}',[doc_fav_medicines_controller::class,'dest
 
 Route::get('/doctor-mr-dashboard', function (){return view('doctor.mr-dashboard');});
 Route::get('/doctor-mr-schedule-timings', function (){return view('doctor.mr-schedule-timings');});
-Route::get('/doctor-mr-appointments', function (){return view('doctor.mr-appointments');});
-Route::get('/doctor-mr-find', function (){return view('doctor.mr-find');});
 
+Route::get('/doctor-mr-appointments',[mr_app::class,'mr_appointment']);
+Route::get('/mr_appointment_destroy/{id}',[mr_app::class,'mr_appointment_destroy']);
 
-Route::get('/doctor-manager-dashboard', function (){return view('doctor.manager-dashboard');});
-Route::get('/doctor-manager-schedule-timings', function (){return view('doctor.manager-schedule-timings');});
-Route::get('/doctor-manager-appointments', function (){return view('doctor.manager-appointments');});
-Route::get('/doctor-manager-find', function (){return view('doctor.manager-find');});
 
 Route::get('/doctor-company-schedule-timings',[company_slots_controller::class,'create']);
 Route::post('/doctor-company-schedule-timings',[company_slots_controller::class,'store']);
@@ -424,8 +422,8 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
    
     Route::get('/managerlogout',[manager_controller::class,'managerlogout']);
 
-
-    Route::get('/manager-dashboard', function (){return view('manager.index');});
+   
+    Route::get('/manager-dashboard',[manager_app::class,'index']);
     Route::get('/manager-profile',[manager_controller::class,'managerprofile']);
     Route::get('/editmanager{id}',[manager_controller::class,'editmanager']);
     Route::post('/manager-profile/{id}',[manager_controller::class,'managerupdate']);
@@ -439,7 +437,7 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
 
     Route::post('/manager_app_book',[manager_app::class,'manager_app_book']);
     Route::get('/manager-myappointment',[manager_app::class,'index']);
-    Route::get('/destroy/{id}',[manager_app::class,'destroy']);
+    Route::get('/manager_app_destroy/{id}',[manager_app::class,'manager_app_destroy']);
 
     Route::get('/manager_fav_doc/{id}',[manager_fav_doc_controller::class,'manager_fav_doc']);
     Route::get('/manager-fav-doctor',[manager_fav_doc_controller::class,'managerfavdoctor']);
@@ -464,6 +462,53 @@ Route::group(['middleware'=>['afterlogincompany']], function(){
     Route::post('/manageraddmedicine',[doc_fav_medicines_controller::class,'manageraddmedicine']);
     Route::get('/manager-medicine-manager',[doc_fav_medicines_controller::class,'managermedicinecreate']);
     Route::get('/manageraddmedicine/{id}',[doc_fav_medicines_controller::class,'managermedicinedelete']);
+
+});
+    //////////////////////////////////////////////mr panel//////////////////////////////////////////////////
+    Route::group(['middleware'=>['mrbeforelogin']], function(){
+
+        Route::get('/mr',[mr_controller::class,'login']);
+        Route::post('/mrlogin',[mr_controller::class,'mrlogin']);
+        
+        });
+    
+        Route::group(['middleware'=>['mrafterlogin']], function(){
+       
+        Route::get('/mrlogout',[mr_controller::class,'mrlogout']);
+    
+        Route::get('/mr-dashboard',[mr_app::class,'index']);
+        Route::get('/mr-profile',[mr_controller::class,'mrprofile']);
+        Route::get('/editmr{id}',[mr_controller::class,'editmr']);
+        Route::post('/mr-profile/{id}',[mr_controller::class,'mrupdate']);
+    
+        Route::get('/mr-changepassword',[mr_controller::class,'mrchangecreate']);
+        Route::post('/mr-changepassword',[mr_controller::class,'mrchangepassword']);
+    
+        Route::get('/mr-doctor',[doctor_controller::class,'mrdoctorindex']);
+        Route::get('/mr-doctor-profile/{id}',[doctor_controller::class,'mr_doctorview']);
+        
+    
+        Route::post('/mr_app_book',[mr_app::class,'mr_app_book']);
+        Route::get('/mr-myappointment',[mr_app::class,'index']);
+        Route::get('/mr_app_destroy/{id}',[mr_app::class,'mr_app_destroy']);
+    
+        Route::get('/mr_fav_doc/{id}',[mr_fav_doc_controller::class,'mr_fav_doc']);
+        Route::get('/mr-fav-doctor',[mr_fav_doc_controller::class,'mrfavdoctor']);
+        Route::get('/mr_fav_doc_del/{id}',[mr_fav_doc_controller::class,'mr_fav_doc_del']);
+        
+        Route::get('/mr-doctor-appointment', function (){return view('mr.doctor-appointment');});
+        Route::get('/mr-doctor-cancel-appointment', function (){return view('mr.doctor-cancel-appointment');});
+        
+       
+        Route::get('/mr-stockiest',[stockiest_controller::class,'mrstockiestindex']);
+        Route::get('/mr-add-stockiest',[stockiest_controller::class,'mrstockiescreate']);
+        Route::post('/mr-add-stockiest',[stockiest_controller::class,'mrstockieststore']);
+    
+        Route::post('/mraddmedicine',[doc_fav_medicines_controller::class,'mraddmedicine']);
+        Route::get('/mr-medicine-mr',[doc_fav_medicines_controller::class,'mrmedicinecreate']);
+        Route::get('/mraddmedicine/{id}',[doc_fav_medicines_controller::class,'mrmedicinedelete']);
+
+
 });
    
     

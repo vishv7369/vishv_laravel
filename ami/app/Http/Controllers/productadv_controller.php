@@ -71,6 +71,13 @@ class productadv_controller extends Controller
 		return view('Frontend.shop-2',["front_arr"=>$data,"cat_arr"=>$data1]);
     }
 
+    public function viewcate($id)
+    {
+        $category=categorie::where('id',$id)->first();
+        $products=productadv::where('cate_id',$category->id)->get();
+        return view('Frontend.products',['category'=>$category,'products'=>$products]);
+    }
+
     public function getproduct(Request $request)
     {
 		$data['productadvs']=productadv::where("cate_id","=",$request->cate_id)->get();

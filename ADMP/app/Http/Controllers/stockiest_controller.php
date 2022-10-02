@@ -171,4 +171,47 @@ class stockiest_controller extends Controller
        return redirect('manager-add-stockiest');
 
     }
+
+
+///////////////////////////////////////////mr panel////////////////////////////////////////
+
+public function mrstockiestindex()
+{
+    $data=stockiest::where('mr_id','=',Session('mr_id'))->get();
+    return view('mr.stockiest',["stockiest_arr"=>$data]);
+}
+
+public function mrstockiescreate()
+{
+    $state_id_arr=state::all();
+    $city_id_arr=citie::all();
+    $area_id_arr=area::all();
+    return view('mr.add-stockiest',["state_id_arr"=>$state_id_arr,"city_id_arr"=>$city_id_arr,"area_id_arr"=>$area_id_arr]);
+}
+
+public function mrstockieststore(Request $request)
+{
+    $data=$request->validate([
+        'name'=>'required',
+        'state'=>'required',
+        'city'=>'required',
+        'area'=>'required',
+        'address'=>'required',
+        'pincode'=>'required|numeric|digits:6',
+    ]);
+   $data=new stockiest;
+   $data->mr_id=Session('mr_id');
+   $data->company_id=Session('mr_company_id');
+   $data->name=$request->name;
+   $data->state=$request->state;
+   $data->city=$request->city;
+   $data->area=$request->area;
+   $data->address=$request->address;
+   $data->pincode=$request->pincode;
+
+   $res=$data->save();
+   Alert::success('Done', 'You\'ve Successfully Add Stockiest');
+   return redirect('mr-add-stockiest');
+
+}
 }

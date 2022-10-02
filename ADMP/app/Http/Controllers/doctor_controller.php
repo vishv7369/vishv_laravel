@@ -17,6 +17,9 @@ use App\Models\doc_fav_patient;
 use App\Models\appointments;
 use App\Models\company_slots;
 use App\Models\manager_fav_doc;
+use App\Models\mr_fav_doc;
+use App\Mail\dtforget_password_otp;
+use App\Mail\doctormail;
 use Hash;
 use session;
 use Alert;
@@ -104,12 +107,12 @@ class doctor_controller extends Controller
 
         ]);
         $data=new doctor;
-        $data->first_name=$request->first_name;
-        $data->last_name=$request->last_name;
+    $first_name=$data->first_name=$request->first_name;
+    $last_name=$data->last_name=$request->last_name;
         $data->short_tittle=$request->short_tittle;
-        $data->email=$request->email;
+    $email=$data->email=$request->email;
         $data->gender=$request->gender;
-        $data->dpass=$request->password;
+    $dpass=$data->dpass=$request->password;
         $data->password=Hash::make($request->password);
         $data->dob=$request->dob;
         $data->liacence_no=$request->liacence_no;
@@ -164,6 +167,17 @@ class doctor_controller extends Controller
 		$data->visit_card=$file_name3; // file name store in db
 
         $res=$data->save();
+        if($res)
+		{
+			$data=['title'=>$email,'first_name'=>$first_name,'last_name'=>$last_name,'dpass'=>$dpass,'body'=>"Your Username & Password"];
+           
+			Mail::to($email)->send(new doctormail($data));
+			return back()->with("success","Register Success");
+		}
+		else
+		{
+			alert("Not success");
+		}
         Alert::success('Done', 'You\'ve Successfully Add Doctor');
         return redirect('admin-add-doctor');
 
@@ -775,6 +789,27 @@ public function manager_doctorview($id)
         $favdoctor_arr=manager_fav_doc::where('doctor_id','=',$id)->where('manager_id','=',Session('manager_id'))->first();
         return view('manager.doctor-profile',["fetch"=>$data,"slot_arr"=>$slot_arr,"favdoctor_arr"=>$favdoctor_arr]);
     }
+
+/////////////////////////////////////////mr panel/////////////////////////////////////////////////
+
+
+public function mrdoctorindex()
+{
+    $alldoctor_arr=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->get(['doctors.*','specialists.img','specialists.name']);
+    //$favdoctor_arr=manager_fav_doc::where('manager_id','=',Session('manager_id'))->get(['manager.*']);,"favdoctor_arr"=>$favdoctor_arr
+   
+    return view('mr.doctor-list',["alldoctor_arr"=>$alldoctor_arr]);
+}
+
+public function mr_doctorview($id)
+    {
+        
+        $data=doctor::join('specialists','specialists.id','=','doctors.specialist_id')->where('doctors.id','=',$id)->first();
+        $slot_arr=visitor_slots::where('doc_id','=',$id)->get();
+        $favdoctor_arr=mr_fav_doc::where('doctor_id','=',$id)->where('mr_id','=',Session('mr_id'))->first();
+        return view('mr.doctor-profile',["fetch"=>$data,"slot_arr"=>$slot_arr,"favdoctor_arr"=>$favdoctor_arr]);
+    }
+
 
 ////////////////////////Patient Panel//////////////////////////////////////////////////////////
 

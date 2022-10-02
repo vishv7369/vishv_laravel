@@ -76,6 +76,14 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\managerbeforelogin::class
         ],
 
+        'mrafterlogin'=>[
+            \App\Http\Middleware\mrafterlogin::class
+        ],
+
+        'mrbeforelogin'=>[
+            \App\Http\Middleware\mrbeforelogin::class
+        ],
+
         'patientafterlogin'=>[
             \App\Http\Middleware\patientafterlogin::class
         ],

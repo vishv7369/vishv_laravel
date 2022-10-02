@@ -108,7 +108,7 @@ class patient_controller extends Controller
         $ptregisterotp=session('ptregisterotp');
         if($registerotp==$ptregisterotp)
         {
-           // $data->userotp=$request->userotp;
+           // $data->userotp=$request->userotp;/
            // $data->ptbookotp=$request->ptbookotp;
             $data=new patient;
             $data->name=session('name_session');

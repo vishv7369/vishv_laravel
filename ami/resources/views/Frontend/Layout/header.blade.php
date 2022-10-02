@@ -8,7 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
 <title>Ami Enterprise</title>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <!-- Stylesheets -->
 <link href="{{url('Frontend/css/style.css')}}" rel="stylesheet">
 <link href="{{url('Frontend/css/responsive.css')}}" rel="stylesheet">
@@ -60,9 +61,13 @@
             <div class="container">
                 <div class="inner-container clearfix">
                     <ul class="header-info pull-left">
-                    <div class="text">
-                            <a href="mailto:amienterprise221@gmail.com"><u>amienterprise221@gmail.com</u></a>
+                    <div class="top-bar">
+                        <div class="logo">
+                            <a href="index">
+                                <h1>Ami<span>Enterprise</span></h1>
+                            </a>
                         </div>
+                    </div>
                     </ul>
                     <ul class="header-nav pull-right">
                         <li>Time : Monday-Friday 09am-6pm</li>
@@ -72,37 +77,10 @@
             </div>
         </div><!-- header-top end -->
 
-        <!-- header-upper -->
-        <div class="header-upper">
-            <div class="container">
-                <div class="inner-container clearfix">
-                   <!-- <div class="left-content pull-left">
-                        <figure class="logo-box"><a href="index"><img class="rounded-circle" src="{{url('Frontend/images/logo/LOGO.png')}}" style="height:80;width:80px" alt=""></a></figure>
-                    </div> -->
-                    <div class="top-bar">
-                        <div class="logo">
-                            <a href="index">
-                                <h1>Ami<span>Enterprise</span></h1>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="right-content pull-right">
-                        <div class="info-box">
-                            <div class="icon-box"><i class="flaticon-telephone"></i></div>
-                            <h3><a href="tel:9313403430">+91 9313403430</a></h3>
-                            <div class="text">Call for any Support</div>
-                        </div>
-                        <div class="btn-box">
-                            <a href="contact">Contact us Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- header-upper end -->
-
+      
         <!-- header-bottom -->
         <div class="header-bottom">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="outer-container">
                     <div class="nav-outer clearfix">
                         <div class="menu-area pull-left clearfix">
@@ -116,7 +94,7 @@
                                     <span class="icon-bar"></span>
                                     </button>
                                 </div>
-                                <div class="navbar-collapse collapse clearfix">
+                                <div class="navbar-collapse collapse clearfix" style="margin-left:185px">
                                     <ul class="navigation clearfix">
                                         <li><a href="index">Home</a></li>
                                         <li><a href="shop">shop</a></li>
@@ -134,7 +112,7 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="info-box pull-right clearfix">
+                        <div class="info-box pull-right clearfix" style="margin-right:100px">
                             <ul class="social-links">
                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>

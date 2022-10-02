@@ -207,6 +207,7 @@ class doc_fav_medicines_controller extends Controller
         $data=new medicine;
         $data->medicine_name=$request->medicine_name;
         $data->created_by=Session('manager_id');
+        $data->company_id=Session('manager_company_id');
         $data->save();
         Alert::success('Done', 'You\'ve Successfully Add Medicine');
         return redirect('/manager-medicine-manager');
@@ -219,6 +220,39 @@ class doc_fav_medicines_controller extends Controller
         Alert::success('Done', 'You\'ve Successfully Delete Medicine');
         return redirect('/manager-medicine-manager');
     }
+
+    ////////////////////////////////////////////////////mr panel//////////////////////////////////////////////////
+    
+  
+  public function mrmedicinecreate()
+  {
+      $medicine_mr=medicine::where('created_by','=',Session('mr_id'))->get();
+     return view('mr.medicine-mr',["medicine_mr"=>$medicine_mr]);
+  }
+
+ 
+  public function mraddmedicine(Request $request)
+  {
+      $data=$request->validate([
+          'medicine_name'=>'required',
+          
+      ]);
+      $data=new medicine;
+      $data->medicine_name=$request->medicine_name;
+      $data->created_by=Session('mr_id');
+      $data->company_id=Session('mr_company_id');
+      $data->save();
+      Alert::success('Done', 'You\'ve Successfully Add Medicine');
+      return redirect('/mr-medicine-mr');
+  }
+
+  public function mrmedicinedelete($id)
+  {
+      $data=medicine::find($id);
+      $data->delete();
+      Alert::success('Done', 'You\'ve Successfully Delete Medicine');
+      return redirect('/mr-medicine-mr');
+  }
 
     
 }

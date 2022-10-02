@@ -23,8 +23,8 @@ class manager_app extends Controller
     {
         $data=manager_appointment::join('doctors','doctors.id','=','manager_appointments.doctor_id')
         ->join('visitor_slots','visitor_slots.id','=','manager_appointments.slot_id')
-        ->get(['doctors.first_name','doctors.last_name','visitor_slots.start_time','visitor_slots.end_time','manager_appointments.*']);
-       return view('manager.myappointment',["myappointment_arr"=>$data]);
+        ->get(['doctors.first_name','doctors.last_name','doctors.profile_img','visitor_slots.start_time','visitor_slots.end_time','visitor_slots.created_at','manager_appointments.*']);
+       return view('manager.index',["myappointment_arr"=>$data]);
     }
 
     public function manager_appointment()
@@ -112,7 +112,7 @@ class manager_app extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function manager_app_destroy($id)
     { 
        $data=manager_appointment::find($id);
        $data->delete();

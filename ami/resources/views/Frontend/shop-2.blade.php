@@ -1,4 +1,3 @@
-
 @extends('Frontend.Layout.mainlayout')
 @section('remaining_content')
 
@@ -12,16 +11,6 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12 col-sm-12 sidebar-side">
                         <div class="shop-sidebar">
-                            <div class="search-widget sidebar-widget">
-                                <div class="search-box">
-                                    <form action="#" method="post">
-                                        <div class="form-group">
-                                            <input type="search" name="search-field" placeholder="Search" required="">
-                                            <button type="submit"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
                             <div class="categories-widget sidebar-widget">
                                 <h3 class="widget-title">Categories</h3>
                                 <ul class="shop-categories">
@@ -29,7 +18,7 @@
 									foreach($cat_arr as $data)
 									{
 									?>
-                                    <li><a id="cate_id" name="cate_id" value="productadvs"><?php echo $data->category_name;?></a></li>
+                                    <li><a href="{{url('viewcategory/'.$data->id)}}" id="cate_id" name="cate_id" value="productadvs"><?php echo $data->category_name;?></a></li>
                                     <?php
 									}
 									?>
@@ -66,28 +55,6 @@
                                     <?php
 									}
 									?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="latest-product">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInLeft animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <figure class="image-box"><img src="{{url('Frontend/images/resource/shop/machine-1.png')}}" alt=""></figure>
-                            <div class="content-box">
-                                <h3><a href="shop-single.html">industrial Motor decanter</a></h3>
-                                <div class="link-btn"><a href="shop-single.html">Check More<i class="far fa-arrow-alt-circle-right"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <figure class="image-box"><img src="{{url('Frontend/images/resource/shop/machine-2.png')}}" alt=""></figure>
-                            <div class="content-box">
-                                <h3><a href="shop-single.html">Water jet pumps</a></h3>
-                                <div class="link-btn"><a href="shop-single.html">Check More<i class="far fa-arrow-alt-circle-right"></i></a></div>
                             </div>
                         </div>
                     </div>

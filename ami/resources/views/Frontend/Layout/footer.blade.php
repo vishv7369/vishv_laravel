@@ -58,9 +58,9 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom clearfix">
-                <div class="copyright pull-left"><a href="#">Ami </a></div>
-                <ul class="footer-social pull-right">
+            <div class="footer-bottom clearfix" style="width:1334px;">
+                <div class="copyright "><a href="#">Ami </a></div>
+                <ul class="footer-social pull-right" >
                     <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                     <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>

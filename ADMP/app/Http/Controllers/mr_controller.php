@@ -377,4 +377,132 @@ class mr_controller extends Controller
 		return redirect('/manager-mr');
     }
 
+    ///////////////////////////////////////////////mr panel////////////////////////////////////////////////////
+    public function login(Request $request)
+    {
+        return view('mr.login');
+    }
+
+    public function mrlogin(Request $request)
+    {
+        $data=$request->validate([
+            
+            'email'=>'required|email',
+            'password'=>'required|min:6',
+        ]);
+        $data=mr::where("email","=","$request->email")->first();
+        if($data)
+        {
+            if(Hash::check($request->password, $data->password))
+            {
+
+                $request->Session()->put('mr_id',$data->id);
+                $request->Session()->put('email', $data->email);
+                $request->Session()->put('mr_company_id',$data->company_id);
+                $mrname=$data->first_name." ".$data->last_name; 
+                $request->Session()->put('mrname',$mrname);
+                $request->Session()->put('mrprofile_img', $data->mrprofile_img);
+                Alert::success('Congrats', 'You\'ve Successfully Login');
+                return redirect('mr-dashboard');
+            }
+            else
+            {
+                Alert::error('Fail', 'Login Failed due to Wrong Password');
+                return redirect('/mr');
+            }
+        }
+        else
+        {
+            Alert::error('Fail', 'Login Failed due to Wrong email');
+            return redirect('/mr');
+        }
+    }
+
+    public function mrlogout()
+    {
+        Session()->pull('mr_id');
+        Session()->pull('email');
+        Session()->pull('mr_company_id');
+        Session()->pull('mrprofile_img');
+        Session()->pull('mrname');
+        return redirect('/mr');
+    }
+
+    ///////////////change password
+public function mrchangepassword(Request $request)
+{
+    $data=$request->validate([
+        'oldpassword' => 'required',
+        'newpassword' => 'required|string|min:6',
+        'confirm_password' => 'required|same:newpassword|min:6',
+    
+    ]);
+    $data=mr::where("id","=",Session('mr_id'))->first();
+    if(Hash::check($request->oldpassword, $data->password))
+       {
+        $data->password=Hash::make($request->newpassword);
+        $data->dpass=$request->newpassword;
+        $data->update();
+        Alert::success('Done', 'You\'re Password Change Success');
+        return back();
+       }
+       else
+       {
+        Alert::error('fail', 'Please Enter Correct Old Password');
+        return back();
+       }
+}
+
+public function mrchangecreate()
+{
+    return view('mr.setting');
+}
+
+    public function mrprofile()
+	{  
+		$data=mr::where("id","=",session('mr_id'))->first();
+		return view('mr.profile',["fetch"=>$data]);
+	}
+
+    public function editmr($id)
+    {
+        $data=mr::where("id","=",session('mr_id'))->first();
+        return view('mr.profile',["fetch"=>$data]);
+    }
+
+    public function mrupdate(Request $request, $id)
+    {
+        $data=mr::find($id);
+
+        $data->first_name=$request->first_name;
+        $data->last_name=$request->last_name;
+       $data->email=$request->email;
+        $old_img=$data->mrprofile_img;
+        $old_img2=$data->visiting_card;
+
+        // img upload
+        if($request->hasFile('mrprofile_img'))
+		{
+            $file=$request->file('mrprofile_img');  // get file
+            $file_name=time()."_mrprofile_img.".$request->file('mrprofile_img')->getClientOriginalExtension();// make file name
+            $file->move('upload/mr',$file_name); //file name move upload in public		
+            $data->mrprofile_img=$file_name; // file name store in db
+            unlink('upload/mr/'.$old_img);
+        }
+
+        // visitingcard upload
+        if($request->hasFile('visiting_card'))
+		{
+            $file2=$request->file('visiting_card');  // get file
+            $file_name2=time()."_visiting_card.".$request->file('visiting_card')->getClientOriginalExtension();// make file name
+            $file2->move('upload/visitingcard',$file_name2); //file name move upload in public		
+            $data->visiting_card=$file_name2; // file name store in db
+            unlink('upload/visitingcard/'.$old_img2);
+        }
+
+        $data->save();
+        Alert::success('Done', 'You\'ve Successfully Update Your Profile');
+		return redirect('/mr-profile');
+    }
+
 }
