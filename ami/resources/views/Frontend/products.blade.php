@@ -26,7 +26,7 @@
                                             <div class="lower-content">
                                             <h4><a href="shop-single"><?php echo $data->productname;?></a></h4>
                                                 <div class="price">
-                                                    <span><?php echo $data->productprice;?></span>
+                                                    <span>&#8377; <?php echo $data->productprice;?></span>
                                                 </div>
                                                     <span><?php echo $data->description;?></span> 
                                                 <div class="btn-box"><a href="<?php echo $data->productlink;?>">Buy Now</a></div>

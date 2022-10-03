@@ -32,8 +32,7 @@
 											<th>Product_Price</th>
 											<th>Product_Description</th>
 											<th>Product_Link</th>
-											<th>Edit</th>
-                                            <th>Delete</th>
+											<th>Delete</th>
                                             
                                             
                                         </tr>
@@ -52,9 +51,7 @@
 									<td><?php echo $data->productprice?></td>
 									<td><?php echo $data->description?></td>
 								    <td><?php echo $data->productlink?></td>
-									<td><a href="{{url('editproduct/'.$data->id)}}" class="btn btn-primary">Edit</a></td>
 									<td><a href="{{url('addproduct/'. $data->id)}}" class="btn btn-danger">Delete</a></td>
-									<td><a href="" class="btn btn-primary">Available/Not available</a></td>
 									</tr>
 									<?php
 									}

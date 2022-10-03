@@ -26,7 +26,7 @@
                                 <div class="profile-img-wrap">
                                     <img class="inline-block"  type="file" name="img">
                                     <div class="fileupload btn">
-                                        <span class="btn-text">edit</span>
+                                        <span class="btn-text">Upload</span>
                                         <input class="upload" type="file" name="img">
                                     </div>
                                 </div>

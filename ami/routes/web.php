@@ -60,36 +60,19 @@ Route::get('/myaccount',[customer_controller::class,'myaccount']);
 Route::get('/edit/{id}',[customer_controller::class,'edit']);
 Route::post('/edit/{id}',[customer_controller::class,'update']);
 
-//Backend
+/*Backend
 
 Route::get('/', function () {
     return view('Backend.Admin.register');
 });
 
-Route::get('/admin', function () {
-    return view('Backend.Admin.index');
-});
 
-Route::get('/dashboard', function () {
-    return view('Backend.Admin.dashboard');
-});
 
 Route::get('/profile', function () {
     return view('Backend.Admin.profile');
 });
 
-Route::get('/admin-forgetpass', function () {
-    return view('Backend.Admin.forgot-password');
-});
 
-
-Route::get('/admin-changepass', function () {
-    return view('Backend.Admin.change-password');
-});
-
-Route::get('/admin-changepass2', function () {
-    return view('Backend.Admin.change-password2');
-});
 
 Route::get('/admin-calendar', function () {
     return view('Backend.Admin.calendar');
@@ -127,16 +110,39 @@ Route::get('/admin-notification', function () {
 
 Route::get('/admin-theme', function () {
     return view('Backend.Admin.theme-settings');
-});
+});*/
 
 /*------------------------Admin-------------------------*/
-Route::get('/login',[admin_controller::class,'login']);
-Route::post('/userlogin',[admin_controller::class,'userlogin']);
-Route::get('/logout',[admin_controller::class,'logout']);
 
+Route::group(['middleware'=>['beforlogin']],function(){
+    Route::get('/login',[admin_controller::class,'login']);
+    Route::post('/userlogin',[admin_controller::class,'userlogin']);
+});
+
+Route::group(['middleware'=>['afterlogin']],function(){
+Route::get('/logout',[admin_controller::class,'logout']);
 Route::get('/register',[admin_controller::class,'create']);
 Route::post('/register',[admin_controller::class,'store']);
 
+Route::get('/admin', function () {
+    return view('Backend.Admin.index');
+});
+
+Route::get('/dashboard', function () {
+    return view('Backend.Admin.dashboard');
+});
+
+Route::get('/admin-forgetpass', function () {
+    return view('Backend.Admin.forgot-password');
+});
+
+Route::get('/admin-changepass', function () {
+    return view('Backend.Admin.change-password');
+});
+
+Route::get('/admin-changepass2', function () {
+    return view('Backend.Admin.change-password2');
+});
 /*------------------------Category-------------------------*/
 Route::get('/addcategory',[categorie_controller::class,'create']); //view
 Route::post('/addcategory',[categorie_controller::class,'store']); //insert
@@ -159,3 +165,4 @@ Route::get('/admin-managecontact',[contact_controller::class,'index']);//Backend
 
 /*------------------------Customer-------------------------*/
 Route::get('/admin-managecustomer',[customer_controller::class,'index']); // Backend view
+});
