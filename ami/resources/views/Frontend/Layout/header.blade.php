@@ -117,7 +117,6 @@
                                 <li><a href="#"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href="#"><i class="fab fa-whatsapp"></i></a></li>
-                                <li><a href="#"><i class="fab fa-indiamart-in"></i></a></li>
                             </ul>
                             
 							@if(Session('customer_id'))

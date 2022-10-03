@@ -22,7 +22,7 @@ use App\Http\Controllers\dashboard_controller;
 */
 
 //Frontend
-
+Route::view('/','Frontend.index-2');
 Route::view('/index','Frontend.index-2');
 Route::view('/reviews','Frontend.testimonial');
 Route::view('/team','Frontend.team-2');

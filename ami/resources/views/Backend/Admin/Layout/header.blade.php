@@ -176,18 +176,7 @@
                             <a href="admin-managecontact"><i class="fa fa-cog"></i> <span>Manage Contact</span></a>
                         </li>
 						
-						<li>
-                            <a href="admin-lock"><i class="fa fa-cog"></i> <span> Lock Screen</span></a>
-                        </li>
 						
-						
-						<li>
-                            <a href="admin-gallery"><i class="fa fa-cog"></i> <span>Gallery</span></a>
-                        </li>
-						
-						<li>
-                            <a href="admin-404"><i class="fa fa-cog"></i> <span>404 Error</span></a>
-                        </li>
                             </ul>
                         </li>
                     </ul>

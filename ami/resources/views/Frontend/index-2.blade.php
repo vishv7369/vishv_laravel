@@ -15,7 +15,6 @@
                                 <div class="text">Industry is the production of goods or related services<br />within an economy.</div>
                                 <div class="button-box">
                                     <div class="link-button"><a href="#">Get Solution</a></div>
-                                    <div class="video-button"><a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +31,6 @@
                                 <div class="text">Industry is the production of goods or related services<br />within an economy.</div>
                                 <div class="button-box">
                                     <div class="link-button"><a href="#">Get Solution</a></div>
-                                    <div class="video-button"><a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +47,6 @@
                                 <div class="text">Industry is the production of goods or related services<br />within an economy.</div>
                                 <div class="button-box">
                                     <div class="link-button"><a href="#">Get Solution</a></div>
-                                    <div class="video-button"><a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image" data-caption=""><i class="fas fa-play"></i></a></div>
                                 </div>
                             </div>
                         </div>
